@@ -1,0 +1,40 @@
+/* ****************** 부트스트랩 강제 대응 및 초기화  ******************* */
+ul,ol,li,dl,dt,dd {list-style:none; padding:0; margin:0;}
+.btn-normal {color:#696969 !important; background-color:#fff; min-height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; line-height:2.6; border:1px solid #e8e8e8;}
+.btn-normal:hover {color:#fff !important; background-color:#333;}
+
+.btn-blue {color:#fff !important; background-color:#3b5789; min-height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; line-height:2.6; border:1px solid #000;}
+.btn-blue:hover {background:#2a3e63;}
+
+.btn-gray {color:#696969 !important;; background-color:#f5f5f5; min-height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; line-height:2.6; border:1px solid #696969;}
+.btn-gray:hover {background:#cecece;}
+
+.btn-black { background:#555 !important; color:#fff !important;  min-height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; line-height:2.6; border:1px solid #696969;}
+.btn-black:hover {background:#000 !important; color:#fff !important;}
+
+.btn-xs {color:#333 !important; background-color:#fff; border:1px solid #ddd;}
+.btn-xs:hover {color:#fff !important; background-color:#333; border:1px solid #333;}
+
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {padding:3px 0;}
+.btn-default {border:1px solid #e8e8e8 !important;}
+footer .bootstrap-select.btn-group .dropdown-toggle .filter-option {padding:0; overflow:visible;}
+.btn_print {display:inline-block; width:40px; height:40px; background:url(../images/common/print_off.png) 0 50% no-repeat; position:absolute; top:5px; right:20px; background-size:100%;}
+.btn_print:hover { background:url(../images/common/print_on.png) 0 50% no-repeat;}
+.board_ebi .page_box .mobile .form-control {border:0 !important;}
+.page_box .mobile .btn-group .btn {padding:3px 25px 3px 10px }
+
+.dropdown-toggle {height:40px; }
+/* // ******************* 부트스트랩 강제 대응 및 초기화  ******************* */
+
+
+
+
+
+
+@media screen and (max-width:992px){
+	
+}
+
+@media screen and (max-width:768px){
+	
+}

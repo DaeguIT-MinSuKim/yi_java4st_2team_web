@@ -1,0 +1,138 @@
+@media print {
+    a:link:after,
+    a:visited:after {
+       content: none;
+    }
+	* {-webkit-print-color-adjust:exact;}
+}
+
+/* Noto Sans KR */
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url("/fonts/NotoSansKR-Regular.eot");
+  src: url("/fonts/NotoSansKR-Regular.eot?#iefix") format('embedded-opentype'),
+       url("/fonts/NotoSansKR-Regular.woff") format('woff'),
+       url("/fonts/NotoSansKR-Regular.otf") format('opentype');
+}
+/* Noto Sans KR-Thin */
+@font-face {
+  font-family: 'NotoSansKR-Thin';
+  src: url("/fonts/NotoSansKR-Thin.eot");
+  src: url("/fonts/NotoSansKR-Thin.eot?#iefix") format('embedded-opentype'),
+       url("/fonts/NotoSansKR-Thin.woff") format('woff'),
+       url("/fonts/NotoSansKR-Thin.otf") format('opentype');
+}
+
+/*나눔손글씨*/
+@font-face { 
+   font-family: 'NanumBrush';
+   src: url("/fonts/NanumBrush.eot"); 
+   src: url("/fonts/NanumBrush.eot?#iefix") format('embedded-opentype'),
+         url("/fonts/NanumBrush.woff") format('woff'),
+         url("/fonts/NanumBrush.ttf") format('truetype'); 
+}
+/*지마켓*/
+@font-face { 
+    font-family: 'GmarketSans';
+    font-weight:300;
+    src: url("/fonts/GmarketSansTTFLight.eot"); 
+    src: url("/fonts/GmarketSansTTFLight.eot?#iefix") format('embedded-truetype'),
+          url("/fonts/GmarketSansTTFLight.woff") format('woff'),
+          url("/fonts/GmarketSansTTFLight.ttf") format('truetype'); 
+ }
+
+@font-face { 
+    font-family: 'GmarketSans';
+    font-weight:500;
+    src: url("/fonts/GmarketSansTTFMedium.eot"); 
+    src: url("/fonts/GmarketSansTTFMedium.eot?#iefix") format('embedded-truetype'),
+          url("/fonts/GmarketSansTTFMedium.woff") format('woff'),
+          url("/fonts/GmarketSansTTFMedium.ttf") format('truetype'); 
+ }
+ @font-face { 
+    font-family: 'GmarketSans';
+    font-weight:700;
+    src: url("/fonts/GmarketSansTTFBold.eot"); 
+    src: url("/fonts/GmarketSansTTFBold.eot?#iefix") format('embedded-truetype'),
+          url("/fonts/GmarketSansTTFBold.woff") format('woff'),
+          url("/fonts/GmarketSansTTFBold.ttf") format('truetype'); 
+ }
+ 
+
+
+
+/* common */
+#ie-warning {display:none;}
+a {text-decoration:none !important; outline:none !important; selector-dummy:expression(this.hideFocus=true) !important;}
+a:link {text-decoration:none; color:#666;}
+a:visited {text-decoration:none; color:#555;}
+a:hover {text-decoration:none; color:#000;}
+a:active {text-decoration:none; color:#ffc000;}
+
+.clear {clear:both;}
+/* 자식높이 부모에게 반영 */
+* [class *= "box"]:before,
+* [class *= "box"]:after {content:""; display:block; clear:both;}
+
+/* 글자크기 */
+.fs11 {font-size:11px !important;}
+.fs12 {font-size:12px !important;}
+.fs13 {font-size:13px !important;}
+.fs14 {font-size:14px !important;}
+.fs15 {font-size:15px !important;}
+.fs16 {font-size:16px !important;}
+.fs18 {font-size:18px !important;}
+.fs20 {font-size:20px !important;}
+.fs24 {font-size:24px !important;}
+.fs30 {font-size:30px !important;}
+
+/* 라인 */
+* [class*="lineH"] {clear:both; width:100%; border-bottom:1px solid #eee;}
+.lineH5 {height:5px; margin-bottom:5px;}
+.lineH10 {height:10px; margin-bottom:10px;}
+.lineH20 {height:20px; margin-bottom:20px;}
+.lineH30 {height:30px; margin-bottom:30px;}
+.lineH50 {height:50px; margin-bottom:50px;}
+.lineH60 {height:60px; margin-bottom:60px;}
+.lineH70 {height:70px; margin-bottom:70px;}
+
+/* 여백 */
+.h5 {height:5px; padding:0; margin:0; clear:both;}
+.h10 {height:10px; padding:0; margin:0; clear:both;}
+.h20 {height:20px; padding:0; margin:0; clear:both;}
+.h30 {height:30px; padding:0; margin:0; clear:both;}
+.h40 {height:40px; padding:0; margin:0; clear:both;}
+.h50 {height:50px; padding:0; margin:0; clear:both;}
+.h60 {height:60px; padding:0; margin:0; clear:both;}
+.h70 {height:70px; padding:0; margin:0; clear:both;}
+.h80 {height:80px; padding:0; margin:0; clear:both;}
+.h90 {height:90px; padding:0; margin:0; clear:both;}
+.h100 {height:100px; padding:0; margin:0; clear:both;}
+
+/* padding */
+.pad0 {padding:0 !important;}
+.pad5 {padding:0 !important;}
+.pad10 {padding:10px !important;}
+.pad20 {padding:20px !important;}
+.pad30 {padding:30px !important;}
+.pad40 {padding:40px !important;}
+.pad50 {padding:50px !important;}
+
+/* margin */
+.mar0 {margin:0 !important;}
+.mar0_l {margin-left:0 !important;}
+.mar0_r {margin-right:0 !important;}
+
+/* 기타 */
+.bold {font-weight:bold !important;}
+.black {color:#000 !important;}
+.red {color:red !important;}
+.floatR {float:right !important;}
+
+pre {
+	white-space: pre-wrap; /* CSS3*/
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-all; /* Internet Explorer 5.5+ */ 
+}

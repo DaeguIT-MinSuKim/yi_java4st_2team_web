@@ -1,0 +1,190 @@
+/*
+* 	모든 애니메이션 작업 여기서 !
+*/
+
+/* ********** 애니메이션 타입 ********** */
+.active {
+	-webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+}
+
+.ani {opacity:0;}
+.ani_on {
+	opacity:1;
+	-webkit-animation-fill-mode:forwards;
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:none;
+	-webkit-animation: ani_scaleUp 1s 0s ease; 
+	-moz-animation: ani_scaleUp 1s 0s ease; 
+	-o-animation: ani_scaleUp 1s 0s ease; 
+	animation: ani_scaleUp 1s 0s ease; 
+} 
+@media screen and (max-width: 480px) {
+	.ani_on {
+		opacity:1;
+		-webkit-animation-fill-mode:forwards;
+		-moz-animation-fill-mode:forwards;
+		animation-fill-mode:none;
+		-webkit-animation: ani_fadeIn 1s 0s ease; 
+		-moz-animation: ani_fadeIn 1s 0s ease; 
+		-o-animation: ani_fadeIn 1s 0s ease; 
+		animation: ani_fadeIn 1s 0s ease; 
+	} 
+}
+
+.trans {
+	transition:all .2s linear;
+	-webkit-transition:all .2s linear;
+	-moz-transition:all .2s linear;
+}
+
+/* fade - 천천히 선명해짐 */
+@-webkit-keyframes ani_fadeIn {
+    from { opacity:0;}
+    to { opacity:1;}
+}
+@-moz-keyframes ani_fadeIn {
+    from { opacity:0;}
+    to { opacity:1;}
+}
+@-o-keyframes ani_fadeIn {
+    from { opacity:0;}
+    to { opacity:1;}
+}
+@keyframes ani_fadeIn {
+    from { opacity:0; }
+    to { opacity:1;}
+}
+
+/* fade - 천천히 흐려짐 */
+@-webkit-keyframes ani_fadeOut {
+    from { opacity:1;}
+    to { opacity:0;}
+}
+@-moz-keyframes ani_fadeOut {
+    from { opacity:1;}
+    to { opacity:0;}
+}
+@-o-keyframes ani_fadeOut {
+    from { opacity:1;}
+    to { opacity:0;}
+}
+@keyframes ani_fadeOut {
+    from { opacity:1;}
+    to { opacity:0;}
+}
+
+/* scale - 작다가 커짐 */
+@-webkit-keyframes ani_scaleUp {
+    from { opacity:0;-webkit-transform: scale(0.5); }
+    to { opacity:1;-webkit-transform: scale(1); }
+}
+@-moz-keyframes ani_scaleUp {
+    from { opacity:0;-moz-transform: scale(0.5); }
+    to { opacity:1;-moz-transform: scale(1); }
+}
+@-o-keyframes ani_scaleUp {
+    from { opacity:0;-o-transform: scale(0.5); }
+    to { opacity:1;-o-transform: scale(1); }
+}
+@keyframes ani_scaleUp {
+    from { opacity:0;transform: scale(0.5); }
+    to { opacity:1;transform: scale(1); }
+}
+
+/* scale - 크다가 작아짐 */
+@-webkit-keyframes ani_scaleDown {
+    from { opacity:0;-webkit-transform: scale(1.5); }
+    to { opacity:1;-webkit-transform: scale(1); }
+}
+@-moz-keyframes ani_scaleDown {
+    from { opacity:0;-moz-transform: scale(1.5); }
+    to { opacity:1;-moz-transform: scale(1); }
+}
+@-o-keyframes ani_scaleDown {
+    from { opacity:0;-o-transform: scale(1.5); }
+    to { opacity:1;-o-transform: scale(1); }
+}
+@keyframes ani_scaleDown {
+    from { opacity:0;transform: scale(1.5); }
+    to { opacity:1;transform: scale(1); }
+}
+
+/* slide - 아래 > 위 */
+@-webkit-keyframes ani_slideUp {
+    from { opacity:0;-webkit-transform: translateY(50px); }
+    to { opacity:1;-webkit-transform: translateY(0px); }
+}
+@-moz-keyframes ani_slideUp {
+    from { opacity:0;-moz-transform: translateY(50px)); }
+    to { opacity:1;-moz-transform: translateY(0px); }
+}
+@-o-keyframes ani_slideUp {
+    from { opacity:0;-o-transform: translateY(50px); }
+    to { opacity:1;-o-transform: translateY(0px); }
+}
+@keyframes ani_slideUp {
+    from { opacity:0;transform: translateY(50px); }
+    to { opacity:1;transform: translateY(0px); }
+}
+
+/* slide - 위 > 아래 */
+@-webkit-keyframes ani_slideDown {
+    from { opacity:0;-webkit-transform: translateY(-50px); }
+    to { opacity:1;-webkit-transform: translateY(0px); }
+}
+@-moz-keyframes ani_slideDown {
+    from { opacity:0;-moz-transform: translateY(-50px)); }
+    to { opacity:1;-moz-transform: translateY(0px); }
+}
+@-o-keyframes ani_slideDown {
+    from { opacity:0;-o-transform: translateY(-50px); }
+    to { opacity:1;-o-transform: translateY(0px); }
+}
+@keyframes ani_slideDown {
+    from { opacity:0;transform: translateY(-50px); }
+    to { opacity:1;transform: translateY(0px); }
+}
+
+/* ********** 애니메이션 속도 ********** */
+.ani0 {
+	transition:none !important;
+	-webkit-transition:none !important;
+	-moz-transition:none !important;
+}
+.ani01 {
+	transition:all .1s linear !important;
+	-webkit-transition:all .1s linear !important;
+	-moz-transition:all .1s linear !important;
+}
+.ani02 {
+	transition:all .2s linear !important;
+	-webkit-transition:all .2s linear !important;
+	-moz-transition:all .2s linear !important;
+}
+.ani03 {
+	transition:all .3s linear !important;
+	-webkit-transition:all .3s linear !important;
+	-moz-transition:all .3s linear !important;
+}
+.ani05 {
+	transition:all .5s linear !important;
+	-webkit-transition:all .5s linear !important;
+	-moz-transition:all .5s linear !important;
+}
+.ani1 {
+	transition:all 1s linear !important;
+	-webkit-transition:all 1s linear !important;
+	-moz-transition:all 1s linear !important;
+}
+.ani2 {
+	transition:all 1s linear !important;
+	-webkit-transition:all 1s linear !important;
+	-moz-transition:all 1s linear !important;
+}
+.ani3 {
+	transition:all 1s linear !important;
+	-webkit-transition:all 1s linear !important;
+	-moz-transition:all 1s linear !important;
+}

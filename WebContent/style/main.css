@@ -1,0 +1,10 @@
+.main_wrap {padding:0 5px; margin-top:131px !important; height:500px;}
+
+
+/* 테블릿, 모바일 */
+@media print, screen and (max-width: 992px){
+    
+}
+@media (max-width:767px){
+
+}

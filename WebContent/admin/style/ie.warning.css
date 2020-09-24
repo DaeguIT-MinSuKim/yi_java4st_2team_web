@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+/* ie8 이하 메시지 */
+body {background:#448ad2 !important; text-align:center; font-weight:normal; font-size:14px;}
+body * {display:none !important;}
+#ie-warning {display:block !important; width:100%; margin:auto; padding:100px 0; color:#fff; line-height:180%;}
+#ie-warning * {display:block !important;}
+#ie-warning span {display:block !important; padding-bottom:30px; font-size:24px; line-height:160%;}
+#ie-warning a {display:block; width:30%; margin:50px auto 0 auto; padding:20px; color:#000; background:#fff; line-height:100%;}
