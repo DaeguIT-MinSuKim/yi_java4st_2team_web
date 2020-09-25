@@ -89,7 +89,7 @@
 				<ul>
 					<!-- <a class="home mobile" href="./main/main.jsp">HOME</a> -->
 					<li>
-						<a href="./intro/greeting.jsp">기관소개</a>
+						<a href="./intro/greeting.jsp">단기렌트</a>
 						<ul>
 							<li><a href="./intro/greeting.jsp"><span><img src="./images/common/intro_greeting_off.png" alt="관장 인사말"></span>관장 인사말</a></li>
 							<li><a href="./intro/mission.jsp"><span><img src="./images/common/intro_mission_off.png" alt="미션 및 비전"></span>미션 및 비전</a></li>
