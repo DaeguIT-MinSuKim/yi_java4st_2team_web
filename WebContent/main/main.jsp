@@ -4,7 +4,8 @@
 <!-- // header -->
 
 <section class="main_wrap box">
-	    메인섹션
+	    메인섹션asdfsdaf
+	    <p class="test">asfkljsa;flkjsdaf;</p>
 </section>
 
 <!-- </section> -->

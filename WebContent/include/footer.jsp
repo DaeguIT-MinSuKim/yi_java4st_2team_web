@@ -21,7 +21,7 @@
 			<div class="col-xs-12 address">
 				
 				<strong>동자승 렌터카</strong>			
-				<p>Copyright © 2020 All rights reserved by 김창동, 오수정, 김대현, 문중희, 이승은.</p>
+				<p>Copyright © 2020 All rights reserved by  김대현, 오수정, 문중희, 이승은, 김창동.</p>
 			</div>
 		</address>
 

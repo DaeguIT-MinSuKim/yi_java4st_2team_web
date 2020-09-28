@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+/* 기본버튼. 파랑글자 + 밑줄 */
+.btn-underline {color:#007bff !important; text-decoration:underline !important;}
+
+/* 렌트하러가기 */
+.btn-carmore {
+  display:block;
+  border-radius:50px;
+  height:50px;
+  line-height:55px;
+  color:#fff !important;
+  font-size:18px;	
+	
+  padding: 0;
+  color: #fff;
+  background-image: -webkit-linear-gradient(247deg, #01efd5, #0d6ffc);
+  background-image: -o-linear-gradient(247deg, #01efd5, #0d6ffc);
+  background-image: linear-gradient(-157deg, #01efd5, #0d6ffc);
+  background-size: 180% auto;
+  border: none;
+  -webkit-box-shadow: 0 13px 20px -15px rgba(13, 111, 252, 0.5);
+          box-shadow: 0 13px 20px -15px rgba(13, 111, 252, 0.5);
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out; }
+  .btn-carmore:hover {
+    color: #fff;
+    background-position: right center;
+    -webkit-box-shadow: 0 15px 25px -12px rgba(13, 111, 252, 0.6);
+            box-shadow: 0 15px 25px -12px rgba(13, 111, 252, 0.6);
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out; }
+    

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!-- 상단배경 -->
 <section class="bgTop bgSub1 pc">
 	<div class="slogan">
@@ -13,7 +15,8 @@
 	<div class="snb box pc momH">
 		<h2>회원관리</h2>
 		<ul>
-			<li><a href="../member/login.jsp">로그인</a></li>
+			<li><a href="../member/login.jsp">렌트 중인 차량</a></li>
+			<li><a href="../member/login.jsp">비회원 예약조회</a></li>
 			<li><a href="../member/search.jsp">아이디/비밀번호찾기</a></li>
 			<li><a href="../member/join_agree.jsp">회원가입</a></li>
 			<li><a href="../member/agree.jsp">이용약관</a></li>

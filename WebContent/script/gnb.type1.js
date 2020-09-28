@@ -51,6 +51,7 @@ $(function pcFn(){
 			$(this).next().css({display:'block'});
 			$(this).parent().siblings().children('ul').css({display:'none'});
 		});
+		/*
 		$('nav.pc').on("mouseenter focusin",function(){//열림
 			$('nav.pc').addClass('on');
 			$(this).stop().animate({height:navH}, speed);
@@ -60,7 +61,7 @@ $(function pcFn(){
 			$(this).stop().animate({height:orgH}, speed);
 			return false;
 		});
-		/* //대현 170529 -> 판교노인종합복지관용으로 수정 */
+		*/
 		
 	});//end pc
 	/* ********************* 모바일 ******************** */
@@ -189,6 +190,7 @@ $(function pcFn(){
 
 });//end document.ready
 // 헤더메뉴 버튼 이미지on,off
+/*
 $(document).ready(function(){
 	$("nav.pc .gnb ul li ul li").mouseenter(function() {
 		$(this).find('img').attr('src',$(this).find('img').attr('src').replace('_off.png','_on.png'));
@@ -197,3 +199,4 @@ $(document).ready(function(){
 		$(this).find('img').attr('src',$(this).find('img').attr('src').replace('_on.png','_off.png'));
 	});
 });
+*/

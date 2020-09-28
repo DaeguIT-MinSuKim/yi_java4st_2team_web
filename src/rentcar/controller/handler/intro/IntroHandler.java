@@ -1,4 +1,4 @@
-package rentcar.controller.handler;
+package rentcar.controller.handler.intro;
 
 import java.io.IOException;
 
@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import rentcar.controller.Command;
 
-public class MainHandler implements Command {
+public class IntroHandler implements Command {
 	
 	@Override	
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "main/main.jsp";
+		return "intro/intro.jsp";
 	}
 }

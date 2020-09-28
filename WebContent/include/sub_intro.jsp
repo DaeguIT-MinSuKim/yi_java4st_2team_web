@@ -2,8 +2,8 @@
 <section class="bgTop bgSub1 pc">
 	<div class="slogan">
 		<p>
-            <strong>한국도서통합시스템</strong>
-			국가 정보자원의 공유체제를 실현하여<br>행복한 국가경쟁력을 만들어 갑니다.
+            <strong>동자승 렌터카</strong>
+			렌트카 가격렌트카 가격렌트카 가격렌트카 가격렌트카 가격렌트카 가격
 		</p>
 	</div>
 </section><!-- //상단배경 -->

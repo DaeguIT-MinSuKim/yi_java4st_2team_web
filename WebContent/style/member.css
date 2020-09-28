@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/* 마이페이지 메인 */
+.page_mypage {}
+.page_mypage .noImg img {height:108px;}
+.page_mypage .rent_empty {text-align:center;}
+.page_mypage .rent_empty p {font-size:24px; padding:10px 0;}
+.page_mypage .rent_empty span {font-size:15px; padding:10px 0; display:block}
+.page_mypage .rent_empty .btn-carmore {max-width:400px; margin:15px auto;}
+
+
+/* 비회원 예약조회 팝업창 */
+.popup_nonmember {display:none; position:fixed; z-index:1000; top:0; left:0; width:100%; height:100%; background:none;}
+.popup_nonmember .con {z-index:1; background:#fff; position:relative; width:100%; max-width:800px; height:500px; margin:0 auto; border-radius:50px;
+	top:calc(50% - 250px);
+	top:-webkit-calc(50% - 250px); 
+	box-shadow:0 0 50px rgba(0,0,0,.1) !important;
+}
+.popup_nonmember .con .top {height:50px; line-height:50px; padding-left:50px; border-bottom:1px solid #ddd;}
+.popup_nonmember .con .top .title {}
+.popup_nonmember .con .top .popup_close_common {position:absolute; right:50px; }
+
+.popup_nonmember .bg {position:absolute; top:0; left:0; right:0; bottom:0; margin:auto; width:100%; height:100%; background:rgba(0,0,0,.5); display:none;}
+
