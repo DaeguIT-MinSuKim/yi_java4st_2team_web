@@ -3,11 +3,134 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 
-<section class="main_wrap box">
-	    메인섹션asdfsdaf
-	    <p class="test">asfkljsa;flkjsdaf;</p>
-</section>
-
+<div class="main_wrap box">
+	<div id="mVisual">
+		<div class="visu_slide">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="img_box" style="background-image:url(images/main/m_visual1.jpg)"></div>
+					<div class="txt_box">
+						<p class="t1">대구 렌트카 전문점</p>
+						<p class="t2">DAEGU RENTCAR</p>
+						<p class="t3">
+							대구 렌트카 전문점 입니다. 여기에 문구가 두줄정도 들어갈려고 하는데<br>
+							아무나 들어갈 문구 좀 적어주세요.
+						</p>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="img_box" style="background-image:url(images/main/m_visual1.jpg)"></div>
+					<div class="txt_box">
+						<p class="t1">대구 렌트카 전문점</p>
+						<p class="t2">DAEGU RENTCAR</p>
+						<p class="t3">
+							대구 렌트카 전문점 입니다. 여기에 문구가 두줄정도 들어갈려고 하는데<br>
+							아무나 들어갈 문구 좀 적어주세요.
+						</p>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="img_box" style="background-image:url(images/main/m_visual1.jpg)"></div>
+					<div class="txt_box">
+						<p class="t1">대구 렌트카 전문점</p>
+						<p class="t2">DAEGU RENTCAR</p>
+						<p class="t3">
+							대구 렌트카 전문점 입니다. 여기에 문구가 두줄정도 들어갈려고 하는데<br>
+							아무나 들어갈 문구 좀 적어주세요.
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+	</div><!-- //mVisual -->
+	
+	<div id="mAdvice">
+		<div>
+			<div class="txt_box">
+				<div>
+					<h2>크리동<br>빠른상담신청</h2>
+					<p class="number">053-123-4567</p>
+					<p class="time">상담시간 : 평일 <span>09:00~18:00</span></p>
+					<p class="t1">※ 휴일 및 야간에는 빠른 상담신청을 하시면 <br>확인 후 순차적으로 연락드립니다.</p>
+				</div>
+			</div>
+			<div class="form_box">
+				<form>
+					<div class="tit">
+						<h2>빠른상담신청</h2>
+					</div>
+					<ul>
+						<li>
+							<label>이름</label>
+							<input type="text" placeholder="성함을 기재해주세요" class="f_input">
+						</li>
+						<li>
+							<label>연락처</label>
+							<input type="text" placeholder="연락처를 기재해주세요" class="f_input">
+						</li>
+						<li class="btn"><button>빠른상담<br>신청하기</button></li>
+					</ul>
+					<p class="privacy"><input type="checkbox"> <a href="#">개인정보 취급방침</a>에 동의합니다.</p>
+				</form>
+			</div>
+		</div>
+	</div><!-- //mAdvice -->
+	
+	<div id="mBanner">
+		<div>
+			<h2>손해보험사 지정점</h2>
+			<p>휠매니아는 손해보험사 지정점으로 국산차 및 수입차를 취급합니다.<br>
+			휠 수리·도장 폴리싱 굴절·용접 중고 휠 매입·판매 다이아몬드컷팅 복원
+		</p></div>
+	</div><!-- //mBanner -->
+	
+	
+	<div id="mBoard" class="s-inner">
+		<div class="wow fadeInUp">
+			<div class="tit">
+				<h2>공지사항</h2>
+				<a href="#">더보기</a>
+			</div>
+			<ul>
+				<li><a href="#">도산한 회사 퇴직근로자라면? ‘체당금 제도’ 이용도산한 회사 퇴직근로자라면? ‘체당금 제도’ 이용</a></li>
+				<li><a href="#">한진해운, 사업 청산·빚잔치에 법정관리 ‘급물살’</a></li>
+				<li><a href="#">[회생파산] 최은영 前회장 경영비리에 칼빼든 법원</a></li>
+				<li><a href="#">빚에 찌든 20대, ‘나홀로 파산’</a></li>
+				<li><a href="#">경남기업, 재매각 본입찰 ‘0’, 회생 ‘먹구름’</a></li>
+			</ul>
+		</div>
+		<div class="wow fadeInUp" data-wow-delay="0.2s">
+			<div class="tit">
+				<h2>온라인상담</h2>
+				<a href="#">더보기</a>
+			</div>
+			<ul class="online">
+				<li><a href="#">개인파산 신청자격개인파산 신청자격개인파산 신청자격개인파산 신청자격개인파산 신청자격<span class="comment">답변대기</span></a></li>
+				<li><a href="#">개인회생 상담좀 부탁드립니다<span class="comment compl">답변완료</span></a></li>
+				<li><a href="#">개인회생하면 회사에 알려지나요?<span class="comment compl">답변완료</span></a></li>
+				<li><a href="#">개인회생 관련 상담 신청합니다.<span class="comment compl">답변완료</span></a></li>
+				<li><a href="#">카드빚 회생 가능할까요?<span class="comment compl">답변완료</span></a></li>
+			</ul>
+		</div>
+	</div><!-- //mBoard -->
+</div>
 <!-- </section> -->
+
+
+<script>
+	var swiper = new Swiper('.visu_slide', {
+		effect: 'fade',
+		autoplay: {
+			delay: 8000,
+			disableOnInteraction: false,
+		},
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+	});
+</script>
 
 <%@ include file="/include/footer.jsp"%>

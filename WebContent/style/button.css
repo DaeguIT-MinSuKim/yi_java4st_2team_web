@@ -3,15 +3,15 @@
 /* 기본버튼. 파랑글자 + 밑줄 */
 .btn-underline {color:#007bff !important; text-decoration:underline !important;}
 
-/* 렌트하러가기 */
+/* 렌트하러가기 버튼 */
 .btn-carmore {
+	text-align:center;
   display:block;
   border-radius:50px;
   height:50px;
   line-height:55px;
   color:#fff !important;
   font-size:18px;	
-	
   padding: 0;
   color: #fff;
   background-image: -webkit-linear-gradient(247deg, #01efd5, #0d6ffc);
@@ -32,5 +32,8 @@
             box-shadow: 0 15px 25px -12px rgba(13, 111, 252, 0.6);
     -webkit-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out; }
+    transition: all 0.4s ease-in-out; 
+}
     
+/* 비회원예약조회 조회버튼 */
+.btn-nonmemberSearch {}

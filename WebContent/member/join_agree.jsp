@@ -36,7 +36,7 @@ function fnPopup(){
 				<li class="col-xs-4">03 가입완료</li>
 			</ul>
 		</div>
-        <form name="form_chk" action="join.php">
+        <form name="form_chk" action="join.do">
             <div class="join">
                 <p class="bold">이용약관</p>
                 <div class="agree pc" style="height:300px">		
@@ -65,7 +65,7 @@ function fnPopup(){
                 <!-- 버튼 -->
                 <div class="btn_box">
                     <ul>
-                        <li><a href="#void" class="btn btn-black" onclick="fnPopup(); return false;">다음단계</a></li>
+                        <li><a href="javascript:;" class="btn btn-black" onclick="fnPopup(); return false;">다음단계</a></li>
                     </ul>
                 </div>
             </div>

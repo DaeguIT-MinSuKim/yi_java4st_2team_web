@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!-- 상단배경 -->
 <section class="bgTop bgSub1 pc">
 	<div class="slogan">

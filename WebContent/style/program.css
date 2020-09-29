@@ -19,8 +19,17 @@ label {display:none;}
 input[type="hidden"] {}
 input[type="radio"] {top:9px;}
 input[type=checkbox], input[type=radio] {cursor:pointer;}
-
 /* ********************** 추가 ************************ */
+input:not([type=radio]):not([type=checkbox]) {width:100%; height:40px; line-height:40px; text-indent:5px; font-size:14px; border:1px solid #ddd; border-radius:5px;}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    background:#fff;
+}
+
+
+
 
 /* 공용 */
 .msg_box * {vertical-align:top;}

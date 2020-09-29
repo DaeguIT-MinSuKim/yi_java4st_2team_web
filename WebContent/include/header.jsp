@@ -35,6 +35,7 @@
 	<script type="text/javascript" src="./script/default.js"></script>
 	<script type="text/javascript" src="./script/script.js"></script>
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
+	<script type="text/javascript" src="./script/form.js"></script>
 
 	<!--다음 도로명 주소 API START-->
 	<!--<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -43,6 +44,10 @@
 	<!--[if lt IE 10]>
 		<link href="./style/ie.warning.css" rel="stylesheet" type="text/css">
 	<![endif]-->
+	
+  	<!-- 슬라이드 플러그인 -->
+ 	<link  type="text/css" href="./style/swiper.min.css" rel="stylesheet">
+   	<script type="text/javascript" src="./script/swiper.min.js"></script>
 
 	<!-- 트랜지션 디폴트 세팅 -->
 	<script type="text/javascript">
@@ -63,7 +68,7 @@
 			<h1><a href="./main/main.jsp"><img src="./images/common/logo.jpg" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 			<div class="side">
 				<ul>
-					<li class="home"><a href="./main/main.jsp">HOME</a></li>
+					<li class="home"><a href="index.do">HOME</a></li>
 					<li><a class="login" href="login.do"><span>로그인</span></a></li>
 					<li><a class="join" href="joinAgree.do">회원가입</a></li>
 					<li><a class="" href="#">관리자</a></li>

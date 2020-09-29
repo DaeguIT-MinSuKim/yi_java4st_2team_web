@@ -112,13 +112,9 @@ function createQueryingChk() {
 		}
 	}
 
-	validate_EmailDupl();
+//	validate_EmailDupl();
 }
 </script>
-<script src="/js/email_dupl.js"></script>
-
-
-
 
 
 <script>
@@ -252,8 +248,7 @@ function frmChk(){
 }
 </script>
 
-
-<?include "../include/sub_member.php";?>
+<%@ include file="/include/sub_member.jsp"%>
 
 <!-- 컨텐츠 -->
 <div class="contents_box">
@@ -418,7 +413,7 @@ function frmChk(){
 		<div class="btn_box">
 			<ul>
 				<li><a class="btn btn-blue" href="#void" onclick="frmChk(); return false;">가입하기</a></li>
-				<li><a class="btn btn-gray" href="../main/main.php">작성취소</a></li>
+				<li><a class="btn btn-gray" href="javascript:if(confirm('가입을 취소하시겠습니까?')) location.href='index.do'">작성취소</a></li>
 			</ul>
 		</div>
 </form>

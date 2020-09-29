@@ -27,7 +27,7 @@
 		<div class="btn_box">
 			<ul>
 <!--				<li><a class="btn btn-normal" href="../member/login.php">로그인</a></li>-->
-				<li><a class="btn btn-normal" href="../main/main.php">메인으로 이동</a></li>
+				<li><a class="btn btn-normal" href="index.do">메인으로 이동</a></li>
 			</ul>
 		</div>
 		

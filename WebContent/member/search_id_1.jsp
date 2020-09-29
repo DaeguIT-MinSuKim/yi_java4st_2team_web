@@ -20,11 +20,13 @@ function niceSmsPopup(){
 	if(document.getElementsByName("ipin_sms")[0].checked==true) {
 		window.open('', 'popupIPIN3', 'width=450, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
 		document.form_ipin.target = "popupIPIN3";
-		document.form_ipin.action = "https://cert.vno.co.kr/ipin.cb";
+//		document.form_ipin.action = "https://cert.vno.co.kr/ipin.cb";
+		document.form_ipin.action = "";
 		document.form_ipin.submit();
 	}else{
 		window.open('', 'popupChk3', 'width=500, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
-		document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
+//		document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
+		document.form_chk.action = "";
 		document.form_chk.target = "popupChk3";
 		document.form_chk.submit();
 	}

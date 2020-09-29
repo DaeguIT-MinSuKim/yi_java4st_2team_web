@@ -1,9 +1,11 @@
 $(window).load(function(){
+	// 여기서 실행
     ani_popup( $('.btn_nonmember'), $('.popup_nonmember').eq(0), 'top');
 });
 
 function ani_popup(btn, popup, direction){
     /**
+    *   @Author 김대현 200210
     *   @description 팝업창 show / hide 애니메이션
     *   @param {string} btn 팝업창 여는 버튼
     *   @param {string} popup  팝업창 (팝업창 필수 css : position:fixed, width, height)
@@ -20,22 +22,23 @@ function ani_popup(btn, popup, direction){
         var speed = 200;
         var bg = $(popup).find(".bg");
         
+        
         switch(direction){
             case 'top':
-                _show = function(){ popup.show().stop().animate({top:'0'},speed); bg.fadeIn(1000); };
-                _hide = function(){ popup.stop().animate({top:'100%'},speed).hide(speed); bg.hide() };
+                _show = function(){ popup.show().stop().animate({top:'0'},speed); showFn() };
+                _hide = function(){ popup.stop().animate({top:'100%'},speed).hide(speed); hideFn() };
                 break;
             case 'bottom':
-                _show = function(){ popup.show().stop().animate({bottom:'0'},speed); bg.fadeIn(1000);};
-                _hide = function(){ popup.stop().animate({bottom:'100%'},speed).hide(speed); bg.hide() };
+                _show = function(){ popup.show().stop().animate({bottom:'0'},speed); showFn() };
+                _hide = function(){ popup.stop().animate({bottom:'100%'},speed).hide(speed); hideFn() };
                 break;
             case 'right':
-                _show = function(){ popup.show().stop().animate({right:'0'},speed); bg.fadeIn(1000);};
-                _hide = function(){ popup.stop().animate({right:'100%'},speed).hide(speed); bg.hide() };
+                _show = function(){ popup.show().stop().animate({right:'0'},speed); showFn() };
+                _hide = function(){ popup.stop().animate({right:'100%'},speed).hide(speed); hideFn() };
                 break;
             default:
-                _show = function(){ popup.show().stop().animate({left:'0'},speed); bg.fadeIn(1000);};
-                _hide = function(){ popup.stop().animate({left:'100%'},speed).hide(speed); bg.hide() };
+                _show = function(){ popup.show().stop().animate({left:'0'},speed); showFn() };
+                _hide = function(){ popup.stop().animate({left:'100%'},speed).hide(speed); hideFn() };
                 break;
         }
         popup.css(direction, '100%');
@@ -53,11 +56,21 @@ function ani_popup(btn, popup, direction){
         });
         
         // CLOSE
-        popup.find('.popup_close_common:eq(0)').unbind().bind('click', function(){ 
+        popup.find('.popup_close_common').unbind().bind('click', function(){ 
             _hide();
-            
             return showChk = false;
         });
 
+        
+        // 공통 요소
+        function showFn(){
+        	bg.fadeIn(1000);
+        	$("html, body").css({overflow:"hidden"});
+        }
+        
+        function hideFn(){
+        	bg.hide();
+        	$("html, body").css({overflow:"auto"});
+        }
     }
 }
