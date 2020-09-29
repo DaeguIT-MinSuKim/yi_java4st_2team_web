@@ -31,7 +31,7 @@ function outFrmChk(){
 }
 </script>
 
-<%@ include file="/include/sub_mypage.jsp"%>
+<%@ include file="/include/sub_member.jsp"%>
 
 <!-- 컨텐츠 -->
 <div class="contents_box out">

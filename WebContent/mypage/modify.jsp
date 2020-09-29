@@ -227,14 +227,14 @@ function frmChk(){
 				<label class="col-sm-2 control-label">휴대전화</label>
 				<div class="col-sm-10 divinner">
 					<div class="col-xs-3">
-						<select name="cel1" class="selectpicker show-tick form-control">
+						<!-- <select name="cel1" class="selectpicker show-tick form-control">
 							<option value="010" <? if ($cel[0]=="010") {echo "selected";} ?>>010</option>
 							<option value="011" <? if ($cel[0]=="011") {echo "selected";} ?>>011</option>
 							<option value="016" <? if ($cel[0]=="016") {echo "selected";} ?>>016</option>
 							<option value="017" <? if ($cel[0]=="017") {echo "selected";} ?>>017</option>
 							<option value="018" <? if ($cel[0]=="018") {echo "selected";} ?>>018</option>
 							<option value="019" <? if ($cel[0]=="019") {echo "selected";} ?>>019</option>
-						</select>
+						</select> -->
 					</div>			
 					<div class="col-xs-3">
 						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel2" placeholder="" style="ime-mode:disabled;" value="<?=$cel[1]?>">
@@ -243,7 +243,7 @@ function frmChk(){
 						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel3" placeholder="" style="ime-mode:disabled;" value="<?=$cel[2]?>">
 					</div>
 					<div>
-						<label class="before height_align"><input type="checkbox" name="sms_accept" value="Y" class="checkbox_normal" <?if($row["sms_accept"]=="Y") { echo " checked"; }?> /> 문자 수신 동의</label>
+						<!-- <label class="before height_align"><input type="checkbox" name="sms_accept" value="Y" class="checkbox_normal" <?if($row["sms_accept"]=="Y") { echo " checked"; }?> /> 문자 수신 동의</label> -->
 					</div>
 					<p>
 						공지사항 및 개인별 통지 메시지를 받기 위하여 가능한 수신 동의를 하여 주십시오.<br>
@@ -263,7 +263,7 @@ function frmChk(){
 						<a href="#void" class="btn btn-normal" onclick="createQueryingChk(); return false;">중복확인</a>
 					</div>
 					<div>
-						<label class="before height_align"><input type="checkbox" name="email_accept" value="Y" class="checkbox_normal" <?if($row["email_accept"]=="Y") { echo " checked"; }?> /> 메일 수신 동의</label>
+						<!-- <label class="before height_align"><input type="checkbox" name="email_accept" value="Y" class="checkbox_normal" <?if($row["email_accept"]=="Y") { echo " checked"; }?> /> 메일 수신 동의</label> -->
 					</div>
 					<p>
 						이메일 주소는 아이디/비밀번호 찾기에 이용됩니다.<br>
