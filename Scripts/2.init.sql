@@ -155,7 +155,9 @@ CREATE TABLE LONGRENT (
 	sheet VARCHAR2(500), /* 시트 */
 	fare INTEGER, /* 금액 */
 	id VARCHAR2(50), /* 아이디 */
-	non_tel VARCHAR2(20) /* 비회원연락처 */
+	non_tel VARCHAR2(20), /* 비회원연락처 */
+	rep_yn char(1) DEFAULT '1', /*답변여부*/ 
+	write_date DATE DEFAULT sysdate /*작성일 */
 );
 
 CREATE UNIQUE INDEX PK_LONGRENT
