@@ -14,6 +14,14 @@ VALUES ('dong', '1234', '동자승', '010-1234-1234', '22-15-061904-90', '대구
 
 DROP TABLE LONGRENT 
 	CASCADE CONSTRAINTS;
+SELECT * FROM LONGRENT;
+--SELECT NO, SUBJECT, CONTENT, REP, ID, REP_YN, WRITE_DATE"
+--				+ " FROM QNA WHERE ID =? ORDER BY NO DESC
+
+SELECT NO, title, CONTENTS, EXTERIOR, SAFETY , MULTI , SHEET, FARE , ID, NON_TEL , REP_YN , WRITE_DATE 
+FROM LONGRENT WHERE ID = 'dong' ORDER BY NO DESC ;
+
+UPDATE LONGRENT SET id = 'dong' WHERE NO = 1;
 
 
 -----------------------------------------------------------------------------문중희-----------------------------------------------------------------------------

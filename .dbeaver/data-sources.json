@@ -1,7 +1,7 @@
 {
 	"folders": {},
 	"connections": {
-		"oracle_thin-174f788e7bf-17aba15999cc4825": {
+		"oracle_thin-174f7d88399-5bbb0012bdfb8f54": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
 			"name": "orcl - system",
@@ -13,7 +13,7 @@
 				"port": "1521",
 				"database": "orcl",
 				"url": "jdbc:oracle:thin:@//localhost:1521/orcl",
-				"home": "E:\\oracle\\product\\11.2.0\\dbhome_1",
+				"home": "D:\\app\\lenovo\\product\\11.2.0\\dbhome_1",
 				"type": "dev",
 				"provider-properties": {
 					"@dbeaver-check-schema-content@": "false",
@@ -30,10 +30,10 @@
 				"handlers": {}
 			}
 		},
-		"oracle_thin-174f78966e1-74f7b8f5663a6282": {
+		"oracle_thin-174f7d9265c-115cc56e5d0087be": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "orcl - rentcar",
+			"name": "orcl - RENTCAR",
 			"save-password": true,
 			"show-system-objects": true,
 			"read-only": false,
@@ -42,7 +42,7 @@
 				"port": "1521",
 				"database": "orcl",
 				"url": "jdbc:oracle:thin:@//localhost:1521/orcl",
-				"home": "E:\\oracle\\product\\11.2.0\\dbhome_1",
+				"home": "D:\\app\\lenovo\\product\\11.2.0\\dbhome_1",
 				"type": "dev",
 				"provider-properties": {
 					"@dbeaver-check-schema-content@": "false",

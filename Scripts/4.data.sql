@@ -60,6 +60,7 @@ INSERT INTO LONGRENT VALUES (1,'제목', '내용', '외관/내장', '안전', '�
 -- 조회
 SELECT * FROM CAR;
 SELECT * FROM LONGRENT;
+SELECT * FROM MEMBER;
 
 
 				
