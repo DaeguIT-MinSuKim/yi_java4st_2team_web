@@ -9,10 +9,10 @@ public class JdbcUtilTest {
 
 	@Test
 	public void testGetConnection() {
-		 System.out.println("testGetConnection()");
-	     Connection con = JdbcUtil.getConnection();
-	     Assert.assertNotNull(con);
-	     System.out.println("con > " + con);
+		System.out.println("testGetConnection()");
+		Connection con = JdbcUtil.getConnection();
+		Assert.assertNotNull(con);
+		System.out.println("con > " + con);
 	}
 
 }

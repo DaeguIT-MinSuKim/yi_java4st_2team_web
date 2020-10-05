@@ -1,6 +1,7 @@
 $(window).load(function(){
 	// 여기서 실행
     ani_popup( $('.btn_nonmember'), $('.popup_nonmember').eq(0), 'top');
+    ani_popup( $('.popup_longrent_option_btn'), $('.popup_longrent_option').eq(0), 'top');
 });
 
 function ani_popup(btn, popup, direction){

@@ -24,6 +24,7 @@
 	<link  type="text/css" href="./style/program.css" rel="stylesheet">
 	<link  type="text/css" href="./style/design.css" rel="stylesheet">
 	<link  type="text/css" href="./style/member.css" rel="stylesheet">
+	<link  type="text/css" href="./style/longrent.css" rel="stylesheet">
 	<link  type="text/css" href="./style/button.css" rel="stylesheet">
 	<link  media="print" type="text/css" href="./style/bootstrap.print.min.css" rel="stylesheet"><!-- 프린트대응 -->
 
@@ -36,9 +37,13 @@
 	<script type="text/javascript" src="./script/script.js"></script>
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
 	<script type="text/javascript" src="./script/form.js"></script>
+	<script type="text/javascript" src="./script/join.js"></script>
+	
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css?ver=191202">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css?ver=191202">
 
 	<!--다음 도로명 주소 API START-->
-	<!--<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!--다음 도로명 주소 API END-->
 
 	<!--[if lt IE 10]>
@@ -65,7 +70,7 @@
 <header>
 	<div class="head">
 		<div class="wrap">
-			<h1><a href="./main/main.jsp"><img src="./images/common/logo.jpg" alt="동자승렌터카" title="동자승렌터카"></a></h1>
+			<h1><a href="index.do"><img src="./images/common/logo.jpg" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 			<div class="side">
 				<ul>
 					<li class="home"><a href="index.do">HOME</a></li>
