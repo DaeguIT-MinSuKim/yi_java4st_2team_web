@@ -105,7 +105,8 @@ CREATE TABLE RENT (
 	return_date DATE, /* 반납일 */
 	is_rent CHAR(1), /* 반납여부 */
 	price INTEGER, /* 금액 */
-	remark VARCHAR2(500) /* 비고 */
+	remark VARCHAR2(500), /* 비고 */
+	is_reservate CHAR(1) /*예약여부*/
 );
 
 CREATE UNIQUE INDEX PK_RENT
