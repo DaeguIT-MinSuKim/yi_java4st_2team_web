@@ -10,7 +10,7 @@ public interface MemberDao {
 	ArrayList<Member> selectMemberByAll();
 
 	// 회원 정보 - 마이페이지
-	int getId(Member member);
+	Member selectMemberByUserId(Member member);
 
 	// 회원 가입
 	int insertMember(Member member);
