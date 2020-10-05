@@ -95,18 +95,19 @@ ALTER TABLE ADMIN
 		);
 
 /* 대여 */
+DROP TABLE rent;
 CREATE TABLE RENT (
-	rent_no VARCHAR2(20) NOT NULL, /* 대여번호 */
+	rent_no VARCHAR(20) NOT NULL, /* 대여번호 */
 	id VARCHAR2(50), /* 아이디 */
 	non_tel VARCHAR2(20), /* 비회원연락처 */
 	car_no VARCHAR2(20), /* 차량번호 */
 	ins_name VARCHAR2(50), /* 보험명 */
 	rent_date DATE, /* 대여일 */
 	return_date DATE, /* 반납일 */
-	is_rent CHAR(1), /* 반납여부 */
 	price INTEGER, /* 금액 */
-	remark VARCHAR2(500), /* 비고 */
-	is_reservate CHAR(1) /*예약여부*/
+	is_rent CHAR(1), /* 반납여부 */
+	is_reservate CHAR(1), /*예약여부*/
+	remark VARCHAR2(500) /* 비고 */
 );
 
 CREATE UNIQUE INDEX PK_RENT

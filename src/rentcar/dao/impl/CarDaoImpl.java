@@ -79,12 +79,12 @@ public class CarDaoImpl implements CarDao {
 		}
 		try (PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, query);
+			System.out.println("여긴오나?" + sql);
 			try(ResultSet rs = pstmt.executeQuery()){
 				if(rs.next()) {
 					return getCar(rs);
 				}
 			}
-			System.out.println("여긴오나?" + sql);
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}

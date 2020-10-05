@@ -335,18 +335,18 @@ function frmChk(){
 				<div class="col-sm-10 col-sm-10 divinner addr">
 					<div class="col-xs-7">
 						<label for="sel1">우편번호</label>
-						<input type="text" class="form-control" readonly name="zipcode">
+						<input type="text" class="form-control" readonly name="zipcode" id="zipcode">
 					</div>
 					<div class="col-xs-5">
-						<a href="#void" class="btn btn-normal" onclick="memberZip('zipcode','addr1',0); return false;">우편번호찾기</a>
+						<a href="javascript:;" class="btn btn-normal" onclick="execDaumPostcode();">우편번호찾기</a>
 					</div>
 					<div class="col-xs-12">
 						<label for="sel1">주소</label>
-						<input type="text" class="form-control" maxlength="100" name="addr1">
+						<input type="text" class="form-control" maxlength="100" id="addr1" name="addr1">
 					</div>
 					<div class="col-xs-12">
 						<label for="sel1">상세주소</label>
-						<input type="text" class="form-control" maxlength="100" name="addr2">
+						<input type="text" class="form-control" maxlength="100" id="addr2" name="addr2">
 					</div>
 				</div>
 			</div>
