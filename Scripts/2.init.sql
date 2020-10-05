@@ -27,7 +27,7 @@ DROP TABLE LONGRENT
 	CASCADE CONSTRAINTS;
 
 /* 비회원 */
-DROP TABLE NONMEMBER 
+DROP TABLE NONMEMBER
 	CASCADE CONSTRAINTS;
 
 /* 차량 */
@@ -54,12 +54,12 @@ ALTER TABLE CAR
 /* 회원 */
 CREATE TABLE MEMBER (
 	id VARCHAR2(50) NOT NULL, /* 아이디 */
-	pwd VARCHAR2(20), /* 비밀번호 */
+	pwd VARCHAR2(50), /* 비밀번호 */
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
-	license VARCHAR2(20), /* 면허번호 */
-	mileage INTEGER, /* 마일리지 */
-	is_black CHAR(1), /* 블랙리스트 */
+	license VARCHAR2(50), /* 면허번호 */
+	mileage INTEGER DEFAULT 0, /* 마일리지 */
+	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
 	address VARCHAR2(500), /* 주소 */
 	remark VARCHAR2(500) /* 비고 */
 );
@@ -105,7 +105,8 @@ CREATE TABLE RENT (
 	return_date DATE, /* 반납일 */
 	is_rent CHAR(1), /* 반납여부 */
 	price INTEGER, /* 금액 */
-	remark VARCHAR2(500) /* 비고 */
+	remark VARCHAR2(500), /* 비고 */
+	is_reservate CHAR(1) /*예약여부*/
 );
 
 CREATE UNIQUE INDEX PK_RENT
