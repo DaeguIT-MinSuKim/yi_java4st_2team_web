@@ -9,6 +9,7 @@
 	*	MainHandler -> main/main.jsp 로 리다이렉트 시켰음.
 	*/ 
 	location.href="index.do";
+	/* 아무거나 */
 </script>
 </head>
 <body>
