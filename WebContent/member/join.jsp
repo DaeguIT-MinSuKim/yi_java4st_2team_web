@@ -231,18 +231,7 @@ function frmChk(){
 		window.alert("이미 사용중인 이메일입니다.");
 		return;
 	}
-/*
-	if(!document.getElementsByName("chk_chk")[0].value){
-		window.alert("자동등록 방지 필수 입력입니다");
-		document.getElementsByName("chk_chk")[0].focus();
-		return;
-	}
-	if(document.getElementsByName("byte_chk")[0].value!=document.getElementsByName("chk_chk")[0].value){
-		window.alert("자동등록방지용 빨간글자가 순서대로 입력되지 않았습니다");
-		document.getElementsByName("chk_chk")[0].focus();
-		return;
-	}
-*/
+
 
 	form1.submit();
 }
@@ -263,8 +252,6 @@ function frmChk(){
 				<li class="col-xs-4">03 가입완료</li>
 			</ul>
 		</div>
-
-
 
 <form class="form-horizontal" role="form" name="frmName" method="post" action="" onsubmit="return false;" enctype="multipart/form-data">
 <input type="hidden" name="mode" value="joinEnd">
@@ -308,50 +295,23 @@ function frmChk(){
 				</div>
 			</div>
 			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">운전면호 번호</label>
+				<div class="col-xs-8">
+					<input type="text" class="form-control" maxlength="20" name="member_id" onKeyUP="id_chk_bb();">
+					<p>특수문자 - 를 포함하여 입력하십시오.</p>
+				</div>
+			</div>
+			
 			<div class="form-group cal_Box">
 				<label class="col-sm-2 control-label">이름</label>
 				<div class="col-sm-10">
 					<div class="col-xs-5">
 						<input type="text" class="form-control" maxlength="10" name="member_name" value="">
 					</div>
-					<div class="col-xs-7 gender">
-						<label class="radio-inline"><input type="radio" name="sex" value="1">남자</label>
-						<label class="radio-inline"><input type="radio" name="sex" value="2">여자</label>
-					</div>
 				</div>
 			</div>
 			
-			<div class="form-group cal_Box years">
-				<label class="col-sm-2 control-label">생년월일</label>
-				<div class="col-sm-10 divinner">
-					<div class="col-xs-4" style="width:35%;">
-						<input type="text" class="form-control" name="birthday">
-					</div>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">주소</label>
-				<div class="col-sm-10 col-sm-10 divinner addr">
-					<div class="col-xs-7">
-						<label for="sel1">우편번호</label>
-						<input type="text" class="form-control" readonly name="zipcode" id="zipcode">
-					</div>
-					<div class="col-xs-5">
-						<a href="javascript:;" class="btn btn-normal" onclick="execDaumPostcode();">우편번호찾기</a>
-					</div>
-					<div class="col-xs-12">
-						<label for="sel1">주소</label>
-						<input type="text" class="form-control" maxlength="100" id="addr1" name="addr1">
-					</div>
-					<div class="col-xs-12">
-						<label for="sel1">상세주소</label>
-						<input type="text" class="form-control" maxlength="100" id="addr2" name="addr2">
-					</div>
-				</div>
-			</div>
-
-
 			<div class="form-group">
 				<label class="col-sm-2 control-label">휴대전화</label>
 				<div class="col-sm-10 divinner">
@@ -373,36 +333,36 @@ function frmChk(){
 					</div>
 				</div>
 			</div>
-			
-			<div class="form-group cal_Box">
-				<label class="col-sm-2 control-label">이메일</label>
-				<div class="col-sm-10 divinner">
-					<div class="col-xs-8">
-						<input type="text" class="form-control" maxlength="40" name="email" onKeyUp="emailChkYorN();">
+						
+			<div class="form-group">
+				<label class="col-sm-2 control-label">주소</label>
+				<div class="col-sm-10 col-sm-10 divinner addr">
+					<div class="col-xs-7">
+						<label for="sel1">우편번호</label>
+						<input type="text" class="form-control" readonly name="zipcode" id="zipcode">
 					</div>
-					<div class="col-xs-2">
-						<input type="hidden" name="emailChk" value="" />
-						<a href="#void" class="btn btn-normal" onclick="createQueryingChk(); return false;">중복확인</a>
+					<div class="col-xs-5">
+						<a href="javascript:;" class="btn btn-normal" onclick="execDaumPostcode();">우편번호찾기</a>
 					</div>
-				
+					<div class="col-xs-12">
+						<label for="sel1">주소</label>
+						<input type="text" class="form-control" maxlength="100" id="addr1" name="addr1">
+					</div>
+					<div class="col-xs-12">
+						<label for="sel1">상세주소</label>
+						<input type="text" class="form-control" maxlength="100" id="addr2" name="addr2">
+					</div>
 				</div>
 			</div>
-	
-			<div class="h30"></div>
+
 			<div class="h30"></div>
 			<div class="title">선택정보 <span>(회원가입 선택 입력 항목입니다.)</span></div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">유선전화</label>
+				<label class="col-sm-2 control-label">특이사항</label>
 				<div class="col-sm-10 divinner">
-					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="tel1" placeholder="" style="ime-mode:disabled;">
+					<div class="col-xs-12">
+						<textarea type="text" class="form-control" maxlength="500" name="remark" rows="3"></textarea>
 					</div>			
-					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="tel2" placeholder="" style="ime-mode:disabled;">
-					</div>
-					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="tel3" placeholder="" style="ime-mode:disabled;">
-					</div>
 				</div>
 			</div>
 		</div>
