@@ -31,7 +31,7 @@
 /* ************************ 태블릿 이하(~991) ************************ */
 @media screen and (max-width: 991px) {
 	
-	html,body {width:100%; font-family:AppleSDGothicNeo-Light,DroidSans,HelveticaNeue,sans-serif; overflow-x:hidden; overflow-y:auto;}
+	html,body {width:100%; font-family:"GmarketSans", sans-serif; overflow-x:hidden; overflow-y:auto;}
 	.pc {display:none !important;}
 	h3 {display:block; margin:0 -15px;text-align:center; font-size:14px; color:#fff; padding:15px; margin-bottom:10px; line-height:1; background:#3b5789;}
 

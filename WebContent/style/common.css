@@ -123,6 +123,10 @@ a:active {text-decoration:none; color:#ffc000;}
 .mar0_l {margin-left:0 !important;}
 .mar0_r {margin-right:0 !important;}
 
+.mt5 {margin-top:5px !important}
+.mt10 {margin-top:10px !important}
+.mt50 {margin-top:50px !important}
+
 /* 기타 */
 .bold {font-weight:bold !important;}
 .black {color:#000 !important;}
@@ -136,3 +140,9 @@ pre {
 	white-space: -o-pre-wrap; /* Opera 7 */
 	word-wrap: break-all; /* Internet Explorer 5.5+ */ 
 }
+
+/* 글자 */
+.tl {text-align:left !important;}
+.tc {text-align:center !important;}
+.tr {text-align:right !important;}
+.text_hidden {display:none;}
