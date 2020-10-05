@@ -37,12 +37,13 @@
 	<script type="text/javascript" src="./script/script.js"></script>
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
 	<script type="text/javascript" src="./script/form.js"></script>
+	<script type="text/javascript" src="./script/join.js"></script>
 	
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css?ver=191202">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css?ver=191202">
 
 	<!--다음 도로명 주소 API START-->
-	<!--<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!--다음 도로명 주소 API END-->
 
 	<!--[if lt IE 10]>
