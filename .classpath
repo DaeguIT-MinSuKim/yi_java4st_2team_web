@@ -15,5 +15,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="E:/workspace_web/yi_java4st_2team_web/WebContent/WEB-INF/lib/cos-05Nov2002.jar"/>
+	<classpathentry kind="lib" path="E:/workspace_web/yi_java4st_2team_web/WebContent/WEB-INF/lib/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="E:/workspace_web/yi_java4st_2team_web/WebContent/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="E:/workspace_web/yi_java4st_2team_web/WebContent/WEB-INF/lib/ojdbc8-19.7.0.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
