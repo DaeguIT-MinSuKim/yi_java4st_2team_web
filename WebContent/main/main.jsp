@@ -11,32 +11,32 @@
 					<div class="img_box" style="background-image:url(images/main/m_visual1.jpg)"></div>
 					<div class="txt_box">
 						<p class="t1">대구 렌트카 전문점</p>
-						<p class="t2">DAEGU RENTCAR</p>
+						<p class="t2">DONGJASEUNG RENTCAR</p>
 						<p class="t3">
-							대구 렌트카 전문점 입니다. 여기에 문구가 두줄정도 들어갈려고 하는데<br>
-							아무나 들어갈 문구 좀 적어주세요.
+							따라올 수 없는 압도적 1등<br>
+							이제부터 렌트카 예약은 동자승렌터카입니다.
 						</p>
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="img_box" style="background-image:url(images/main/m_visual1.jpg)"></div>
+					<div class="img_box" style="background-image:url(images/main/m_visual2.jpg)"></div>
 					<div class="txt_box">
-						<p class="t1">대구 렌트카 전문점</p>
-						<p class="t2">DAEGU RENTCAR</p>
+						<p class="t1">국산에서 수입차까지</p>
+						<p class="t2">대한민국 최저가 !</p>
 						<p class="t3">
-							대구 렌트카 전문점 입니다. 여기에 문구가 두줄정도 들어갈려고 하는데<br>
-							아무나 들어갈 문구 좀 적어주세요.
+							어떤 차량을 원하든<br>
+							동자승에서는 최저금액이 된다 !						
 						</p>
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="img_box" style="background-image:url(images/main/m_visual1.jpg)"></div>
+					<div class="img_box" style="background-image:url(images/main/m_visual3.jpg)"></div>
 					<div class="txt_box">
-						<p class="t1">대구 렌트카 전문점</p>
-						<p class="t2">DAEGU RENTCAR</p>
+						<p class="t1">언제나 안전하고 쾌적하게</p>
+						<p class="t2">최적화된 차량관리 시스템</p>
 						<p class="t3">
-							대구 렌트카 전문점 입니다. 여기에 문구가 두줄정도 들어갈려고 하는데<br>
-							아무나 들어갈 문구 좀 적어주세요.
+							정기적인 차량관리 및 점검으로<br>
+							깨끗한 차량만을 고집합니다.
 						</p>
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 		<div>
 			<div class="txt_box">
 				<div>
-					<h2>크리동<br>빠른상담신청</h2>
+					<h2>렌터카<br>빠른상담신청</h2>
 					<p class="number">053-123-4567</p>
 					<p class="time">상담시간 : 평일 <span>09:00~18:00</span></p>
 					<p class="t1">※ 휴일 및 야간에는 빠른 상담신청을 하시면 <br>확인 후 순차적으로 연락드립니다.</p>

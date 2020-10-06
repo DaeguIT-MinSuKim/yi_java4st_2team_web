@@ -13,6 +13,7 @@ public class RentHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		return "/rent/rent_step01.jsp";
 	}
 
