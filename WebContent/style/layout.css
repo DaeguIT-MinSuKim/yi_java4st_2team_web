@@ -1,8 +1,6 @@
 /*
 *	header, footer, nav, leftMenu 관련 CSS
 */
-
-
 /* ************************ 공용 ************************ */
 @media all {/* 모든디바이스 */
 	section {position:relative; display:block; width:100%; max-width:1200px; margin:0 auto; margin-top:130px;}
@@ -131,7 +129,7 @@
 	nav.pc .gnb>ul>li>a:hover,nav .navWrap>ul>li>a:focus {color:#ffc000;}
 	nav.pc .gnb>ul {margin:0 !important;}
 	nav.pc .gnb>ul>li {float:left; width:25%;}
-	nav.pc .gnb>ul>li>a {display:block; width:100%; height:60px; padding-top:15px; font-size:18px; color:#fff;}
+	nav.pc .gnb>ul>li>a {display:block; width:100%; height:50px; padding-top:15px; font-size:18px; color:#fff;}
 	nav.pc .gnb>ul>li.on>a {color:#ffc000;}
 	nav.pc .gnb>ul>li>ul {position:absolute; top:70px; left:0; width:100%; text-align:center;}
 	nav.pc .gnb>ul>li>ul>li {display:inline-block; width:12%; text-align:center;}
@@ -144,9 +142,9 @@
 	footer {max-width:100%; color:#999; padding:30px 0;}
 	footer .wrap {position:relative; max-width:1200px; margin:0 auto; padding:10px 5px;}
 	footer .wrap>* {padding:0; margin:0;}
-	footer .fnb {overflow:hidden; width:100%; text-align:center; background-color:#696969 !important; border-radius:5px; padding:15px 10px; margin-bottom:20px;}
+	footer .fnb {overflow:hidden; width:100%; text-align:center; background-color:#fff !important; padding:15px 10px; margin-bottom:20px; border-top:1px solid #000;}
 	footer .fnb li {display:inline-block; width:15%;}
-	footer .fnb li a {display:inline-block; font-size:13px; color:#fff !important;}
+	footer .fnb li a {display:inline-block; font-size:13px; color:#333 !important;}
 	footer .fnb li a:hover {color:#ffc000 !important;}
 	footer address {display:block; }
 	footer address .logo {text-align:left; margin:0; padding:0;}
@@ -156,6 +154,7 @@
 	footer .familysite {right:0; top:2px; text-align:right;}
 
 	footer strong {font-size:14px; color:#333; display:inline-block; margin-bottom:10px; font-weight:500}
+	
 	/*서브 상단 배경*/
 	[class*="bgSub"] {background:#fff url(../images/common/sub_visual.jpg) no-repeat;}
 	[class*="bgSub"] .slogan {position:relative; max-width:1000px; padding-top:50px; margin:0 auto;}
