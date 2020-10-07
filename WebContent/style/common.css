@@ -125,7 +125,11 @@ a:active {text-decoration:none; color:#ffc000;}
 
 .mt5 {margin-top:5px !important}
 .mt10 {margin-top:10px !important}
+.mt30 {margin-top:30px !important}
 .mt50 {margin-top:50px !important}
+
+.mr5 {margin-right:5px !important}
+.mr10 {margin-right:10px !important}
 
 /* 기타 */
 .bold {font-weight:bold !important;}

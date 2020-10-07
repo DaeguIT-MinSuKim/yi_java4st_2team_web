@@ -65,7 +65,7 @@
 #mAdvice .form_box ul li {overflow:hidden;}
 #mAdvice .form_box ul li:first-child {margin-bottom:5px;}
 #mAdvice .form_box ul li label {display:block; float:left; width:120px; line-height:52px; font-size:16px; color:#fff; font-weight:400; text-align:center; background:#044fa2; margin-bottom:0;}
-#mAdvice .form_box ul li .f_input {display:block; float:left; width:calc(100% - 120px); line-height:52px; border:0; background:#fff; box-sizing:border-box; padding:0 15px 0 25px; font-size:16px; font-weight:300; font-family:'GmarketSans';}
+#mAdvice .form_box ul li .f_input {display:block; float:left; width:calc(100% - 120px); height:52px; line-height:52px; border:0; background:#fff; box-sizing:border-box; padding:0 15px 0 25px; font-size:16px; font-weight:300; font-family:'GmarketSans';}
 #mAdvice .form_box ul li.btn {position:absolute; right:0; top:0; width:114px; height:100%; display:block; padding:0;}
 #mAdvice .form_box ul li.btn button {width:100%; height:100%; font-size:18px; color:#fff; line-height:1.3em; font-weight:500; background:#044fa2; border-radius:3px; border:0; transition:background 0.5s}
 #mAdvice .form_box ul li.btn button:hover {background:#2c84f0;}
@@ -92,7 +92,7 @@
 	#mAdvice .form_box ul {margin-top:5px; padding-right:95px;}
 	#mAdvice .form_box ul li:first-child {margin-bottom:5px;}
 	#mAdvice .form_box ul li label {width:90px; font-size:15px; line-height:40px;}
-	#mAdvice .form_box ul li .f_input {width:calc(100% - 90px); font-size:15px; line-height:40px; padding:0 10px;}
+	#mAdvice .form_box ul li .f_input {width:calc(100% - 90px); height:40px; font-size:15px; line-height:40px; padding:0 10px;}
 	#mAdvice .form_box ul li.btn {width:90px;}
 	#mAdvice .form_box ul li.btn button {font-size:17px}
 	#mAdvice .form_box .privacy {font-size:12px; padding:15px;}
@@ -112,7 +112,7 @@
 	#mAdvice .form_box .tit h2 {font-size:26px;}
 	#mAdvice .form_box ul {padding-right:85px; margin-top:15px;}
 	#mAdvice .form_box ul li label {font-size:13px;line-height:35px;}
-	#mAdvice .form_box ul li .f_input {font-size:13px; line-height:35px;}
+	#mAdvice .form_box ul li .f_input {font-size:13px; height:35px; line-height:35px;}
 	#mAdvice .form_box ul li.btn {width:80px;}
 	#mAdvice .form_box ul li.btn button {font-size:15px}
 

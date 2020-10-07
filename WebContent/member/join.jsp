@@ -237,6 +237,17 @@ function frmChk(){
 }
 </script>
 
+<script>
+$(function() {
+	$("#domain").change(function() {
+		
+		$("#email2").val($("#domain").val());
+		
+	})
+})
+</script>
+
+
 <%@ include file="/include/sub_member.jsp"%>
 
 <!-- 컨텐츠 -->
@@ -324,12 +335,34 @@ function frmChk(){
 							<option value="018" >018</option>
 							<option value="019" >019</option>
 						</select>
-					</div>			
+					</div>
 					<div class="col-xs-3">
 						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel2" placeholder="" style="ime-mode:disabled;">
 					</div>
 					<div class="col-xs-3">
 						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel3" placeholder="" style="ime-mode:disabled;">
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group cal_Box">
+				<label class="col-sm-2 control-label">이메일</label>
+				<div class="col-sm-10 divinner">
+					<div class="col-xs-3">
+						<input type="text" class="form-control" maxlength="40" name="email1">
+					</div>
+					<div class="col-xs-5">
+						<input type="text" class="form-control" maxlength="40" name="email2" id="email2">
+					</div>
+					<div class="col-xs-3">
+						<select name="email2" class="selectpicker show-tick form-control" id="domain">
+							<option value="" selected="selected">선택하기</option>
+							<option value="@naver.com">@naver.com</option>
+							<option value="@daum.net">@daum.net</option>
+							<option value="@nate.com">@nate.com</option>
+							<option value="@gmail.com">@gmail.com</option>
+							<option value="">직접입력</option>
+						</select>
 					</div>
 				</div>
 			</div>
