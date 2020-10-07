@@ -26,6 +26,27 @@
 .board_password i {font-size:60px; color:#0377bf; margin-bottom:20px;}
 .board_password p {font-size:18px; color:#222;}
 
+.board_view .tit {font-size:20px; color:#231f20; line-height:1.3em;}
+.board_view .date {font-size:13px; color:#999; line-height:1em; margin-top:10px;}
+.board_view .date:before {content:'\f017'; font-weight:400; font-family:'Font Awesome 5 Free'; margin-right:8px;}
+.board_view .content {margin-top:30px; padding:30px 0 50px; border-top:1px solid #bbb; border-bottom:1px solid #bbb; font-size:15px; color:#777; line-height:1.7em; letter-spacing:-0.035em;}
+.board_view .content ul {margin-bottom:20px;}
+.board_view .content ul li {font-size:16px; color:#222;}
+.board_view .option {overflow:hidden; border-bottom:1px solid #bbb; padding:11px 0;}
+.board_view .option .t1 {float:left; width:100px; font-size:15px; margin:0;}
+.board_view .option .t2 {float:left; width:calc(100% - 100px); font-size:15px; margin:0;}
+.board_view .comment {overflow:hidden; padding:11px 0;}
+.board_view .comment .t1 {float:left; width:100px; font-size:15px; line-height:40px; margin:0;}
+.board_view .comment textarea {display:block; float:left; width:calc(100% - 230px); height:100px; border:1px solid #ddd; border-radius:0; resize:none; box-sizing:border-box; padding:7px;}
+.board_view .comment input[type="submit"] {float:right; width:120px; height:100px;}
+.board_view .comment .comment_list {padding-top:15px; border-bottom:1px solid #eee; clear:both;}
+.board_view .comment .comment_list > li {background:#f7f7f7; border-top:1px solid #eee; box-sizing:border-box; padding:12px 10px;}
+.board_view .comment .comment_list > li .tit_box p {display:inline-block; margin-right:10px;}
+.board_view .comment .comment_list > li .btn {text-align:right; width:100%;}
+.board_view .comment .comment_list > li .btn li {display:inline-block; margin-left:10px;}
+.board_view .comment .comment_list > li textarea {width:calc(100% - 130px)}
+.board_view .comment .comment_list > li form {display:none;}
+
 @media screen and (max-width:992px){
 	.board_list_page {margin-top:10%;}
 	.board_list_page a {width:25px; line-height:25px;}
@@ -37,6 +58,15 @@
 	.board_password {padding:70px 30px;}
 	.board_password i {font-size:50px;}
 	.board_password p {font-size:16px;}
+	
+	.board_view .content {font-size:13px;}
+	.board_view .content ul li {font-size:14px;}
+	.board_view .option .t1 {width:70px}
+	.board_view .option .t2 {width:calc(100% - 70px)}
+	.board_view .comment .t1 {width:70px; font-size:13px;}
+	.board_view .comment textarea {width:calc(100% - 165px); height:80px;}
+	.board_view .comment input[type="submit"] {width:90px; height:80px;}
+	.board_view .comment .comment_list > li textarea {width:calc(100% - 95px)}
 }
 
 

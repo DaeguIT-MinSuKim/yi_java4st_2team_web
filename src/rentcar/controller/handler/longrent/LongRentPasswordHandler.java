@@ -18,7 +18,6 @@ public class LongRentPasswordHandler implements Command {
 			return "/longrent/longrent_password.jsp";
 		} else {
 			
-			
 			response.sendRedirect("longRentView.do");
 			return null;
 		}
