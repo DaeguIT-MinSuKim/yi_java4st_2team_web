@@ -15,7 +15,8 @@ public class LongRentViewHandler implements Command {
 			throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("get")) {
 			
-			return null;
+			System.out.println(3);
+			return "/longrent/longrent_view.jsp";
 		} else {
 			return null;
 		}
