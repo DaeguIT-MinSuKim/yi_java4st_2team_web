@@ -32,7 +32,7 @@
 				<a href="javascript:;" data-kind="5">수입</a>
 			</div>
 
-			<div class="rentcarList kindColor1 insertBg" data-ratioH="100">
+			<div class="rentcarList kindColor1 insertBg" data-ratioH="60">
 				<ul>
 					<li>
 						<a href="javascript:;">

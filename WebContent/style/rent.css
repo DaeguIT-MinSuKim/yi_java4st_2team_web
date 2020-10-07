@@ -9,7 +9,8 @@
 .rentcarList>ul {display:flex; justify-content:flex-start; flex-wrap:wrap;}
 .rentcarList>ul>li { width:33.3333%; margin:25px 0;}
 .rentcarList>ul>li>a {display:block; text-align:center}
+.rentcarList>ul>li>a:hover {color:#000}
 .rentcarList>ul>li .img {height:100px; width:100%; background-size:contain !important; margin:0 auto;}
-.rentcarList>ul>li .carName {font-size:24px;}
+.rentcarList>ul>li .carName {font-size:20px; color:#fff; height:40px; line-height:40px; margin:0; }
 .rentcarList>ul>li .price {font-size:17px;}
 .rentcarList>ul>li .price span {color:deeppink;}
