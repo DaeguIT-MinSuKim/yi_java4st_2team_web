@@ -6,35 +6,27 @@ public class Member {
 	private String name;
 	private String tel;
 	private String license;
-	private int mileage;
+	private String email;
 	private String is_black;
 	private String address;
 	private String remark;
+	private Integer count;
+	private String event;
 
 	public Member() {
 		super();
 	}
 
-	public Member(String id, String pwd, String name, String tel, String license, int mileage, String is_black,
-			String address, String remark) {
+	public Member(String id, String pwd, String name, String tel, String license, String email, String address,
+			String remark) {
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
 		this.tel = tel;
 		this.license = license;
-		this.mileage = mileage;
-		this.is_black = is_black;
+		this.email = email;
 		this.address = address;
 		this.remark = remark;
-	}
-
-	public Member(String id, String pwd, String name, String tel, String license, String address) {
-		this.id = id;
-		this.pwd = pwd;
-		this.name = name;
-		this.tel = tel;
-		this.license = license;
-		this.address = address;
 	}
 
 	public Member(String id) {
@@ -81,12 +73,12 @@ public class Member {
 		this.license = license;
 	}
 
-	public int getMileage() {
-		return mileage;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMileage(int mileage) {
-		this.mileage = mileage;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getIs_black() {
@@ -113,11 +105,27 @@ public class Member {
 		this.remark = remark;
 	}
 
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", pwd=" + pwd + ", name=" + name + ", tel=" + tel + ", license=" + license
-				+ ", mileage=" + mileage + ", is_black=" + is_black + ", address=" + address + ", remark=" + remark
-				+ "]";
+				+ ", email=" + email + ", is_black=" + is_black + ", address=" + address + ", remark=" + remark
+				+ ", count=" + count + ", event=" + event + "]";
 	}
 
 }
