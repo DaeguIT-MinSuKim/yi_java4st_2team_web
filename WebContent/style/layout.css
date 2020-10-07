@@ -8,7 +8,7 @@
 	.contents img {max-width:100%; height:auto;}
 	.more {display:block; position:absolute; width:25px; height:25px; top:0; right:0; background:url(../images/common/icon_more.png) 100% 0 no-repeat;}
 	.more2 {display:block; position:absolute; width:25px; height:25px; right:0; background:url(../images/common/icon_more2.png) 50% no-repeat;}
-	#gotop {z-index:900; display:none; position:fixed; width:35px; height:35px; border-radius:3px; bottom:40px; right:20px; background:url(../images/common/arrow_up.png) no-repeat 50% #fff; box-shadow:0 0 3px rgba(0,0,0,.3) !important;}
+	#gotop {z-index:900; display:none; position:fixed; width:35px; height:35px; border-radius:3px; bottom:110px; right:38px; background:url(../images/common/arrow_up.png) no-repeat 50% #fff; box-shadow:0 0 3px rgba(0,0,0,.3) !important;}
 	.con_wrap {margin-top:0;}
 
 	.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio]
