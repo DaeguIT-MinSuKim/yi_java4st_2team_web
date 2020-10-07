@@ -1,18 +1,18 @@
 /* ****************** 부트스트랩 강제 대응 및 초기화  ******************* */
 ul,ol,li,dl,dt,dd {list-style:none; padding:0; margin:0;}
-.btn-normal {color:#696969 !important; background-color:#fff; min-height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; line-height:2.6; border:1px solid #e8e8e8;}
+.btn-normal {color:#696969 !important; background-color:#fff; height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; border:1px solid #e8e8e8;}
 .btn-normal:hover {color:#fff !important; background-color:#333;}
 
-.btn-blue {color:#fff !important; background-color:#3b5789; min-height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; line-height:2.6; border:1px solid #000;}
+.btn-blue {color:#fff !important; background-color:#3b5789; height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; border:1px solid #000;}
 .btn-blue:hover {background:#2a3e63;}
 
-.btn-gray {color:#696969 !important;; background-color:#f5f5f5; min-height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; line-height:2.6; border:1px solid #696969;}
+.btn-gray {color:#696969 !important;; background-color:#f5f5f5; height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px border:1px solid #696969;}
 .btn-gray:hover {background:#cecece;}
 
-.btn-black { background:#555 !important; color:#fff !important;  min-height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; line-height:2.6; border:1px solid #696969;}
+.btn-black { background:#555 !important; color:#fff !important;  height:40px; line-height:40px; font-size:14px; letter-spacing:0; padding:1px 20px; border:1px solid #696969;}
 .btn-black:hover {background:#000 !important; color:#fff !important;}
 
-.btn-xs {color:#333 !important; background-color:#fff; border:1px solid #ddd;}
+.btn-xs {color:#333 !important; background-color:#000; border:1px solid #ddd;}
 .btn-xs:hover {color:#fff !important; background-color:#333; border:1px solid #333;}
 
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {padding:3px 0;}
@@ -26,28 +26,6 @@ footer .bootstrap-select.btn-group .dropdown-toggle .filter-option {padding:0; o
 .dropdown-toggle {height:40px; }
 /* // ******************* 부트스트랩 강제 대응 및 초기화  ******************* */
 
-.kindColor1 h4 {
-  background-image: -webkit-linear-gradient(247deg, #01efd5, #0d6ffc);
-  background-image: -o-linear-gradient(247deg, #01efd5, #0d6ffc);
-  background-image: linear-gradient(-157deg, #01efd5, #0d6ffc);
-  background-size: 180% auto;
-  border: none;
-  -webkit-box-shadow: 0 13px 20px -15px rgba(13, 111, 252, 0.5);
-          box-shadow: 0 13px 20px -15px rgba(13, 111, 252, 0.5);
-  cursor: pointer;
-  -webkit-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out; }
-  .btn-carmore:hover {
-    color: #fff;
-    background-position: right center;
-    -webkit-box-shadow: 0 15px 25px -12px rgba(13, 111, 252, 0.6);
-            box-shadow: 0 15px 25px -12px rgba(13, 111, 252, 0.6);
-    -webkit-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out; 
-}
-  
 @media screen and (max-width:992px){
 	
 }
