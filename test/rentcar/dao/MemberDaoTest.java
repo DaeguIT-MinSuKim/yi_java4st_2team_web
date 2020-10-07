@@ -53,7 +53,7 @@ public class MemberDaoTest {
 	@Test
 	public void test01InsertMember() {
 		System.out.printf("%s()%n", "test01InsertMember");
-		Member insertMember = new Member("test", "1111", "김자바", "010-1234-1234", "20-15-061904-90", "대구시");
+		Member insertMember = new Member("test", "1111", "김자바", "010-1234-1234", "20-15-061904-90", "QQ@QQ.com", "대구시", null);
 		int res = MemberDaoImpl.getInstance().insertMember(insertMember);
 		Assert.assertEquals(1, res);
 
@@ -63,7 +63,7 @@ public class MemberDaoTest {
 	@Test
 	public void test02UpdateMember() {
 		System.out.printf("%s()%n", "test02UpdateMember");
-		Member updateMember = new Member("test", "2222", "김김김", "010-1234-1234", "20-15-061904-90", "서울시");
+		Member updateMember = new Member("test", "2222", "김김김", "010-1234-1234", "20-15-061904-90", "WW@WW.com", "서울시", null);
 		int res = MemberDaoImpl.getInstance().updateMember(updateMember);
 		Assert.assertEquals(1, res);
 

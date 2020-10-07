@@ -54,14 +54,16 @@ ALTER TABLE CAR
 /* 회원 */
 CREATE TABLE MEMBER (
 	id VARCHAR2(50) NOT NULL, /* 아이디 */
-	pwd VARCHAR2(50), /* 비밀번호 */
+	pwd VARCHAR2(20), /* 비밀번호 */
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
-	license VARCHAR2(50), /* 면허번호 */
-	mileage INTEGER DEFAULT 0, /* 마일리지 */
+	license VARCHAR2(20), /* 면허번호 */
+	email VARCHAR2(50), /* 이메일 */
 	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
 	address VARCHAR2(500), /* 주소 */
-	remark VARCHAR2(500) /* 비고 */
+	remark VARCHAR2(500), /* 비고 */
+	count INTEGER DEFAULT 0, /* 대여횟수 */
+	event VARCHAR2(50) /* 이벤트 코드 */
 );
 
 CREATE UNIQUE INDEX PK_MEMBER
