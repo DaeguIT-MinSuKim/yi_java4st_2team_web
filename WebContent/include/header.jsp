@@ -136,7 +136,7 @@
 			</div>
 
 
-			<a class="gnbView mobile" href="#void" title="전체메뉴보기"></a>
+			<a class="gnbView mobile" href="javascript:;" title="전체메뉴보기"></a>
 		</div>
 	</div>
 
@@ -186,7 +186,7 @@
 	<div class="gnbCover mobile"></div>
 	<nav class="mobile box">
 		<div class="closeWrap">
-			<a href="#void" class="gnbClose"></a>
+			<a href="javascript:;" class="gnbClose"></a>
 			<a class="home" href="./main/main.jsp">HOME</a>
 		</div>
 	</nav>

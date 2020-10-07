@@ -47,11 +47,11 @@ $(function pcFn(){
 		$('nav.pc .gnb>ul>li>ul').css({display:'none'});
 		$('nav.pc .gnb>ul>li:first-child>ul').css({display:'block'});
 		
+		/*
 		$('nav.pc .gnb>ul>li>a').on("mouseenter focusin", function(){
 			$(this).next().css({display:'block'});
 			$(this).parent().siblings().children('ul').css({display:'none'});
 		});
-		/*
 		$('nav.pc').on("mouseenter focusin",function(){//열림
 			$('nav.pc').addClass('on');
 			$(this).stop().animate({height:navH}, speed);
@@ -62,7 +62,6 @@ $(function pcFn(){
 			return false;
 		});
 		*/
-		
 	});//end pc
 	/* ********************* 모바일 ******************** */
 	
@@ -199,4 +198,5 @@ $(document).ready(function(){
 		$(this).find('img').attr('src',$(this).find('img').attr('src').replace('_on.png','_off.png'));
 	});
 });
+
 */

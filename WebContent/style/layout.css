@@ -182,11 +182,10 @@
 	.snb ul li.on a {color:#fff; background:#3b5789 url(../images/common/snb_on.png) 6% 50% no-repeat;}
     .other_size {font-size:24px !important;}
 	/*컨텐츠*/
-	.contents_box {float:none; clear:both; padding-left:65px !important; width:100%;}
+	.contents_box {float:none; clear:both; width:100%;}
 	.contents_box .contents {padding:50px 0 5px 0;}
 	.contents_box .contents .location {text-align:right; right:5px; font-size:14px; color:#999; position:absolute; top:55px;}
 	.contents_box .contents .location span {display:inline-block; width:20px; text-align:center;}
-	.padLeft0 {padding-left:0 !important}
 }
 
 @page {
@@ -201,3 +200,4 @@
 	#gotop {display:none !important;}
 	.affix {position:relative;}
 }
+

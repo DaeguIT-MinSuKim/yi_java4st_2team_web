@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import rentcar.controller.Command;
 
-public class RentHandler implements Command {
+public class RentDetailHandler implements Command {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		return "/rent/rent.jsp";
+		return "/rent/rent_detail.jsp";
 	}
 
 }
