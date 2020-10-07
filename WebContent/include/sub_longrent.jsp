@@ -13,9 +13,9 @@
 
 <section class="con_wrap box">
 	<!-- snb -->
-	<div class="snb box pc momH">
+	<!-- <div class="snb box pc momH">
 		<h2>장기렌트</h2>
 		<ul>
 			<li><a href="longRent.do">장기렌트</a></li>
 		</ul>
-	</div><!-- //snb -->
+	</div> --><!-- //snb -->

@@ -6,7 +6,7 @@
 
 
 <!-- 컨텐츠 -->
-<div class="contents_box">
+<div class="contents_box2">
 	<div class="contents">
 		<h3>장기렌트</h3>
 		<div class="location pc">HOME <span>></span> 장기렌트</div>
@@ -27,19 +27,19 @@
 				</tr>
 				<tr>
 					<td>3</td>
-					<td class="tl"><a href="#">장기렌트 대여 문의합니다!</a></td>
+					<td class="tl"><a href="longRentPassword.do">장기렌트 대여 문의합니다!</a></td>
 					<td>김*동</td>
 					<td>2019.10.05</td>
 				</tr>
 				<tr>
 					<td>2</td>
-					<td class="tl"><a href="#">장기렌트 대여 문의합니다!</a></td>
+					<td class="tl"><a href="longRentPassword.do">장기렌트 대여 문의합니다!</a></td>
 					<td>김*동</td>
 					<td>2019.10.05</td>
 				</tr>
 				<tr>
 					<td>1</td>
-					<td class="tl"><a href="#">장기렌트 대여 문의합니다!</a></td>
+					<td class="tl"><a href="longRentPassword.do">장기렌트 대여 문의합니다!</a></td>
 					<td>김*동</td>
 					<td>2019.10.05</td>
 				</tr>

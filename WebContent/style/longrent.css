@@ -20,7 +20,11 @@
 .board_list_page ul {display:inline-block;}
 .board_list_page ul li {display:inline-block; vertical-align:middle;}
 .board_list_page ul li a {color:#777;}
-.board_list_page ul li.active a {background:#00a7ed; color:#fff;}\
+.board_list_page ul li.active a {background:#00a7ed; color:#fff;}
+
+.board_password {width:95%; max-width:500px; margin:0 auto; padding:90px 50px; box-sizing:border-box; border:1px solid #ddd; border-radius:10px; text-align:center;}
+.board_password i {font-size:60px; color:#0377bf; margin-bottom:20px;}
+.board_password p {font-size:18px; color:#222;}
 
 @media screen and (max-width:992px){
 	.board_list_page {margin-top:10%;}
@@ -29,6 +33,10 @@
 
 @media screen and (max-width:767px){
 	.board_list_page a {width:22px; line-height:22px; font-size:12px;}
+	
+	.board_password {padding:70px 30px;}
+	.board_password i {font-size:50px;}
+	.board_password p {font-size:16px;}
 }
 
 
@@ -79,25 +87,10 @@
 	.btn_small {width:90px; line-height:34px;}
 }
 
-.option_check {width:100%; position:relative;}
-.option_check ul {width:calc(100% - 85px); min-height:40px; padding:0 6px; border-radius:5px; border:1px solid #ddd;}
-.option_check ul li {display:inline-block; line-height:30px; padding:0 10px; border-radius:15px; background:#f7f7f7; border:1px solid #ddd; font-size:14px; cursor:pointer; margin:8px 1px;}
-.option_check ul li:after {content:'\f00d'; font-weight:900; font-family:"Font Awesome 5 Free"; margin-left:8px; font-size:12px;}
-.option_check p {display:table; width:80px; height:100%; background:#0c385b; border-radius:5px; font-size:15px; color:#fff; text-align:center; cursor:pointer; position:absolute; right:0; top:0;}
-.option_check p span {display:table-cell; vertical-align:middle;}
+.option_check {width:100%; position:relative; padding:8px; border-radius:5px; border:1px solid #ddd;}
+.option_check label {display:block; font-size:14px; color:#222; font-size:14px; font-weight:400; display:inline-block; margin:5px;}
+.option_check label input[type="checkbox"] {margin-right:3px; position:relative; top:2px;}
 
-
-.popup_longrent_option {display:none; position:fixed; z-index:1000; top:0; left:0; width:100%; height:100%; background:none; padding:15px;}
-.popup_longrent_option .con {z-index:1; background:#fff; position:relative; width:100%; max-width:800px; height:500px; margin:0 auto; border-radius:20px;
-	padding:0;
-	top:calc(50% - 250px);
-	top:-webkit-calc(50% - 250px); 
-	box-shadow:0 0 50px rgba(0,0,0,.1) !important;
+@media screen and (max-width:767px){
+	.option_check label {font-size:12px; margin:3px;}
 }
-
-.popup_longrent_option .con .top {height:50px; line-height:50px; padding-left:30px; border-bottom:1px solid #ddd;}
-.popup_longrent_option .con .top .title {position:relative;}
-.popup_longrent_option .con .top .popup_close_common {position:absolute; right:20px; top:0;}
-
-.popup_longrent_option .con .btm {padding:25px;}
-.popup_longrent_option .bg {position:absolute; top:0; left:0; right:0; bottom:0; margin:auto; width:100%; height:100%; background:rgba(0,0,0,.5); display:none;}
