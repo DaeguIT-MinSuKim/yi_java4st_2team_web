@@ -148,20 +148,20 @@ CREATE TABLE EVENT (
 	coupon VARCHAR2(500) /* 쿠폰 */
 );
 
+
 /* 장기렌트 */
 CREATE TABLE LONGRENT (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
 	contents VARCHAR2(500), /* 내용 */
-	exterior VARCHAR2(500), /* 외관/내장 */
-	safety VARCHAR2(500), /* 안전 */
-	multi VARCHAR2(500), /* 편의/멀티미디어 */
-	sheet VARCHAR2(500), /* 시트 */
-	fare INTEGER, /* 금액 */
-	id VARCHAR2(50), /* 아이디 */
-	non_tel VARCHAR2(20), /* 비회원연락처 */
 	rep_yn char(1) DEFAULT '1', /*답변여부*/ 
-	write_date DATE DEFAULT sysdate /*작성일 */
+	write_date DATE DEFAULT sysdate, /*등록일 */
+	rent_term varchar2(50), /*대여기간*/
+	name varchar2(50), /*이름*/
+	tel varchar2(20), /*연락처*/
+	pwd varchar2(50), /*비밀번호*/
+	options varchar2(500), /*옵션목록*/
+	rep_content varchar2(500) /*답변내용*/
 );
 
 CREATE UNIQUE INDEX PK_LONGRENT

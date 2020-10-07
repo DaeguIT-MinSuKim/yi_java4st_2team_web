@@ -40,7 +40,8 @@ public class CarDaoImpl implements CarDao {
 	@Override
 	public List<Car> selectCarByAll() {
 		String sql = "SELECT CAR_NO,NAME,KIND,PRICE,REMARK FROM car";
-		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+		try (PreparedStatement pstmt = con.prepareStatement(sql); 
+				ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				List<Car> list = new ArrayList<Car>();
 				do {

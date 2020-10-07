@@ -19,6 +19,18 @@ FROM LONGRENT WHERE ID = 'dong' ORDER BY NO DESC ;
 
 UPDATE LONGRENT SET id = 'dong' WHERE NO = 1;
 
+--NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT
+
+SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT
+FROM LONGRENT WHERE NO = 1;
+
+
+INSERT INTO LONGRENT (NO, title, CONTENTS, REP_YN, WRITE_DATE, rent_term, name,tel, pwd, OPTIONS)
+VALUES(?,?,?,?,?,?,?,)
+
+DELETE FROM longrent WHERE NO = 3;
+
+
 -----------------------------------------------------------------------------문중희-----------------------------------------------------------------------------
 SELECT * 
   FROM MEMBER;
