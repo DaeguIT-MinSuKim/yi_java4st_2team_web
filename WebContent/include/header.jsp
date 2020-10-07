@@ -26,6 +26,7 @@
 	<link  type="text/css" href="./style/member.css" rel="stylesheet">
 	<link  type="text/css" href="./style/longrent.css" rel="stylesheet">
 	<link  type="text/css" href="./style/button.css" rel="stylesheet">
+	<link  type="text/css" href="./style/rent.css" rel="stylesheet">
 	<link  media="print" type="text/css" href="./style/bootstrap.print.min.css" rel="stylesheet"><!-- 프린트대응 -->
 
 	<script type="text/javascript" src="./script/jquery.1.12.0.min.js"></script>
@@ -39,13 +40,20 @@
 	<script type="text/javascript" src="./script/form.js"></script>
 	<script type="text/javascript" src="./script/join.js"></script>
 	
+	
+	<!-- 메인 슬라이더 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css?ver=191202">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css?ver=191202">
 
-	<!--다음 도로명 주소 API START-->
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<!--다음 도로명 주소 API END-->
+	<!-- 달력 -->
+	<script type="text/javascript" src="./script/jquery-ui.1.10.1.js"></script>
+	<script type="text/javascript" src="./script/jquery.calendar.js"></script>
+	<link  type="text/css" href="./style/jquery.ui.css" rel="stylesheet">
 
+	<!--다음 도로명 주소 API -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+	<!-- IE 10까지만 접속가능하게 작업. 9부터 접근 불가 메시지창 띄움 -->
 	<!--[if lt IE 10]>
 		<link href="./style/ie.warning.css" rel="stylesheet" type="text/css">
 	<![endif]-->
@@ -66,44 +74,44 @@
 	
 	/* 채널톡 연결 */
 	<!-- Channel Plugin Scripts -->
-	  (function() {
-	    var w = window;
-	    if (w.ChannelIO) {
-	      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
-	    }
-	    var ch = function() {
-	      ch.c(arguments);
-	    };
-	    ch.q = [];
-	    ch.c = function(args) {
-	      ch.q.push(args);
-	    };
-	    w.ChannelIO = ch;
-	    function l() {
-	      if (w.ChannelIOInitialized) {
-	        return;
-	      }
-	      w.ChannelIOInitialized = true;
-	      var s = document.createElement('script');
-	      s.type = 'text/javascript';
-	      s.async = true;
-	      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-	      s.charset = 'UTF-8';
-	      var x = document.getElementsByTagName('script')[0];
-	      x.parentNode.insertBefore(s, x);
-	    }
-	    if (document.readyState === 'complete') {
-	      l();
-	    } else if (window.attachEvent) {
-	      window.attachEvent('onload', l);
-	    } else {
-	      window.addEventListener('DOMContentLoaded', l, false);
-	      window.addEventListener('load', l, false);
-	    }
-	  })();
-	  ChannelIO('boot', {
-	    "pluginKey": "31509d5e-8324-4195-8eff-9ac8231365ba"
-	  });
+	 (function() {
+	   var w = window;
+	   if (w.ChannelIO) {
+	     return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+	   }
+	   var ch = function() {
+	     ch.c(arguments);
+	   };
+	   ch.q = [];
+	   ch.c = function(args) {
+	     ch.q.push(args);
+	   };
+	   w.ChannelIO = ch;
+	   function l() {
+	     if (w.ChannelIOInitialized) {
+	       return;
+	     }
+	     w.ChannelIOInitialized = true;
+	     var s = document.createElement('script');
+	     s.type = 'text/javascript';
+	     s.async = true;
+	     s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+	     s.charset = 'UTF-8';
+	     var x = document.getElementsByTagName('script')[0];
+	     x.parentNode.insertBefore(s, x);
+	   }
+	   if (document.readyState === 'complete') {
+	     l();
+	   } else if (window.attachEvent) {
+	     window.attachEvent('onload', l);
+	   } else {
+	     window.addEventListener('DOMContentLoaded', l, false);
+	     window.addEventListener('load', l, false);
+	   }
+	 })();
+	 ChannelIO('boot', {
+	   "pluginKey": "31509d5e-8324-4195-8eff-9ac8231365ba"
+	 });
 	<!-- End Channel Plugin -->
 	</script>		
 </head>

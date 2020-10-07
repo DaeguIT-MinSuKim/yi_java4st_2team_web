@@ -16,7 +16,7 @@
 
 <section class="con_wrap box">
 
-	<div class="contents_box2 out">
+	<div class="contents_box out padLeft0">
 		<div class="contents">
 			<h3>단기렌트</h3>
 			<div class="location pc">
@@ -36,18 +36,20 @@
 							<span>자차보험</span>
 						</label>
 						<div class="col-sm-10">
-							<label><input type="radio" name="">일반자차</label>
-							<label><input type="radio" name="">완전자차</label>
-							<label><input type="radio" name="">슈퍼자차</label>
+							<label><input type="radio" name=""><span>일반자차</span></label>
+							<label><input type="radio" name=""><span>완전자차</span></label>
+							<label><input type="radio" name=""><span>슈퍼자차</span></label>
 						</div>
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group dateBox">
 						<label class="col-sm-2 control-label">
 							<span>대여일시 / 반납일시</span>
 						</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" name="passwd">
+							<input type="text" class="form-control calendar prev" readonly>
+							<span>-</span>
+							<input type="text" class="form-control calendar" readonly>
 						</div>
 					</div>
 
@@ -72,12 +74,11 @@
 					<div class="form-group cal_Box">
 						<label class="col-sm-2 control-label">남기고 싶은 말</label>
 						<div class="col-sm-10">
-							<textarea class="form-control" id="contents" rows="10"
-								name="content"></textarea>
+							<textarea class="form-control" id="contents" rows="10" name="content"></textarea>
 						</div>
 					</div>
 				</div>
-
+				
 				<!-- 버튼 -->
 				<div class="btn_box">
 					<ul>
@@ -90,5 +91,6 @@
 		</div>
 	</div>
 	<!-- //컨텐츠 -->
+
 
 	<%@ include file="/include/footer.jsp"%>

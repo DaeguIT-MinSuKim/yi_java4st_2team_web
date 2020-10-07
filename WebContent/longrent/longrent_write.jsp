@@ -6,7 +6,7 @@
 
 
 <!-- 컨텐츠 -->
-<div class="contents_box2">
+<div class="contents_box padLeft0">
 	<div class="contents">
 		<h3>장기렌트 글쓰기</h3>
 		<div class="location pc">HOME <span>></span> 장기렌트 글쓰기</div>
