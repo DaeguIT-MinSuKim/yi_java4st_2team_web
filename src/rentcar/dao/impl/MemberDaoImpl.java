@@ -51,11 +51,13 @@ public class MemberDaoImpl implements MemberDao {
 		String name = rs.getString("NAME");
 		String tel = rs.getString("TEL");
 		String license = rs.getString("LICENSE");
-		int mileage = rs.getInt("MILEAGE");
+		String email = rs.getString("EMAIL");
 		String is_black = rs.getString("IS_BLACK");
 		String address = rs.getString("ADDRESS");
 		String remark = rs.getString("REMARK");
-		return new Member(id, pwd, name, tel, license, mileage, is_black, address, remark);
+		Integer count = rs.getInt("COUNT");
+		String event = rs.getString("EVENT");
+		return new Member(id, pwd, name, tel, license, email, is_black, address, remark, count, event);
 	}
 
 	@Override

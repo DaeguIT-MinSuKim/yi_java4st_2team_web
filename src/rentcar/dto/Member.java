@@ -17,6 +17,21 @@ public class Member {
 		super();
 	}
 
+	public Member(String id, String pwd, String name, String tel, String license, String email, String is_black,
+			String address, String remark, Integer count, String event) {
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.tel = tel;
+		this.license = license;
+		this.email = email;
+		this.is_black = is_black;
+		this.address = address;
+		this.remark = remark;
+		this.count = count;
+		this.event = event;
+	}
+
 	public Member(String id, String pwd, String name, String tel, String license, String email, String address,
 			String remark) {
 		this.id = id;
