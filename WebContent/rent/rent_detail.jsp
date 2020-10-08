@@ -18,76 +18,76 @@
 
 	<div class="contents_box out padLeft0">
 		<div class="contents">
-			<h3>단기렌트</h3>
+			<h3>단기렌트 차량예약</h3>
 			<div class="location pc">
-				HOME <span>></span> 단기렌트 <span>></span> 렌트 STEP1
+				HOME <span>></span> 단기렌트 <span>></span> 차량예약
 			</div>
 
-			<form class="form-horizontal" role="form" name="outFrm" method="post"
-				action="" onSubmit="return false;">
-				<input type="hidden" name="mode" value="memberEnd">
-				<div class="join">
+			<form class="form-horizontal" role="form" name="frmName" method="post" action="" onsubmit="return false;" enctype="multipart/form-data">
+				<div class="col-lg-7">
+					<div class="insertBg" data-ratioH="60">
+						<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
+					</div>
+					<h4 class="carName">모닝</h4>
+					<p class="date">10/9 10:00 ~ 10/10 10:00 (24시간)</p>
 					
-					<div class="title">렌터카 검색</div>
-					
+					<hr>
+						
 					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							<i class="fas fa-shield-alt"></i>
-							<span>자차보험</span>
-						</label>
+						<label class="col-sm-2 control-label">보험</label>
 						<div class="col-sm-10">
-							<label><input type="radio" name=""><span>일반자차</span></label>
-							<label><input type="radio" name=""><span>완전자차</span></label>
-							<label><input type="radio" name=""><span>슈퍼자차</span></label>
+							<label><input type="radio" name="insurance" checked><span>일반자차</span></label>
+							<label><input type="radio" name="insurance"><span>완전자차</span></label>
+							<label><input type="radio" name="insurance"><span>슈퍼자차</span></label>
 						</div>
 					</div>
 					
-					<div class="form-group dateBox">
-						<label class="col-sm-2 control-label">
-							<span>대여일시 / 반납일시</span>
-						</label>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">옵션</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control calendar prev" readonly>
-							<span>-</span>
-							<input type="text" class="form-control calendar" readonly>
+							<label><input type="checkbox" name="carOption"><span>후방카메라</span></label>
+							<label><input type="checkbox" name="carOption"><span>블루투스</span></label>
+							<label><input type="checkbox" name="carOption"><span>카시트</span></label>
+							<label><input type="checkbox" name="carOption"><span>내비게이션</span></label>
+							<label><input type="checkbox" name="carOption"><span>하이패스</span></label>
 						</div>
 					</div>
-
 					<div class="form-group">
-						<label class="col-sm-2 control-label">탈퇴사유</label>
-						<div class="col-sm-10 divinner">
-							<select class="selectpicker show-tick form-control"
-								name="member_out_reason">
-								<option value="">-선택-</option>
-								<option value="서비스불만">서비스불만</option>
-								<option value="응대불친절">응대불친절</option>
-								<option value="복잡한 절차">복잡한 절차</option>
-								<option value="잦은 시스템 에러">잦은 시스템 에러</option>
-								<option value="개인정보 유출 우려">개인정보 유출 우려</option>
-								<option value="실질적인 혜택이 없음">실질적인 혜택이 없음</option>
-								<option value="메일이 너무 많아짐">메일이 너무 많아짐</option>
-								<option value="기타">기타</option>
+						<label class="col-sm-2 control-label">할인/쿠폰</label>
+						<div class="col-sm-10">
+							<select>
+								<option>이벤트할인</option>
+								<option>회원가입쿠폰?</option>
 							</select>
-						</div>
-					</div>
-
-					<div class="form-group cal_Box">
-						<label class="col-sm-2 control-label">남기고 싶은 말</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" id="contents" rows="10" name="content"></textarea>
+							<!-- 
+								사용가능한 할인/쿠폰이 없습니다.
+							 -->
 						</div>
 					</div>
 				</div>
 				
-				<!-- 버튼 -->
-				<div class="btn_box">
+				<div class="col-lg-5">
 					<ul>
-						<li><a class="btn btn-black" href="javascript:;"
-							onClick="outFrmChk(); return false;">탈퇴완료</a></li>
-						<li><a class="btn btn-gray" href="./modify.php">탈퇴취소</a></li>
+						<li>
+							<div class="left">보험</div>
+							<div class="right">일반자차</div>
+						</li>
+						<li>
+							<div class="left">옵션</div>
+							<div class="right">후방카메라</div>
+						</li>
+						<li>
+							<div class="left">할인/쿠폰</div>
+							<div class="right">-10,000원</div>
+						</li>
+						<li class="priceResult">
+							<div class="left">총 결제금액</div>
+							<div class="right">50,000원</div>
+						</li>
 					</ul>
 				</div>
 			</form>
+			
 		</div>
 	</div>
 	<!-- //컨텐츠 -->

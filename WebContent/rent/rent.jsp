@@ -18,21 +18,33 @@
 
 	<div class="contents_box out page_rent">
 		<div class="contents">
-			<h3>차량검색</h3>
+			<h3>단기렌트</h3>
 			<div class="location pc">
-				HOME <span>></span> 단기렌트 <span>></span> 차량검색
+				HOME <span>></span> 단기렌트
 			</div>
 			 
-		
-			
- 		
  			<div class="calendarWrap">
+ 				<img src="./images/member/norent.png" alt="">
  				<h4>언제 떠나세요 ?</h4>
  				<div class="calendarBox">
 					<input type="text" class="form-control calendar prev" readonly placeholder="렌트카 대여일 선택">
+					<select>
+						<option>00시</option>
+						<option>01시</option>
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
 					<span>-</span>
 					<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
-					<a href="javascript:;" class="btn btn-blue">검색</a>
+					<select>
+						<option>00시</option>
+						<option>01시</option>
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
+					<a href="javascript:;" class="btn btn-blue">차량검색</a>
 				</div>
 			</div>
 			
@@ -50,52 +62,48 @@
 			<div class="rentcarList insertBg" data-ratioH="60">
 				<ul>
 					<li data-kindItem="1">
-						<a href="javascript:;">
-							<h4 class="carName">모닝</h4>
+						<a href="rentDtl.do">
 							<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
-							<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							<div class="text">
+								<h4 class="carName">소형</h4>
+								<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							</div>
 						</a>
 					</li>
-					<li>
+					<li data-kindItem="2">
 						<a href="javascript:;">
-							<h4 class="carName">모닝</h4>
 							<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
-							<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							<div class="text">
+								<h4 class="carName">중형</h4>
+								<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							</div>
 						</a>
 					</li>
-					<li>
+					<li data-kindItem="3">
 						<a href="javascript:;">
-							<h4 class="carName">모닝</h4>
 							<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
-							<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							<div class="text">
+								<h4 class="carName">대형</h4>
+								<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							</div>
 						</a>
 					</li>
-					<li>
+					<li data-kindItem="4">
 						<a href="javascript:;">
-							<h4 class="carName">모닝</h4>
 							<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
-							<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							<div class="text">
+								<h4 class="carName">승합</h4>
+								<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							</div>
 						</a>
 					</li>
-					<li>
+					<li data-kindItem="5">
 						<a href="javascript:;">
-							<h4 class="carName">모닝</h4>
 							<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
-							<p class="price">렌탈 1일기준 <span>50,000원</span></p>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<h4 class="carName">모닝</h4>
-							<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
-							<p class="price">렌탈 1일기준 <span>50,000원</span></p>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<h4 class="carName">모닝</h4>
-							<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
-							<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							<div class="text">
+								<h4 class="carName">수입</h4>
+								<p class="price">렌탈 1일기준 <span>50,000원</span></p>
+							</div>
 						</a>
 					</li>
 				</ul>
