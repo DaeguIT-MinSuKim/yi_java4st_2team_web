@@ -1,0 +1,9 @@
+.event_list li {width:100%; border-radius:10px; overflow:hidden; margin-bottom:20px; box-shadow:0 0 13px rgba(0,0,0,0.1) !important}
+.event_list li a {display:block; width:100%; height:100%;}
+.event_list li img {width:100%;}
+.event_list li p {width:100%; box-sizing:border-box; padding:10px 15px;}
+
+@media screen and (max-width:767px){
+	.event_list li {margin-bottom:10px;}
+	.event_list li p {padding:5px 10px; font-size:13px;}
+}

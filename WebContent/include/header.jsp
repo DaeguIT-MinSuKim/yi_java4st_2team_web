@@ -25,6 +25,7 @@
 	<link  type="text/css" href="./style/design.css" rel="stylesheet">
 	<link  type="text/css" href="./style/member.css" rel="stylesheet">
 	<link  type="text/css" href="./style/longrent.css" rel="stylesheet">
+	<link  type="text/css" href="./style/event.css" rel="stylesheet">
 	<link  type="text/css" href="./style/button.css" rel="stylesheet">
 	<link  type="text/css" href="./style/rent.css" rel="stylesheet">
 	<link  media="print" type="text/css" href="./style/bootstrap.print.min.css" rel="stylesheet"><!-- 프린트대응 -->
@@ -151,7 +152,7 @@
 					<!-- <a class="home mobile" href="./main/main.jsp">HOME</a> -->
 					<li><a href="rent.do">단기렌트</a></li>
 					<li><a href="longRent.do">장기렌트</a></li>
-					<li><a href="javascript:alert('준비중입니다');">이벤트</a></li>
+					<li><a href="event.do">이벤트</a></li>
 					<li><a href="mypage.do">마이페이지</a></li>
 				
 					<li class="mobile" data-device="mobile">
