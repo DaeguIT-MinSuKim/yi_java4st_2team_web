@@ -15,7 +15,7 @@ public interface LongRentDao {
 
 	int updateLongRent(LongRent longrent);
 
-	int deleteLongRent(LongRent longrent);
+	int deleteLongRent(int no);
 
 	// 게시글 보기 비밀번호 
 	LongRent checkPassword(int no, String pwd);

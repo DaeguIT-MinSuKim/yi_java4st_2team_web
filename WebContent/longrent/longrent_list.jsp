@@ -5,7 +5,9 @@
 <%@ include file="/include/sub_longrent.jsp"%>
 
 
+
 <!-- 컨텐츠 -->
+<%-- ${list } --%>
 <div class="contents_box padLeft0">
 	<div class="contents">
 		<h3>장기렌트</h3>
@@ -24,21 +26,24 @@
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
+					<th>답변여부</th>
 				</tr>
+				<c:forEach var="LongRent" items="${list}">
+					<tr class="board">
+						<td id="no">${LongRent.no }</td>
+						<td class="tl" id="title"><a href="longRentPassword.do">${LongRent.title }</a></td>
+						<td id="name">${LongRent.name }</td>
+						<td id="date">${LongRent.writeDate }</td>
+						<td>
+						<c:choose>
+							<c:when test="${LongRent.repYn==1 }">X</c:when>
+							<c:when test="${LongRent.repYn==2 }">O</c:when>
+						</c:choose>
+						</td>
+					</tr>
+				</c:forEach>
 				<tr>
-					<td>3</td>
-					<td class="tl"><a href="longRentPassword.do">장기렌트 대여 문의합니다!</a></td>
-					<td>김*동</td>
-					<td>2019.10.05</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td class="tl"><a href="longRentPassword.do">장기렌트 대여 문의합니다!</a></td>
-					<td>김*동</td>
-					<td>2019.10.05</td>
-				</tr>
-				<tr>
-					<td>1</td>
+					<td>5</td>
 					<td class="tl"><a href="longRentPassword.do">장기렌트 대여 문의합니다!</a></td>
 					<td>김*동</td>
 					<td>2019.10.05</td>

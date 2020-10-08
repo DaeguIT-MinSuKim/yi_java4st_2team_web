@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
+
+import org.apache.jasper.tagplugins.jstl.core.Catch;
+
 import rentcar.dao.LongRentDao;
 import rentcar.dto.LongRent;
 import rentcar.exception.CustomSQLException;
@@ -80,26 +84,65 @@ public class LongRentDaoImpl implements LongRentDao {
 
 	@Override
 	public int insertLongRent(LongRent longrent) {
-		String sql = "INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS) " + 
-				"VALUES(LONGRENT_NO_SEQ.NEXTVAL,'제목','내용',1, SYSDATE,'30일','김창동','010-1234-1111','1111','옵션없음')";
-		return 0;
+		String sql = "INSERT INTO LONGRENT(NO, TITLE, CONTENTS,RENT_TERM, NAME, TEL, PWD, OPTIONS) " + 
+				"VALUES(LONGRENT_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, longrent.getTitle());
+			pstmt.setString(2, longrent.getContents());
+			pstmt.setString(3, longrent.getRentTerm());
+			pstmt.setString(4, longrent.getName());
+			pstmt.setString(5, longrent.getTel());
+			pstmt.setString(6, longrent.getPwd());
+			pstmt.setString(7, longrent.getOptions());
+			return pstmt.executeUpdate();
+		}catch(SQLException e) {
+			throw new CustomSQLException(e);
+		}
 	}
 
 	@Override
 	public int updateLongRent(LongRent longrent) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "UPDATE LONGRENT SET TITLE = ?, contents = ?, RENT_TERM = ? , name= ? , tel =? , PWD = ?, OPTIONS = ? WHERE NO = ?";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, longrent.getTitle());
+			pstmt.setString(2, longrent.getContents());
+			pstmt.setString(3, longrent.getRentTerm());
+			pstmt.setString(4, longrent.getName());
+			pstmt.setString(5, longrent.getTel());
+			pstmt.setString(6, longrent.getPwd());
+			pstmt.setString(7, longrent.getOptions());
+			pstmt.setInt(8, longrent.getNo());
+			 return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new CustomSQLException(e);
+        }
 	}
 
 	@Override
-	public int deleteLongRent(LongRent longrent) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteLongRent(int no) {
+		String sql = "DELETE FROM LONGRENT WHERE NO = ?";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		}catch(SQLException e) {
+			throw new CustomSQLException(e);
+		}
 	}
 
 	@Override
 	public LongRent checkPassword(int no, String pwd) {
-		// TODO Auto-generated method stub
+		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM WHERE NUM =? PWD = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, no);
+			pstmt.setString(2, pwd);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return getLongRent(rs);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
 		return null;
 	}
 
