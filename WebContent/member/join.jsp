@@ -141,57 +141,80 @@ function frmChk(){
 		document.getElementsByName("member_id")[0].focus();
 		return;
 	}
+	
 	if(document.getElementsByName("member_id")[0].value.length<6 || document.getElementsByName("member_id")[0].value.length>20){
 		window.alert("아이디는 영문소문자, 숫자, -, _를 조합으로 6자~20자이하입니다");
 		document.getElementsByName("member_id")[0].focus();
 		return;
 	}
+	
 	if (!TypeCheck(document.getElementsByName("member_id")[0].value, ALPHA)) { 
 		window.alert("아이디는 영문소문자, 숫자, -, _를 조합으로 사용할 수 있습니다"); 
 		document.getElementsByName("member_id")[0].focus(); 
 		return; 
 	}
-	if(!document.getElementsByName("id_chk")[0].value) {
+	
+	/* if(!document.getElementsByName("id_chk")[0].value) {
 		window.alert("아이디 중복검사를 해주세요");
 		return;
-	}
+	} */
+	
 	if(document.getElementsByName("id_chk")[0].value=="N") {
 		window.alert("이미 사용중인 아이디입니다");
 		return;
 	}
+	
 	if(!document.getElementsByName("passwd")[0].value){
 		window.alert("비밀번호를 입력하세요");
 		document.getElementsByName("passwd")[0].focus();
 		return;
 	}
+	
 	if(document.getElementsByName("passwd")[0].value.length<6 || document.getElementsByName("passwd")[0].value.length>20){
 		window.alert("비밀번호는 6자이상 20자이하입니다");
 		document.getElementsByName("passwd")[0].focus();
 		return;
 	}
+	
 	if(!regMust1.test(document.getElementsByName("passwd")[0].value) || !regMust2.test(document.getElementsByName("passwd")[0].value)) {
 		window.alert("특수문자를 하나 이상 입력하세요");
 		document.getElementsByName("passwd")[0].focus();
 		return;
 	}
+	
 	if(!document.getElementsByName("passwd1")[0].value){
 		window.alert("비밀번호를 한번 더 입력하세요");
 		document.getElementsByName("passwd1")[0].focus();
 		return;
 	}
+	
 	if(document.getElementsByName("passwd")[0].value != document.getElementsByName("passwd1")[0].value){
 		window.alert("비밀번호가 일치하지 않습니다");
 		document.getElementsByName("passwd1")[0].focus();
 		return;
 	}
+	
+	if(!document.getElementsByName("license")[0].value){
+		window.alert("운전면허번호를 입력하세요");
+		document.getElementsByName("license")[0].focus();
+		return;
+	}
+	
 	if(!document.getElementsByName("member_name")[0].value){
 		window.alert("이름을 입력하세요");
 		document.getElementsByName("member_name")[0].focus();
 		return;
 	}
-	if(!document.getElementsByName("birthday")[0].value){
-		window.alert("생년월일을 선택하세요");
-		document.getElementsByName("birthday")[0].focus();
+	
+	if(!document.getElementsByName("cel1")[0].value || !document.getElementsByName("cel2")[0].value || !document.getElementsByName("cel3")[0].value){
+		alert("휴대전화번호를 입력하세요");
+		document.getElementsByName("cel1")[0].focus();
+		return;
+	}
+	
+	if(!document.getElementsByName("email1")[0].value || !document.getElementsByName("email2")[0].value){
+		window.alert("이메일을 입력하세요");
+		document.getElementsByName("email")[0].focus();
 		return;
 	}
 
@@ -205,35 +228,41 @@ function frmChk(){
 		document.getElementsByName("addr1")[0].focus();
 		return;
 	}
-	if(!document.getElementsByName("cel1")[0].value || !document.getElementsByName("cel2")[0].value || !document.getElementsByName("cel3")[0].value){
-		alert("휴대전화번호를 입력하세요");
-		document.getElementsByName("cel1")[0].focus();
-		return;
-	}
-	if(!document.getElementsByName("email")[0].value){
-		window.alert("이메일을 입력하세요");
-		document.getElementsByName("email")[0].focus();
-		return;
-	}
-	var EMAIL = document.getElementsByName("email")[0].value;
+	
+	/* var EMAIL = document.getElementsByName("email")[0].value;
 	if (EMAIL) {
 		if ((EMAIL.indexOf('@') < 0 )||(EMAIL.indexOf('.') < 0 )) {
 			window.alert('이메일을 정확하게 입력하세요');
 			document.getElementsByName("email")[0].focus();
 			return;
 		}
-	}
-	if(!document.getElementsByName("emailChk")[0].value) {
-		window.alert("이메일 중복검사를 해주세요");
-		return;
-	}
-	if(document.getElementsByName("emailChk")[0].value=="N") {
-		window.alert("이미 사용중인 이메일입니다.");
-		return;
-	}
+	} */
 
+	var joinMember = {
+			id:$('member_id').val(),
+			pwd:$('passwd').val(),
+			license:$('license').val(),
+			name:$('member_name').val(),
+			tel:$('cel1').val() + " - " + $('cel2').val() + " - " + $('cel3').val(),
+			email:$('email1').val() + $('email2').val(),
+			address:$('zipcode').val() + " " + $('addr1').val(),
+			remark:$('remark').val()
+	};
+	
+	$.ajax({
+		type : "post",
+		url : "join.do",
+		cache : false,
+		data : JSON.stringify(joinMember),
+		complete : function(data) {
+			alert("가입 되었습니다.");
+			window.location.href="joinEnd";
+		}
+		
+	});
 
 	form1.submit();
+	
 }
 </script>
 
@@ -280,7 +309,7 @@ $(function() {
 				<label class="col-sm-2 control-label">아이디</label>
 				<div class="col-sm-10 divinner">
 					<div class="col-xs-8">
-						<input type="text" class="form-control" maxlength="20" name="member_id" onKeyUP="id_chk_bb();">
+						<input type="text" class="form-control" maxlength="20" id="member_id" name="member_id" onKeyUP="id_chk_bb();">
 						<input type="hidden" name="id_chk">
 					</div>
 					<div class="col-xs-4">
@@ -293,7 +322,7 @@ $(function() {
 			<div class="form-group">
 				<label class="col-sm-2 control-label">비밀번호</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" maxlength="20" name="passwd">
+					<input type="password" class="form-control" maxlength="20" name="passwd" id="passwd">
 					<p>특수문자를 하나 이상 포함하여 6~20자로 입력하십시오.</p>
 				</div>
 			</div>
@@ -309,7 +338,7 @@ $(function() {
 			<div class="form-group">
 				<label class="col-sm-2 control-label">운전면호 번호</label>
 				<div class="col-xs-8">
-					<input type="text" class="form-control" maxlength="20" name="member_id" onKeyUP="id_chk_bb();">
+					<input type="text" class="form-control" maxlength="20" name="license" id="license">
 					<p>특수문자 - 를 포함하여 입력하십시오.</p>
 				</div>
 			</div>
@@ -345,13 +374,13 @@ $(function() {
 				</div>
 			</div>
 			
-			<div class="form-group cal_Box">
+			<div class="form-group">
 				<label class="col-sm-2 control-label">이메일</label>
 				<div class="col-sm-10 divinner">
 					<div class="col-xs-3">
 						<input type="text" class="form-control" maxlength="40" name="email1">
 					</div>
-					<div class="col-xs-5">
+					<div class="col-xs-4">
 						<input type="text" class="form-control" maxlength="40" name="email2" id="email2">
 					</div>
 					<div class="col-xs-3">

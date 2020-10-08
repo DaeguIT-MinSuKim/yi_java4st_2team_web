@@ -66,11 +66,11 @@ window.onload = function(){ document.usrlog.member_id.focus(); }
 			<div class="info box">
 				<div class="col-xs-12 col-sm-6">
 					<span>아직 회원가입을 하지 않으셨나요?</span><br>
-					<a class="btn btn-normal btn-sm" href="../member/join_agree.php">회원가입</a>
+					<a class="btn btn-normal btn-sm" href="joinAgree.do">회원가입</a>
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					<span>아이디, 비밀번호가 기억나지 않으세요?</span><br>
-					<a class="btn btn-normal btn-sm" href="../member/search.php">아이디/패스워드찾기</a>
+					<a class="btn btn-normal btn-sm" href="search.do">아이디/패스워드찾기</a>
 				</div>
 			</div>
 		</div>

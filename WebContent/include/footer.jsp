@@ -5,10 +5,10 @@
 <footer>
 	<div class="wrap box">
 		<ul class="fnb col-xs-12">
-			<li><a href="./member/agree.jsp">이용약관</a></li>
-			<li><a href="./member/privacy.jsp">개인정보취급방침</a></li>
-			<li><a href="./member/join_agree.jsp">회원가입</a></li>
-			<li><a href="./member/search.jsp">아이디/비밀번호 찾기</a></li>
+			<li><a href="agree.do">이용약관</a></li>
+			<li><a href="privacy.do">개인정보취급방침</a></li>
+			<li><a href="joinAgree.do">회원가입</a></li>
+			<li><a href="search.do">아이디/비밀번호 찾기</a></li>
 <!-- 로그인 후
 			<li><a href="./member/usrlogout.jsp">로그아웃</a></li>
 			<li><a href="./mypage/modify_before.jsp">마이페이지</a></li>
