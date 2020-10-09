@@ -48,7 +48,10 @@ public class CarDaoImplTest {
 
 	@Test
 	public void testInsertCar() {
-		fail("Not yet implemented");
+		System.out.println("testInsertCar");
+		Car c = new Car("39호1234", "얍얍얍", "비와이", 1000000, "주님만이");
+		int res = dao.insertCar(c);
+		Assert.assertEquals(1, res);
 	}
 
 	@Test

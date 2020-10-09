@@ -10,7 +10,7 @@ DROP TABLE MEMBER
 DROP TABLE ADMIN 
 	CASCADE CONSTRAINTS;
 
-/* 대여 */
+/* 대여관리 */
 DROP TABLE RENT 
 	CASCADE CONSTRAINTS;
 
@@ -18,25 +18,35 @@ DROP TABLE RENT
 DROP TABLE INSURANCE 
 	CASCADE CONSTRAINTS;
 
+/* 장기렌트요청게시판 */
+DROP TABLE LONGRENTBOARD 
+	CASCADE CONSTRAINTS;
+
+/* 옵션 */
+DROP TABLE OPTION 
+	CASCADE CONSTRAINTS;
+
+/* 차량 분류 */
+DROP TABLE KIND 
+	CASCADE CONSTRAINTS;
+
 /* 이벤트 */
 DROP TABLE EVENT 
 	CASCADE CONSTRAINTS;
 
-/* 장기렌트 */
-DROP TABLE LONGRENT 
-	CASCADE CONSTRAINTS;
-
-/* 비회원 */
-DROP TABLE NONMEMBER
+/* 브랜드 분류 */
+DROP TABLE BRAND 
 	CASCADE CONSTRAINTS;
 
 /* 차량 */
 CREATE TABLE CAR (
 	car_no VARCHAR2(20) NOT NULL, /* 차량번호 */
-	name VARCHAR2(50) NOT NULL, /* 이름 */
-	kind VARCHAR2(50), /* 분류 */
-	price INTEGER NOT NULL, /* 금액 */
-	remark VARCHAR2(500) /* 비고 */
+	kind_code VARCHAR2(20), /* 분류 */
+	brand_code VARCHAR2(20), /* 브랜드코드 */
+	remark VARCHAR2(500), /* 비고 */
+	is_rent CHAR(1), /* 반납여부 */
+	counting INTEGER, /* 대여횟수 */
+	image VARCHAR /* 이미지 */
 );
 
 CREATE UNIQUE INDEX PK_CAR
@@ -58,12 +68,12 @@ CREATE TABLE MEMBER (
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
 	license VARCHAR2(20), /* 면허번호 */
-	email VARCHAR2(50), /* 이메일 */
-	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
+	COL2 <지정 되지 않음>, /* 이메일 */
+	is_black CHAR(1) DEFAULT N, /* 블랙리스트 */
 	address VARCHAR2(500), /* 주소 */
 	remark VARCHAR2(500), /* 비고 */
-	count INTEGER DEFAULT 0, /* 대여횟수 */
-	event VARCHAR2(50) /* 이벤트 코드 */
+	COL <지정 되지 않음>, /* 대여횟수 */
+	COL3 <지정 되지 않음> /* 이벤트코드 */
 );
 
 CREATE UNIQUE INDEX PK_MEMBER
@@ -96,20 +106,19 @@ ALTER TABLE ADMIN
 			id
 		);
 
-/* 대여 */
-DROP TABLE rent;
+/* 대여관리 */
 CREATE TABLE RENT (
-	rent_no VARCHAR(20) NOT NULL, /* 대여번호 */
+	rent_no VARCHAR2(20) NOT NULL, /* 대여번호 */
 	id VARCHAR2(50), /* 아이디 */
-	non_tel VARCHAR2(20), /* 비회원연락처 */
 	car_no VARCHAR2(20), /* 차량번호 */
-	ins_name VARCHAR2(50), /* 보험명 */
 	rent_date DATE, /* 대여일 */
 	return_date DATE, /* 반납일 */
-	price INTEGER, /* 금액 */
 	is_rent CHAR(1), /* 반납여부 */
-	is_reservate CHAR(1), /*예약여부*/
-	remark VARCHAR2(500) /* 비고 */
+	price INTEGER, /* 금액 */
+	remark VARCHAR2(500), /* 비고 */
+	COL <지정 되지 않음>, /* 이벤트코드 */
+	no <지정 되지 않음>, /* 옵션코드 */
+	COL2 <지정 되지 않음> /* 보험코드 */
 );
 
 CREATE UNIQUE INDEX PK_RENT
@@ -126,75 +135,139 @@ ALTER TABLE RENT
 
 /* 보험 */
 CREATE TABLE INSURANCE (
-	ins_name VARCHAR2(50) NOT NULL, /* 보험명 */
+	COL <지정 되지 않음> NOT NULL, /* 보험코드 */
+	insurancename VARCHAR2(50), /* 보험명 */
 	ins_fare INTEGER /* 보험금액 */
 );
 
 CREATE UNIQUE INDEX PK_INSURANCE
 	ON INSURANCE (
-		ins_name ASC
+		COL ASC
 	);
 
 ALTER TABLE INSURANCE
 	ADD
 		CONSTRAINT PK_INSURANCE
 		PRIMARY KEY (
-			ins_name
+			COL
 		);
 
-/* 이벤트 */
-CREATE TABLE EVENT (
-	sale INTEGER, /* 할인 */
-	coupon VARCHAR2(500) /* 쿠폰 */
-);
-
-
-/* 장기렌트 */
-CREATE TABLE LONGRENT (
+/* 장기렌트요청게시판 */
+CREATE TABLE LONGRENTBOARD (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
 	contents VARCHAR2(500), /* 내용 */
-	rep_yn char(1) DEFAULT '1', /*답변여부*/ 
-	write_date DATE DEFAULT sysdate, /*등록일 */
-	rent_term varchar2(50), /*대여기간*/
-	name varchar2(50), /*이름*/
-	tel varchar2(20), /*연락처*/
-	pwd varchar2(50), /*비밀번호*/
-	options varchar2(500), /*옵션목록*/
-	rep_content varchar2(500) /*답변내용*/
+	rep_yn CHAR(1), /* 답변여부 */
+	write_date DATE, /* 날짜 */
+	rent_term VARCHAR2(50), /* 대여 */
+	name VARCHAR2(50), /* 이름 */
+	tel VARCHAR2(20), /* 연락처 */
+	pwd VARCHAR2(50), /* 비밀번호 */
+	rep_content VARCHAR2(500), /* 답변내용 */
+	options VARCHAR2(500) /* 옵션목록 */
 );
 
-CREATE UNIQUE INDEX PK_LONGRENT
-	ON LONGRENT (
+CREATE UNIQUE INDEX PK_LONGRENTBOARD
+	ON LONGRENTBOARD (
 		no ASC
 	);
 
-ALTER TABLE LONGRENT
+ALTER TABLE LONGRENTBOARD
 	ADD
-		CONSTRAINT PK_LONGRENT
+		CONSTRAINT PK_LONGRENTBOARD
 		PRIMARY KEY (
 			no
 		);
 
-/* 비회원 */
-CREATE TABLE NONMEMBER (
-	non_tel VARCHAR2(20) NOT NULL, /* 비회원연락처 */
+
+/* 차량 분류 */
+CREATE TABLE KIND (
+	kind_code VARCHAR2(20) NOT NULL, /* 분류 */
 	name VARCHAR2(50), /* 이름 */
-	license VARCHAR2(20), /* 면허번호 */
-	address VARCHAR2(500), /* 주소 */
-	remark VARCHAR2(500) /* 비고 */
+	price INTEGER /* 금액 */
 );
 
-CREATE UNIQUE INDEX PK_NONMEMBER
-	ON NONMEMBER (
-		non_tel ASC
+CREATE UNIQUE INDEX PK_KIND
+	ON KIND (
+		kind_code ASC
 	);
 
-ALTER TABLE NONMEMBER
+ALTER TABLE KIND
 	ADD
-		CONSTRAINT PK_NONMEMBER
+		CONSTRAINT PK_KIND
 		PRIMARY KEY (
-			non_tel
+			kind_code
+		);
+
+/* 이벤트 */
+CREATE TABLE EVENT (
+	COL <지정 되지 않음> NOT NULL, /* 이벤트코드 */
+	name <지정 되지 않음>, /* 이름 */
+	sale <지정 되지 않음>, /* 할인 */
+	COL2 <지정 되지 않음>, /* 썸네일이미지 */
+	COL3 <지정 되지 않음>, /* 뷰이미지 */
+	COL4 <지정 되지 않음> /* 사용여부 */
+);
+
+CREATE UNIQUE INDEX PK_EVENT
+	ON EVENT (
+		COL ASC
+	);
+
+ALTER TABLE EVENT
+	ADD
+		CONSTRAINT PK_EVENT
+		PRIMARY KEY (
+			COL
+		);
+
+/* 브랜드 분류 */
+CREATE TABLE BRAND (
+	brand_code VARCHAR2(20) NOT NULL, /* 브랜드코드 */
+	name VARCHAR2(50), /* 이름 */
+	image VARCHAR /* 브랜드이미지 */
+);
+
+CREATE UNIQUE INDEX PK_BRAND
+	ON BRAND (
+		brand_code ASC
+	);
+
+ALTER TABLE BRAND
+	ADD
+		CONSTRAINT PK_BRAND
+		PRIMARY KEY (
+			brand_code
+		);
+
+ALTER TABLE CAR
+	ADD
+		CONSTRAINT FK_KIND_TO_CAR
+		FOREIGN KEY (
+			kind_code
+		)
+		REFERENCES KIND (
+			kind_code
+		);
+
+ALTER TABLE CAR
+	ADD
+		CONSTRAINT FK_BRAND_TO_CAR
+		FOREIGN KEY (
+			brand_code
+		)
+		REFERENCES BRAND (
+			brand_code
+		);
+
+ALTER TABLE MEMBER
+	ADD
+		CONSTRAINT FK_EVENT_TO_MEMBER
+		FOREIGN KEY (
+			COL3
+		)
+		REFERENCES EVENT (
+			COL
 		);
 
 ALTER TABLE RENT
@@ -221,38 +294,28 @@ ALTER TABLE RENT
 	ADD
 		CONSTRAINT FK_INSURANCE_TO_RENT
 		FOREIGN KEY (
-			ins_name
+			COL2
 		)
 		REFERENCES INSURANCE (
-			ins_name
+			COL
 		);
 
 ALTER TABLE RENT
 	ADD
-		CONSTRAINT FK_NONMEMBER_TO_RENT
+		CONSTRAINT FK_EVENT_TO_RENT
 		FOREIGN KEY (
-			non_tel
+			COL
 		)
-		REFERENCES NONMEMBER (
-			non_tel
+		REFERENCES EVENT (
+			COL
 		);
 
-ALTER TABLE LONGRENT
+ALTER TABLE RENT
 	ADD
-		CONSTRAINT FK_MEMBER_TO_LONGRENT
+		CONSTRAINT FK_OPTION_TO_RENT
 		FOREIGN KEY (
-			id
+			no
 		)
-		REFERENCES MEMBER (
-			id
-		);
-
-ALTER TABLE LONGRENT
-	ADD
-		CONSTRAINT FK_NONMEMBER_TO_LONGRENT
-		FOREIGN KEY (
-			non_tel
-		)
-		REFERENCES NONMEMBER (
-			non_tel
+		REFERENCES OPTION (
+			no
 		);

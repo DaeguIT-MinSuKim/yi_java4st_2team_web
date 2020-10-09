@@ -10,6 +10,7 @@ import java.util.List;
 import rentcar.dao.CarDao;
 import rentcar.dto.Car;
 import rentcar.exception.CustomSQLException;
+import rentcarTest.conn.JdbcUtil;
 
 public class CarDaoImpl implements CarDao {
 	private static final CarDaoImpl instance = new CarDaoImpl();
@@ -66,13 +67,13 @@ public class CarDaoImpl implements CarDao {
 		String sql = "SELECT CAR_NO,NAME,KIND,PRICE,REMARK FROM car WHERE ";
 		switch (res) {
 		case 1:
-			sql += "CAR_NO LIKE '%' || ? ||";
+			sql += "CAR_NO LIKE '%' || ? || '%'";
 			break;
 		case 2:
-			sql += "NAME LIKE '%' || ? ||";
+			sql += "NAME LIKE '%' || ? || '%'";
 			break;
 		case 3:
-			sql += "KIND LIKE '%' || ? ||";
+			sql += "KIND LIKE '%' || ? || '%'";
 			break;
 		default:
 			System.out.println("해당사항 예외를 선택하셨습니다");
@@ -80,7 +81,6 @@ public class CarDaoImpl implements CarDao {
 		}
 		try (PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, query);
-			System.out.println("여긴오나?" + sql);
 			try(ResultSet rs = pstmt.executeQuery()){
 				if(rs.next()) {
 					return getCar(rs);
@@ -96,20 +96,51 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public int insertCar(Car car) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "INSERT INTO CAR VALUES(?, ?, ?, ?, ?)";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, car.getCarNo());
+			pstmt.setString(2, car.getCarName());
+			pstmt.setString(3, car.getKind());
+			pstmt.setInt(4, car.getPrice());
+			pstmt.setString(5, car.getRemark());
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
 	public int updateCar(Car car) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "UPDATE CAR SET CAR_NAME = ? , CAR_KIND = ? , FUEL = ? , DISTANCE = ? , FARE = ? , SALE = ? , CAR_REMARK = ? WHERE CAR_NO = ?  ";
+
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, car.getCarName());
+			pstmt.setString(2, car.getCarKind().getCar_kind());
+			pstmt.setString(3, car.getFuel());
+			pstmt.setInt(4, car.getDistance());
+			pstmt.setInt(5, car.getFare());
+			pstmt.setInt(6, car.getSale());
+			pstmt.setString(7, car.getCarRemark());
+			pstmt.setString(8, car.getCarNo());
+
+			return pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
 	public int deleteCar(Car car) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "DELETE FROM CAR WHERE CAR_NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, car.getCarNo());
+			return pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
