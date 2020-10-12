@@ -45,4 +45,6 @@ SELECT *
   FROM MEMBER;
 
 INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS)
-VALUES ('dong', '1234', '동자승', '010-1234-1234', '22-15-061904-90', 'aa@aa.com', '대구시 서구');
+VALUES ('dong1', '1234', '동자승', '010-1234-1234', '22-15-061904-90', 'aa@aa.com', '대구시 서구');
+
+DELETE FROM MEMBER WHERE ID = 'pp555555';

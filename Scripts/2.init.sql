@@ -68,12 +68,12 @@ CREATE TABLE MEMBER (
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
 	license VARCHAR2(20), /* 면허번호 */
-	COL2 <지정 되지 않음>, /* 이메일 */
+	email VARCHAR2(50), /* 이메일 */
 	is_black CHAR(1) DEFAULT N, /* 블랙리스트 */
 	address VARCHAR2(500), /* 주소 */
 	remark VARCHAR2(500), /* 비고 */
-	COL <지정 되지 않음>, /* 대여횟수 */
-	COL3 <지정 되지 않음> /* 이벤트코드 */
+	count INTEGER DEFAULT 0, /* 대여횟수 */
+	event VARCHAR2(20) /* 이벤트코드 */
 );
 
 CREATE UNIQUE INDEX PK_MEMBER

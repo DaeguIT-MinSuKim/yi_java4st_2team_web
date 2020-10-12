@@ -24,13 +24,13 @@ function Member_ID_CHK() {
 
 	function Member_YorN() {
 
-		var NUMBER = "1234567890"; 
+		/* var NUMBER = "1234567890"; 
 		//var SPECIAL = "-_"; 
 		var SPECIAL = ""; 
 		var SALPHA = "abcdefghijklmnopqrstuvwxyz"; 
 		var ALPHA = SALPHA+NUMBER+SPECIAL; 
 		//var ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+SALPHA+NUMBER+SPECIAL; 
-
+ */
 		if (!document.getElementsByName("member_id")[0].value) {
 			alert("아이디를 입력하세요");
 			document.getElementsByName("member_id")[0].focus();
@@ -38,7 +38,6 @@ function Member_ID_CHK() {
 		}
 		
 		if (!TypeCheck(document.getElementsByName("member_id")[0].value, ALPHA)) { 
-			//window.alert("아이디는 영문소문자, 숫자, -, _를 혼합하여 사용할 수 있습니다"); 
 			window.alert("아이디는 영문소문자, 숫자, -, _를 조합으로 사용할 수 있습니다"); 
 			document.getElementsByName("member_id")[0].focus(); 
 			return; 
@@ -87,43 +86,12 @@ function id_chk_bb() {
 }
 </script>
 
-
-
-<script>
-function emailChkYorN() {
-	document.frmName.emailChk.value="";
-}
-
-function createQueryingChk() {
-
-	var form1 = document.frmName;
-
-	if(!form1.email.value){
-		alert("이메일을 입력하세요");
-		form1.email.focus();
-		return;
-	}
-	var EMAIL = form1.email.value;
-	if (EMAIL) {
-		if ((EMAIL.indexOf('@') < 0 )||(EMAIL.indexOf('.') < 0 )) {
-			window.alert('이메일을 정확하게 입력하세요');
-			form1.email.focus();
-			return;
-		}
-	}
-
-//	validate_EmailDupl();
-}
-</script>
-
-
 <script>
 function frmChk(){
 
-	form1=document.frmName;
+/* 	form1=document.frmName;
 	var NUM=0;
 
-	
 	//비밀번호 특수문자 체크
 	var regMust1 = /[a-zA-Z0-9_]/;
 	var regMust2 = /[^a-zA-Z0-9_]/;
@@ -133,8 +101,7 @@ function frmChk(){
 	var SPECIAL = "";
 	var SALPHA = "abcdefghijklmnopqrstuvwxyz";
 	//var ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+SALPHA+NUMBER+SPECIAL;
-	var ALPHA = SALPHA+NUMBER+SPECIAL;
-
+	var ALPHA = SALPHA+NUMBER+SPECIAL; */
 
 	if(!document.getElementsByName("member_id")[0].value){
 		window.alert("아이디를 입력하세요");
@@ -217,65 +184,62 @@ function frmChk(){
 		document.getElementsByName("email")[0].focus();
 		return;
 	}
+	
 
 	if(!document.getElementsByName("zipcode")[0].value){
 		window.alert("주소를 입력하세요");
 		document.getElementsByName("zipcode")[0].focus();
 		return;
 	}
+	
 	if(!document.getElementsByName("addr1")[0].value){
 		window.alert("주소를 입력하세요");
 		document.getElementsByName("addr1")[0].focus();
 		return;
 	}
-	
-	/* var EMAIL = document.getElementsByName("email")[0].value;
-	if (EMAIL) {
-		if ((EMAIL.indexOf('@') < 0 )||(EMAIL.indexOf('.') < 0 )) {
-			window.alert('이메일을 정확하게 입력하세요');
-			document.getElementsByName("email")[0].focus();
-			return;
-		}
-	} */
-
-	var joinMember = {
-			id:$('member_id').val(),
-			pwd:$('passwd').val(),
-			license:$('license').val(),
-			name:$('member_name').val(),
-			tel:$('cel1').val() + " - " + $('cel2').val() + " - " + $('cel3').val(),
-			email:$('email1').val() + $('email2').val(),
-			address:$('zipcode').val() + " " + $('addr1').val(),
-			remark:$('remark').val()
-	};
-	
-	$.ajax({
-		type : "post",
-		url : "join.do",
-		cache : false,
-		data : JSON.stringify(joinMember),
-		complete : function(data) {
-			alert("가입 되었습니다.");
-			window.location.href="joinEnd";
-		}
 		
-	});
-
-	form1.submit();
+	/* form1.submit(); */
 	
 }
 </script>
 
 <script>
 $(function() {
+	$('#join').on("click", function() {
+		var joinMember = {
+				id:$('#member_id').val(),
+				pwd:$('#passwd').val(),
+				license:$('#license').val(),
+				name:$('#member_name').val(),
+				tel:($('#cel1').val() + "-" + $('#cel2').val() + "-" + $('#cel3').val()),
+				email:($('#email1').val() + $('#email2').val()),
+				/* is_black:$('N').val(), */
+				address:($('#zipcode').val() + " " + $('#addr1').val()+ " " + $('#addr2').val()),
+				remark:$('#remark').val()
+				/* count:$().val(0), */
+				/* event:$().val(E001) */
+		};
+		
+		$.ajax({
+			type : "post",
+			url : "join.do",
+			cache : false,
+			data : JSON.stringify(joinMember),
+			complete : function(data) {
+				alert("가입 되었습니다.");
+				window.location.href="joinEnd.do";
+			}
+			
+		});
+		
+	});
+	
 	$("#domain").change(function() {
-		
 		$("#email2").val($("#domain").val());
-		
-	})
+	});
+	
 })
 </script>
-
 
 <%@ include file="/include/sub_member.jsp"%>
 
@@ -309,7 +273,7 @@ $(function() {
 				<label class="col-sm-2 control-label">아이디</label>
 				<div class="col-sm-10 divinner">
 					<div class="col-xs-8">
-						<input type="text" class="form-control" maxlength="20" id="member_id" name="member_id" onKeyUP="id_chk_bb();">
+						<input type="text" class="form-control" maxlength="20" name="member_id" id="member_id" onKeyUP="id_chk_bb();">
 						<input type="hidden" name="id_chk">
 					</div>
 					<div class="col-xs-4">
@@ -347,7 +311,7 @@ $(function() {
 				<label class="col-sm-2 control-label">이름</label>
 				<div class="col-sm-10">
 					<div class="col-xs-5">
-						<input type="text" class="form-control" maxlength="10" name="member_name" value="">
+						<input type="text" class="form-control" maxlength="10" name="member_name" id="member_name" value="">
 					</div>
 				</div>
 			</div>
@@ -356,7 +320,7 @@ $(function() {
 				<label class="col-sm-2 control-label">휴대전화</label>
 				<div class="col-sm-10 divinner">
 					<div class="col-xs-3">
-						<select name="cel1" class="selectpicker show-tick form-control">
+						<select name="cel1" id="cel1" class="selectpicker show-tick form-control">
 							<option value="010" selected="selected">010</option>
 							<option value="011" >011</option>
 							<option value="016" >016</option>
@@ -366,10 +330,10 @@ $(function() {
 						</select>
 					</div>
 					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel2" placeholder="" style="ime-mode:disabled;">
+						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel2" id="cel2" placeholder="" style="ime-mode:disabled;">
 					</div>
 					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel3" placeholder="" style="ime-mode:disabled;">
+						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel3" id="cel3" placeholder="" style="ime-mode:disabled;">
 					</div>
 				</div>
 			</div>
@@ -378,7 +342,7 @@ $(function() {
 				<label class="col-sm-2 control-label">이메일</label>
 				<div class="col-sm-10 divinner">
 					<div class="col-xs-3">
-						<input type="text" class="form-control" maxlength="40" name="email1">
+						<input type="text" class="form-control" maxlength="40" name="email1" id="email1">
 					</div>
 					<div class="col-xs-4">
 						<input type="text" class="form-control" maxlength="40" name="email2" id="email2">
@@ -423,7 +387,7 @@ $(function() {
 				<label class="col-sm-2 control-label">특이사항</label>
 				<div class="col-sm-10 divinner">
 					<div class="col-xs-12">
-						<textarea type="text" class="form-control" maxlength="500" name="remark" rows="3"></textarea>
+						<textarea type="text" class="form-control" maxlength="500" name="remark" id="remark" rows="3"></textarea>
 					</div>			
 				</div>
 			</div>
@@ -434,7 +398,7 @@ $(function() {
 		<!-- 버튼 -->
 		<div class="btn_box">
 			<ul>
-				<li><a class="btn btn-blue" href="#void" onclick="frmChk(); return false;">가입하기</a></li>
+				<li><a class="btn btn-blue" id="join" onclick="frmChk(); return false;">가입하기</a></li>
 				<li><a class="btn btn-gray" href="javascript:if(confirm('가입을 취소하시겠습니까?')) location.href='index.do'">작성취소</a></li>
 			</ul>
 		</div>

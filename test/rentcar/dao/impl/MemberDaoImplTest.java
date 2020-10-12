@@ -1,4 +1,4 @@
-package rentcar.dao;
+package rentcar.dao.impl;
 
 import java.sql.Connection;
 import java.util.List;
@@ -10,12 +10,12 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import rentcar.dao.impl.MemberDaoImpl;
+import rentcar.dao.MemberDao;
 import rentcar.ds.JdbcUtil;
 import rentcar.dto.Member;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class MemberDaoTest {
+public class MemberDaoImplTest {
 
 	private static Connection con;
 	private MemberDao dao;
@@ -53,7 +53,8 @@ public class MemberDaoTest {
 	@Test
 	public void test01InsertMember() {
 		System.out.printf("%s()%n", "test01InsertMember");
-		Member insertMember = new Member("test", "1111", "김자바", "010-1234-1234", "20-15-061904-90", "QQ@QQ.com", "대구시", null);
+		Member insertMember = new Member("test", "1111", "20-15-061904-90", "김자바", "010-1234-1234", "QQ@QQ.com", "대구시",
+				null);
 		int res = MemberDaoImpl.getInstance().insertMember(insertMember);
 		Assert.assertEquals(1, res);
 
@@ -63,7 +64,8 @@ public class MemberDaoTest {
 	@Test
 	public void test02UpdateMember() {
 		System.out.printf("%s()%n", "test02UpdateMember");
-		Member updateMember = new Member("test", "2222", "김김김", "010-1234-1234", "20-15-061904-90", "WW@WW.com", "서울시", null);
+		Member updateMember = new Member("test", "2222", "20-15-061904-90", "김김김", "010-1234-1234", "WW@WW.com", "서울시",
+				null);
 		int res = MemberDaoImpl.getInstance().updateMember(updateMember);
 		Assert.assertEquals(1, res);
 

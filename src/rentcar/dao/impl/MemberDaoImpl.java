@@ -80,13 +80,13 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertMember(Member member) {
-		String sql = "INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS, REMARK) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEMBER(ID, PWD, LICENSE, NAME, TEL, EMAIL, ADDRESS, REMARK) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPwd());
-			pstmt.setString(3, member.getName());
-			pstmt.setString(4, member.getTel());
-			pstmt.setString(5, member.getLicense());
+			pstmt.setString(3, member.getLicense());
+			pstmt.setString(4, member.getName());
+			pstmt.setString(5, member.getTel());
 			pstmt.setString(6, member.getEmail());
 			pstmt.setString(7, member.getAddress());
 			pstmt.setString(8, member.getRemark());

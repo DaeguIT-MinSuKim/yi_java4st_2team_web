@@ -124,15 +124,33 @@
 			<h1><a href="index.do"><img src="./images/common/logo.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 			<div class="side">
 				<ul>
-					<li class="home"><a href="index.do">HOME</a></li>
-					<li><a class="login" href="login.do"><span>로그인</span></a></li>
-					<li><a class="join" href="joinAgree.do">회원가입</a></li>
-					<li><a class="" href="#">관리자</a></li>
-
-			<!-- 로그인 후 
-					<li><a class="logout" href="./member/usrlogout.jsp"><span>로그아웃</span></a></li>
-					<li><a class="join" href="./mypage/modify_before.jsp">마이페이지</a></li>
-			-->
+					<li class="home">
+						<a href="index.do">HOME</a>
+					</li>
+					<c:choose>
+						<c:when test="${empty sessionScope.loginUser}">
+							<li>
+								<a class="login" href="login.do"><span>로그인</span></a>
+							</li>
+							<li>
+								<a class="join" href="joinAgree.do">회원가입</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+	         					${sessionScope.loginUser.name}(${sessionScope.loginUser.id})님
+	      					</li>
+	      					<li>
+	      						<a class="logout" href="logout.do"><span>로그아웃</span></a>
+	      					</li>
+							<li>
+								<a class="mypage" href="mypage.do">마이페이지</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+					<li>
+						<a class="admin" href="admin.do">관리자</a>
+					</li>
 				</ul>
 			</div>
 
@@ -160,7 +178,6 @@
 						<ul>
 							<li><a href="mypage.do">마이페이지</a></li>
 							<li><a href="mypage.do">렌트중인차량</a></li>
-							<!-- <li><a href="./member/login.jsp">비회원 예약조회</a></li> -->
 							<li><a href="login.do">로그인</a></li>
 							<li><a href="search.do">아이디/비밀번호찾기</a></li>
 							<li><a href="joinAgree.do">회원가입</a></li>
