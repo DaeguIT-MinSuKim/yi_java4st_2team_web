@@ -3,7 +3,7 @@
 */
 /* ************************ 공용 ************************ */
 @media all {/* 모든디바이스 */
-	section {position:relative; display:block; width:100%; max-width:1200px; margin:0 auto; margin-top:130px;}
+	section {position:relative; display:block; width:100%; max-width:1200px; margin:0 auto; margin-top:170px; }
 	.contents {font-weight:normal; color:#333; line-height:1.6;}
 	.contents img {max-width:100%; height:auto;}
 	.more {display:block; position:absolute; width:25px; height:25px; top:0; right:0; background:url(../images/common/icon_more.png) 100% 0 no-repeat;}

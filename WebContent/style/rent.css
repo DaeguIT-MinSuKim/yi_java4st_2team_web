@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* 차량 탭 */
-.page_rent .rentcarList_tabBtn {display:flex; border-bottom:1px solid #000; margin:20px 0;}
+.page_rent .rentcarList_tabBtn {display:flex; border-bottom:1px solid #000; margin:20px 0; flex-wrap:wrap; text-align:center;}
 .page_rent .rentcarList_tabBtn a {display:inline-block; background:#eee; padding:0 35px; height:40px; line-height:45px; font-size:14px;}
 .page_rent .rentcarList_tabBtn a.active,
 .page_rent .rentcarList_tabBtn a:hover {background:#171d33; color:#fff;}
@@ -10,7 +10,7 @@
 .page_rent .rentcarList {}
 .page_rent .rentcarList>ul {display:flex; justify-content:flex-start; flex-wrap:wrap;}
 .page_rent .rentcarList>ul>li { width:33.3333%; margin:25px 0; padding:10px;}
-.page_rent .rentcarList>ul>li>a {position:relative; display:block; text-align:center; box-shadow:0 0 10px rgba(0,0,0,.05) !important; border-radius:15px;}
+.page_rent .rentcarList>ul>li>a {position:relative; display:block; text-align:center; border-radius:15px;}
 .page_rent .rentcarList>ul>li>a:before {}
 .page_rent .rentcarList>ul>li>a:hover {color:#000; top:0; box-shadow:0 0 10px rgba(0,0,0,.2) !important;}
 .page_rent .rentcarList>ul>li>a:hover .carName {}
@@ -76,8 +76,52 @@
 	right:-webkit-calc((100% - 1190px) / 2);
 }
 
+/* 예약완료 */
+.page_rentEnd {text-align:center;}
+.page_rentEnd .title {font-size:30px; font-weight:500; margin-top:50px;} 
+.page_rentEnd a.btn-primary {min-width:300px; height:50px; line-height:40px; font-size:17px; font-weight:500; color:#fff !important; margin-top:50px;} 
+
+/* 차량 리스트 공용 */
+.carList_common {padding:15px 25px; max-width:900px; margin:25px auto; border:1px solid #ddd; border-top:2px solid #171d33;}
+.carList_common>li {display:table; width:100%; border-bottom:1px solid #ddd; padding:15px;}
+.carList_common>li:last-child {border-bottom:0;}
+.carList_common>li>div {display:table-cell; vertical-align:top;}
+.carList_common>li>div.left {width:30%; vertical-align:middle;}
+.carList_common>li>div.right {width:70%;}
+.carList_common .left .img {height:150px; background-size:contain !important}
+.carList_common .right.textBox {}
+.carList_common .right.textBox .text {display:table-cell;}
+.carList_common .right.textBox .text li {display:flex; padding:5px 0;}
+.carList_common .right.textBox .text li .left {width:130px; text-align:left;}
+.carList_common .right.textBox .text li .right {font-size:14px;}
+.carList_common .right.textBox .text li.priceResult * {color:#0d6ffc; font-size:17px;}
+
+
+
 @media screen and (max-width:1200px){
 	.fixOn {position:fixed; top:20px; max-width:397px;
 		right:5px
 	}
+	
+	/* 차량 리스트 공용 */
+	.carList_common {padding:10px;} 
+}
+
+@media screen and (max-width:767px){
+	.page_rent .rentcarList_tabBtn a {width:33.3333%; border-top:1px solid #ddd;}
+	.page_rent .rentcarList>ul>li {width:50%;}
+	
+	.page_rent .calendarWrap .calendarBox {flex-wrap:wrap}
+	.page_rent .calendarWrap select {width:100%; height:50px; border-left:1px solid #ddd; margin-top:5px;}
+	.page_rent .calendarWrap span {text-align:center; font-size:30px; width:100%;}
+	.page_rent .calendarWrap .btn-blue {width:100%; margin-top:5px; margin-left:0;} 
+	
+	/* 차량 리스트 공용 */
+	.carList_common {padding:10px;} 
+	.carList_common>li {display:block;}
+	.carList_common>li>div {width:100%; display:block;}
+	.carList_common>li>div.left {width:100%; margin:0 auto;}
+	.carList_common .right.textBox .text li .left {width:110px;}
+	.carList_common>li>div.right {width:100%; margin:0 auto; text-align:left;}
+	
 }

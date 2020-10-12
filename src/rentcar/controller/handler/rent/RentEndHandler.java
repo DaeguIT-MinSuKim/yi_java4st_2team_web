@@ -16,5 +16,5 @@ public class RentEndHandler implements Command {
 		
 		return "/rent/rent_end.jsp";
 	}
-
+	
 }

@@ -5,7 +5,7 @@
 <%@ include file="/include/sub_member.jsp"%>
 
 <!-- 컨텐츠 -->
-<div class="contents_box">
+<div class="contents_box padLeft0">
 	<div class="contents">
 		<h3>마이페이지</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 마이페이지</div>
