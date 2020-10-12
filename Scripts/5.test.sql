@@ -5,6 +5,9 @@ SELECT CAR_NO,NAME,KIND,PRICE,REMARK FROM car WHERE CAR_NO LIKE '%허%';
 
 INSERT INTO CAR VALUES(?, ?, ?, ?, ?);
 --오수정----------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT;
+SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE EVENT_CODE = 1;
+SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE is_event = 'y';
 
 --김대현----------------------------------------------------------------------------------------------------------------------------------------------------------
 

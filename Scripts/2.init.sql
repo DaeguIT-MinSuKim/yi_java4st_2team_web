@@ -46,7 +46,7 @@ CREATE TABLE CAR (
 	remark VARCHAR2(500), /* 비고 */
 	is_rent CHAR(1), /* 반납여부 */
 	counting INTEGER, /* 대여횟수 */
-	image VARCHAR /* 이미지 */
+	image VARCHAR2(50) /* 이미지 */
 );
 
 CREATE UNIQUE INDEX PK_CAR
@@ -201,31 +201,31 @@ ALTER TABLE KIND
 
 /* 이벤트 */
 CREATE TABLE EVENT (
-	COL <지정 되지 않음> NOT NULL, /* 이벤트코드 */
-	name <지정 되지 않음>, /* 이름 */
-	sale <지정 되지 않음>, /* 할인 */
-	COL2 <지정 되지 않음>, /* 썸네일이미지 */
-	COL3 <지정 되지 않음>, /* 뷰이미지 */
-	COL4 <지정 되지 않음> /* 사용여부 */
+	event_code varchar2(20) NOT NULL, /* 이벤트코드 */
+	name varchar2(300), /* 이름 */
+	sale integer, /* 할인 */
+	thum_image varchar2(50), /* 썸네일이미지 */
+	view_image varchar2(50), /* 뷰이미지 */
+	is_event char(1) /* 사용여부 */
 );
 
 CREATE UNIQUE INDEX PK_EVENT
 	ON EVENT (
-		COL ASC
+		event_code ASC
 	);
 
 ALTER TABLE EVENT
 	ADD
 		CONSTRAINT PK_EVENT
 		PRIMARY KEY (
-			COL
+			event_code
 		);
 
 /* 브랜드 분류 */
 CREATE TABLE BRAND (
 	brand_code VARCHAR2(20) NOT NULL, /* 브랜드코드 */
 	name VARCHAR2(50), /* 이름 */
-	image VARCHAR /* 브랜드이미지 */
+	image VARCHAR2(50) /* 브랜드이미지 */
 );
 
 CREATE UNIQUE INDEX PK_BRAND

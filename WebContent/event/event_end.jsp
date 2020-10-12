@@ -7,8 +7,8 @@
 <!-- 컨텐츠 -->
 <div class="contents_box">
 	<div class="contents">
-		<h3>진행중인 이벤트</h3>
-		<div class="location pc">HOME <span>></span> 이벤트 <span>></span> 진행중인 이벤트</div>
+		<h3>종료된 이벤트</h3>
+		<div class="location pc">HOME <span>></span> 이벤트 <span>></span> 종료된 이벤트</div>
 		
 		<div>
 			<ul class="event_list">
