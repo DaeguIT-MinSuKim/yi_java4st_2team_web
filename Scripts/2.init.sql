@@ -46,7 +46,7 @@ CREATE TABLE CAR (
 	remark VARCHAR2(500), /* 비고 */
 	is_rent CHAR(1), /* 반납여부 */
 	counting INTEGER, /* 대여횟수 */
-	image VARCHAR /* 이미지 */
+	image VARCHAR2(50) /* 이미지 */
 );
 
 CREATE UNIQUE INDEX PK_CAR
@@ -62,6 +62,7 @@ ALTER TABLE CAR
 		);
 
 /* 회원 */
+<<<<<<< HEAD
 CREATE TABLE MEMBER (
 	id VARCHAR2(50) NOT NULL, /* 아이디 */
 	pwd VARCHAR2(20), /* 비밀번호 */
@@ -87,6 +88,33 @@ ALTER TABLE MEMBER
 		PRIMARY KEY (
 			id
 		);
+=======
+--CREATE TABLE MEMBER (
+--	id VARCHAR2(50) NOT NULL, /* 아이디 */
+--	pwd VARCHAR2(20), /* 비밀번호 */
+--	name VARCHAR2(50), /* 이름 */
+--	tel VARCHAR2(20), /* 연락처 */
+--	license VARCHAR2(20), /* 면허번호 */
+--	COL2 <지정 되지 않음>, /* 이메일 */
+--	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
+--	address VARCHAR2(500), /* 주소 */
+--	remark VARCHAR2(500), /* 비고 */
+--	COL <지정 되지 않음>, /* 대여횟수 */
+--	COL3 <지정 되지 않음> /* 이벤트코드 */
+--);
+--
+--CREATE UNIQUE INDEX PK_MEMBER
+--	ON MEMBER (
+--		id ASC
+--	);
+--
+--ALTER TABLE MEMBER
+--	ADD
+--		CONSTRAINT PK_MEMBER
+--		PRIMARY KEY (
+--			id
+--		);
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 /* 관리자 */
 CREATE TABLE ADMIN (
@@ -107,50 +135,50 @@ ALTER TABLE ADMIN
 		);
 
 /* 대여관리 */
-CREATE TABLE RENT (
-	rent_no VARCHAR2(20) NOT NULL, /* 대여번호 */
-	id VARCHAR2(50), /* 아이디 */
-	car_no VARCHAR2(20), /* 차량번호 */
-	rent_date DATE, /* 대여일 */
-	return_date DATE, /* 반납일 */
-	is_rent CHAR(1), /* 반납여부 */
-	price INTEGER, /* 금액 */
-	remark VARCHAR2(500), /* 비고 */
-	COL <지정 되지 않음>, /* 이벤트코드 */
-	no <지정 되지 않음>, /* 옵션코드 */
-	COL2 <지정 되지 않음> /* 보험코드 */
-);
-
-CREATE UNIQUE INDEX PK_RENT
-	ON RENT (
-		rent_no ASC
-	);
-
-ALTER TABLE RENT
-	ADD
-		CONSTRAINT PK_RENT
-		PRIMARY KEY (
-			rent_no
-		);
+--CREATE TABLE RENT (
+--	rent_no VARCHAR2(20) NOT NULL, /* 대여번호 */
+--	id VARCHAR2(50), /* 아이디 */
+--	car_no VARCHAR2(20), /* 차량번호 */
+--	rent_date DATE, /* 대여일 */
+--	return_date DATE, /* 반납일 */
+--	is_rent CHAR(1), /* 반납여부 */
+--	price INTEGER, /* 금액 */
+--	remark VARCHAR2(500), /* 비고 */
+--	COL <지정 되지 않음>, /* 이벤트코드 */
+--	no <지정 되지 않음>, /* 옵션코드 */
+--	COL2 <지정 되지 않음> /* 보험코드 */
+--);
+--
+--CREATE UNIQUE INDEX PK_RENT
+--	ON RENT (
+--		rent_no ASC
+--	);
+--
+--ALTER TABLE RENT
+--	ADD
+--		CONSTRAINT PK_RENT
+--		PRIMARY KEY (
+--			rent_no
+--		);
 
 /* 보험 */
-CREATE TABLE INSURANCE (
-	COL <지정 되지 않음> NOT NULL, /* 보험코드 */
-	insurancename VARCHAR2(50), /* 보험명 */
-	ins_fare INTEGER /* 보험금액 */
-);
-
-CREATE UNIQUE INDEX PK_INSURANCE
-	ON INSURANCE (
-		COL ASC
-	);
-
-ALTER TABLE INSURANCE
-	ADD
-		CONSTRAINT PK_INSURANCE
-		PRIMARY KEY (
-			COL
-		);
+--CREATE TABLE INSURANCE (
+--	COL <지정 되지 않음> NOT NULL, /* 보험코드 */
+--	insurancename VARCHAR2(50), /* 보험명 */
+--	ins_fare INTEGER /* 보험금액 */
+--);
+--
+--CREATE UNIQUE INDEX PK_INSURANCE
+--	ON INSURANCE (
+--		COL ASC
+--	);
+--
+--ALTER TABLE INSURANCE
+--	ADD
+--		CONSTRAINT PK_INSURANCE
+--		PRIMARY KEY (
+--			COL
+--		);
 
 /* 장기렌트요청게시판 */
 CREATE TABLE LONGRENTBOARD (
@@ -200,32 +228,32 @@ ALTER TABLE KIND
 		);
 
 /* 이벤트 */
-CREATE TABLE EVENT (
-	COL <지정 되지 않음> NOT NULL, /* 이벤트코드 */
-	name <지정 되지 않음>, /* 이름 */
-	sale <지정 되지 않음>, /* 할인 */
-	COL2 <지정 되지 않음>, /* 썸네일이미지 */
-	COL3 <지정 되지 않음>, /* 뷰이미지 */
-	COL4 <지정 되지 않음> /* 사용여부 */
-);
-
-CREATE UNIQUE INDEX PK_EVENT
-	ON EVENT (
-		COL ASC
-	);
-
-ALTER TABLE EVENT
-	ADD
-		CONSTRAINT PK_EVENT
-		PRIMARY KEY (
-			COL
-		);
+--CREATE TABLE EVENT (
+--	COL <지정 되지 않음> NOT NULL, /* 이벤트코드 */
+--	name <지정 되지 않음>, /* 이름 */
+--	sale <지정 되지 않음>, /* 할인 */
+--	COL2 <지정 되지 않음>, /* 썸네일이미지 */
+--	COL3 <지정 되지 않음>, /* 뷰이미지 */
+--	COL4 <지정 되지 않음> /* 사용여부 */
+--);
+--
+--CREATE UNIQUE INDEX PK_EVENT
+--	ON EVENT (
+--		COL ASC
+--	);
+--
+--ALTER TABLE EVENT
+--	ADD
+--		CONSTRAINT PK_EVENT
+--		PRIMARY KEY (
+--			COL
+--		);
 
 /* 브랜드 분류 */
 CREATE TABLE BRAND (
 	brand_code VARCHAR2(20) NOT NULL, /* 브랜드코드 */
 	name VARCHAR2(50), /* 이름 */
-	image VARCHAR /* 브랜드이미지 */
+	image VARCHAR(50) /* 브랜드이미지 */
 );
 
 CREATE UNIQUE INDEX PK_BRAND
