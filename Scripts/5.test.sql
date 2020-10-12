@@ -30,7 +30,7 @@ FROM LONGRENT WHERE NO = 1;
 INSERT INTO LONGRENT (NO, title, CONTENTS, REP_YN, WRITE_DATE, rent_term, name,tel, pwd, OPTIONS)
 VALUES(?,?,?,?,?,?,?,)
 
-DELETE FROM longrent WHERE NO = 9;
+DELETE FROM longrent WHERE NO = 19;
 
 UPDATE LONGRENT SET TITLE = ?, contents = ?, RENT_TERM = ? , name= ? , tel =? , PWD = ?, OPTIONS = ? WHERE NO = ?;
 UPDATE LONGRENT SET TITLE = '김창동입니다. 답변을 주세요', contents = '전동킥보드는 장기렌트 안 되나요?', RENT_TERM = '한달' , name= '동자승' , tel ='010-2222-1111' , PWD = '1111', OPTIONS = '풀옵션' WHERE NO = 3;

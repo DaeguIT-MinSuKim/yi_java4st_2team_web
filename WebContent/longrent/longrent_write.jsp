@@ -7,6 +7,33 @@
 <script>
  $(function(){
 	$('#add').on("click", function(){
+	/* 	
+		function checkbox(){
+			var flag = false;
+			//checkbox 접근 후 체크된 개수 파악
+			//getElementsByName: 태그의 name값에 접근한다.
+			var values = document.getElementsByName("chk");
+			//형태는 배열이 된다.
+			alert(values.length);
+			for(var i=0; i<values.length;i++){
+				if(values[i].checked){
+					alert(values[i].value);
+				}
+			}
+			return flag;
+		} */
+	/* 	var send_array = Array();
+		var send_cnt = 0;
+		var chkbox = $(".checkSelect");
+
+		for(i=0;i<chkbox.length; i++){
+			if(chkbox[i].checked == true){
+				send_array[send_cnt] = chkbox[i].value;
+				send_cnt++;
+			}
+		}
+ */
+		
 		var newLongRent = {
 			name:$('#name').val(),
 			tel:$('#tel').val(),
@@ -15,6 +42,7 @@
 			contents:$('#contents').val(),
 			options:$('#options').val()
 		};
+		
 	$.ajax({
 		type:"post",
 		url:"longRentWrite.do",
@@ -25,7 +53,8 @@
 			window.location.href="longRent.do";
 		}
 	});
-}); 
+	
+	}); 
  });
 
 	/* var ck = $(input[type='checkbox']:checked).map(function(){
@@ -36,7 +65,7 @@
 	console.log(ck.get().join(";")); */
 	
 </script>
-
+<!--*a,b,c,d,e의 형태로 넘어간 값들은 SELECT, DELETE 문을 사용할때 wehre user_name in ('send_array') 와 같은 형태로 사용할 수 있다.  -->
 <!-- 컨텐츠 -->
 <div class="contents_box padLeft0">
 	<div class="contents">
@@ -54,11 +83,11 @@
 					<input type="text" class="mt5" placeholder="제목을 입력해주세요" id="title">
 					<textarea class="write_content mt5" placeholder="내용을 입력해주세요" id="contents"></textarea>
 					<div class="option_check" id="options">
-						<label><input type="checkbox"> 후방 카메라</label>
-						<label><input type="checkbox"> 블루투스</label>
-						<label><input type="checkbox"> 카시트</label>
-						<label><input type="checkbox"> 내비게이션</label>
-						<label><input type="checkbox"> 하이패스</label>
+						<label><input type="checkbox" name="box[]" value="후방 카메라" class="checkSelect"> 후방 카메라</label>
+						<label><input type="checkbox" name="box[]" value="블루투스"class="checkSelect"> 블루투스</label>
+						<label><input type="checkbox" name="box[]" value="카시트" class="checkSelect"> 카시트</label>
+						<label><input type="checkbox" name="box[]" value="내비게이션" class="checkSelect"> 내비게이션</label>
+						<label><input type="checkbox" name="box[]" value="하이패스" class="checkSelect"> 하이패스</label>
 					</div>
 				</div>
 				

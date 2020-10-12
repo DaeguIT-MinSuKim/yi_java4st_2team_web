@@ -31,7 +31,7 @@
 				<c:forEach var="LongRent" items="${list}">
 					<tr class="board">
 						<td id="no">${LongRent.no }</td>
-						<td class="tl" id="title"><a href="longRentPassword.do">${LongRent.title }</a></td>
+						<td class="tl" id="title"><a href="longRentPassword.do?no=${LongRent.no}">${LongRent.title }</a></td>
 						<td id="name">${LongRent.name }</td>
 						<td id="date">${LongRent.writeDate }</td>
 						<td>
