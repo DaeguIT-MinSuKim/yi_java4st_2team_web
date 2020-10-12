@@ -151,7 +151,7 @@ $(document).ready(function(){
 					var ratio = $(".insertBg:eq("+idx+")").attr("data-ratioH");//세로비율 찾고
 					var imgW = $(".insertBg:eq("+idx+") .img:first").width();
 					$(".insertBg:eq("+idx+") .img").css({height:parseInt(imgW*(ratio/100))+"px"});
-					console.log("insertBg 이미지 넓이 = "+imgW);
+//					console.log("insertBg 이미지 넓이 = "+imgW);
 				});$(window).resize();
 			};
 		});
