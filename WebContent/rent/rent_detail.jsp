@@ -22,8 +22,8 @@
 			<div class="location pc">
 				HOME <span>></span> 단기렌트 <span>></span> 차량예약
 			</div>
-
-			<form class="form-horizontal" role="form" name="frmName" method="post" action="" onsubmit="return false;" enctype="multipart/form-data">
+	
+			<form class="form-horizontal page_listdDtl" role="form" name="frmName" method="post" action="" onsubmit="return false;" enctype="multipart/form-data">
 				<div class="col-lg-7">
 					<div class="insertBg" data-ratioH="60">
 						<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
