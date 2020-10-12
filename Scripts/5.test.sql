@@ -5,6 +5,9 @@ SELECT CAR_NO,NAME,KIND,PRICE,REMARK FROM car WHERE CAR_NO LIKE '%허%';
 
 INSERT INTO CAR VALUES(?, ?, ?, ?, ?);
 --오수정----------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT;
+SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE EVENT_CODE = 1;
+SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE is_event = 'y';
 
 --김대현----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -45,4 +48,6 @@ SELECT *
   FROM MEMBER;
 
 INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS)
-VALUES ('dong', '1234', '동자승', '010-1234-1234', '22-15-061904-90', 'aa@aa.com', '대구시 서구');
+VALUES ('dong1', '1234', '동자승', '010-1234-1234', '22-15-061904-90', 'aa@aa.com', '대구시 서구');
+
+DELETE FROM MEMBER WHERE ID = 'pp555555';

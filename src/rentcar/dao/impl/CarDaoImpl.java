@@ -10,7 +10,6 @@ import java.util.List;
 import rentcar.dao.CarDao;
 import rentcar.dto.Car;
 import rentcar.exception.CustomSQLException;
-import rentcarTest.conn.JdbcUtil;
 
 public class CarDaoImpl implements CarDao {
 	private static final CarDaoImpl instance = new CarDaoImpl();
@@ -116,12 +115,6 @@ public class CarDaoImpl implements CarDao {
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, car.getCarName());
-			pstmt.setString(2, car.getCarKind().getCar_kind());
-			pstmt.setString(3, car.getFuel());
-			pstmt.setInt(4, car.getDistance());
-			pstmt.setInt(5, car.getFare());
-			pstmt.setInt(6, car.getSale());
-			pstmt.setString(7, car.getCarRemark());
 			pstmt.setString(8, car.getCarNo());
 
 			return pstmt.executeUpdate();

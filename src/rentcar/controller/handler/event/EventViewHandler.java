@@ -1,7 +1,6 @@
 package rentcar.controller.handler.event;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,18 +10,23 @@ import rentcar.controller.Command;
 import rentcar.dto.Event;
 import rentcar.service.EventService;
 
-public class EventHandler implements Command {
+public class EventViewHandler implements Command {
 	private EventService service = new EventService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		ArrayList<Event> eventList = service.listEventIng();
-		
-		request.setAttribute("eventList", eventList);
-		
-		return "/event/event.jsp";
+		if (request.getMethod().equalsIgnoreCase("get")) {
+			String code = request.getParameter("code").trim();
+			Event event = service.getEvent(code);
+			
+			request.setAttribute("event", event);
+
+			return "/event/event_view.jsp";
+		} else {
+
+			return "/event/event_view.jsp";	
+		}
 	}
 
 }

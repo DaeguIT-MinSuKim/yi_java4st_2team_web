@@ -17,8 +17,26 @@ public class Member {
 		super();
 	}
 
+	public Member(String id) {
+		this.id = id;
+	}
+
+	public Member(String id, String pwd, String name, String tel, String license, String email, String address,
+			String remark) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.tel = tel;
+		this.license = license;
+		this.email = email;
+		this.address = address;
+		this.remark = remark;
+	}
+
 	public Member(String id, String pwd, String name, String tel, String license, String email, String is_black,
 			String address, String remark, Integer count, String event) {
+		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
@@ -30,22 +48,6 @@ public class Member {
 		this.remark = remark;
 		this.count = count;
 		this.event = event;
-	}
-
-	public Member(String id, String pwd, String name, String tel, String license, String email, String address,
-			String remark) {
-		this.id = id;
-		this.pwd = pwd;
-		this.name = name;
-		this.tel = tel;
-		this.license = license;
-		this.email = email;
-		this.address = address;
-		this.remark = remark;
-	}
-
-	public Member(String id) {
-		this.id = id;
 	}
 
 	public String getId() {
