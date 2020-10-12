@@ -13,8 +13,6 @@ SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE
 
 --이승은----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-DROP TABLE LONGRENT 
-	CASCADE CONSTRAINTS;
 SELECT * FROM LONGRENT;
 --SELECT NO, SUBJECT, CONTENT, REP, ID, REP_YN, WRITE_DATE"
 --				+ " FROM QNA WHERE ID =? ORDER BY NO DESC
@@ -27,7 +25,7 @@ UPDATE LONGRENT SET id = 'dong' WHERE NO = 1;
 --NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT
 
 SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT
-FROM LONGRENT WHERE NO = 1;
+FROM LONGRENT WHERE NO = 3;
 
 
 INSERT INTO LONGRENT (NO, title, CONTENTS, REP_YN, WRITE_DATE, rent_term, name,tel, pwd, OPTIONS)
@@ -40,9 +38,9 @@ UPDATE LONGRENT SET TITLE = '김창동입니다. 답변을 주세요', contents 
 
 SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM longrent WHERE NUM =? PWD = ?;
 
-
---문중희----------------------------------------------------------------------------------------------------------------------------------------------------------
 SELECT * FROM LONGRENT;
+--문중희----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 SELECT * 
   FROM MEMBER;

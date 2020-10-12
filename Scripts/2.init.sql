@@ -1,3 +1,5 @@
+
+
 /* 차량 */
 DROP TABLE CAR 
 	CASCADE CONSTRAINTS;
@@ -179,30 +181,31 @@ ALTER TABLE ADMIN
 --		PRIMARY KEY (
 --			COL
 --		);
-
-/* 장기렌트요청게시판 */
-CREATE TABLE LONGRENTBOARD (
+	
+	
+/* 장기렌트 */
+CREATE TABLE LONGRENT (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
 	contents VARCHAR2(500), /* 내용 */
-	rep_yn CHAR(1), /* 답변여부 */
-	write_date DATE, /* 날짜 */
-	rent_term VARCHAR2(50), /* 대여 */
-	name VARCHAR2(50), /* 이름 */
-	tel VARCHAR2(20), /* 연락처 */
-	pwd VARCHAR2(50), /* 비밀번호 */
-	rep_content VARCHAR2(500), /* 답변내용 */
-	options VARCHAR2(500) /* 옵션목록 */
+	rep_yn char(1) DEFAULT '1', /*답변여부*/ 
+	write_date DATE DEFAULT sysdate, /*등록일 */
+	rent_term varchar2(50), /*대여기간*/
+	name varchar2(50), /*이름*/
+	tel varchar2(20), /*연락처*/
+	pwd varchar2(50), /*비밀번호*/
+	options varchar2(500), /*옵션목록*/
+	rep_content varchar2(500) /*답변내용*/
 );
 
-CREATE UNIQUE INDEX PK_LONGRENTBOARD
-	ON LONGRENTBOARD (
+CREATE UNIQUE INDEX PK_LONGRENT
+	ON LONGRENT (
 		no ASC
 	);
 
-ALTER TABLE LONGRENTBOARD
+ALTER TABLE LONGRENT
 	ADD
-		CONSTRAINT PK_LONGRENTBOARD
+		CONSTRAINT PK_LONGRENT
 		PRIMARY KEY (
 			no
 		);

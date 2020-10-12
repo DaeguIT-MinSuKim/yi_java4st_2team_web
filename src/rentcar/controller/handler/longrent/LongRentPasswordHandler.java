@@ -20,7 +20,7 @@ public class LongRentPasswordHandler implements Command {
 		String url = null;
 		
 		int no = Integer.parseInt(request.getParameter("no").trim());
-		System.out.println(no);
+		System.out.println("여기 nononono >>"+ no);
 		
 //		String pwd = request.getParameter("pwd").trim();
 //		System.out.println("여기!!!!!!!!!!!!!!pwd" + pwd);
@@ -33,8 +33,8 @@ public class LongRentPasswordHandler implements Command {
 //			url = "/longrent/longrent_password.jsp";
 //			request.setAttribute("message", "비밀번호가 틀렸습니다.");
 //		}
-		return "/longrent/longrent_password.jsp";
-		
+			return "/longrent/longrent_password.jsp";
+//		return null;
 		
 //		if (request.getMethod().equalsIgnoreCase("get")) {
 //			

@@ -22,12 +22,17 @@ public class LongRentViewHandler implements Command {
 		//System.out.println("no >>>> " + no);
 		
 		String pwd = request.getParameter("pwd").trim();
-		System.out.println("no >>>> " + no + "pwd" + pwd);
-		
 		LongRent longrent = service.checkPwd(no, pwd);
+
+		System.out.println("no >>>> " + no + "pwd >>>>>>>" + pwd);
+		
+		
 		if(longrent.getPwd().equals(pwd)) {
-			url = "/longrent/longrent_view.jsp";
+			System.out.println("비밀번호 일치");
+//			url = "/longrent/longrent_view.jsp";
+			url = null;
 		}else {
+			System.out.println("비밀번호 틀림");
 			url = "/longrent/longrent_password.jsp";
 			request.setAttribute("message", "비밀번호가 틀렸습니다.");
 		
