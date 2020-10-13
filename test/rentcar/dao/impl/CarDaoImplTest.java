@@ -26,7 +26,7 @@ public class CarDaoImplTest {
 	}
 
 	@Test
-	public void testSelectCarByAll() {
+	public void test01SelectCarByAll() {
 		System.out.println("testSelectCarByAll");
 		List<Car> list = dao.selectCarByAll();
 		Assert.assertNotNull(list);
@@ -34,39 +34,51 @@ public class CarDaoImplTest {
 	}
 
 	@Test
-	public void testSelectCarByFind() {
+	public void test02SelectCarByFind() {
 		System.out.println("testSelectCarByFind");
-		Car c = dao.selectCarByFind(1, "허");
-		Assert.assertNotNull(c);
-		System.out.println(c);
+		List<Car> list = dao.selectCarByFind(1, "하");
+		Assert.assertNotNull(list);
+		System.out.println(list);
 	}
 
 	@Test
-	public void testSelectCarByRent() {
-		fail("Not yet implemented");
+	public void test03SelectCarByRent() {
+		System.out.println("testSelectCarByRent");
+		List<Car> list = dao.selectCarByRent();
+		Assert.assertNotNull(list);
+		System.out.println(list);
 	}
 
 	@Test
-	public void testInsertCar() {
+	public void test04InsertCar() {
 		System.out.println("testInsertCar");
-		Car c = new Car("39호1234", "얍얍얍", "비와이", 1000000, "주님만이");
+		Car c = new Car("39호1234", "비와이", 1, 2, "얍얍얍", "Y", 10000, "주님만이");
 		int res = dao.insertCar(c);
 		Assert.assertEquals(1, res);
 	}
 
 	@Test
-	public void testUpdateCar() {
-		fail("Not yet implemented");
+	public void test05UpdateCar() {
+		System.out.println("testUpdateCar");
+		Car c = new Car("39호1234", "비가와", 1, 2, "얍얍얍", "Y", 10000, "주님만이");
+		int res = dao.updateCar(c);
+		Assert.assertEquals(1, res);
 	}
 
 	@Test
-	public void testDeleteCar() {
-		fail("Not yet implemented");
+	public void test07DeleteCar() {
+		System.out.println("testDeleteCar");
+		Car c = new Car("39호1234");
+		int res = dao.deleteCar(c);
+		Assert.assertEquals(1, res);
 	}
 
 	@Test
-	public void testSelectCarByName() {
-		fail("Not yet implemented");
+	public void test06SelectCarByNo() {
+		System.out.println("testSelectCarByNo");
+		Car c = dao.selectCarByNo("39호1234");
+		Assert.assertNotNull(c);
+		System.out.println(c);
 	}
 
 }

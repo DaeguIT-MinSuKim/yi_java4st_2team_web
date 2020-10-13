@@ -16,7 +16,7 @@
 	<div class="snb box pc momH">
 		<h2>회원관리</h2>
 		<ul>
-			<li><a href="mypage.do">렌트 중인 차량</a></li>
+			<li><a href="renting.do">렌트 중인 차량</a></li>
 			<!-- <li><a href="../member/login.jsp">비회원 예약조회</a></li> -->
 			<li><a href="search.do">아이디/비밀번호찾기</a></li>
 			<li><a href="joinAgree.do">회원가입</a></li>
