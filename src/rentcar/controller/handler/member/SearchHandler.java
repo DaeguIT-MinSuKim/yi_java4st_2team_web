@@ -13,19 +13,7 @@ public class SearchHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		if (request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("GET");
-			
-			return "member/search.jsp";
-					
-		} else {
-			System.out.println("POST");
-			
-			return null;
-			
-		}
-		
+		return "member/search.jsp";
 	}
 
 }
