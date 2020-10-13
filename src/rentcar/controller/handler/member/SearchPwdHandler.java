@@ -1,4 +1,4 @@
-package rentcar.controller.handler.rent;
+package rentcar.controller.handler.member;
 
 import java.io.IOException;
 
@@ -8,14 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import rentcar.controller.Command;
 
-public class RentHandler implements Command {
+public class SearchPwdHandler implements Command {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
-		
-		return "/rent/rent.jsp";
+		return "member/search_pwd_1.jsp";
 	}
+
 }

@@ -26,15 +26,15 @@
 .page_rent .calendarWrap {position:relative; padding:50px 30px;
 	background:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNyIgaGVpZ2h0PSIyNyIgdmlld0JveD0iMCAwIDI3IDI3Ij4KICA8ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiIG9wYWNpdHk9Ii4wOTIiPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iNCIgeT0iNCIvPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iMTMiIHk9IjQiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjIyIiB5PSI0Ii8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSI0IiB5PSIxMyIvPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iMTMiIHk9IjEzIi8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSIyMiIgeT0iMTMiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjQiIHk9IjIyIi8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSIxMyIgeT0iMjIiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjIyIiB5PSIyMiIvPgogIDwvZz4KPC9zdmc+Cg==);
 }
-.page_rent .calendarWrap select {border:1px solid #ddd; border-left:0; padding:0 10px;}
-.page_rent .calendarWrap h4 {text-align:center; padding-bottom:20px; font-size:30px;}
+.page_rent .calendarWrap select {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:pointer;}
+.page_rent .calendarWrap h4 {text-align:center; font-size:30px;}
 .page_rent .calendarWrap .btn-blue {margin-left:5px; height:50px; line-height:50px;}
 
 .page_rent .calendarWrap {text-align:center;}
 .page_rent .calendarWrap>img {height:107px;}
 .page_rent .calendarWrap .calendarBox {display:flex; max-width:600px; margin:0 auto;}
 .page_rent .calendarWrap .calendarBox span {height:50px; line-height:50px; padding:0 3px;}
-.page_rent .calendarWrap .calendarBox .calendar[readonly] {background:#fff !important; height:50px; line-height:50px; border-radius:0;}
+.page_rent .calendarWrap .calendarBox .calendar[readonly] {background:#fff !important; height:50px; line-height:50px; border-radius:0; cursor:pointer;}
 
 /* 차량 상세 */
 .page_listdDtl {}
@@ -95,6 +95,9 @@
 .carList_common .right.textBox .text li .left {width:130px; text-align:left;}
 .carList_common .right.textBox .text li .right {font-size:14px;}
 .carList_common .right.textBox .text li.priceResult * {color:#0d6ffc; font-size:17px;}
+
+.rent_list .title {font-size:24px;}
+
 
 
 

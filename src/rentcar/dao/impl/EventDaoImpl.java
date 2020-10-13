@@ -46,7 +46,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventIng() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE is_event = 'y'";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE is_event = 'y' ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -64,7 +64,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventEnd() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE is_event = 'n'";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE is_event = 'n' ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -108,6 +108,51 @@ public class EventDaoImpl implements EventDao {
 			throw new CustomSQLException(e);
 		}
 		return null;
+	}
+
+	@Override
+	public int insertEvent(Event event) {
+		String sql = "INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES(?, ?, ?, ?, ?)";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, event.getName());
+			pstmt.setInt(2, event.getSale());
+			pstmt.setString(3, event.getThumImage());
+			pstmt.setString(4, event.getViewImage());
+			pstmt.setString(5, event.getIsEvent());
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+	}
+
+	@Override
+	public int updateEvent(Event event) {
+		String sql = "UPDATE EVENT SET NAME = ?, SALE = ?, THUM_IMAGE = ?, VIEW_IMAGE = ?, IS_EVENT = ? WHERE EVENT_CODE = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, event.getName());
+			pstmt.setInt(2, event.getSale());
+			pstmt.setString(3, event.getThumImage());
+			pstmt.setString(4, event.getViewImage());
+			pstmt.setString(5, event.getIsEvent());
+			pstmt.setString(6, event.getEventCode());
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+	}
+
+	@Override
+	public int deleteEvent(String code) {
+		String sql = "DELETE FROM EVENT WHERE EVENT_CODE = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, code);
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
 	}
 
 }
