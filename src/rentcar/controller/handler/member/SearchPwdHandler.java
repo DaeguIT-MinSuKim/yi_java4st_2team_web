@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import rentcar.controller.Command;
 
-public class SearchIdHandler implements Command {
+public class SearchPwdHandler implements Command {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "member/search_id_1.jsp";
+		return "member/search_pwd_1.jsp";
 	}
 
 }

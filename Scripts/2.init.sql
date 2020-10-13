@@ -1,5 +1,3 @@
-
-
 /* 차량 */
 DROP TABLE CAR 
 	CASCADE CONSTRAINTS;
@@ -64,7 +62,6 @@ ALTER TABLE CAR
 		);
 
 /* 회원 */
-<<<<<<< HEAD
 CREATE TABLE MEMBER (
 	id VARCHAR2(50) NOT NULL, /* 아이디 */
 	pwd VARCHAR2(20), /* 비밀번호 */
@@ -90,33 +87,6 @@ ALTER TABLE MEMBER
 		PRIMARY KEY (
 			id
 		);
-=======
---CREATE TABLE MEMBER (
---	id VARCHAR2(50) NOT NULL, /* 아이디 */
---	pwd VARCHAR2(20), /* 비밀번호 */
---	name VARCHAR2(50), /* 이름 */
---	tel VARCHAR2(20), /* 연락처 */
---	license VARCHAR2(20), /* 면허번호 */
---	COL2 <지정 되지 않음>, /* 이메일 */
---	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
---	address VARCHAR2(500), /* 주소 */
---	remark VARCHAR2(500), /* 비고 */
---	COL <지정 되지 않음>, /* 대여횟수 */
---	COL3 <지정 되지 않음> /* 이벤트코드 */
---);
---
---CREATE UNIQUE INDEX PK_MEMBER
---	ON MEMBER (
---		id ASC
---	);
---
---ALTER TABLE MEMBER
---	ADD
---		CONSTRAINT PK_MEMBER
---		PRIMARY KEY (
---			id
---		);
->>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 /* 관리자 */
 CREATE TABLE ADMIN (
@@ -231,7 +201,6 @@ ALTER TABLE KIND
 		);
 
 /* 이벤트 */
-<<<<<<< HEAD
 CREATE TABLE EVENT (
 	event_code varchar2(20) NOT NULL, /* 이벤트코드 */
 	name varchar2(300), /* 이름 */
@@ -252,38 +221,12 @@ ALTER TABLE EVENT
 		PRIMARY KEY (
 			event_code
 		);
-=======
---CREATE TABLE EVENT (
---	COL <지정 되지 않음> NOT NULL, /* 이벤트코드 */
---	name <지정 되지 않음>, /* 이름 */
---	sale <지정 되지 않음>, /* 할인 */
---	COL2 <지정 되지 않음>, /* 썸네일이미지 */
---	COL3 <지정 되지 않음>, /* 뷰이미지 */
---	COL4 <지정 되지 않음> /* 사용여부 */
---);
---
---CREATE UNIQUE INDEX PK_EVENT
---	ON EVENT (
---		COL ASC
---	);
---
---ALTER TABLE EVENT
---	ADD
---		CONSTRAINT PK_EVENT
---		PRIMARY KEY (
---			COL
---		);
->>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 /* 브랜드 분류 */
 CREATE TABLE BRAND (
 	brand_code VARCHAR2(20) NOT NULL, /* 브랜드코드 */
 	name VARCHAR2(50), /* 이름 */
-<<<<<<< HEAD
-	image VARCHAR2(50) /* 브랜드이미지 */
-=======
 	image VARCHAR(50) /* 브랜드이미지 */
->>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 );
 
 CREATE UNIQUE INDEX PK_BRAND
