@@ -12,38 +12,32 @@ import rentcar.service.LongRentSerivce;
 
 public class LongRentPasswordHandler implements Command {
 	private LongRentSerivce service = new LongRentSerivce();
-	
-	
+
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String url = null;
-		
-		int no = Integer.parseInt(request.getParameter("no").trim());
-		System.out.println("여기 nononono >>"+ no);
-		
-//		String pwd = request.getParameter("pwd").trim();
-//		System.out.println("여기!!!!!!!!!!!!!!pwd" + pwd);
-//
-//		LongRent longrent = service.checkPwd(no, pwd);
-//		System.out.println("longrent 비밀번호확인!!!!" + longrent);
-//		if(longrent.getPwd().equals(pwd)) {
-//			url = null;
-//		}else {
-//			url = "/longrent/longrent_password.jsp";
-//			request.setAttribute("message", "비밀번호가 틀렸습니다.");
-//		}
-			return "/longrent/longrent_password.jsp";
-//		return null;
-		
-//		if (request.getMethod().equalsIgnoreCase("get")) {
-//			
-//			return "/longrent/longrent_password.jsp";
-//		} else {
-//			
-//			response.sendRedirect("longRentView.do");
-//			return null;
-//		}
-	}
 
+		int no = Integer.parseInt(request.getParameter("no").trim());
+		// System.out.println("no >>>> " + no);
+
+		String pwd = request.getParameter("pwd").trim();
+		LongRent longrent = service.checkPwd(no, pwd);
+
+		System.out.println("no >>>> " + no + "pwd >>>>>>>" + pwd);
+
+		if (longrent != null) {
+			System.out.println("비밀번호 일치");
+			return "longRentView.do?no="+no;
+//			url = null;
+		} else {
+			System.out.println("비밀번호 틀림");
+			url = "/longrent/longrent_password.jsp";
+			request.setAttribute("message", "비밀번호가 틀렸습니다.");
+//			response.sendRedirect(url);
+		}
+
+		return url;
+	}
 }
