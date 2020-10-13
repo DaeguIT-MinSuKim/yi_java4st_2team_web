@@ -7,11 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
-
 import rentcar.dao.BrandDao;
-import rentcar.dto.Brand;
 import rentcar.dto.Brand;
 import rentcar.exception.CustomSQLException;
 
