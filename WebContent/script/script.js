@@ -9,6 +9,7 @@ $(document).ready(function(){
 	rent_btnNotice(); //단기렌트 상세 - 버튼 '렌트시 유의사항 보기'
 	rent_payBox(); //단기렌트 상세 - 결제정보 위치 fixed
 	rent_tabBtn(); // 단기렌트 탭버튼
+	rent_optionHours(); // selectBox option 시간 삽입
 	
 });
 
@@ -71,17 +72,35 @@ function rent_payBox(){
 
 // 단기렌트 탭버튼
 function rent_tabBtn(){
-	$(".rentcarList_tabBtn>a").on("click", function(){
-		var kindNum = $(this).attr("data-kindnum");
-		
+	$(".rentcarList_tabBtn>a").on("click", function(e){
+		var kindNum = $(this).attr("data-kindnum"); // 구분 차량 기준번호 확인
 		$(".rentcarList_tabBtn>a").removeClass("active");
 		$(this).addClass("active");
+		
+		if( kindNum == 0 ){ // 전체 차량 보기
+			$(".page_rent .rentcarList>ul>li").show();
+		}else{ // 차량 구분별로 보기
+			$(".page_rent .rentcarList>ul>li[data-kinditem="+kindNum+"]").siblings().hide().end().show();
+		}
 	});
 }
 
-
-
-
+// select option 시간 삽입
+function rent_optionHours(){
+	if( $(".hours").length > 0 ){
+		
+		var add_option = "";
+		
+		for( var i=0; i < 24; i++ ){
+			add_option += "<option>" + i + "시</option>";
+		}
+		
+		$(".hours").each(function(){
+			$(this).append(add_option);
+		});
+		
+	}
+}
 
 
 

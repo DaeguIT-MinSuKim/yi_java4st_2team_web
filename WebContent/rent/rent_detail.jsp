@@ -67,7 +67,7 @@
 					</form>	
 					
 					<hr>
-					
+				
 					<div class="noticeText">
 						<div class="box1"> 
 							<h5>업체 유의사항</h5>

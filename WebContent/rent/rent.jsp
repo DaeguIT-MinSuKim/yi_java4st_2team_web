@@ -22,28 +22,18 @@
 			<div class="location pc">
 				HOME <span>></span> 단기렌트
 			</div>
-			 
+			
  			<div class="calendarWrap">
  				<img src="./images/member/norent.png" alt="">
  				<h4>언제 떠나세요 ?</h4>
+ 				<p class="c_gray">대여일만 선택하셔도 차량검색이 가능합니다.</p>
+				<div class="h20"></div>
  				<div class="calendarBox">
 					<input type="text" class="form-control calendar prev" readonly placeholder="렌트카 대여일 선택">
-					<select>
-						<option>00시</option>
-						<option>01시</option>
-						<option></option>
-						<option></option>
-						<option></option>
-					</select>
+					<select class="hours"><!-- script.js/rent_optionHours(); 메서드 사용 --></select>
 					<span>-</span>
 					<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
-					<select>
-						<option>00시</option>
-						<option>01시</option>
-						<option></option>
-						<option></option>
-						<option></option>
-					</select>
+					<select class="hours"><!-- script.js/rent_optionHours(); 메서드 사용 --></select>
 					<a href="javascript:;" class="btn btn-blue">차량검색</a>
 				</div>
 			</div>
@@ -108,7 +98,6 @@
 					</li>
 				</ul>
 			</div>
-
 		</div>
 	</div>
 	<!-- //컨텐츠 -->
