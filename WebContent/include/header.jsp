@@ -114,7 +114,22 @@
 	   "pluginKey": "31509d5e-8324-4195-8eff-9ac8231365ba"
 	 });
 	<!-- End Channel Plugin -->
-	</script>		
+	</script>
+	
+	<script>
+		$(function() {
+			$('#logout').on("click", function() {
+				if (confirm("${sessionScope.loginUser.name}님 로그아웃 하시겠습니까?") == true) {	// 확인
+					location.href="logout.do";
+			    } else {	// 취소
+			    	return;
+			    }
+				
+			});
+			
+		});
+	</script>
+	
 </head>
 
 <body>
@@ -141,7 +156,7 @@
 	         					${sessionScope.loginUser.name}(${sessionScope.loginUser.id})님
 	      					</li>
 	      					<li>
-	      						<a class="logout" href="logout.do"><span>로그아웃</span></a>
+	      						<a class="logout" style="cursor:pointer;" id="logout"><span>로그아웃</span></a>
 	      					</li>
 							<li>
 								<a class="mypage" href="mypage.do">마이페이지</a>

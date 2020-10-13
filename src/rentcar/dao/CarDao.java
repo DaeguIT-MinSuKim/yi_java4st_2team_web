@@ -12,8 +12,11 @@ public interface CarDao {
 	// 렌트중인 차량정보 불러오기
 	List<Car> selectCarByRent();
 
+	// 차량 검색하기
+	List<Car> selectCarByFind(int res, String query);
+	
 	// 차량정보 불러오기
-	Car selectCarByFind(int res, String query);
+	Car selectCarByNo(String no);
 
 	// 차량 추가하기
 	int insertCar(Car car);
@@ -23,7 +26,4 @@ public interface CarDao {
 
 	// 차량 삭제하기?
 	int deleteCar(Car car);
-
-	// 차량 검색하기
-	List<Car> selectCarByName(Car car);
 }

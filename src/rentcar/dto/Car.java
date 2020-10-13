@@ -2,62 +2,68 @@ package rentcar.dto;
 
 public class Car {
 	// 차량dto
-	private String carNo; // 차번호(기본키)
-	private String carName; // 차량이름
-	private String kind; // 차량종류
-	private int price; // 금액
-	private String remark; // 차량비고
+	private String No;		// 차번호(기본키)
+	private String Name;	// 차량이름
+	private int kind;		// 차량분류
+	private int brand;	// 브랜드분류
+	private String remark;	// 차량비고
+	private String is_rent;	// 반납여부
+	private int counting;	// 대여횟수
+	private String image;	// 이미지
 
 	// 생성자
 	public Car() {
 		super();
 	}
 
-	public Car(String carNo) {
+	public Car(String no) {
 		super();
-		this.carNo = carNo;
+		No = no;
 	}
 
-	public Car(String carNo, String carName, String kind, int price, String remark) {
+	public Car(String no, String name, int kind, int brand, String remark, String is_rent, int counting,
+			String image) {
 		super();
-		this.carNo = carNo;
-		this.carName = carName;
+		No = no;
+		Name = name;
 		this.kind = kind;
-		this.price = price;
+		this.brand = brand;
 		this.remark = remark;
+		this.is_rent = is_rent;
+		this.counting = counting;
+		this.image = image;
 	}
 
-	// getter & setter & toString
-	public String getCarNo() {
-		return carNo;
+	public String getNo() {
+		return No;
 	}
 
-	public void setCarNo(String carNo) {
-		this.carNo = carNo;
+	public void setNo(String no) {
+		No = no;
 	}
 
-	public String getCarName() {
-		return carName;
+	public String getName() {
+		return Name;
 	}
 
-	public void setCarName(String carName) {
-		this.carName = carName;
+	public void setName(String name) {
+		Name = name;
 	}
 
-	public String getKind() {
+	public int getKind() {
 		return kind;
 	}
 
-	public void setKind(String kind) {
+	public void setKind(int kind) {
 		this.kind = kind;
 	}
 
-	public int getPrice() {
-		return price;
+	public int getBrand() {
+		return brand;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setBrand(int brand) {
+		this.brand = brand;
 	}
 
 	public String getRemark() {
@@ -68,10 +74,35 @@ public class Car {
 		this.remark = remark;
 	}
 
+	public String getIs_rent() {
+		return is_rent;
+	}
+
+	public void setIs_rent(String is_rent) {
+		this.is_rent = is_rent;
+	}
+
+	public int getCounting() {
+		return counting;
+	}
+
+	public void setCounting(int counting) {
+		this.counting = counting;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Car [carNo=%s, carName=%s, kind=%s, price=%s, remark=%s]", carNo, carName, kind, price,
-				remark);
+		return String.format("Car [No=%s, Name=%s, Kind=%s, Brand=%s, remark=%s, is_rent=%s, counting=%s, image=%s]",
+				No, Name, kind, brand, remark, is_rent, counting, image);
 	}
+
 
 }

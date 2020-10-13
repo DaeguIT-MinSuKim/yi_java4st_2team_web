@@ -43,6 +43,7 @@ DROP TABLE BRAND
 /* 차량 */
 CREATE TABLE CAR (
 	car_no VARCHAR2(20) NOT NULL, /* 차량번호 */
+	car_name VARCHAR2(50), /* 차량이름 */
 	kind_code VARCHAR2(20), /* 분류 */
 	brand_code VARCHAR2(20), /* 브랜드코드 */
 	remark VARCHAR2(500), /* 비고 */
@@ -64,7 +65,6 @@ ALTER TABLE CAR
 		);
 
 /* 회원 */
-<<<<<<< HEAD
 CREATE TABLE MEMBER (
 	id VARCHAR2(50) NOT NULL, /* 아이디 */
 	pwd VARCHAR2(20), /* 비밀번호 */
