@@ -40,7 +40,7 @@ function niceSmsPopup(){
 	<div class="contents search_id">
 		<h3>아이디 찾기</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 아이디/비밀번호 찾기</div>
-		
+	
 		<div class="id_wrap">
 			<p>아이디 찾기에 사용할 본인 인증 방식을 선택하세요.</p>
 			<div>
@@ -51,6 +51,7 @@ function niceSmsPopup(){
 		<div class="btn_box">
 			<a href="#void" class="btn btn-blue" onclick="niceSmsPopup(); return false;">다음</a>
 		</div>
+
 	</div>
 
 </div><!-- //컨텐츠 -->

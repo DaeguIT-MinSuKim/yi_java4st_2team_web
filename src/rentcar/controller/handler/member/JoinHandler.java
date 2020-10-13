@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,6 +36,9 @@ public class JoinHandler implements Command {
 
 			int res = service.insertMember(joinMember);
 			response.getWriter().print(res);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("joinMember", joinMember);
 
 			return "member/join_end.jsp";
 		}
