@@ -1,3 +1,5 @@
+
+
 /* 차량 */
 DROP TABLE CAR 
 	CASCADE CONSTRAINTS;
@@ -63,6 +65,32 @@ ALTER TABLE CAR
 		);
 
 /* 회원 */
+CREATE TABLE MEMBER (
+	id VARCHAR2(50) NOT NULL, /* 아이디 */
+	pwd VARCHAR2(20), /* 비밀번호 */
+	name VARCHAR2(50), /* 이름 */
+	tel VARCHAR2(20), /* 연락처 */
+	license VARCHAR2(20), /* 면허번호 */
+	email VARCHAR2(50), /* 이메일 */
+	is_black CHAR(1) DEFAULT N, /* 블랙리스트 */
+	address VARCHAR2(500), /* 주소 */
+	remark VARCHAR2(500), /* 비고 */
+	count INTEGER DEFAULT 0, /* 대여횟수 */
+	event VARCHAR2(20) /* 이벤트코드 */
+);
+
+CREATE UNIQUE INDEX PK_MEMBER
+	ON MEMBER (
+		id ASC
+	);
+
+ALTER TABLE MEMBER
+	ADD
+		CONSTRAINT PK_MEMBER
+		PRIMARY KEY (
+			id
+		);
+=======
 --CREATE TABLE MEMBER (
 --	id VARCHAR2(50) NOT NULL, /* 아이디 */
 --	pwd VARCHAR2(20), /* 비밀번호 */
@@ -88,6 +116,7 @@ ALTER TABLE CAR
 --		PRIMARY KEY (
 --			id
 --		);
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 /* 관리자 */
 CREATE TABLE ADMIN (
@@ -152,30 +181,31 @@ ALTER TABLE ADMIN
 --		PRIMARY KEY (
 --			COL
 --		);
-
-/* 장기렌트요청게시판 */
-CREATE TABLE LONGRENTBOARD (
+	
+	
+/* 장기렌트 */
+CREATE TABLE LONGRENT (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
 	contents VARCHAR2(500), /* 내용 */
-	rep_yn CHAR(1), /* 답변여부 */
-	write_date DATE, /* 날짜 */
-	rent_term VARCHAR2(50), /* 대여 */
-	name VARCHAR2(50), /* 이름 */
-	tel VARCHAR2(20), /* 연락처 */
-	pwd VARCHAR2(50), /* 비밀번호 */
-	rep_content VARCHAR2(500), /* 답변내용 */
-	options VARCHAR2(500) /* 옵션목록 */
+	rep_yn char(1) DEFAULT '1', /*답변여부*/ 
+	write_date DATE DEFAULT sysdate, /*등록일 */
+	rent_term varchar2(50), /*대여기간*/
+	name varchar2(50), /*이름*/
+	tel varchar2(20), /*연락처*/
+	pwd varchar2(50), /*비밀번호*/
+	options varchar2(500), /*옵션목록*/
+	rep_content varchar2(500) /*답변내용*/
 );
 
-CREATE UNIQUE INDEX PK_LONGRENTBOARD
-	ON LONGRENTBOARD (
+CREATE UNIQUE INDEX PK_LONGRENT
+	ON LONGRENT (
 		no ASC
 	);
 
-ALTER TABLE LONGRENTBOARD
+ALTER TABLE LONGRENT
 	ADD
-		CONSTRAINT PK_LONGRENTBOARD
+		CONSTRAINT PK_LONGRENT
 		PRIMARY KEY (
 			no
 		);
@@ -201,6 +231,28 @@ ALTER TABLE KIND
 		);
 
 /* 이벤트 */
+<<<<<<< HEAD
+CREATE TABLE EVENT (
+	event_code varchar2(20) NOT NULL, /* 이벤트코드 */
+	name varchar2(300), /* 이름 */
+	sale integer, /* 할인 */
+	thum_image varchar2(50), /* 썸네일이미지 */
+	view_image varchar2(50), /* 뷰이미지 */
+	is_event char(1) /* 사용여부 */
+);
+
+CREATE UNIQUE INDEX PK_EVENT
+	ON EVENT (
+		event_code ASC
+	);
+
+ALTER TABLE EVENT
+	ADD
+		CONSTRAINT PK_EVENT
+		PRIMARY KEY (
+			event_code
+		);
+=======
 --CREATE TABLE EVENT (
 --	COL <지정 되지 않음> NOT NULL, /* 이벤트코드 */
 --	name <지정 되지 않음>, /* 이름 */
@@ -221,12 +273,17 @@ ALTER TABLE KIND
 --		PRIMARY KEY (
 --			COL
 --		);
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 /* 브랜드 분류 */
 CREATE TABLE BRAND (
 	brand_code VARCHAR2(20) NOT NULL, /* 브랜드코드 */
 	name VARCHAR2(50), /* 이름 */
+<<<<<<< HEAD
+	image VARCHAR2(50) /* 브랜드이미지 */
+=======
 	image VARCHAR(50) /* 브랜드이미지 */
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 );
 
 CREATE UNIQUE INDEX PK_BRAND

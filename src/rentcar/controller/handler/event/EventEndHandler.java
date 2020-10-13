@@ -11,18 +11,18 @@ import rentcar.controller.Command;
 import rentcar.dto.Event;
 import rentcar.service.EventService;
 
-public class EventHandler implements Command {
+public class EventEndHandler implements Command {
 	private EventService service = new EventService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		ArrayList<Event> eventList = service.listEventIng();
+		ArrayList<Event> eventList = service.listEventEnd();
 		
 		request.setAttribute("eventList", eventList);
 		
-		return "/event/event.jsp";
+		return "/event/event_end.jsp";
 	}
 
 }

@@ -146,7 +146,7 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public int updateCar(Car car) {
-		String sql = "UPDATE CAR SET CAR_NAME = ? , KIND_CODE = ? , BRAND_CODE = ? , REMARK = ? , IS_RENT = ? , COUNTING = ? , IMAGE = ? WHERE CAR_NO = ? ";
+		String sql = "UPDATE CAR SET CAR_NAME = ? , KIND_CODE = ? , BRAND_CODE = ? , REMARK = ? , IS_RENT = ? , COUNTING = ? , I= ? WHERE CAR_NO = ?  ";
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(8, car.getNo());

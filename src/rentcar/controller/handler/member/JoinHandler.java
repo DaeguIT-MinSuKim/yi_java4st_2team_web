@@ -6,8 +6,10 @@ import java.io.InputStreamReader;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import rentcar.controller.Command;
 import rentcar.dto.Member;
@@ -28,14 +30,17 @@ public class JoinHandler implements Command {
 		} else {
 			System.out.println("POST");
 
-			Gson gson = new Gson();
+			Gson gson = new GsonBuilder().serializeNulls().create();
 			Member joinMember = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Member.class);
-			System.out.println(joinMember);
+			System.out.println("joinMember > " + joinMember);
 
 			int res = service.insertMember(joinMember);
 			response.getWriter().print(res);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("joinMember", joinMember);
 
-			return "member/login.jsp";
+			return "member/join_end.jsp";
 		}
 
 	}

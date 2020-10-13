@@ -33,7 +33,7 @@ public class LongRentDaoImpl implements LongRentDao {
 
 	@Override
 	public ArrayList<LongRent> selectLongRentList() {
-		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT";
+		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT ORDER BY NO DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				ArrayList<LongRent> list = new ArrayList<>();
@@ -131,7 +131,7 @@ public class LongRentDaoImpl implements LongRentDao {
 
 	@Override
 	public LongRent checkPassword(int no, String pwd) {
-		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM WHERE NUM =? PWD = ?";
+		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS FROM LONGRENT WHERE NO =? AND PWD = ? ";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setInt(1, no);
 			pstmt.setString(2, pwd);

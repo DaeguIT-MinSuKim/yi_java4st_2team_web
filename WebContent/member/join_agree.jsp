@@ -13,11 +13,13 @@ function fnPopup(){
 		document.getElementById("checkboxA").focus();
 		return;
 	}
+	
 	if(document.getElementById("checkboxB").checked==false) {
 		window.alert("개인정보취급방침에 동의를 하셔야 회원가입이 가능합니다.");
 		document.getElementById("checkboxB").focus();
 		return;
 	}
+	
     document.form_chk.submit();
 }
 </script>

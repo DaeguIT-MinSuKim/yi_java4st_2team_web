@@ -3,7 +3,21 @@
 .event_list li img {width:100%;}
 .event_list li p {width:100%; box-sizing:border-box; padding:10px 15px;}
 
+.event_img {text-align:center;}
+.event_img img {width:96%; max-width:800px;}
+
+
 @media screen and (max-width:767px){
 	.event_list li {margin-bottom:10px;}
 	.event_list li p {padding:5px 10px; font-size:13px;}
+}
+
+
+.file_wrap {overflow:hidden;}
+.file_wrap p {float:left; width:150px; line-height:40px; clear:both; margin:5px 0 0;}
+.file_wrap input[type="file"] {float:left; width:calc(100% - 150px); margin-top:5px;}
+
+@media screen and (max-width:767px){
+	.file_wrap p {font-size:13px; width:120px;}
+	.file_wrap input[type="file"] {width:calc(100% - 120px)}
 }

@@ -36,7 +36,7 @@ window.onload = function(){ document.usrlog.member_id.focus(); }
 <%@ include file="/include/sub_member.jsp"%>
 
 <!-- 컨텐츠 -->
-<div class="contents_box">
+<div class="contents_box padLeft0">
 	<div class="contents">
 		<h3>회원 로그인</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 회원 로그인</div>
@@ -70,7 +70,7 @@ window.onload = function(){ document.usrlog.member_id.focus(); }
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					<span>아이디, 비밀번호가 기억나지 않으세요?</span><br>
-					<a class="btn btn-normal btn-sm" href="search.do">아이디/패스워드찾기</a>
+					<a class="btn btn-normal btn-sm" href="search.do">아이디/비밀번호찾기</a>
 				</div>
 			</div>
 		</div>
