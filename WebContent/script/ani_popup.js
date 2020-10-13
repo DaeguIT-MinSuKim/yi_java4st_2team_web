@@ -2,7 +2,7 @@ $(window).load(function(){
 	// 여기서 실행
 	
 	// 비회원 예약조회  
-    ani_popup( $('.btn_nonmember'), $('.popup_nonmember').eq(0), 'top');
+//    ani_popup( $('.btn_nonmember'), $('.popup_nonmember').eq(0), 'top');
     
     // 장기렌트 옵션 (사용안함)
 //    ani_popup( $('.popup_longrent_option_btn'), $('.popup_longrent_option').eq(0), 'top');

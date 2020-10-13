@@ -64,7 +64,6 @@ ALTER TABLE CAR
 		);
 
 /* 회원 */
-<<<<<<< HEAD
 CREATE TABLE MEMBER (
 	id VARCHAR2(50) NOT NULL, /* 아이디 */
 	pwd VARCHAR2(20), /* 비밀번호 */

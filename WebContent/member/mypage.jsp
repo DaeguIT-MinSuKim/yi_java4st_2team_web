@@ -31,7 +31,7 @@
 	</div>
 </div><!-- //컨텐츠 -->
 
-
+<!-- 
 <div class="popup_nonmember">
 	<div class="con">
 		<div class="top">
@@ -63,5 +63,6 @@
 	</div>
 	<div class="bg popup_close_common"></div>
 </div>
+ -->
 
 <%@ include file="/include/footer.jsp"%>
