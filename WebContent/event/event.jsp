@@ -33,25 +33,6 @@
 			</ul>
 			
 			<a href="eventWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
-			
-			<div class="board_list_page clear">
-				<a href="#" class="first arrow"><span class="text_hidden">처음</span></a>
-				<a href="#" class="prev arrow"><span class="text_hidden">이전</span></a>
-				<ul>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<li><a href="#">10</a></li>
-				</ul>
-				<a href="#" class="next arrow"><span class="text_hidden">다음</span></a>
-				<a href="#" class="end arrow"><span class="text_hidden">마지막</span></a>
-			</div>
 		</div>
 		
 		
