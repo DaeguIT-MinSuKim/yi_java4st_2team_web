@@ -1,10 +1,10 @@
 {
 	"folders": {},
 	"connections": {
-		"oracle_thin-17520eb0579-1133b068ef87c17": {
+		"oracle_thin-17525be5e83-68826ecb8a865b08": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "RENTCAR",
+			"name": "orcl - rentcar",
 			"save-password": true,
 			"show-system-objects": true,
 			"read-only": false,
@@ -13,7 +13,7 @@
 				"port": "1521",
 				"database": "orcl",
 				"url": "jdbc:oracle:thin:@//localhost:1521/orcl",
-				"home": "D:\\app\\lenovo\\product\\11.2.0\\dbhome_1",
+				"home": "E:\\oracle\\product\\11.2.0\\dbhome_1",
 				"type": "dev",
 				"provider-properties": {
 					"@dbeaver-check-schema-content@": "false",

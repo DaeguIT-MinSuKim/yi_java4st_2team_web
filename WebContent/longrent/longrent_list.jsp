@@ -3,8 +3,14 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 <%@ include file="/include/sub_longrent.jsp"%>
-
-
+<script>
+$(function(){
+	if( $(".board").length == 0 ){ // 글이 없는 경우
+		$(".no_board").show();
+		$(".board").hide();
+	}
+});
+</script>
 
 <!-- 컨텐츠 -->
 <%-- ${list } --%>
@@ -15,6 +21,7 @@
 		
 		<div class="longrent_content">
 			<table class="table_style1">
+				<!-- 글 있는 경우 -->
 				<colgroup>
 					<col width="10%">
 					<col width="">
@@ -35,13 +42,18 @@
 						<td id="name">${LongRent.name }</td>
 						<td id="date">${LongRent.writeDate }</td>
 						<td>
-						<c:choose>
-							<c:when test="${LongRent.repYn==1 }">X</c:when>
-							<c:when test="${LongRent.repYn==2 }">O</c:when>
-						</c:choose>
+							<c:choose>
+								<c:when test="${LongRent.repYn==1 }">X</c:when>
+								<c:when test="${LongRent.repYn==2 }">O</c:when>
+							</c:choose>
 						</td>
 					</tr>
 				</c:forEach>
+				
+				<!-- 글 없는 경우 -->
+				<tr class="no_board">
+					<td colspan="5">작성된 글이 없습니다.</td>
+				</tr>
 			</table>
 			
 			<a href="longRentWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>

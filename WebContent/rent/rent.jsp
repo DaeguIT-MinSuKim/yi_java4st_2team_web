@@ -34,7 +34,7 @@
 					<span>-</span>
 					<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
 					<select class="hours"><!-- script.js/rent_optionHours(); 메서드 사용 --></select>
-					<a href="javascript:;" class="btn btn-blue">차량검색</a>
+					<a href="javascript:;" class="btn btn-blue btn_carSearch">차량검색</a>
 				</div>
 			</div>
 			
