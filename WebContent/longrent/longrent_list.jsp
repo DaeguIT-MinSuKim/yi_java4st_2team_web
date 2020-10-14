@@ -3,8 +3,35 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 <%@ include file="/include/sub_longrent.jsp"%>
+<script>
+$(function(){
+	
+		if( $(".board").length == 0 ){ // 글이 없는 경우
+			$(".no_board").show();
+			$(".board").hide();
+		}
+	/* 
+		$(".date").each(function(e){
+			var str, txtDate, txtTime, newStr;
+			
+			str = $(".date").text();
+			txtDate = str.split(" ")[0];
+			txtTime = str.split(" ")[1];
+			
+			newStr = txtDate + "<br>" + txtTime;
+		
+			console.log(newStr);
+			
+			$(this).empty();
+		    $(this).empty().append(newStr);
+		    
+		    newStr = null;
+		});
 
-
+		   // $(".date").empty(); */
+	
+});
+</script>
 
 <!-- 컨텐츠 -->
 <%-- ${list } --%>
@@ -15,6 +42,7 @@
 		
 		<div class="longrent_content">
 			<table class="table_style1">
+				<!-- 글 있는 경우 -->
 				<colgroup>
 					<col width="10%">
 					<col width="">
@@ -33,15 +61,21 @@
 						<td id="no">${LongRent.no }</td>
 						<td class="tl" id="title"><a href="longRentPasswordForm.do?no=${LongRent.no}">${LongRent.title }</a></td>
 						<td id="name">${LongRent.name }</td>
-						<td id="date">${LongRent.writeDate }</td>
+						<%-- <td id="date" class="date">${LongRent.writeDate }</td> --%>
+						<td id="date"><fmt:formatDate value="${LongRent.writeDate }" pattern="yyyy-MM-dd  hh:mm:ss"/></td> 
 						<td>
-						<c:choose>
-							<c:when test="${LongRent.repYn==1 }">X</c:when>
-							<c:when test="${LongRent.repYn==2 }">O</c:when>
-						</c:choose>
+							<c:choose>
+								<c:when test="${LongRent.repYn==1 }">X</c:when>
+								<c:when test="${LongRent.repYn==2 }">O</c:when>
+							</c:choose>
 						</td>
 					</tr>
 				</c:forEach>
+				
+				<!-- 글 없는 경우 -->
+				<tr class="no_board">
+					<td colspan="5">작성된 글이 없습니다.</td>
+				</tr>
 			</table>
 			
 			<a href="longRentWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>

@@ -30,5 +30,9 @@ public class EventService {
 	public Event getEvent(String code) {
 		return dao.selectEventByCode(code);
 	}
+	
+	public int insertEvent(Event event) {
+		return dao.insertEvent(event);
+	}
 
 }

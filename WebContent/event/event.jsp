@@ -14,7 +14,7 @@
 			<ul class="event_list">
 				<c:forEach items="${eventList}" var="event">
 					<li><a href="eventView.do?code=${event.eventCode}">
-						<img src="images/event/${event.thumImage}">
+						<img src="upload/${event.thumImage}">
 						<p>${event.name}</p>
 					</a></li>
 				</c:forEach>

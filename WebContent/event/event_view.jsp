@@ -15,9 +15,10 @@
 			<div class="board_view">
 				<p class="tit">${event.name}</p>
 				<div class="content">
-					<div class="event_img"><img src="images/event/${event.viewImage}"></div>
+					<div class="event_img"><img src="upload/${event.viewImage}"></div>
 				</div>
 				<a href="event.do" class="btn_small btn_case2 floatR mt10">목록</a>
+				<a href="eventDelete.do" class="btn_small btn_case2 floatR mt10 mr5">삭제</a>
 			</div>
 		</div>
 	</div>
