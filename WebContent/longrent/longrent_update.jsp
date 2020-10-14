@@ -9,31 +9,38 @@ $(function() {
     $("#updateBtn").on("click", function(e) {
       
       e.preventDefault();
+      
+      /* updateCheck() -> return true */
+      if( updateCheck() ){
+	      
+	       var updateLR = {
+	             no: ${param.no},
+	             name: $("#name").val(),
+	             tel: $("#tel").val(),
+	             pwd: $("#pwd").val(),
+	             title: $("#title").val(),
+	             contents: $("#contents").val(),
+	             options:$('#options').val()
+	       };
+	
+	       
+	      // alert(JSON.stringify(updateLR));
+	       
+	       $.ajax({
+	          type: "post",
+	          url: "longUpdate.do",
+	          cache: false,
+	          data: JSON.stringify(updateLR),
+	          complete: function(data) {
+	             if(data.responseText == "1") { 
+	                alert("성공적으로 수정되었습니다.");
+	                window.location.href = "longRent.do";
+	             }
+	          }
+	       });
+      }
        
-       var updateLR = {
-             no: ${param.no},
-             name: $("#name").val(),
-             tel: $("#tel").val(),
-             pwd: $("#pwd").val(),
-             title: $("#title").val(),
-             contents: $("#contents").val(),
-             options:$('#options').val()
-       };
-       
-      // alert(JSON.stringify(updateLR));
-       
-       $.ajax({
-          type: "post",
-          url: "longUpdate.do",
-          cache: false,
-          data: JSON.stringify(updateLR),
-          complete: function(data) {
-             if(data.responseText == "1") { 
-                alert("성공적으로 수정되었습니다.");
-                window.location.href = "longRent.do";
-             }
-          }
-       });
+      
     });
  });	
 </script>
@@ -49,12 +56,12 @@ $(function() {
 			<input type="hidden" name="no" value="${LongRent.no }">
 				<div>
 					<div class="input_col3">
-						<input type="text" id="name" value="${LongRent.name }">
-						<input type="text" id="tel" value="${LongRent.tel }">
-						<input type="password" id="pwd" value="${LongRent.pwd }">
+						<input type="text" name= "name" id="name" value="${LongRent.name }">
+						<input type="text" name="tel" id="tel" value="${LongRent.tel }">
+						<input type="password" name="pwd" id="pwd" value="${LongRent.pwd }">
 					</div>
-					<input type="text" class="mt5"  id="title" value="${LongRent.title }">
-					<input type="text" class="write_content mt5" id="contents" value="${LongRent.contents}">
+					<input type="text" class="mt5" name="title" id="title" value="${LongRent.title }">
+					<input type="text" name="contents" class="write_content mt5" id="contents" value="${LongRent.contents}">
 					<div class="option_check" id="options">
 						<label><input type="checkbox" name="box[]" value="후방 카메라" class="checkSelect"> 후방 카메라</label>
 						<label><input type="checkbox" name="box[]" value="블루투스"class="checkSelect"> 블루투스</label>
@@ -66,7 +73,8 @@ $(function() {
 				
 	
 				<ul class="button_style3 mt50">
-					<li><input type="submit" id="updateBtn" value="수정" onclick="return updateCheck()"></li>
+					<!-- <li><input type="submit" id="updateBtn" value="수정"></li> -->
+					<li><a href="javascript:;" class="btn_small btn_case1 c_fff" id="updateBtn">수정</a></li>
 					<li><a href="longRent.do" class="btn_small btn_case2" id="add">취소</a></li>
 				</ul>
 			</form>
