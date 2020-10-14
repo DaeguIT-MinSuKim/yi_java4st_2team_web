@@ -31,7 +31,7 @@
 				<c:forEach var="LongRent" items="${list}">
 					<tr class="board">
 						<td id="no">${LongRent.no }</td>
-						<td class="tl" id="title"><a href="longRentPassword.do?no=${LongRent.no}">${LongRent.title }</a></td>
+						<td class="tl" id="title"><a href="longRentPasswordForm.do?no=${LongRent.no}">${LongRent.title }</a></td>
 						<td id="name">${LongRent.name }</td>
 						<td id="date">${LongRent.writeDate }</td>
 						<td>
@@ -42,12 +42,6 @@
 						</td>
 					</tr>
 				</c:forEach>
-				<tr>
-					<td>5</td>
-					<td class="tl"><a href="longRentPassword.do">장기렌트 대여 문의합니다!</a></td>
-					<td>김*동</td>
-					<td>2019.10.05</td>
-				</tr>
 			</table>
 			
 			<a href="longRentWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>

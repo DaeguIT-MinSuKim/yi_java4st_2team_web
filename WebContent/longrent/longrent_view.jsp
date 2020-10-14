@@ -27,11 +27,11 @@
 					<p class="t2">후방카메라, 카시트</p>
 				</div>
 				<div class="comment">
-					<form>
+				<!-- 	<form>
 						<p class="t1">답변</p>
 						<textarea></textarea>
 						<input type="submit" value="확인">
-					</form>
+					</form> -->
 					<ul class="comment_list">
 						<li>
 							<div class="tit_box">
@@ -55,7 +55,7 @@
 					</ul>
 				</div>
 				<a href="longRent.do" class="btn_small btn_case2 floatR mt10">목록</a>
-				<a href="#" class="btn_small btn_case2 floatR mt10 mr5">수정</a>
+				<a href="longUpdate.do?no=${param.no}" class="btn_small btn_case2 floatR mt10 mr5">수정</a>
 			</div>
 		</div>
 	</div>

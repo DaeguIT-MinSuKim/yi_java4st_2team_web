@@ -22,10 +22,42 @@ function longrent_pwdConfirm(){
 			return false
 		}
 		
+		var pwdCh = $("#pwdCh").val();
+		$("#pwd").val(pwdCh);
+//		alert($("#pwd").val());
+		
 		$(".board_password").submit();
 		return false;
 	});
 }
+
+// 장기렌트 수정
+function updateCheck(){
+	if(document.frm.name.value.lenght == 0) {
+		alert("변경할 이름을 입력하세요.");
+		return false;
+	}
+	if(document.frm.tel.value.lenght == 0) {
+		alert("변경할 전화번호를 입력하세요.");
+		return false;
+	}
+	if(document.frm.pwd.value.lenght == 0) {
+		alert("변경할 비밀번호를 입력하세요.");
+		return false;
+	}
+	if(document.frm.title.value.lenght == 0) {
+		alert("변경할 제목 입력하세요.");
+		return false;
+	}
+	if(document.frm.contents.value.lenght == 0) {
+		alert("변경할 내용 입력하세요.");
+		return false;
+	}
+	
+	return true;
+}
+
+
 
 //장기렌트 댓글 수정 
 function longrent_editComment(){
