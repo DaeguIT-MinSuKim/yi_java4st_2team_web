@@ -14,8 +14,6 @@ public class RentHandler implements Command {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
-		
 		return "/rent/rent.jsp";
 	}
 }

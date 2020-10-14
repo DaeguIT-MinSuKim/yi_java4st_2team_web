@@ -11,6 +11,8 @@ SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE
 
 --김대현----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
 --이승은----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SELECT * FROM LONGRENT;
@@ -26,7 +28,6 @@ UPDATE LONGRENT SET id = 'dong' WHERE NO = 1;
 
 SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT
 FROM LONGRENT WHERE NO = 3;
-
 
 INSERT INTO LONGRENT (NO, title, CONTENTS, REP_YN, WRITE_DATE, rent_term, name,tel, pwd, OPTIONS)
 VALUES(?,?,?,?,?,?,?,)

@@ -10,7 +10,7 @@ $(document).ready(function(){
 	rent_payBox(); //단기렌트 상세 - 결제정보 위치 fixed
 	rent_tabBtn(); // 단기렌트 탭버튼
 	rent_optionHours(); // selectBox option 시간 삽입
-	
+	rent_carSearch();
 });
 
 
@@ -135,5 +135,9 @@ function rent_optionHours(){
 }
 
 
-
+function rent_carSearch(){
+	$(".btn_carSearch").on("click", function(){
+		var prevVal = $(".calendar.prev").val();
+	});
+}
 

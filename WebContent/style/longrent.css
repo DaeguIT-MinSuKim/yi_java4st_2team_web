@@ -3,6 +3,8 @@
 .table_style1 th {font-weight:500; background:#f7f7f7;}
 .table_style1 td {font-weight:300;}
 
+.no_board {style:none;}
+
 @media screen and (max-width:767px){
 	.table_style1 th, .table_style1 td {font-size:13px; padding:11px 6px;}
 }
