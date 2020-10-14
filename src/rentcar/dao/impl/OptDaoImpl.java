@@ -7,19 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import rentcar.dao.KindDao;
-import rentcar.dto.Kind;
+import rentcar.dao.OptDao;
+import rentcar.dto.Opt;
 import rentcar.exception.CustomSQLException;
 
-public class KindDaoImpl implements KindDao {
-	private static final KindDaoImpl instance = new KindDaoImpl();
+public class OptDaoImpl implements OptDao {
+	private static final OptDaoImpl instance = new OptDaoImpl();
 	private Connection con;
 
-	public KindDaoImpl() {
+	public OptDaoImpl() {
 		super();
 	}
 
-	public static KindDaoImpl getInstance() {
+	public static OptDaoImpl getInstance() {
 		return instance;
 	}
 
@@ -27,22 +27,22 @@ public class KindDaoImpl implements KindDao {
 		this.con = con;
 	}
 
-	private Kind getKind(ResultSet rs) throws SQLException {
-		Kind k = new Kind();
-		k.setCode(rs.getInt("KIND_CODE"));
+	private Opt getOpt(ResultSet rs) throws SQLException {
+		Opt k = new Opt();
+		k.setCode(rs.getInt("OPT_CODE"));
 		k.setName(rs.getString("NAME"));
 		k.setFare(rs.getInt("FARE"));
 		return k;
 	}
 
 	@Override
-	public List<Kind> selectKindByAll() {
-		String sql = "SELECT * FROM KIND";
+	public List<Opt> selectOptByAll() {
+		String sql = "SELECT * FROM OPTIONS";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
-				List<Kind> list = new ArrayList<Kind>();
+				List<Opt> list = new ArrayList<Opt>();
 				do {
-					list.add(getKind(rs));
+					list.add(getOpt(rs));
 				} while (rs.next());
 				return list;
 			}
@@ -53,13 +53,13 @@ public class KindDaoImpl implements KindDao {
 	}
 
 	@Override
-	public Kind selectKindByNo(int res) {
-		String sql = "SELECT * FROM KIND WHERE KIND_CODE = ?";
+	public Opt selectOptByNo(int res) {
+		String sql = "SELECT * FROM OPTIONS WHERE OPT_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, res);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					return getKind(rs);
+					return getOpt(rs);
 				}
 			}
 		} catch (SQLException e) {
@@ -69,8 +69,8 @@ public class KindDaoImpl implements KindDao {
 	}
 
 	@Override
-	public int insertKind(Kind kind) {
-		String sql = "INSERT INTO KIND VALUES (?, ?, ?)";
+	public int insertOpt(Opt kind) {
+		String sql = "INSERT INTO OPTIONS VALUES (?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, kind.getCode());
 			pstmt.setString(2, kind.getName());
@@ -83,8 +83,8 @@ public class KindDaoImpl implements KindDao {
 	}
 
 	@Override
-	public int updateKind(Kind kind) {
-		String sql = "UPDATE KIND SET NAME = ?, FARE = ? WHERE KIND_CODE = ?";
+	public int updateOpt(Opt kind) {
+		String sql = "UPDATE OPTIONS SET NAME = ?, FARE = ? WHERE OPT_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, kind.getName());
 			pstmt.setInt(2, kind.getFare());
@@ -97,8 +97,8 @@ public class KindDaoImpl implements KindDao {
 	}
 
 	@Override
-	public int deleteKind(Kind kind) {
-		String sql = "DELETE FROM KIND WHERE KIND_CODE = ?";
+	public int deleteOpt(Opt kind) {
+		String sql = "DELETE FROM OPTIONS WHERE OPT_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, kind.getCode());
 			return pstmt.executeUpdate();

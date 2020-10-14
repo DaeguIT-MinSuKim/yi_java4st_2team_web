@@ -3,21 +3,22 @@ package rentcar.dao;
 import java.util.List;
 
 import rentcar.dto.Kind;
+import rentcar.dto.Kind;
 
 public interface KindDao {
 	
 	//차종리스트 불러오기
 	List<Kind> selectKindByAll();
 	
-	//차종 불러오기
+	//Kind 불러오기
 	Kind selectKindByNo(int res);
 	
-	//차종 추가하기
-	int insertKind(Kind kind);
+	//Kind 추가하기
+	int insertKind(Kind k);
 	
-	//차종 수정하기
-	int updateKind(Kind kind);
+	//Kind 수정하기
+	int updateKind(Kind k);
 	
-	//차종 삭제하기
-	int deleteKind(Kind kind);
+	//Kind 삭제하기
+	int deleteKind(Kind k);
 }

@@ -1,20 +1,20 @@
 package rentcar.dto;
 
-public class Kind {
+public class Opt {
 	private int code;
 	private String name;
 	private int fare;
 
-	public Kind() {
+	public Opt() {
 		super();
 	}
 
-	public Kind(int code) {
+	public Opt(int code) {
 		super();
 		this.code = code;
 	}
 
-	public Kind(int code, String name, int fare) {
+	public Opt(int code, String name, int fare) {
 		super();
 		this.code = code;
 		this.name = name;
