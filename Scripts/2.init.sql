@@ -38,6 +38,14 @@ DROP TABLE EVENT
 DROP TABLE BRAND 
 	CASCADE CONSTRAINTS;
 
+/* 이벤트보관함 */
+DROP TABLE EVENT_BOX 
+	CASCADE CONSTRAINTS;
+
+/* 옵션 보관함 */
+DROP TABLE OPT_BOX 
+	CASCADE CONSTRAINTS;
+
 /* 차량 */
 CREATE TABLE CAR (
 	car_no VARCHAR2(20) NOT NULL, /* 차량번호 */
@@ -47,7 +55,7 @@ CREATE TABLE CAR (
 	remark VARCHAR2(500), /* 차량비고 */
 	is_rent CHAR(1), /* 차량반납여부 */
 	counting INTEGER, /* 차량대여횟수 */
-	image VARCHAR2(500) /* 차량이미지 */
+	image VARCHAR(50) /* 차량이미지 */
 );
 
 COMMENT ON TABLE CAR IS '차량';
@@ -91,8 +99,7 @@ CREATE TABLE MEMBER (
 	address VARCHAR2(500), /* 주소 */
 	is_black CHAR(1), /* 블랙리스트 */
 	remark VARCHAR2(500), /* 회원비고 */
-	counting INTEGER, /* 회원대여횟수 */
-	event_box VARCHAR2(50) /* 이벤트보관함 */
+	counting INTEGER /* 회원대여횟수 */
 );
 
 COMMENT ON TABLE MEMBER IS '회원';
@@ -116,8 +123,6 @@ COMMENT ON COLUMN MEMBER.is_black IS '블랙리스트';
 COMMENT ON COLUMN MEMBER.remark IS '회원비고';
 
 COMMENT ON COLUMN MEMBER.counting IS '회원대여횟수';
-
-COMMENT ON COLUMN MEMBER.event_box IS '이벤트보관함';
 
 CREATE UNIQUE INDEX PK_MEMBER
 	ON MEMBER (
@@ -160,13 +165,12 @@ CREATE TABLE RENT (
 	rent_no VARCHAR2(20) NOT NULL, /* 대여번호 */
 	id VARCHAR2(50), /* 아이디 */
 	car_no VARCHAR2(20), /* 차량번호 */
-	ins_code INTEGER, /* 보험코드 */
 	rent_date DATE, /* 대여일 */
 	return_date DATE, /* 반납일 */
 	is_rent CHAR(1), /* 대여반납여부 */
 	fare INTEGER, /* 금액 */
 	remark VARCHAR2(500), /* 비고 */
-	opt_box VARCHAR2(50) /* 옵션보관함 */
+	ins_code INTEGER /* 보험코드 */
 );
 
 COMMENT ON TABLE RENT IS '대여관리';
@@ -176,8 +180,6 @@ COMMENT ON COLUMN RENT.rent_no IS '대여번호';
 COMMENT ON COLUMN RENT.id IS '아이디';
 
 COMMENT ON COLUMN RENT.car_no IS '차량번호';
-
-COMMENT ON COLUMN RENT.ins_code IS '보험코드';
 
 COMMENT ON COLUMN RENT.rent_date IS '대여일';
 
@@ -189,7 +191,7 @@ COMMENT ON COLUMN RENT.fare IS '금액';
 
 COMMENT ON COLUMN RENT.remark IS '비고';
 
-COMMENT ON COLUMN RENT.opt_box IS '옵션보관함';
+COMMENT ON COLUMN RENT.ins_code IS '보험코드';
 
 CREATE UNIQUE INDEX PK_RENT
 	ON RENT (
@@ -340,8 +342,8 @@ CREATE TABLE EVENT (
 	event_code INTEGER NOT NULL, /* 이벤트코드 */
 	name VARCHAR2(500), /* 이벤트명 */
 	sale INTEGER, /* 이벤트할인율 */
-	thum_image VARCHAR2(500), /* 썸네일이미지 */
-	view_image VARCHAR2(500) /* 뷰이미지 */
+	thum_image VARCHAR2(50), /* 썸네일이미지 */
+	view_image VARCHAR2(50) /* 뷰이미지 */
 );
 
 COMMENT ON TABLE EVENT IS '이벤트';
@@ -372,7 +374,7 @@ ALTER TABLE EVENT
 CREATE TABLE BRAND (
 	brand_code INTEGER NOT NULL, /* 브랜드코드 */
 	name VARCHAR2(50), /* 브랜드명 */
-	image VARCHAR2(500) /* 브랜드이미지 */
+	image VARCHAR(50) /* 브랜드이미지 */
 );
 
 COMMENT ON TABLE BRAND IS '브랜드 분류';
@@ -393,6 +395,66 @@ ALTER TABLE BRAND
 		CONSTRAINT PK_BRAND
 		PRIMARY KEY (
 			brand_code
+		);
+
+/* 이벤트보관함 */
+CREATE TABLE EVENT_BOX (
+	event_box INTEGER NOT NULL, /* 이벤트보관함번호 */
+	event_code INTEGER, /* 이벤트코드 */
+	id VARCHAR2(50), /* 아이디 */
+	is_event CHAR(1) /* 사용여부 */
+);
+
+COMMENT ON TABLE EVENT_BOX IS '이벤트보관함';
+
+COMMENT ON COLUMN EVENT_BOX.event_box IS '이벤트보관함번호';
+
+COMMENT ON COLUMN EVENT_BOX.event_code IS '이벤트코드';
+
+COMMENT ON COLUMN EVENT_BOX.id IS '아이디';
+
+COMMENT ON COLUMN EVENT_BOX.is_event IS '사용여부';
+
+CREATE UNIQUE INDEX PK_EVENT_BOX
+	ON EVENT_BOX (
+		event_box ASC
+	);
+
+ALTER TABLE EVENT_BOX
+	ADD
+		CONSTRAINT PK_EVENT_BOX
+		PRIMARY KEY (
+			event_box
+		);
+
+/* 옵션 보관함 */
+CREATE TABLE OPT_BOX (
+	opt_box INTEGER NOT NULL, /* 옵션보관함번호 */
+	opt_code INTEGER, /* 옵션코드 */
+	rent_no VARCHAR2(20), /* 대여번호 */
+	is_opt CHAR(1) /* 사용여부 */
+);
+
+COMMENT ON TABLE OPT_BOX IS '옵션 보관함';
+
+COMMENT ON COLUMN OPT_BOX.opt_box IS '옵션보관함번호';
+
+COMMENT ON COLUMN OPT_BOX.opt_code IS '옵션코드';
+
+COMMENT ON COLUMN OPT_BOX.rent_no IS '대여번호';
+
+COMMENT ON COLUMN OPT_BOX.is_opt IS '사용여부';
+
+CREATE UNIQUE INDEX PK_OPT_BOX
+	ON OPT_BOX (
+		opt_box ASC
+	);
+
+ALTER TABLE OPT_BOX
+	ADD
+		CONSTRAINT PK_OPT_BOX
+		PRIMARY KEY (
+			opt_box
 		);
 
 ALTER TABLE CAR
@@ -443,4 +505,44 @@ ALTER TABLE RENT
 		)
 		REFERENCES INSURANCE (
 			ins_code
+		);
+
+ALTER TABLE EVENT_BOX
+	ADD
+		CONSTRAINT FK_EVENT_TO_EVENT_BOX
+		FOREIGN KEY (
+			event_code
+		)
+		REFERENCES EVENT (
+			event_code
+		);
+
+ALTER TABLE EVENT_BOX
+	ADD
+		CONSTRAINT FK_MEMBER_TO_EVENT_BOX
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES MEMBER (
+			id
+		);
+
+ALTER TABLE OPT_BOX
+	ADD
+		CONSTRAINT FK_OPTIONS_TO_OPT_BOX
+		FOREIGN KEY (
+			opt_code
+		)
+		REFERENCES OPTIONS (
+			opt_code
+		);
+
+ALTER TABLE OPT_BOX
+	ADD
+		CONSTRAINT FK_RENT_TO_OPT_BOX
+		FOREIGN KEY (
+			rent_no
+		)
+		REFERENCES RENT (
+			rent_no
 		);
