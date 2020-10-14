@@ -10,9 +10,11 @@ window.name ="Parent_window";
 function niceSmsPopup(){
  	document.getElementsByName("searchId")[0].value = "ipin";
 	document.getElementsByName("searchId")[1].value = "sms";
+	document.getElementsByName("searchId")[2].value = "email";
 
 	if(document.getElementsByName("searchId")[0].checked == false
-			&& document.getElementsByName("searchId")[1].checked == false) {
+			&& document.getElementsByName("searchId")[1].checked == false
+			&& document.getElementsByName("searchId")[2].checked == false) {
 		window.alert("아이디 찾기에 사용할 본인 인증 방식을 선택하세요.");
 		document.getElementsByName("searchId")[0].focus();
 		return;
@@ -24,12 +26,14 @@ function niceSmsPopup(){
 		document.form_ipin.action = "https://cert.vno.co.kr/ipin.cb";
 		document.form_ipin.action = "";
 		document.form_ipin.submit(); */
-	}else{
+	} else if (document.getElementsByName("searchId")[1].checked == true){
 		window.open('https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb?m=auth_mobile_main', 'popupChk3', 'width=500, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
 		/* document.form_chk.target = "popupChk3";
 		document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
 		document.form_chk.action = "";
 		document.form_chk.submit(); */
+	} else {
+		
 	}
 }
 //본인인증 END

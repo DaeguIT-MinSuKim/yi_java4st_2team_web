@@ -3,6 +3,9 @@
 .table_style1 th {font-weight:500; background:#f7f7f7;}
 .table_style1 td {font-weight:300;}
 
+.no_board {display:none;}
+
+
 @media screen and (max-width:767px){
 	.table_style1 th, .table_style1 td {font-size:13px; padding:11px 6px;}
 }
@@ -69,6 +72,8 @@
 	.board_view .comment .comment_list > li textarea {width:calc(100% - 95px)}
 }
 
+
+.c_fff {color:#ffffff !important}
 
 
 .button_style3 {text-align:center;}

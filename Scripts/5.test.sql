@@ -11,6 +11,8 @@ SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE
 
 --김대현----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
 --이승은----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SELECT * FROM LONGRENT;
@@ -27,14 +29,13 @@ UPDATE LONGRENT SET id = 'dong' WHERE NO = 1;
 SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT
 FROM LONGRENT WHERE NO = 3;
 
-
 INSERT INTO LONGRENT (NO, title, CONTENTS, REP_YN, WRITE_DATE, rent_term, name,tel, pwd, OPTIONS)
 VALUES(?,?,?,?,?,?,?,)
 
-DELETE FROM longrent WHERE NO = 19;
+DELETE FROM longrent WHERE NO = 28;
 
 UPDATE LONGRENT SET TITLE = ?, contents = ?, RENT_TERM = ? , name= ? , tel =? , PWD = ?, OPTIONS = ? WHERE NO = ?;
-UPDATE LONGRENT SET TITLE = '김창동입니다. 답변을 주세요', contents = '전동킥보드는 장기렌트 안 되나요?', RENT_TERM = '한달' , name= '동자승' , tel ='010-2222-1111' , PWD = '1111', OPTIONS = '풀옵션' WHERE NO = 3;
+UPDATE LONGRENT SET TITLE = '김창동입니다. 답변을 주세요', contents = '전동킥보드는 장기렌트 안 되나요?', RENT_TERM = '한달' , name= '동자승' , tel ='010-2222-1111' , PWD = '1111', OPTIONS = '풀옵션' WHERE NO = 22;
 
 SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM longrent WHERE NUM =? PWD = ?;
 

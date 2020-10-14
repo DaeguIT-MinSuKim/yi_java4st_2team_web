@@ -10,7 +10,7 @@ $(document).ready(function(){
 	rent_payBox(); //단기렌트 상세 - 결제정보 위치 fixed
 	rent_tabBtn(); // 단기렌트 탭버튼
 	rent_optionHours(); // selectBox option 시간 삽입
-	
+	rent_carSearch();
 });
 
 
@@ -33,24 +33,50 @@ function longrent_pwdConfirm(){
 
 // 장기렌트 수정
 function updateCheck(){
-	if(document.frm.name.value.lenght == 0) {
+	if(document.frm.name.value.length == 0) {
 		alert("변경할 이름을 입력하세요.");
 		return false;
 	}
-	if(document.frm.tel.value.lenght == 0) {
+	if(document.frm.tel.value.length == 0) {
 		alert("변경할 전화번호를 입력하세요.");
 		return false;
 	}
-	if(document.frm.pwd.value.lenght == 0) {
+	if(document.frm.pwd.value.length == 0) {
 		alert("변경할 비밀번호를 입력하세요.");
 		return false;
 	}
-	if(document.frm.title.value.lenght == 0) {
+	if(document.frm.title.value.length == 0) {
 		alert("변경할 제목 입력하세요.");
 		return false;
 	}
-	if(document.frm.contents.value.lenght == 0) {
+	if(document.frm.contents.value.length == 0) {
 		alert("변경할 내용 입력하세요.");
+		return false;
+	}
+	
+	return true;
+}
+
+// 장기렌트 글쓰기
+function writeCheck(){
+	if(document.frm.name.value.length == 0) {
+		alert("이름은 필수항목입니다.");
+		return false;
+	}
+	if(document.frm.tel.value.length == 0) {
+		alert("전화번호은 필수항목입니다.");
+		return false;
+	}
+	if(document.frm.pwd.value.length == 0) {
+		alert("비밀번호는 필수항목입니다.");
+		return false;
+	}
+	if(document.frm.title.value.length == 0) {
+		alert("제목을 입력해주세요.");
+		return false;
+	}
+	if(document.frm.contents.value.length == 0) {
+		alert("문의 내용을 입력해주세요.");
 		return false;
 	}
 	
@@ -135,5 +161,9 @@ function rent_optionHours(){
 }
 
 
-
+function rent_carSearch(){
+	$(".btn_carSearch").on("click", function(){
+		var prevVal = $(".calendar.prev").val();
+	});
+}
 
