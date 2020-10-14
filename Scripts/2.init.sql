@@ -237,8 +237,8 @@ CREATE TABLE LONGRENT (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
 	contents VARCHAR2(500), /* 내용 */
-	rep_yn CHAR(1), /* 답변여부 */
-	write_date DATE, /* 날짜 */
+	rep_yn CHAR(1) DEFAULT'1', /* 답변여부 */
+	write_date DATE DEFAULT SYSDATE, /* 날짜 */
 	rent_term VARCHAR2(50), /* 대여 */
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */

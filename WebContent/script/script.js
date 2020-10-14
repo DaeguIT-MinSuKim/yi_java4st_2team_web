@@ -57,6 +57,32 @@ function updateCheck(){
 	return true;
 }
 
+// 장기렌트 글쓰기
+function writeCheck(){
+	if(document.frm.name.value.length == 0) {
+		alert("이름은 필수항목입니다.");
+		return false;
+	}
+	if(document.frm.tel.value.length == 0) {
+		alert("전화번호은 필수항목입니다.");
+		return false;
+	}
+	if(document.frm.pwd.value.length == 0) {
+		alert("비밀번호는 필수항목입니다.");
+		return false;
+	}
+	if(document.frm.title.value.length == 0) {
+		alert("제목을 입력해주세요.");
+		return false;
+	}
+	if(document.frm.contents.value.length == 0) {
+		alert("문의 내용을 입력해주세요.");
+		return false;
+	}
+	
+	return true;
+}
+
 
 
 //장기렌트 댓글 수정 

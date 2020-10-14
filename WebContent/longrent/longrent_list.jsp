@@ -5,10 +5,31 @@
 <%@ include file="/include/sub_longrent.jsp"%>
 <script>
 $(function(){
-	if( $(".board").length == 0 ){ // 글이 없는 경우
-		$(".no_board").show();
-		$(".board").hide();
-	}
+	
+		if( $(".board").length == 0 ){ // 글이 없는 경우
+			$(".no_board").show();
+			$(".board").hide();
+		}
+	/* 
+		$(".date").each(function(e){
+			var str, txtDate, txtTime, newStr;
+			
+			str = $(".date").text();
+			txtDate = str.split(" ")[0];
+			txtTime = str.split(" ")[1];
+			
+			newStr = txtDate + "<br>" + txtTime;
+		
+			console.log(newStr);
+			
+			$(this).empty();
+		    $(this).empty().append(newStr);
+		    
+		    newStr = null;
+		});
+
+		   // $(".date").empty(); */
+	
 });
 </script>
 
@@ -40,7 +61,8 @@ $(function(){
 						<td id="no">${LongRent.no }</td>
 						<td class="tl" id="title"><a href="longRentPasswordForm.do?no=${LongRent.no}">${LongRent.title }</a></td>
 						<td id="name">${LongRent.name }</td>
-						<td id="date">${LongRent.writeDate }</td>
+						<%-- <td id="date" class="date">${LongRent.writeDate }</td> --%>
+						<td id="date"><fmt:formatDate value="${LongRent.writeDate }" pattern="yyyy-MM-dd  hh:mm:ss"/></td> 
 						<td>
 							<c:choose>
 								<c:when test="${LongRent.repYn==1 }">X</c:when>
