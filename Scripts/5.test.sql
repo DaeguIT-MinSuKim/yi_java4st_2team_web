@@ -42,7 +42,6 @@ SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIO
 SELECT * FROM LONGRENT;
 --문중희----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 SELECT * 
   FROM MEMBER;
 
