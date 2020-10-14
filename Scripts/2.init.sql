@@ -165,12 +165,12 @@ CREATE TABLE RENT (
 	rent_no VARCHAR2(20) NOT NULL, /* 대여번호 */
 	id VARCHAR2(50), /* 아이디 */
 	car_no VARCHAR2(20), /* 차량번호 */
+	ins_code INTEGER, /* 보험코드 */
 	rent_date DATE, /* 대여일 */
 	return_date DATE, /* 반납일 */
 	is_rent CHAR(1), /* 대여반납여부 */
 	fare INTEGER, /* 금액 */
-	remark VARCHAR2(500), /* 비고 */
-	ins_code INTEGER /* 보험코드 */
+	remark VARCHAR2(500) /* 비고 */
 );
 
 COMMENT ON TABLE RENT IS '대여관리';
