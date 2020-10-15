@@ -5,7 +5,7 @@ public class Car {
 	private String No;		// 차번호(기본키)
 	private String Name;	// 차량이름
 	private int kind;		// 차량분류
-	private int brand;	// 브랜드분류
+	private int brand;		// 브랜드분류
 	private String remark;	// 차량비고
 	private String is_rent;	// 반납여부
 	private int counting;	// 대여횟수
