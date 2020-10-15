@@ -60,7 +60,11 @@ $(function() {
 						<input type="password" name="pwd" id="pwd" value="${LongRent.pwd }">
 					</div>
 					<input type="text" class="mt5" name="title" id="title" value="${LongRent.title }">
-					<input type="text" name="contents" class="write_content mt5" id="contents" value="${LongRent.contents}">
+					<%-- <input type="text" name="contents" class="write_content mt5" id="contents" value="${LongRent.contents}"> --%>
+					<textarea class="write_content mt5" name="contents" id="contents"></textarea>
+    					<script type="text/javascript">
+					        CKEDITOR.replace('CKBox', {height: 500 });
+					    </script>	
 					<div class="option_check" id="options">
 						<label><input type="checkbox" name="box[]" value="후방 카메라" class="checkSelect"> 후방 카메라</label>
 						<label><input type="checkbox" name="box[]" value="블루투스"class="checkSelect"> 블루투스</label>
