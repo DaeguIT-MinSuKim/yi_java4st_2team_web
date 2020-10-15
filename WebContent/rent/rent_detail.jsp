@@ -67,6 +67,12 @@
 					</form>	
 					
 					<hr>
+					<div class="h30"></div>
+					
+					<h4>렌터카 대여 위치 (동자승 렌터카)</h4>
+					<div id="kakaoMap" style="height:300px;"></div>
+	
+					<hr>
 				
 					<div class="noticeText">
 						<div class="box1"> 
