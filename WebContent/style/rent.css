@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+#kakaoMap {height:300px;}
+
 /* 차량 탭 */
 .page_rent .rentcarList_tabBtn {display:flex; border-bottom:1px solid #000; margin:20px 0; flex-wrap:wrap; text-align:center;}
 .page_rent .rentcarList_tabBtn a {display:inline-block; background:#eee; padding:0 35px; height:40px; line-height:45px; font-size:14px;}
@@ -70,6 +72,9 @@
 .page_listdDtl .payBox ul li .left { font-weight:500}
 .page_listdDtl .payBox ul li .right {position:absolute; right:0; top:20px;}
 .page_listdDtl .payBox .btn-carmore {margin-top:15px;}
+
+.page_listdDtl .mapInfo {padding-top:15px}
+.page_listdDtl .mapInfo * {font-size:15px}
 
 .fixOn {position:fixed; top:20px; max-width:397px;
 	right:calc((100% - 1190px) / 2);

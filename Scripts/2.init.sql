@@ -343,7 +343,8 @@ CREATE TABLE EVENT (
 	name VARCHAR2(500), /* 이벤트명 */
 	sale INTEGER, /* 이벤트할인율 */
 	thum_image VARCHAR2(50), /* 썸네일이미지 */
-	view_image VARCHAR2(50) /* 뷰이미지 */
+	view_image VARCHAR2(50), /* 뷰이미지 */
+	is_event CHAR(1)
 );
 
 COMMENT ON TABLE EVENT IS '이벤트';

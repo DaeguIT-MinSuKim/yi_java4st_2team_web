@@ -40,6 +40,10 @@
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
 	<script type="text/javascript" src="./script/form.js"></script>
 	<script type="text/javascript" src="./script/join.js"></script>
+<<<<<<< HEAD
+	
+=======
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 	
 	
 	<!-- 메인 슬라이더 -->
@@ -67,8 +71,14 @@
  	<link  type="text/css" href="./style/swiper.min.css" rel="stylesheet">
    	<script type="text/javascript" src="./script/swiper.min.js"></script>
 
+<<<<<<< HEAD
+	<!-- ck에디터 -->
+	<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="./ckeditor/ckeditor_init.js"></script>
+=======
 	<!-- 채널톡 -->
 	<script type="text/javascript" src="./script/channelTalk.js"></script>
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 	<!-- 트랜지션 디폴트 세팅 -->
 	<script type="text/javascript">
@@ -101,33 +111,19 @@
 			<h1><a href="index.do"><img src="./images/common/logo.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 			<div class="side">
 				<ul>
-					<li class="home">
-						<a href="index.do">HOME</a>
-					</li>
+					<li class="home"><a href="index.do">HOME</a></li>
 					<c:choose>
 						<c:when test="${empty sessionScope.loginUser}">
-							<li>
-								<a class="login" href="login.do"><span>로그인</span></a>
-							</li>
-							<li>
-								<a class="join" href="joinAgree.do">회원가입</a>
-							</li>
+							<li><a class="login" href="login.do"><span>로그인</span></a></li>
+							<li><a class="join" href="joinAgree.do">회원가입</a></li>
 						</c:when>
 						<c:otherwise>
-							<li>
-	         					${sessionScope.loginUser.name}(${sessionScope.loginUser.id})님
-	      					</li>
-	      					<li>
-	      						<a class="logout" style="cursor:pointer;" id="logout"><span>로그아웃</span></a>
-	      					</li>
-							<li>
-								<a class="mypage" href="mypage.do">마이페이지</a>
-							</li>
+							<li>${sessionScope.loginUser.name}(${sessionScope.loginUser.id})님</li>
+	      					<li><a class="logout" style="cursor:pointer;" id="logout"><span>로그아웃</span></a></li>
+							<li><a class="mypage" href="mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
-					<li>
-						<a class="admin" href="admin.do">관리자</a>
-					</li>
+					<li><a class="admin" href="admin.do">관리자</a></li>
 				</ul>
 			</div>
 
@@ -149,15 +145,22 @@
 					<li><a href="longRent.do">장기렌트</a></li>
 					<li><a href="event.do">이벤트</a></li>
 					<li><a href="mypage.do">마이페이지</a></li>
-				
 					<li class="mobile" data-device="mobile">
 						<a href="./member/login.jsp">회원관리</a>
 						<ul>
+						<c:choose>
+							<c:when test="${empty sessionScope.loginUser}">
+								<li><a href="login.do">로그인</a></li>
+								<li><a href="joinAgree.do">회원가입</a></li>
+								<li><a href="search.do">아이디/비밀번호찾기</a></li>
+							</c:when>
+								
+							<c:otherwise>
+								<li><a class="logout" style="cursor:pointer;" id="logout" href="logout.do">로그아웃</a></li>
+							</c:otherwise>
+						</c:choose>
 							<li><a href="mypage.do">마이페이지</a></li>
 							<li><a href="mypage.do">렌트중인차량</a></li>
-							<li><a href="login.do">로그인</a></li>
-							<li><a href="search.do">아이디/비밀번호찾기</a></li>
-							<li><a href="joinAgree.do">회원가입</a></li>
 							<li><a href="agree.do">이용약관</a></li>
 							<li><a href="privacy.do">개인정보취급방침</a></li>
 						</ul>

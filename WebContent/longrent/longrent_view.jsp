@@ -24,7 +24,7 @@
 				</div>
 				<div class="option">
 					<p class="t1">옵션</p>
-					<p class="t2">후방카메라, 카시트</p>
+					<p class="t2">${LongRent.options }</p>
 				</div>
 				<div class="comment">
 				<!-- 	<form>

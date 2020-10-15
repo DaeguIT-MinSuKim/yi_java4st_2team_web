@@ -83,7 +83,7 @@
 
 .btn_medium {display:block; width:150px; line-height:43px; border:1px solid #4a80e5; border-radius:4px; text-align:center; font-size:1em;}
 
-.btn_small {display:block; width:120px; line-height:40px; border:1px solid #4a80e5; font-size:0.93em; text-align:center; border-radius:4px; margin:0 auto; cursor:pointer;}
+.btn_small {display:block; width:120px !important; height:auto !important; line-height:40px; border:1px solid #4a80e5; font-size:0.93em; text-align:center; border-radius:4px; margin:0 auto; cursor:pointer;}
 
 .btn_case1 {background:#4a80e5; color:#fff;}
 .btn_case2 {background:#555; border-color:#555; color:#fff !important;}
@@ -113,7 +113,7 @@
 
 	.btn_medium {width:140px; line-height:40px;}
 
-	.btn_small {width:100px; line-height:38px}
+	.btn_small {width:100px !important; line-height:38px !important}
 }
 
 
@@ -123,7 +123,7 @@
 
 	.btn_medium {width:130px; line-height:36px;}
 
-	.btn_small {width:90px; line-height:34px;}
+	.btn_small {width:90px !important; line-height:34px !important;}
 }
 
 .option_check {width:100%; position:relative; padding:8px; border-radius:5px; border:1px solid #ddd;}

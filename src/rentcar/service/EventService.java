@@ -34,5 +34,13 @@ public class EventService {
 	public int insertEvent(Event event) {
 		return dao.insertEvent(event);
 	}
+	
+	public int updateEvent(Event event) {
+		return dao.updateEvent(event);
+	}
+	
+	public int deleteEvent(String code) {
+		return dao.deleteEvent(code);
+	}
 
 }
