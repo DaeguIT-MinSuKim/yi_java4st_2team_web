@@ -40,7 +40,10 @@
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
 	<script type="text/javascript" src="./script/form.js"></script>
 	<script type="text/javascript" src="./script/join.js"></script>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 	
 	
 	<!-- 메인 슬라이더 -->
@@ -59,14 +62,23 @@
 	<!--[if lt IE 10]>
 		<link href="./style/ie.warning.css" rel="stylesheet" type="text/css">
 	<![endif]-->
+
+	<!-- 카카오지도 API -->	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1ef72da273f6433ac6899e8cec9ac49b"></script>
+	<script type="text/javascript" src="./script/kakaoMap_init.js"></script>
 	
   	<!-- 슬라이드 플러그인 -->
  	<link  type="text/css" href="./style/swiper.min.css" rel="stylesheet">
    	<script type="text/javascript" src="./script/swiper.min.js"></script>
 
+<<<<<<< HEAD
 	<!-- ck에디터 -->
 	<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" src="./ckeditor/ckeditor_init.js"></script>
+=======
+	<!-- 채널톡 -->
+	<script type="text/javascript" src="./script/channelTalk.js"></script>
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 	<!-- 트랜지션 디폴트 세팅 -->
 	<script type="text/javascript">
@@ -78,63 +90,18 @@
 		);
 	});
 	
-	/* 채널톡 연결 */
-	<!-- Channel Plugin Scripts -->
-	 (function() {
-	   var w = window;
-	   if (w.ChannelIO) {
-	     return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
-	   }
-	   var ch = function() {
-	     ch.c(arguments);
-	   };
-	   ch.q = [];
-	   ch.c = function(args) {
-	     ch.q.push(args);
-	   };
-	   w.ChannelIO = ch;
-	   function l() {
-	     if (w.ChannelIOInitialized) {
-	       return;
-	     }
-	     w.ChannelIOInitialized = true;
-	     var s = document.createElement('script');
-	     s.type = 'text/javascript';
-	     s.async = true;
-	     s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-	     s.charset = 'UTF-8';
-	     var x = document.getElementsByTagName('script')[0];
-	     x.parentNode.insertBefore(s, x);
-	   }
-	   if (document.readyState === 'complete') {
-	     l();
-	   } else if (window.attachEvent) {
-	     window.attachEvent('onload', l);
-	   } else {
-	     window.addEventListener('DOMContentLoaded', l, false);
-	     window.addEventListener('load', l, false);
-	   }
-	 })();
-	 ChannelIO('boot', {
-	   "pluginKey": "31509d5e-8324-4195-8eff-9ac8231365ba"
-	 });
-	<!-- End Channel Plugin -->
-	</script>
 	
-	<script>
-		$(function() {
-			$('#logout').on("click", function() {
-				if (confirm("${sessionScope.loginUser.name}님 로그아웃 하시겠습니까?") == true) {	// 확인
-					location.href="logout.do";
-			    } else {	// 취소
-			    	return;
-			    }
-				
-			});
+	$(function() {
+		$('#logout').on("click", function() {
+			if (confirm("${sessionScope.loginUser.name}님 로그아웃 하시겠습니까?") == true) {	// 확인
+				location.href="logout.do";
+		    } else {	// 취소
+		    	return;
+		    }
 			
 		});
+	});
 	</script>
-	
 </head>
 
 <body>

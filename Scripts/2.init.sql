@@ -97,9 +97,9 @@ CREATE TABLE MEMBER (
 	license VARCHAR2(20), /* 면허번호 */
 	email VARCHAR2(50), /* 이메일 */
 	address VARCHAR2(500), /* 주소 */
-	is_black CHAR(1), /* 블랙리스트 */
+	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
 	remark VARCHAR2(500), /* 회원비고 */
-	counting INTEGER /* 회원대여횟수 */
+	counting INTEGER DEFAULT 0 /* 회원대여횟수 */
 );
 
 COMMENT ON TABLE MEMBER IS '회원';
@@ -181,6 +181,8 @@ COMMENT ON COLUMN RENT.id IS '아이디';
 
 COMMENT ON COLUMN RENT.car_no IS '차량번호';
 
+COMMENT ON COLUMN RENT.ins_code IS '보험코드';
+
 COMMENT ON COLUMN RENT.rent_date IS '대여일';
 
 COMMENT ON COLUMN RENT.return_date IS '반납일';
@@ -190,8 +192,6 @@ COMMENT ON COLUMN RENT.is_rent IS '대여반납여부';
 COMMENT ON COLUMN RENT.fare IS '금액';
 
 COMMENT ON COLUMN RENT.remark IS '비고';
-
-COMMENT ON COLUMN RENT.ins_code IS '보험코드';
 
 CREATE UNIQUE INDEX PK_RENT
 	ON RENT (
@@ -237,8 +237,8 @@ CREATE TABLE LONGRENT (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
 	contents VARCHAR2(500), /* 내용 */
-	rep_yn CHAR(1) DEFAULT'1', /* 답변여부 */
-	write_date DATE DEFAULT SYSDATE, /* 날짜 */
+	rep_yn CHAR(1), /* 답변여부 */
+	write_date DATE, /* 날짜 */
 	rent_term VARCHAR2(50), /* 대여 */
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
@@ -431,8 +431,7 @@ ALTER TABLE EVENT_BOX
 CREATE TABLE OPT_BOX (
 	opt_box INTEGER NOT NULL, /* 옵션보관함번호 */
 	opt_code INTEGER, /* 옵션코드 */
-	rent_no VARCHAR2(20), /* 대여번호 */
-	is_opt CHAR(1) /* 사용여부 */
+	rent_no VARCHAR2(20) /* 대여번호 */
 );
 
 COMMENT ON TABLE OPT_BOX IS '옵션 보관함';
@@ -442,8 +441,6 @@ COMMENT ON COLUMN OPT_BOX.opt_box IS '옵션보관함번호';
 COMMENT ON COLUMN OPT_BOX.opt_code IS '옵션코드';
 
 COMMENT ON COLUMN OPT_BOX.rent_no IS '대여번호';
-
-COMMENT ON COLUMN OPT_BOX.is_opt IS '사용여부';
 
 CREATE UNIQUE INDEX PK_OPT_BOX
 	ON OPT_BOX (

@@ -52,12 +52,11 @@ public class MemberDaoImpl implements MemberDao {
 		String tel = rs.getString("TEL");
 		String license = rs.getString("LICENSE");
 		String email = rs.getString("EMAIL");
-		String is_black = rs.getString("IS_BLACK");
 		String address = rs.getString("ADDRESS");
+		String is_black = rs.getString("IS_BLACK");
 		String remark = rs.getString("REMARK");
-		Integer count = rs.getInt("COUNT");
-		String event = rs.getString("EVENT");
-		return new Member(id, pwd, name, tel, license, email, is_black, address, remark, count, event);
+		Integer counting = rs.getInt("COUNTING");
+		return new Member(id, pwd, name, tel, license, email, address, is_black, remark, counting);
 	}
 
 	@Override
@@ -80,13 +79,13 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertMember(Member member) {
-		String sql = "INSERT INTO MEMBER(ID, PWD, LICENSE, NAME, TEL, EMAIL, ADDRESS, REMARK) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS, REMARK) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPwd());
-			pstmt.setString(3, member.getLicense());
-			pstmt.setString(4, member.getName());
-			pstmt.setString(5, member.getTel());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getTel());
+			pstmt.setString(5, member.getLicense());
 			pstmt.setString(6, member.getEmail());
 			pstmt.setString(7, member.getAddress());
 			pstmt.setString(8, member.getRemark());
