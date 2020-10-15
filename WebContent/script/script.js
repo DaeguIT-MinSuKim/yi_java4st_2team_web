@@ -9,8 +9,8 @@ $(document).ready(function(){
 	rent_btnNotice(); //단기렌트 상세 - 버튼 '렌트시 유의사항 보기'
 	rent_payBox(); //단기렌트 상세 - 결제정보 위치 fixed
 	rent_tabBtn(); // 단기렌트 탭버튼
-	rent_optionHours(); // selectBox option 시간 삽입
-	rent_carSearch();
+	rent_optionHours(); // 단기렌트 - selectBox option 시간 삽입
+	rent_carSearch(); // 단기렌트 - 차량 검색
 });
 
 
@@ -49,10 +49,10 @@ function updateCheck(){
 		alert("변경할 제목 입력하세요.");
 		return false;
 	}
-	if(document.frm.contents.value.length == 0) {
-		alert("변경할 내용 입력하세요.");
-		return false;
-	}
+//	if(document.frm.contents.value.length == 0) {
+//		alert("변경할 내용 입력하세요.");
+//		return false;
+//	}
 	
 	return true;
 }
@@ -75,10 +75,10 @@ function writeCheck(){
 		alert("제목을 입력해주세요.");
 		return false;
 	}
-	if(document.frm.contents.value.length == 0) {
-		alert("문의 내용을 입력해주세요.");
-		return false;
-	}
+//	if(document.frm.contents.value.length == 0) {
+//		alert("문의 내용을 입력해주세요.");
+//		return false;
+//	}
 	
 	return true;
 }
@@ -109,22 +109,22 @@ function rent_btnNotice(){
 // 단기렌트 상세 - 결제정보 위치 fixed
 function rent_payBox(){
 	$el_class_payBox = $(".payBox").eq(0);
-	
-	$(window).scroll(function(){
-		if( $(window).width() > 992 ){
-			var fixTop = $('.carInfoBox').offset().top - 20;
-			var scTop = $(window).scrollTop();
-			
-			if( fixTop <= scTop ){
-				$el_class_payBox.addClass('fixOn');
+	if( $el_class_payBox.length > 0 ){
+		$(window).scroll(function(){
+			if( $(window).width() > 992 ){
+				var fixTop = $('.carInfoBox').offset().top - 20;
+				var scTop = $(window).scrollTop();
+				
+				if( fixTop <= scTop ){
+					$el_class_payBox.addClass('fixOn');
+				}else{
+					$el_class_payBox.removeClass('fixOn');
+				}
 			}else{
 				$el_class_payBox.removeClass('fixOn');
 			}
-		}else{
-			$el_class_payBox.removeClass('fixOn');
-		}
-	});
-	
+		});
+	}
 		
 }
 
@@ -150,7 +150,7 @@ function rent_optionHours(){
 		var add_option = "";
 		
 		for( var i=0; i < 24; i++ ){
-			add_option += "<option>" + i + "시</option>";
+			add_option += "<option value="+ i +">" + i + "시</option>";
 		}
 		
 		$(".hours").each(function(){
@@ -161,9 +161,52 @@ function rent_optionHours(){
 }
 
 
+// 단기렌트 - 차량 검색
 function rent_carSearch(){
 	$(".btn_carSearch").on("click", function(){
-		var prevVal = $(".calendar.prev").val();
+		var minDateVal = $(".calendar.prev").val().trim();
+		var maxDateVal = $(".calendar.next").val().trim();
+		var minHourVal = $(".calendar.prev").next(".hours").val();
+		var maxHourVal = $(".calendar.next").next(".hours").val();
+		
+		if( minDateVal == "" ){ // 대여일 선택 안한 경우
+			alert("차량 검색할 날짜를 선택해주세요");
+			return false;
+			
+		}else{     // 대여일 선택
+			
+			if( maxDateVal == "" ){ // 반납일 선택 안한 경우
+				var dateArr = {
+					"minDateVal":minDateVal,
+					"maxDateVal":maxDateVal
+				};
+				
+//				$.ajax({
+
+//				});
+				
+			}else{ // 반납일 선택
+				
+				var dateArr = {
+					"minDateVal":minDateVal,
+					"maxDateVal":maxDateVal,
+					"minHourVal":minHourVal,
+					"maxHourVal":maxHourVal
+				};
+				
+//				$.ajax({
+//			        type : 'GET',
+//			        url : "rent.do",
+//			        data : {dateArr},
+//			        success : function (data) {
+
+//			        }
+//				});
+
+			}
+		}
+		
 	});
+	
 }
 
