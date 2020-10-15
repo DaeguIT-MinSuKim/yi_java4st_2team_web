@@ -3,9 +3,13 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 <%@ include file="/include/sub_longrent.jsp"%>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 <script>
 $(function() {
+	
+	
+	
     $("#updateBtn").on("click", function(e) {
       
       e.preventDefault();
@@ -61,10 +65,8 @@ $(function() {
 					</div>
 					<input type="text" class="mt5" name="title" id="title" value="${LongRent.title }">
 					<%-- <input type="text" name="contents" class="write_content mt5" id="contents" value="${LongRent.contents}"> --%>
-					<textarea class="write_content mt5" name="contents" id="contents"></textarea>
-    					<script type="text/javascript">
-					        CKEDITOR.replace('CKBox', {height: 500 });
-					    </script>	
+					<textarea class="write_content mt5" name="contents" id="contents_ckeditor"></textarea>
+					
 					<div class="option_check" id="options">
 						<label><input type="checkbox" name="box[]" value="후방 카메라" class="checkSelect"> 후방 카메라</label>
 						<label><input type="checkbox" name="box[]" value="블루투스"class="checkSelect"> 블루투스</label>
