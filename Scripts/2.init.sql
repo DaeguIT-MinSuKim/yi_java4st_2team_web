@@ -97,9 +97,9 @@ CREATE TABLE MEMBER (
 	license VARCHAR2(20), /* 면허번호 */
 	email VARCHAR2(50), /* 이메일 */
 	address VARCHAR2(500), /* 주소 */
-	is_black CHAR(1), /* 블랙리스트 */
+	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
 	remark VARCHAR2(500), /* 회원비고 */
-	counting INTEGER /* 회원대여횟수 */
+	counting INTEGER DEFAULT 0 /* 회원대여횟수 */
 );
 
 COMMENT ON TABLE MEMBER IS '회원';
