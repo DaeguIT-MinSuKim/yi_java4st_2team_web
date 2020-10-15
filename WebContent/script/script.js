@@ -11,6 +11,9 @@ $(document).ready(function(){
 	rent_tabBtn(); // 단기렌트 탭버튼
 	rent_optionHours(); // selectBox option 시간 삽입
 	rent_carSearch();
+	
+	//이벤트
+	event_popup();
 });
 
 
@@ -167,3 +170,17 @@ function rent_carSearch(){
 	});
 }
 
+
+
+// event view 알림 팝업
+function event_popup(){
+	$(".event_popup .cancle").click(function(){
+		$(".event_popup").hide()
+		
+		return false;
+	})
+	
+	$(".event_img").click(function(){
+		$(".event_popup").css({display:"table"})
+	})
+}
