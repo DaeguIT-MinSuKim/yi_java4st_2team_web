@@ -40,7 +40,7 @@
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
 	<script type="text/javascript" src="./script/form.js"></script>
 	<script type="text/javascript" src="./script/join.js"></script>
-	<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+	
 	
 	
 	<!-- 메인 슬라이더 -->
@@ -63,6 +63,10 @@
   	<!-- 슬라이드 플러그인 -->
  	<link  type="text/css" href="./style/swiper.min.css" rel="stylesheet">
    	<script type="text/javascript" src="./script/swiper.min.js"></script>
+
+	<!-- ck에디터 -->
+	<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="./ckeditor/ckeditor_init.js"></script>
 
 	<!-- 트랜지션 디폴트 세팅 -->
 	<script type="text/javascript">
