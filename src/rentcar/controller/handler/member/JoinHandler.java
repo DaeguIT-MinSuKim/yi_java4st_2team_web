@@ -2,15 +2,13 @@ package rentcar.controller.handler.member;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import rentcar.controller.Command;
 import rentcar.dto.Member;
@@ -37,9 +35,6 @@ public class JoinHandler implements Command {
 
 			int res = service.insertMember(joinMember);
 			response.getWriter().print(res);
-
-			HttpSession session = request.getSession();
-			session.setAttribute("joinMember", joinMember);
 
 			return "member/join_end.jsp";
 		}
