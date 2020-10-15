@@ -15,11 +15,11 @@ if( 로그인했으면 ){
 <!-- 컨텐츠 -->
 <div class="contents_box padLeft0">
 	<div class="contents">
-		<h3>개인정보취급방침</h3>
-		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 개인정보취급방침</div>
+		<h3>이메일 집단수집거부</h3>
+		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 이메일 집단수집거부</div>
 		
 		<div class="container-fluid col-xs-12 privacy">	
-			<%@ include file="/include/privacy_inner.jsp"%>	
+			<%@ include file="/include/preventEmail_inner.jsp"%>	
 		</div>
 	</div>
 

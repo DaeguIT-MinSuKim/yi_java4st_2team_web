@@ -19,7 +19,7 @@
 				</c:choose>
 				<li><a href="agree.do">이용약관</a></li>
 				<li><a href="privacy.do">개인정보취급방침</a></li>
-				<li><a href="javascript:;">이메일집단수집거부</a></li>
+				<li><a href="preventEmail.do">이메일집단수집거부</a></li>
 			</ul>
 			<div class="clear"></div>
 			<address class="box col-md-8 col-sm-12 col-xs-12">
