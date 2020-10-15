@@ -62,7 +62,7 @@ $(function(){
 						<td class="tl" id="title"><a href="longRentPasswordForm.do?no=${LongRent.no}">${LongRent.title }</a></td>
 						<td id="name">${LongRent.name }</td>
 						<%-- <td id="date" class="date">${LongRent.writeDate }</td> --%>
-						<td id="date"><fmt:formatDate value="${LongRent.writeDate }" pattern="yyyy-MM-dd  hh:mm:ss"/></td> 
+						<td id="date"><fmt:formatDate value="${LongRent.writeDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td> 
 						<td>
 							<c:choose>
 								<c:when test="${LongRent.repYn==1 }">X</c:when>
