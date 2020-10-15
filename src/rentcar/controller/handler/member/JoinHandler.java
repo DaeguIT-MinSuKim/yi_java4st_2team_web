@@ -2,6 +2,7 @@ package rentcar.controller.handler.member;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,13 +31,13 @@ public class JoinHandler implements Command {
 		} else {
 			System.out.println("POST");
 
-			Gson gson = new GsonBuilder().serializeNulls().create();
+			Gson gson = new Gson();
 			Member joinMember = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Member.class);
 			System.out.println("joinMember > " + joinMember);
 
 			int res = service.insertMember(joinMember);
 			response.getWriter().print(res);
-			
+
 			HttpSession session = request.getSession();
 			session.setAttribute("joinMember", joinMember);
 

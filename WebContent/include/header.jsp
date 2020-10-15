@@ -40,6 +40,7 @@
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
 	<script type="text/javascript" src="./script/form.js"></script>
 	<script type="text/javascript" src="./script/join.js"></script>
+	<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 	
 	
 	<!-- 메인 슬라이더 -->
