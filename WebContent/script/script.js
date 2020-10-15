@@ -156,7 +156,6 @@ function rent_optionHours(){
 		$(".hours").each(function(){
 			$(this).append(add_option);
 		});
-		
 	}
 }
 

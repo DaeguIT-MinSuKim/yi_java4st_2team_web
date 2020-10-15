@@ -24,7 +24,7 @@
 			</div>
 			
  			<div class="calendarWrap">
- 				<img src="./images/member/norent.png" alt="">
+ 				<img src="./images/member/norent.png" alt=""> 
  				<h4>언제 떠나세요 ?</h4>
  				<p class="c_gray">대여일만 선택하셔도 차량검색이 가능합니다.</p>
 				<div class="h20"></div>
