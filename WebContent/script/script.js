@@ -9,8 +9,13 @@ $(document).ready(function(){
 	rent_btnNotice(); //단기렌트 상세 - 버튼 '렌트시 유의사항 보기'
 	rent_payBox(); //단기렌트 상세 - 결제정보 위치 fixed
 	rent_tabBtn(); // 단기렌트 탭버튼
+	rent_optionHours(); // selectBox option 시간 삽입
+	rent_carSearch();
 	rent_optionHours(); // 단기렌트 - selectBox option 시간 삽입
 	rent_carSearch(); // 단기렌트 - 차량 검색
+	
+	//이벤트
+	event_popup();
 });
 
 
@@ -209,3 +214,17 @@ function rent_carSearch(){
 	
 }
 
+
+
+// event view 알림 팝업
+function event_popup(){
+	$(".event_popup .cancle").click(function(){
+		$(".event_popup").hide()
+		
+		return false;
+	})
+	
+	$(".event_img").click(function(){
+		$(".event_popup").css({display:"table"})
+	})
+}
