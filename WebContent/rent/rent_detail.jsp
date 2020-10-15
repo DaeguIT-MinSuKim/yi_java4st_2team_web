@@ -67,7 +67,26 @@
 					</form>	
 					
 					<hr>
-				
+					<div class="h20"></div>
+					
+					<h4>렌터카 대여 위치 (동자승 렌터카)</h4>
+					<div id="kakaoMap"></div>
+	
+					<div class="mapInfo">
+						<div class="col-sm-6">
+							<i class="fas fa-map-marker-alt"></i>
+							<span>대구광역시 서구 내당동 230-6</span>
+						</div>
+						<div class="col-sm-6">
+							<i class="fas fa-phone-alt"></i>
+							<span>053-123-1234</span>
+						</div>
+					</div>
+					
+					<div class="h20"></div>
+					
+					<hr>
+					
 					<div class="noticeText">
 						<div class="box1"> 
 							<h5>업체 유의사항</h5>

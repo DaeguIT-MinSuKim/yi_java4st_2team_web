@@ -3,7 +3,7 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 <%@ include file="/include/sub_longrent.jsp"%>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <script>
 
 	$(function() {
@@ -35,6 +35,20 @@
 					}
 				}
 			 */
+			 
+			 var chkStr = "";
+			 for(var i=0; i< $("input[name='chBoxName']").length; i++){ //checkbox 갯수만큼 반복
+				 if( $("input[name='chBoxName']").eq(i).prop("checked") == true) { //i번째 checkbox가 checked 되어있으면...
+					 if(chkStr == "") {//chkStr에 값 넣는게 처음이라면
+						chkStr += $("input[name='chBoxName']").eq(i).val();	 
+					 }else{ //처음이 아니라면 쉼표 넣어준다...
+						 chkStr += "," + $("input[name='chBoxName']").eq(i).val();
+					 }
+				 }
+			 } /* alert(chkStr); */
+			 
+			 
+			 
 			if (writeCheck()) {
 
 				var newLongRent = {
@@ -43,7 +57,7 @@
 					pwd : $('#pwd').val(),
 					title : $('#title').val(),
 					contents : $('#contents').val(),
-					options : $('#options').val()
+					options : chkStr
 				};
 
 				$.ajax({
@@ -78,13 +92,13 @@
 						<input type="password" name="pwd" placeholder="비밀번호 " id="pwd">
 					</div>
 					<input type="text" class="mt5" name="title" placeholder="제목을 입력해주세요" id="title">
-					<textarea class="write_content mt5" name="contents" placeholder="내용을 입력해주세요" id="contents"></textarea>
+					<textarea class="write_content mt5" name="contents" id="contents_ckeditor"></textarea>
 					<div class="option_check" id="options">
-						<label><input type="checkbox" name="box[]" value="후방 카메라" class="checkSelect"> 후방 카메라</label>
-						<label><input type="checkbox" name="box[]" value="블루투스"class="checkSelect"> 블루투스</label>
-						<label><input type="checkbox" name="box[]" value="카시트" class="checkSelect"> 카시트</label>
-						<label><input type="checkbox" name="box[]" value="내비게이션" class="checkSelect"> 내비게이션</label>
-						<label><input type="checkbox" name="box[]" value="하이패스" class="checkSelect"> 하이패스</label>
+						<label><input type="checkbox" name="chBoxName" value="후방 카메라" > 후방 카메라</label>
+						<label><input type="checkbox" name="chBoxName" value="블루투스"> 블루투스</label>
+						<label><input type="checkbox" name="chBoxName" value="카시트" > 카시트</label>
+						<label><input type="checkbox" name="chBoxName" value="내비게이션" > 내비게이션</label>
+						<label><input type="checkbox" name="chBoxName" value="하이패스" > 하이패스</label>
 					</div>
 				</div>
 				

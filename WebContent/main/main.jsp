@@ -10,11 +10,11 @@
 				<div class="swiper-slide">
 					<div class="img_box" style="background-image:url(images/main/m_visual1.jpg)"></div>
 					<div class="txt_box">
-						<p class="t1">대구 렌트카 전문점</p>
-						<p class="t2">DONGJASEUNG RENTCAR</p>
+						<p class="t1">대구 렌터카 전문점</p>
+						<p class="t2">DJS RENTCAR</p>
 						<p class="t3">
 							따라올 수 없는 압도적 1등<br>
-							이제부터 렌트카 예약은 동자승렌터카입니다.
+							이제부터 렌터카 예약은 동자승렌터카입니다.
 						</p>
 					</div>
 				</div>
