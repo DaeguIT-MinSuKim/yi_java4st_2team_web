@@ -7,23 +7,31 @@ public class Member {
 	private String tel;
 	private String license;
 	private String email;
-	private String is_black;
 	private String address;
+	private String is_black;
 	private String remark;
-	private Integer count;
-	private String event;
+	private Integer counting;
 
 	public Member() {
 		super();
 	}
 
-	public Member(String id) {
+	public Member(String id, String pwd, String name, String tel, String license, String email, String address,
+			String is_black, String remark, Integer counting) {
 		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.tel = tel;
+		this.license = license;
+		this.email = email;
+		this.address = address;
+		this.is_black = is_black;
+		this.remark = remark;
+		this.counting = counting;
 	}
 
 	public Member(String id, String pwd, String name, String tel, String license, String email, String address,
 			String remark) {
-		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
@@ -34,20 +42,8 @@ public class Member {
 		this.remark = remark;
 	}
 
-	public Member(String id, String pwd, String name, String tel, String license, String email, String is_black,
-			String address, String remark, Integer count, String event) {
-		super();
+	public Member(String id) {
 		this.id = id;
-		this.pwd = pwd;
-		this.name = name;
-		this.tel = tel;
-		this.license = license;
-		this.email = email;
-		this.is_black = is_black;
-		this.address = address;
-		this.remark = remark;
-		this.count = count;
-		this.event = event;
 	}
 
 	public String getId() {
@@ -98,20 +94,20 @@ public class Member {
 		this.email = email;
 	}
 
-	public String getIs_black() {
-		return is_black;
-	}
-
-	public void setIs_black(String is_black) {
-		this.is_black = is_black;
-	}
-
 	public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getIs_black() {
+		return is_black;
+	}
+
+	public void setIs_black(String is_black) {
+		this.is_black = is_black;
 	}
 
 	public String getRemark() {
@@ -122,27 +118,19 @@ public class Member {
 		this.remark = remark;
 	}
 
-	public Integer getCount() {
-		return count;
+	public Integer getCounting() {
+		return counting;
 	}
 
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-
-	public String getEvent() {
-		return event;
-	}
-
-	public void setEvent(String event) {
-		this.event = event;
+	public void setCounting(Integer counting) {
+		this.counting = counting;
 	}
 
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", pwd=" + pwd + ", name=" + name + ", tel=" + tel + ", license=" + license
-				+ ", email=" + email + ", is_black=" + is_black + ", address=" + address + ", remark=" + remark
-				+ ", count=" + count + ", event=" + event + "]";
+				+ ", email=" + email + ", address=" + address + ", is_black=" + is_black + ", remark=" + remark
+				+ ", counting=" + counting + "]";
 	}
 
 }

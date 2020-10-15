@@ -80,7 +80,11 @@ public class LongRent {
 	public Date getWriteDate() {
 		return writeDate;
 	}
-
+	
+//	public String getWriteDateStr() {
+//		//${writeDateStr}
+//		return writeDate;
+//	}
 
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
