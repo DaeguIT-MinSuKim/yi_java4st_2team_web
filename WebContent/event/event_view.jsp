@@ -18,7 +18,8 @@
 					<div class="event_img"><img src="upload/${event.viewImage}"></div>
 				</div>
 				<a href="event.do" class="btn_small btn_case2 floatR mt10">목록</a>
-				<a href="eventDelete.do" class="btn_small btn_case2 floatR mt10 mr5">삭제</a>
+				<a href="eventUpdate.do?code=${event.eventCode}" class="btn_small btn_case2 floatR mt10 mr5">수정</a>
+				<a href="eventDelete.do?code=${event.eventCode}" class="btn_small btn_case2 floatR mt10 mr5">삭제</a>
 			</div>
 		</div>
 	</div>

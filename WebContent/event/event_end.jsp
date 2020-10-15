@@ -14,23 +14,13 @@
 			<ul class="event_list">
 				<c:forEach items="${eventList}" var="event">
 					<li><a href="eventView.do?code=${event.eventCode}">
-						<img src="images/event/${event.thumImage}">
+						<img src="upload/${event.thumImage}">
 						<p>${event.name}</p>
 					</a></li>
 				</c:forEach>
-				<!-- <li><a href="eventView.do">
-					<img src="images/event/1_thumbnail.png">
-					<p>10월 월렌트 이벤트</p>
-				</a></li>
-				<li><a href="eventView.do">
-					<img src="images/event/1_thumbnail.png">
-					<p>10월 월렌트 이벤트</p>
-				</a></li>
-				<li><a href="eventView.do">
-					<img src="images/event/1_thumbnail.png">
-					<p>10월 월렌트 이벤트</p>
-				</a></li> -->
 			</ul>
+			
+			<div class="event_no_list">등록된 이벤트가 없습니다.</div>
 			
 			<a href="eventWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
 		</div>
@@ -39,5 +29,12 @@
 	</div>
 
 </div><!-- //컨텐츠 -->
+
+<script>
+	if ($(".event_list li").length == 0){
+		$(".event_list").hide()
+		$(".event_no_list").show()
+	}
+</script>
 
 <%@ include file="/include/footer.jsp"%>

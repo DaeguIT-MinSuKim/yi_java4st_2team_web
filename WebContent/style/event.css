@@ -21,3 +21,5 @@
 	.file_wrap p {font-size:13px; width:120px;}
 	.file_wrap input[type="file"] {width:calc(100% - 120px)}
 }
+
+.event_no_list {text-align:center; width:100%; line-height:150px; display:none;}
