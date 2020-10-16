@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,12 +41,7 @@
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
 	<script type="text/javascript" src="./script/form.js"></script>
 	<script type="text/javascript" src="./script/join.js"></script>
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
-	
-	
+
 	<!-- 메인 슬라이더 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css?ver=191202">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/v4-shims.css?ver=191202">
@@ -71,14 +67,12 @@
  	<link  type="text/css" href="./style/swiper.min.css" rel="stylesheet">
    	<script type="text/javascript" src="./script/swiper.min.js"></script>
 
-<<<<<<< HEAD
 	<!-- ck에디터 -->
 	<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" src="./ckeditor/ckeditor_init.js"></script>
-=======
+
 	<!-- 채널톡 -->
 	<script type="text/javascript" src="./script/channelTalk.js"></script>
->>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 	<!-- 트랜지션 디폴트 세팅 -->
 	<script type="text/javascript">
@@ -89,7 +83,6 @@
 			"-moz-transition","all .1s linear"
 		);
 	});
-	
 	
 	$(function() {
 		$('#logout').on("click", function() {
@@ -178,7 +171,7 @@
 -->
 				</ul>
 			</div>
-		</div><!-- //wrap -->
+		<!-- //wrap -->
 	</nav><!-- //nav -->
 
 	<div class="gnbCover mobile"></div>
