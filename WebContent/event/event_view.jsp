@@ -57,6 +57,39 @@
 			</div>
 		</c:if>
 		
+		<c:if test="${member eq 'coupon_exist'}">
+			<div class="event_popup">
+				<div>
+					<div>
+						<h4>알림</h4>
+						<div>
+							<p>이미 해당 쿠폰을 다운로드 하셨습니다.<br>마이페이지로 이동하시겠습니까?</p>
+							<ul>
+								<li><a href="#" class="btn1 cancle">닫기</a></li>
+								<li><a href="mypage.do" class="btn2 login">확인</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		
+		<c:if test="${event_end eq 'event_end'}">
+			<div class="event_popup">
+				<div>
+					<div>
+						<h4>알림</h4>
+						<div>
+							<p>이미 종료된 이벤트입니다.</p>
+							<ul class="btn_one">
+								<li><a href="#" class="btn1 cancle">닫기</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		
 	</div>
 
 </div><!-- //컨텐츠 -->

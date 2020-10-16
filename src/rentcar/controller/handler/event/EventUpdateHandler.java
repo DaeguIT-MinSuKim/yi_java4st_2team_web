@@ -15,9 +15,11 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import rentcar.controller.Command;
 import rentcar.dto.Event;
 import rentcar.service.EventService;
+import rentcar.service.TransactionService;
 
 public class EventUpdateHandler implements Command {
 	private EventService service = new EventService();
+	private TransactionService transactionService = new TransactionService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -30,7 +32,6 @@ public class EventUpdateHandler implements Command {
 			
 			return "/event/event_update.jsp";
 		} else {
-System.out.println("post");
 			
 			response.setContentType("text/html; charsert=UTF8");
 			PrintWriter out = response.getWriter();
@@ -43,7 +44,6 @@ System.out.println("post");
 			String uploadFilePath  = context.getRealPath(savePath);
 			
 			try {
-				System.out.println(request);
 				MultipartRequest multi = new MultipartRequest(
 						request,
 						uploadFilePath,
@@ -52,16 +52,6 @@ System.out.println("post");
 						new DefaultFileRenamePolicy()
 						);
 				Enumeration files = multi.getFileNames();
-				
-				/*while (files.hasMoreElements()) {
-					String file = (String) files.nextElement();
-					String file_name = multi.getFilesystemName(file);
-					// 중복된 파일일 경우 파일명 변경이 됨
-					String ori_file_name = multi.getOriginalFileName(file); // 원본 파일명
-					
-					System.out.println(file_name);
-					System.out.println(ori_file_name);
-				}*/
 
 				String code = multi.getParameter("code");
 				String name = multi.getParameter("title");
@@ -88,7 +78,8 @@ System.out.println("post");
 				}
 				event.setIsEvent(isEvent);
 
-				service.updateEvent(event);
+				// service.updateEvent(event);
+				transactionService.updateEvnetAndEventBox(event);
 				
 				
 			} catch (Exception e) {

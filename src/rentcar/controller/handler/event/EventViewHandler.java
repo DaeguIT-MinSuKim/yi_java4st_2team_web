@@ -10,11 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import rentcar.controller.Command;
 import rentcar.dto.Event;
+import rentcar.dto.EventBox;
 import rentcar.dto.Member;
+import rentcar.service.EventBoxService;
 import rentcar.service.EventService;
 
 public class EventViewHandler implements Command {
 	private EventService service = new EventService();
+	private EventBoxService eventBoxService = new EventBoxService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -23,14 +26,23 @@ public class EventViewHandler implements Command {
 			HttpSession session = request.getSession();
 			Member loginUser = (Member) session.getAttribute("loginUser");
 			
-			if (loginUser == null) {
-				request.setAttribute("member", "nonmember");
-			} else {
-				request.setAttribute("member", "member");
-			}
-			
 			String code = request.getParameter("code").trim();
 			Event event = service.getEvent(code);
+			
+			if (event.getIsEvent().equalsIgnoreCase("y")) {
+				if (loginUser == null) {
+					request.setAttribute("member", "nonmember");
+				} else {
+					EventBox eventBoxUser = eventBoxService.selectEventBoxFindCodeId(code, loginUser.getId());
+					if (eventBoxUser != null) {
+						request.setAttribute("member", "coupon_exist");
+					} else {					
+						request.setAttribute("member", "member");
+					}
+				}	
+			} else {
+				request.setAttribute("event_end", "event_end");
+			}
 			
 			request.setAttribute("event", event);
 

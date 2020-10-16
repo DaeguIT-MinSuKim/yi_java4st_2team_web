@@ -31,7 +31,6 @@ public class EventBoxDaoTest {
 		dao = null;
 	}
 
-	@Test
 	public void testInsertEventBox() {
 		System.out.println("testInsertEventBox");
 		EventBox eventBox = new EventBox();
@@ -43,4 +42,11 @@ public class EventBoxDaoTest {
 		Assert.assertNotEquals(1, res);
 	}
 
+	@Test
+	public void testSelectEventBoxFindCodeId() {
+		System.out.println("testSelectEventBoxFindCodeId");
+		
+		EventBox eventBox = dao.selectEventBoxFindCodeId("1", "dong");
+		System.out.println(eventBox);
+	}
 }

@@ -29,11 +29,17 @@ SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE
 
 SELECT * FROM event_box;
 
-INSERT INTO EVENT_BOX(EVENT_CODE, ID, IS_EVENT) VALUES(1, 'dong', 'y');
+SELECT EVENT_BOX, EVENT_CODE, ID, IS_EVENT FROM EVENT_BOX WHERE EVENT_CODE = 1 AND ID = 'dong';
 
-DELETE FROM EVENT_BOX WHERE EVENT_BOX = 21;
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(1, 'dong');
+
+UPDATE EVENT_BOX SET IS_EVENT = 'n' WHERE ID = 'dong';
+
+DELETE FROM EVENT_BOX;
 
 SELECT * FROM USER_TABLES;
+
+SELECT * FROM MEMBER;
 
 --김대현----------------------------------------------------------------------------------------------------------------------------------------------------------
 
