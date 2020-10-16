@@ -20,6 +20,7 @@ public class EventCouponHandler implements Command {
 		
 		System.out.println(loginUser);
 		
+		response.sendRedirect("event.do");
 		return null;
 	}
 

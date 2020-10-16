@@ -31,6 +31,8 @@ SELECT * FROM event_box;
 
 INSERT INTO EVENT_BOX(EVENT_CODE, ID, IS_EVENT) VALUES(1, 'dong', 'y');
 
+DELETE FROM EVENT_BOX WHERE EVENT_BOX = 21;
+
 SELECT * FROM USER_TABLES;
 
 --김대현----------------------------------------------------------------------------------------------------------------------------------------------------------

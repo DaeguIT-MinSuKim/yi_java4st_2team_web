@@ -14,8 +14,8 @@
 			<form action="eventWrite.do" method="post" class="event_write" enctype="multipart/form-data">
 				<div>
 					<label><input type="checkbox" name="isEvent" checked> 사용</label>
-					<input type="text" name="title" placeholder="제목을 입력해주세요" id="title" value="test">
-					<input type="text" name="sale" placeholder="할인" id="sale" class="mt5" value="1000">
+					<input type="text" name="title" placeholder="제목을 입력해주세요" id="title">
+					<input type="text" name="sale" placeholder="할인금액(Ex.1000)" id="sale" class="mt5">
 					<div class="file_wrap">
 						<p>리스트 이미지</p><input type="file" name="uploadfile01" class="list_file">
 						<p>상세페이지 이미지</p><input type="file" name="uploadfile02" class="view_file">
