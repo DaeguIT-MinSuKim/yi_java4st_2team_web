@@ -146,4 +146,38 @@ public class LongRentDaoImpl implements LongRentDao {
 		return null;
 	}
 
+//	@Override
+//	public int totalRecord(int no) {
+//		int total_pages = 0;
+//		String sql = "SELECT  COUNT(*) FROM LONGRENT WHERE NO LIKE ?";
+//		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+//			pstmt.setInt(1, no);
+//			try (ResultSet rs = pstmt.executeQuery()) {
+//				if(rs.next()) {
+//					total_pages = rs.getInt(1); //레코드의 개수
+//				}
+//			}
+//		} catch (SQLException e) {
+//			throw new CustomSQLException(e);
+//		}return total_pages;
+//	}
+//
+//	private static int VIEW_ROWS = 5; //페이지의 개수
+//	private static int COUNTS = 5; //한 페이지에 나타낼 no의 개수
+//	
+//	@Override
+//	public String pageNumber(int tpage, String name) {
+//		String str = "";
+//		
+//		int total_pates
+//		
+//		return null;
+//	}
+//
+//	@Override
+//	public ArrayList<LongRent> listLongRent(int tpage, int no) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
 }

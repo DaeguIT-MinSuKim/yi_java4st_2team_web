@@ -66,6 +66,10 @@ UPDATE LONGRENT SET TITLE = '김창동입니다. 답변을 주세요', contents 
 SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM longrent WHERE NUM =? PWD = ?;
 
 SELECT * FROM LONGRENT;
+
+
+SELECT  COUNT(*) FROM LONGRENT WHERE NO LIKE 1;
+
 --문중희----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 SELECT * 

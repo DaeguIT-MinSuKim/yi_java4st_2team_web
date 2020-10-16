@@ -1,7 +1,8 @@
 package rentcar.dao;
 
-import rentcar.dto.LongRent;
 import java.util.ArrayList;
+
+import rentcar.dto.LongRent;
 
 public interface LongRentDao {
 
@@ -20,5 +21,13 @@ public interface LongRentDao {
 	// 게시글 보기 비밀번호 
 	LongRent checkPassword(int no, String pwd);
 	
+	
+	
+	//게시판 페이징 
+//	int totalRecord(int no);
+//
+//	public String pageNumber(int tpage, String name);
+//
+//	ArrayList<LongRent> listLongRent(int tpage, int no);
 	
 }
