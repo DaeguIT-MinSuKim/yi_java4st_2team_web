@@ -24,7 +24,7 @@ public class LogoutHandler implements Command {
 				session.invalidate();
 			}
 
-			return "index.jsp";
+			return "index.do";
 
 		} else {
 			System.out.println("POST");

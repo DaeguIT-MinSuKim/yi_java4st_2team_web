@@ -40,7 +40,7 @@ public class LoginHandler implements Command {
 			if (getId.getPwd().equals(pwd)) {
 				session.removeAttribute(id);
 				session.setAttribute("loginUser", getId);
-				url = "index.jsp";
+				url = "index.do";
 			}
 			return url;
 		}
