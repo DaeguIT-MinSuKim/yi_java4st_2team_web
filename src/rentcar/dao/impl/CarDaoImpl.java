@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ import rentcar.exception.CustomSQLException;
 public class CarDaoImpl implements CarDao {
 	private static final CarDaoImpl instance = new CarDaoImpl();
 	private Connection con;
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
 	public CarDaoImpl() {
 		super();
@@ -36,27 +39,26 @@ public class CarDaoImpl implements CarDao {
 
 		k.setCode(rs.getInt("KIND_CODE"));
 		k.setName(rs.getString("KIND_NAME"));
-		k.setFare(rs.getInt("FARE"));
+		k.setFare(rs.getInt("KIND_FARE"));
 
 		b.setCode(rs.getInt("BRAND_CODE"));
 		b.setName(rs.getString("BRAND_NAME"));
-		b.setImage(rs.getString("BRAND_IMG"));
+		b.setImage(rs.getString("BRAND_IMAGE"));
 
 		c.setNo(rs.getString("CAR_NO"));
 		c.setName(rs.getString("CAR_NAME"));
 		c.setKind(k);
 		c.setBrand(b);
 		c.setRemark(rs.getString("REMARK"));
-		c.setIs_rent(rs.getString("IS_RENT"));
-		c.setCounting(rs.getInt("COUNTING"));
-		c.setImage(rs.getString("CAR_IMG"));
+		c.setIs_rent(rs.getString("IS_RENTCAR"));
+		c.setCounting(rs.getInt("CAR_COUNT"));
+		c.setImage(rs.getString("CAR_IMAGE"));
 		return c;
 	}
 
 	@Override
 	public List<Car> selectCarByAll() {
-		String sql = "SELECT CAR_NO, CAR_NAME, REMARK, IS_RENT, COUNTING, c.IMAGE AS CAR_IMG, " + 
-				" c.KIND_CODE, k.NAME AS KIND_NAME, FARE, c.BRAND_CODE, b.NAME AS BRAND_NAME, b.IMAGE AS BRAND_IMG "
+		String sql = "SELECT *"
 				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
@@ -74,10 +76,9 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public List<Car> selectCarByRent() {
-		String sql = "SELECT CAR_NO, CAR_NAME, REMARK, IS_RENT, COUNTING, c.IMAGE AS CAR_IMG, " + 
-				"		c.KIND_CODE, k.NAME AS KIND_NAME, FARE, c.BRAND_CODE, b.NAME AS BRAND_NAME, b.IMAGE AS BRAND_IMG "
+		String sql = "SELECT * "
 				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
-				+ "WHERE IS_RENT = 'Y'";
+				+ "WHERE IS_RENTCAR = 'Y'";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				List<Car> list = new ArrayList<Car>();
@@ -94,8 +95,7 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public List<Car> selectCarByFind(int res, String query) {
-		String sql = "SELECT CAR_NO, CAR_NAME, REMARK, IS_RENT, COUNTING, c.IMAGE AS CAR_IMG, " + 
-				"		c.KIND_CODE, k.NAME AS KIND_NAME, FARE, c.BRAND_CODE, b.NAME AS BRAND_NAME, b.IMAGE AS BRAND_IMG"
+		String sql = "SELECT * "
 				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE"
 				+ " WHERE ";
 		switch (res) {
@@ -112,7 +112,7 @@ public class CarDaoImpl implements CarDao {
 			sql += "BRAND_CODE LIKE '%' || ? || '%'";
 			break;
 		case 5:
-			sql += "IS_RENT = ?";
+			sql += "IS_RENTCAR = ?";
 			break;
 		default:
 			System.out.println("해당사항 예외를 선택하셨습니다");
@@ -138,8 +138,7 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public Car selectCarByNo(String no) {
-		String sql = "SELECT CAR_NO, CAR_NAME, REMARK, IS_RENT, COUNTING, c.IMAGE AS CAR_IMG, " + 
-				"		c.KIND_CODE, k.NAME AS KIND_NAME, FARE, c.BRAND_CODE, b.NAME AS BRAND_NAME, b.IMAGE AS BRAND_IMG"
+		String sql = "SELECT * "
 				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE"
 				+ " WHERE CAR_NO = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -156,16 +155,15 @@ public class CarDaoImpl implements CarDao {
 	}
 
 	@Override
-	public List<Car> selectRentByCar(String rentDate) {
-		String sql = "SELECT CAR_NO, CAR_NAME, REMARK, IS_RENT, COUNTING, c.IMAGE AS CAR_IMG, " + 
-				"		c.KIND_CODE, k.NAME AS KIND_NAME, FARE, c.BRAND_CODE, b.NAME AS BRAND_NAME, b.IMAGE AS BRAND_IMG " + 
+	public List<Car> selectRentByCar(LocalDateTime rentDate) {
+		String sql = "SELECT * " + 
 				"  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE " + 
 				" WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
 				"  FROM rent r " + 
 				" WHERE NOT(TO_DATE(RENT_DATE) > TO_DATE(?) OR TO_DATE(RETURN_DATE) < TO_DATE(?)))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setString(1, rentDate);
-			pstmt.setString(2, rentDate);
+			pstmt.setString(1, rentDate.format(formatter));
+			pstmt.setString(2, rentDate.format(formatter));
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					List<Car> list = new ArrayList<Car>();
@@ -182,19 +180,18 @@ public class CarDaoImpl implements CarDao {
 	}
 
 	@Override
-	public List<Car> selectRentByCar(String rentDate, String returnDate) {
-		String sql = "SELECT CAR_NO, CAR_NAME, REMARK, IS_RENT, COUNTING, c.IMAGE AS CAR_IMG, " + 
-				"		c.KIND_CODE, k.NAME AS KIND_NAME, FARE, c.BRAND_CODE, b.NAME AS BRAND_NAME, b.IMAGE AS BRAND_IMG " + 
+	public List<Car> selectRentByCar(LocalDateTime rentDate, LocalDateTime returnDate) {
+		String sql = "SELECT * " + 
 				"  FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE" + 
 				" WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
 				"  FROM rent r " + 
-				" WHERE (TO_DATE(RENT_DATE) > TO_DATE(?, 'yyyy/mm/dd') AND TO_DATE(RENT_DATE) < TO_DATE(?, 'yyyy/mm/dd')) " + 
-				"	OR (TO_DATE(RETURN_DATE) > TO_DATE(?, 'yyyy/mm/dd') AND TO_DATE(RETURN_DATE) < TO_DATE(?, 'yyyy/mm/dd')))";
+				" WHERE (TO_DATE(RENT_DATE) > TO_DATE(?) AND TO_DATE(RENT_DATE) < TO_DATE(?)) " + 
+				"	OR (TO_DATE(RETURN_DATE) > TO_DATE(?) AND TO_DATE(RETURN_DATE) < TO_DATE(?)))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setString(1, rentDate);
-			pstmt.setString(2, rentDate);
-			pstmt.setString(3, returnDate);
-			pstmt.setString(4, returnDate);
+			pstmt.setString(1, rentDate.format(formatter));
+			pstmt.setString(2, rentDate.format(formatter));
+			pstmt.setString(3, returnDate.format(formatter));
+			pstmt.setString(4, returnDate.format(formatter));
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					List<Car> list = new ArrayList<Car>();
@@ -231,7 +228,7 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public int updateCar(Car car) {
-		String sql = "UPDATE CAR SET CAR_NAME = ? , KIND_CODE = ? , BRAND_CODE = ? , REMARK = ? , IS_RENT = ? , COUNTING = ? , IMAGE = ? WHERE CAR_NO = ?  ";
+		String sql = "UPDATE CAR SET CAR_NAME = ? , KIND_CODE = ? , BRAND_CODE = ? , REMARK = ? , IS_RENTCAR = ? , CAR_COUNT = ? , CAR_IMAGE = ? WHERE CAR_NO = ?  ";
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(8, car.getNo());

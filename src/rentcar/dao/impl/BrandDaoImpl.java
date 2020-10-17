@@ -30,8 +30,8 @@ public class BrandDaoImpl implements BrandDao {
 	private Brand getBrand(ResultSet rs) throws SQLException {
 		Brand b = new Brand();
 		b.setCode(rs.getInt("BRAND_CODE"));
-		b.setName(rs.getString("NAME"));
-		b.setImage(rs.getString("IMAGE"));
+		b.setName(rs.getString("BRAND_NAME"));
+		b.setImage(rs.getString("BRAND_IMAGE"));
 		
 		return b;
 	}
@@ -86,7 +86,7 @@ public class BrandDaoImpl implements BrandDao {
 
 	@Override
 	public int updateBrand(Brand brand) {
-		String sql = "UPDATE BRAND SET NAME = ?, IMAGE = ? WHERE BRAND_CODE = ?";
+		String sql = "UPDATE BRAND SET BRAND_NAME = ?, BRAND_IMAGE = ? WHERE BRAND_CODE = ?";
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, brand.getName());
 			pstmt.setString(2, brand.getImage());

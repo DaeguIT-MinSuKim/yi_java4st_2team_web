@@ -53,9 +53,9 @@ CREATE TABLE CAR (
 	kind_code INTEGER, /* 분류코드 */
 	brand_code INTEGER, /* 브랜드코드 */
 	remark VARCHAR2(500), /* 차량비고 */
-	is_rent CHAR(1), /* 차량반납여부 */
-	counting INTEGER, /* 차량대여횟수 */
-	image VARCHAR(50) /* 차량이미지 */
+	is_rentcar CHAR(1), /* 차량반납여부 */
+	car_count INTEGER, /* 차량대여횟수 */
+	car_image VARCHAR(50) /* 차량이미지 */
 );
 
 COMMENT ON TABLE CAR IS '차량';
@@ -70,11 +70,11 @@ COMMENT ON COLUMN CAR.brand_code IS '브랜드코드';
 
 COMMENT ON COLUMN CAR.remark IS '차량비고';
 
-COMMENT ON COLUMN CAR.is_rent IS '차량반납여부';
+COMMENT ON COLUMN CAR.is_rentcar IS '차량반납여부';
 
-COMMENT ON COLUMN CAR.counting IS '차량대여횟수';
+COMMENT ON COLUMN CAR.car_count IS '차량대여횟수';
 
-COMMENT ON COLUMN CAR.image IS '차량이미지';
+COMMENT ON COLUMN CAR.car_image IS '차량이미지';
 
 CREATE UNIQUE INDEX PK_CAR
 	ON CAR (
@@ -97,9 +97,9 @@ CREATE TABLE MEMBER (
 	license VARCHAR2(20), /* 면허번호 */
 	email VARCHAR2(50), /* 이메일 */
 	address VARCHAR2(500), /* 주소 */
-	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
+	is_black CHAR(1), /* 블랙리스트 */
 	remark VARCHAR2(500), /* 회원비고 */
-	counting INTEGER DEFAULT 0 /* 회원대여횟수 */
+	counting INTEGER /* 회원대여횟수 */
 );
 
 COMMENT ON TABLE MEMBER IS '회원';
@@ -169,8 +169,8 @@ CREATE TABLE RENT (
 	rent_date DATE, /* 대여일 */
 	return_date DATE, /* 반납일 */
 	is_rent CHAR(1), /* 대여반납여부 */
-	fare INTEGER, /* 금액 */
-	remark VARCHAR2(500) /* 비고 */
+	rent_fare INTEGER, /* 금액 */
+	rent_remark VARCHAR2(500) /* 비고 */
 );
 
 COMMENT ON TABLE RENT IS '대여관리';
@@ -189,9 +189,9 @@ COMMENT ON COLUMN RENT.return_date IS '반납일';
 
 COMMENT ON COLUMN RENT.is_rent IS '대여반납여부';
 
-COMMENT ON COLUMN RENT.fare IS '금액';
+COMMENT ON COLUMN RENT.rent_fare IS '금액';
 
-COMMENT ON COLUMN RENT.remark IS '비고';
+COMMENT ON COLUMN RENT.rent_remark IS '비고';
 
 CREATE UNIQUE INDEX PK_RENT
 	ON RENT (
@@ -208,17 +208,17 @@ ALTER TABLE RENT
 /* 보험 */
 CREATE TABLE INSURANCE (
 	ins_code INTEGER NOT NULL, /* 보험코드 */
-	name VARCHAR2(50), /* 보험이름 */
-	fare INTEGER /* 보험금액 */
+	ins_name VARCHAR2(50), /* 보험이름 */
+	ins_fare INTEGER /* 보험금액 */
 );
 
 COMMENT ON TABLE INSURANCE IS '보험';
 
 COMMENT ON COLUMN INSURANCE.ins_code IS '보험코드';
 
-COMMENT ON COLUMN INSURANCE.name IS '보험이름';
+COMMENT ON COLUMN INSURANCE.ins_name IS '보험이름';
 
-COMMENT ON COLUMN INSURANCE.fare IS '보험금액';
+COMMENT ON COLUMN INSURANCE.ins_fare IS '보험금액';
 
 CREATE UNIQUE INDEX PK_INSURANCE
 	ON INSURANCE (
@@ -313,17 +313,17 @@ ALTER TABLE OPTIONS
 /* 차량 분류 */
 CREATE TABLE KIND (
 	kind_code INTEGER NOT NULL, /* 분류코드 */
-	name VARCHAR2(50), /* 분류명 */
-	fare INTEGER /* 분류별금액 */
+	kind_name VARCHAR2(50), /* 분류명 */
+	kind_fare INTEGER /* 분류별금액 */
 );
 
 COMMENT ON TABLE KIND IS '차량 분류';
 
 COMMENT ON COLUMN KIND.kind_code IS '분류코드';
 
-COMMENT ON COLUMN KIND.name IS '분류명';
+COMMENT ON COLUMN KIND.kind_name IS '분류명';
 
-COMMENT ON COLUMN KIND.fare IS '분류별금액';
+COMMENT ON COLUMN KIND.kind_fare IS '분류별금액';
 
 CREATE UNIQUE INDEX PK_KIND
 	ON KIND (
@@ -344,7 +344,7 @@ CREATE TABLE EVENT (
 	sale INTEGER, /* 이벤트할인율 */
 	thum_image VARCHAR2(50), /* 썸네일이미지 */
 	view_image VARCHAR2(50), /* 뷰이미지 */
-	is_event CHAR(1)
+	is_event CHAR(1) /* 사용영부 */
 );
 
 COMMENT ON TABLE EVENT IS '이벤트';
@@ -358,6 +358,8 @@ COMMENT ON COLUMN EVENT.sale IS '이벤트할인율';
 COMMENT ON COLUMN EVENT.thum_image IS '썸네일이미지';
 
 COMMENT ON COLUMN EVENT.view_image IS '뷰이미지';
+
+COMMENT ON COLUMN EVENT.is_event IS '사용영부';
 
 CREATE UNIQUE INDEX PK_EVENT
 	ON EVENT (
@@ -374,17 +376,17 @@ ALTER TABLE EVENT
 /* 브랜드 분류 */
 CREATE TABLE BRAND (
 	brand_code INTEGER NOT NULL, /* 브랜드코드 */
-	name VARCHAR2(50), /* 브랜드명 */
-	image VARCHAR(50) /* 브랜드이미지 */
+	brand_name VARCHAR2(50), /* 브랜드명 */
+	brand_image VARCHAR(50) /* 브랜드이미지 */
 );
 
 COMMENT ON TABLE BRAND IS '브랜드 분류';
 
 COMMENT ON COLUMN BRAND.brand_code IS '브랜드코드';
 
-COMMENT ON COLUMN BRAND.name IS '브랜드명';
+COMMENT ON COLUMN BRAND.brand_name IS '브랜드명';
 
-COMMENT ON COLUMN BRAND.image IS '브랜드이미지';
+COMMENT ON COLUMN BRAND.brand_image IS '브랜드이미지';
 
 CREATE UNIQUE INDEX PK_BRAND
 	ON BRAND (
@@ -403,7 +405,7 @@ CREATE TABLE EVENT_BOX (
 	event_box INTEGER NOT NULL, /* 이벤트보관함번호 */
 	event_code INTEGER, /* 이벤트코드 */
 	id VARCHAR2(50), /* 아이디 */
-	is_event CHAR(1) DEFAULT 'n' /* 사용여부 */
+	is_event CHAR(1) /* 사용여부 */
 );
 
 COMMENT ON TABLE EVENT_BOX IS '이벤트보관함';
@@ -432,7 +434,8 @@ ALTER TABLE EVENT_BOX
 CREATE TABLE OPT_BOX (
 	opt_box INTEGER NOT NULL, /* 옵션보관함번호 */
 	opt_code INTEGER, /* 옵션코드 */
-	rent_no VARCHAR2(20) /* 대여번호 */
+	rent_no VARCHAR2(20), /* 대여번호 */
+	is_opt CHAR(1) /* 사용여부 */
 );
 
 COMMENT ON TABLE OPT_BOX IS '옵션 보관함';
@@ -442,6 +445,8 @@ COMMENT ON COLUMN OPT_BOX.opt_box IS '옵션보관함번호';
 COMMENT ON COLUMN OPT_BOX.opt_code IS '옵션코드';
 
 COMMENT ON COLUMN OPT_BOX.rent_no IS '대여번호';
+
+COMMENT ON COLUMN OPT_BOX.is_opt IS '사용여부';
 
 CREATE UNIQUE INDEX PK_OPT_BOX
 	ON OPT_BOX (

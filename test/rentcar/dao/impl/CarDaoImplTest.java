@@ -3,6 +3,7 @@ package rentcar.dao.impl;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -88,10 +89,7 @@ public class CarDaoImplTest {
 	@Test
 	public void test08selectRentByCar() {
 		System.out.println("test08selectRentByCar");
-		Calendar rent_date = Calendar.getInstance();
-		rent_date.set(2020, 9, 15);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String rent = sdf.format(rent_date.getTime());
+		LocalDateTime rent = LocalDateTime.of(2020, 10, 15, 0, 0);
 		List<Car> list = dao.selectRentByCar(rent);
 		Assert.assertNotNull(list);
 		System.out.println(list);
@@ -100,14 +98,9 @@ public class CarDaoImplTest {
 	@Test
 	public void test09selectRentByCar2() {
 		System.out.println("test09selectRentByCar2");
-		Calendar rent_date = Calendar.getInstance();
-		rent_date.set(2020, 9, 20);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String rent = sdf.format(rent_date.getTime());
+		LocalDateTime rent = LocalDateTime.of(2020, 10, 20, 0, 0);
 		
-		Calendar return_date = Calendar.getInstance();
-		rent_date.set(2020, 9, 25);
-		String return_d = sdf.format(rent_date.getTime());
+		LocalDateTime return_d = LocalDateTime.of(2020, 10, 25, 0, 0);
 		
 		List<Car> list = dao.selectRentByCar(rent, return_d);
 		Assert.assertNotNull(list);

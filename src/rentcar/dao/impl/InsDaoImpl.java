@@ -30,8 +30,8 @@ public class InsDaoImpl implements InsDao {
 	private Ins getIns(ResultSet rs) throws SQLException {
 		Ins i = new Ins();
 		i.setCode(rs.getInt("INS_CODE"));
-		i.setName(rs.getString("NAME"));
-		i.setFare(rs.getInt("FARE"));
+		i.setName(rs.getString("INS_NAME"));
+		i.setFare(rs.getInt("INS_FARE"));
 		return i;
 	}
 
@@ -84,7 +84,7 @@ public class InsDaoImpl implements InsDao {
 
 	@Override
 	public int updateIns(Ins ins) {
-		String sql = "UPDATE INSURANCE SET NAME = ?, FARE = ? WHERE INS_CODE = ?";
+		String sql = "UPDATE INSURANCE SET INS_NAME = ?, INS_FARE = ? WHERE INS_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, ins.getName());
 			pstmt.setInt(2, ins.getFare());

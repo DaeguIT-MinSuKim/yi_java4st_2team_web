@@ -30,8 +30,8 @@ public class KindDaoImpl implements KindDao {
 	private Kind getKind(ResultSet rs) throws SQLException {
 		Kind k = new Kind();
 		k.setCode(rs.getInt("KIND_CODE"));
-		k.setName(rs.getString("NAME"));
-		k.setFare(rs.getInt("FARE"));
+		k.setName(rs.getString("KIND_NAME"));
+		k.setFare(rs.getInt("KIND_FARE"));
 		return k;
 	}
 
@@ -84,7 +84,7 @@ public class KindDaoImpl implements KindDao {
 
 	@Override
 	public int updateKind(Kind kind) {
-		String sql = "UPDATE KIND SET NAME = ?, FARE = ? WHERE KIND_CODE = ?";
+		String sql = "UPDATE KIND SET KIND_NAME = ?, KIND_FARE = ? WHERE KIND_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, kind.getName());
 			pstmt.setInt(2, kind.getFare());

@@ -1,6 +1,6 @@
 package rentcar.dao;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import rentcar.dto.Car;
@@ -20,10 +20,12 @@ public interface CarDao {
 	Car selectCarByNo(String no);
 
 	// 대여일기입 대여가능차량 목록 불러오기
-	List<Car> selectRentByCar(String rentDate);
+	List<Car> selectRentByCar(LocalDateTime rentDate);
 
 	// 대여반납일 기입 대여가능차량 목록 불러오기
-	List<Car> selectRentByCar(String rentdate, String returnDate);
+	List<Car> selectRentByCar(LocalDateTime rentdate, LocalDateTime returnDate);
+	
+	//차량의 최대 대여일 표기
 
 	// 차량 추가하기
 	int insertCar(Car car);
