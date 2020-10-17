@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Rent {
 	private int rentNo;			//대여번호
-	private String id;			//아이디
-	private String carNo;			//차량번호
-	private int insCode;		//보험코드
+	private Member id;			//아이디
+	private Car carNo;			//차량번호
+	private Ins insCode;		//보험코드
 	private Date rent_date;		//대여일자
 	private Date return_date;	//반납일자
 	private String is_rent;		//반납여부
@@ -19,7 +19,7 @@ public class Rent {
 		super();
 		this.rentNo = rentNo;
 	}
-	public Rent(int rentNo, String id, String carNo, int insCode, Date rent_date, Date return_date, String is_rent,
+	public Rent(int rentNo, Member id, Car carNo, Ins insCode, Date rent_date, Date return_date, String is_rent,
 			long fare, String remark) {
 		super();
 		this.rentNo = rentNo;
@@ -38,22 +38,22 @@ public class Rent {
 	public void setRentNo(int rentNo) {
 		this.rentNo = rentNo;
 	}
-	public String getId() {
+	public Member getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Member id) {
 		this.id = id;
 	}
-	public String getCarNo() {
+	public Car getCarNo() {
 		return carNo;
 	}
-	public void setCarNo(String carNo) {
+	public void setCarNo(Car carNo) {
 		this.carNo = carNo;
 	}
-	public int getInsCode() {
+	public Ins getInsCode() {
 		return insCode;
 	}
-	public void setInsCode(int insCode) {
+	public void setInsCode(Ins insCode) {
 		this.insCode = insCode;
 	}
 	public Date getRent_date() {

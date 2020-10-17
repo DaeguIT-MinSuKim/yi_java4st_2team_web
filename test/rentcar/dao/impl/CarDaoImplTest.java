@@ -1,8 +1,10 @@
 package rentcar.dao.impl;
 
-import static org.junit.Assert.fail;
-
 import java.sql.Connection;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -12,7 +14,9 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import rentcar.ds.JdbcUtil;
+import rentcar.dto.Brand;
 import rentcar.dto.Car;
+import rentcar.dto.Kind;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CarDaoImplTest {
@@ -52,7 +56,7 @@ public class CarDaoImplTest {
 	@Test
 	public void test04InsertCar() {
 		System.out.println("testInsertCar");
-		Car c = new Car("39호1234", "비와이", 1, 2, "얍얍얍", "Y", 10000, "주님만이");
+		Car c = new Car("39호1234", "비와이", new Kind(1), new Brand(2), "얍얍얍", "Y", 10000, "주님만이");
 		int res = dao.insertCar(c);
 		Assert.assertEquals(1, res);
 	}
@@ -60,7 +64,7 @@ public class CarDaoImplTest {
 	@Test
 	public void test05UpdateCar() {
 		System.out.println("testUpdateCar");
-		Car c = new Car("39호1234", "비가와", 1, 2, "얍얍얍", "Y", 10000, "주님만이");
+		Car c = new Car("39호1234", "비가와", new Kind(1), new Brand(2), "얍얍얍", "Y", 10000, "주님만이");
 		int res = dao.updateCar(c);
 		Assert.assertEquals(1, res);
 	}
@@ -81,4 +85,32 @@ public class CarDaoImplTest {
 		System.out.println(c);
 	}
 
+	@Test
+	public void test08selectRentByCar() {
+		System.out.println("test08selectRentByCar");
+		Calendar rent_date = Calendar.getInstance();
+		rent_date.set(2020, 9, 15);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String rent = sdf.format(rent_date.getTime());
+		List<Car> list = dao.selectRentByCar(rent);
+		Assert.assertNotNull(list);
+		System.out.println(list);
+	}
+
+	@Test
+	public void test09selectRentByCar2() {
+		System.out.println("test09selectRentByCar2");
+		Calendar rent_date = Calendar.getInstance();
+		rent_date.set(2020, 9, 20);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String rent = sdf.format(rent_date.getTime());
+		
+		Calendar return_date = Calendar.getInstance();
+		rent_date.set(2020, 9, 25);
+		String return_d = sdf.format(rent_date.getTime());
+		
+		List<Car> list = dao.selectRentByCar(rent, return_d);
+		Assert.assertNotNull(list);
+		System.out.println(list);
+	}
 }

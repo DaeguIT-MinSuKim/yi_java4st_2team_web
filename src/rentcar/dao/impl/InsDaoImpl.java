@@ -28,11 +28,11 @@ public class InsDaoImpl implements InsDao {
 	}
 
 	private Ins getIns(ResultSet rs) throws SQLException {
-		Ins k = new Ins();
-		k.setCode(rs.getInt("INS_CODE"));
-		k.setName(rs.getString("NAME"));
-		k.setFare(rs.getInt("FARE"));
-		return k;
+		Ins i = new Ins();
+		i.setCode(rs.getInt("INS_CODE"));
+		i.setName(rs.getString("NAME"));
+		i.setFare(rs.getInt("FARE"));
+		return i;
 	}
 
 	@Override
