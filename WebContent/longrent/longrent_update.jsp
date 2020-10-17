@@ -34,7 +34,7 @@ $(function() {
 	             tel: $("#tel").val(),
 	             pwd: $("#pwd").val(),
 	             title: $("#title").val(),
-	             contents: $("#contents").val(),
+	             contents: $("#contents_ckeditor").val(),
 	             options: chkStr
 	       };
 	

@@ -57,22 +57,22 @@
 				</div>
 			</div>
 			<div class="form_box">
-				<form>
+				<form action="longRentWriteMain.do" method="get">
 					<div class="tit">
 						<h2>빠른상담신청</h2>
 					</div>
 					<ul>
 						<li>
 							<label>이름</label>
-							<input type="text" placeholder="성함을 기재해주세요" class="f_input">
+							<input type="text" placeholder="성함을 기재해주세요" class="f_input" name="m_name">
 						</li>
 						<li>
 							<label>연락처</label>
-							<input type="text" placeholder="연락처를 기재해주세요" class="f_input">
+							<input type="text" placeholder="연락처를 기재해주세요" class="f_input" name="m_tel">
 						</li>
-						<li class="btn"><button>빠른상담<br>신청하기</button></li>
+						<li class="btn"><input type="submit" value="빠른상담 신청하기"></li>
 					</ul>
-					<p class="privacy"><input type="checkbox"> <a href="#">개인정보 취급방침</a>에 동의합니다.</p>
+					<p class="privacy"><input type="checkbox"><a href="">개인정보 취급방침</a>에 동의합니다.</p>
 				</form>
 			</div>
 		</div>
