@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import rentcar.controller.Command;
+import rentcar.dto.Event;
+import rentcar.dto.EventBox;
 import rentcar.dto.Member;
+import rentcar.service.EventBoxService;
 
 public class EventCouponHandler implements Command {
+	private EventBoxService service = new EventBoxService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -18,7 +22,16 @@ public class EventCouponHandler implements Command {
 		HttpSession session = request.getSession();
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
-		System.out.println(loginUser);
+		String eventCode = request.getParameter("code");
+		
+		EventBox eventBox = new EventBox();
+		eventBox.setEventCode(new Event(eventCode));
+		eventBox.setId(loginUser);
+		
+		int res = service.insertEventBox(eventBox);
+		
+		response.getWriter().print(res);
+		response.sendRedirect("event.do");
 		
 		return null;
 	}
