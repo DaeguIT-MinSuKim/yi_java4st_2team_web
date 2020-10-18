@@ -44,7 +44,7 @@ public class MemberDaoImplTest {
 	@Test
 	public void test03SelectMemberByUserId() {
 		System.out.printf("%s()%n", "test03SelectMemberByUserId");
-		Member getMember = MemberDaoImpl.getInstance().selectMemberByUserId(new Member("one"));
+		Member getMember = MemberDaoImpl.getInstance().selectMemberByUserId(new Member("dong"));
 		Assert.assertNotNull(getMember);
 
 		System.out.printf("%s%n%n", getMember);
