@@ -1,3 +1,14 @@
+function MPopup(){
+	
+	if(document.getElementById("checkboxMainLR").checked==false){
+		window.alert("이용약관을 확인하시고 동의하셔야 상담이 가능합니다.");
+		document.getElementById("checkboxMainLR").focus();
+		return ;
+	}
+	
+	 document.main_longrent.submit();
+}
+
 $(document).ready(function(){
 	
 	// 장기렌트
