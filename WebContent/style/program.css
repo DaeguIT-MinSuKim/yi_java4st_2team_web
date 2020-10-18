@@ -124,6 +124,9 @@ i.msg {display:inline-block; width:40px; height:40px; background:url(../images/c
 .textBox_support .wrap .autoCode {width:80px;}
 .textBox_support .form-group>div p {clear:both; margin:0; font-size:12px; color:#999; line-height:1.4;}
 
+
+.page_privacyText {max-width:1200px; margin:130px auto 0;}
+
 @media print, screen and (max-width:992px){
 	.login_box {margin-top:50px;}
 }

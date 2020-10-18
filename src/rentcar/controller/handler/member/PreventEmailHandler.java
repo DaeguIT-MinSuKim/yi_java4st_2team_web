@@ -13,6 +13,7 @@ public class PreventEmailHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		return "member/preventEmail.jsp";
 	}
 

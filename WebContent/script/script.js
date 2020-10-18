@@ -193,11 +193,11 @@ function rent_carSearch(){
 			if( maxDateVal == "" ){ // 반납일 선택 안한 경우
 				var dateArr = {
 					"minDateVal":minDateVal,
-					"maxDateVal":maxDateVal
+					"minHourVal":minHourVal
 				};
 				
 //				$.ajax({
-
+					
 //				});
 				
 			}else{ // 반납일 선택

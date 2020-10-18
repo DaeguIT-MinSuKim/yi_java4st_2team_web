@@ -28,6 +28,30 @@ footer .bootstrap-select.btn-group .dropdown-toggle .filter-option {padding:0; o
 
 .c_gray {color:#666}
 
+/* 팝업창 공용 소스 */
+.popup_common {display:none; position:fixed; z-index:1000; top:0; left:0; width:100%; height:100%; background:none; padding:15px;}
+.popup_common .con {z-index:1; background:#fff; position:relative; width:100%; max-width:800px; height:500px; margin:0 auto; border-radius:20px; overflow:hidden;
+	padding:0;
+	top:calc(50% - 250px);
+	top:-webkit-calc(50% - 250px); 
+	box-shadow:0 0 50px rgba(0,0,0,.1) !important;
+}
+.popup_common .con .top {height:50px; line-height:50px; padding-left:30px; border-bottom:1px solid #ddd; }
+.popup_common .con .top .title {position:relative; font-size:17px;}
+.popup_common .con .top .popup_close_common {position:absolute; right:20px; top:0;}
+.popup_common .con .top {height:50px; line-height:50px; padding-left:30px; border-bottom:1px solid #ddd;}
+.popup_common .con .btm {padding:25px;}
+.popup_common .bg {position:absolute; top:0; left:0; right:0; bottom:0; margin:auto; width:100%; height:100%; background:rgba(0,0,0,.5); display:none;}
+
+/* 메인 개인정보취급방침 팝업 */
+.popup_mainPrivacy {}
+.popup_mainPrivacy .con .top {}
+.popup_mainPrivacy .con .btm {height:450px; overflow:scroll}
+
+
+
+
+
 @media screen and (max-width:992px){
 	
 }
