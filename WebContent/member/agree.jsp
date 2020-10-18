@@ -17,7 +17,7 @@ if( 로그인했으면 ){
 		<h3>이용약관</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 이용약관</div>
 		
-		<div class="agree box">		
+		<div class="container-fluid privacy page_privacyText">		
 			<%@ include file="/include/agree_inner.jsp"%>
 		</div>
 	</div>

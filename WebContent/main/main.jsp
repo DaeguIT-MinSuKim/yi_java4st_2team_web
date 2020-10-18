@@ -50,7 +50,7 @@
 		<div>
 			<div class="txt_box">
 				<div>
-					<h2>렌터카<br>빠른상담신청</h2>
+					<h2>장기렌트<br>빠른상담신청</h2>
 					<p class="number">053-123-4567</p>
 					<p class="time">상담시간 : 평일 <span>09:00~18:00</span></p>
 					<p class="t1">※ 휴일 및 야간에는 빠른 상담신청을 하시면 <br>확인 후 순차적으로 연락드립니다.</p>
@@ -59,7 +59,7 @@
 			<div class="form_box">
 				<form action="longRentWriteMain.do" method="get">
 					<div class="tit">
-						<h2>빠른상담신청</h2>
+						<h2>장기렌트 빠른상담신청</h2>
 					</div>
 					<ul>
 						<li>
@@ -70,9 +70,9 @@
 							<label>연락처</label>
 							<input type="text" placeholder="연락처를 기재해주세요" class="f_input" name="m_tel">
 						</li>
-						<li class="btn"><input type="submit" value="빠른상담 신청하기"></li>
+						<li class="btn"><input type="submit" class="btn_submit" value="빠른상담"></li>
 					</ul>
-					<p class="privacy"><input type="checkbox"><a href="">개인정보 취급방침</a>에 동의합니다.</p>
+					<p class="privacy"><input type="checkbox"><a href="javascript:;" class="btn_mainPrivacy">개인정보 처리방침</a>에 동의합니다.</p>
 				</form>
 			</div>
 		</div>
@@ -205,5 +205,26 @@
 		},
 	});
 </script>
+
+
+<div class="popup_common popup_mainPrivacy">
+	<div class="con">
+		<div class="top">
+			<div class="title">
+				개인정보 처리방침 정보
+				<a href="javascript:;" class="popup_close_common">
+					<img src="./images/member/popup_close.svg" alt="팝업창 닫기">
+				</a>
+			</div>
+		</div>
+		<div class="btm">
+			<div class="privacyBox">
+				<%@ include file="/include/privacy_inner.jsp"%>
+			</div>
+		</div>
+	</div>
+	<div class="bg popup_close_common"></div>
+</div>
+
 
 <%@ include file="/include/footer.jsp"%>
