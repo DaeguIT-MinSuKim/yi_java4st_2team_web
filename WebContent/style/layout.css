@@ -128,7 +128,7 @@
 	nav.pc .gnb a.on {color:#ffc000;}
 	nav.pc .gnb>ul>li>a:hover,nav .navWrap>ul>li>a:focus {color:#ffc000;}
 	nav.pc .gnb>ul {margin:0 !important;}
-	nav.pc .gnb>ul>li {float:left; width:25%;}
+	nav.pc .gnb>ul>li {float:left; width:20%;}
 	nav.pc .gnb>ul>li>a {display:block; width:100%; height:50px; padding-top:15px; font-size:18px; color:#fff;}
 	nav.pc .gnb>ul>li.on>a {color:#ffc000;}
 	nav.pc .gnb>ul>li>ul {position:absolute; top:70px; left:0; width:100%; text-align:center;}

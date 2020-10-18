@@ -137,6 +137,7 @@
 					<li><a href="rent.do">단기렌트</a></li>
 					<li><a href="longRent.do">장기렌트</a></li>
 					<li><a href="event.do">이벤트</a></li>
+					<li><a href="notice.do">공지사항</a></li>
 					<li><a href="mypage.do">마이페이지</a></li>
 					<li class="mobile" data-device="mobile">
 						<a href="./member/login.jsp">회원관리</a>
