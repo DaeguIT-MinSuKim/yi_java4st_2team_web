@@ -13,7 +13,11 @@ public class RentHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		return "/rent/rent.jsp";
+		if (request.getMethod().equalsIgnoreCase("get")) {
+			return "/rent/rent.jsp";
+		}else {
+			System.out.println("미안하다");
+			return null;
+		}
 	}
 }

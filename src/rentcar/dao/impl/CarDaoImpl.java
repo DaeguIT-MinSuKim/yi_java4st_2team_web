@@ -18,7 +18,7 @@ import rentcar.exception.CustomSQLException;
 public class CarDaoImpl implements CarDao {
 	private static final CarDaoImpl instance = new CarDaoImpl();
 	private Connection con;
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 	public CarDaoImpl() {
 		super();

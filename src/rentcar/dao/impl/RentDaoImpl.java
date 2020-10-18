@@ -22,10 +22,9 @@ import rentcar.exception.CustomSQLException;
 public class RentDaoImpl implements RentDao {
 	private static final RentDaoImpl instance = new RentDaoImpl();
 	private Connection con;
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-DD HH24:MI:SS");
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 	
 	public RentDaoImpl() {
-		super();
 	}
 
 	public static RentDaoImpl getInstance() {
@@ -52,7 +51,7 @@ public class RentDaoImpl implements RentDao {
 		m.setEmail(rs.getString("EMAIL"));
 		m.setAddress(rs.getString("ADDRESS"));
 		m.setIs_black(rs.getString("IS_BLACK"));
-		m.setRemark(rs.getString("REMARK"));
+		m.setRemark(rs.getString("BIRTH"));
 		m.setCounting(rs.getInt("COUNTING"));
 
 		k.setCode(rs.getInt("KIND_CODE"));
