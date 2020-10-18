@@ -136,3 +136,7 @@
 
 
 .notice_board {padding:8px 13px 4px; background:#586ebf; font-size:0.85em; color:#fff; line-height:1em;}
+
+@media screen and (max-width:767px){
+	.notice_board {padding-left:5px; padding-right:5px;}
+}
