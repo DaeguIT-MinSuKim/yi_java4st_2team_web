@@ -1,0 +1,204 @@
+/*
+*	header, footer, nav, leftMenu 관련 CSS
+*/
+/* ************************ 공용 ************************ */
+@media all {/* 모든디바이스 */
+	section {position:relative; display:block; width:100%; max-width:1200px; margin:0 auto; margin-top:170px; }
+	.contents {font-weight:normal; color:#333; line-height:1.6;}
+	.contents img {max-width:100%; height:auto;}
+	.more {display:block; position:absolute; width:25px; height:25px; top:0; right:0; background:url(../images/common/icon_more.png) 100% 0 no-repeat;}
+	.more2 {display:block; position:absolute; width:25px; height:25px; right:0; background:url(../images/common/icon_more2.png) 50% no-repeat;}
+	#gotop {z-index:900; display:none; position:fixed; width:35px; height:35px; border-radius:3px; bottom:110px; right:38px; background:url(../images/common/arrow_up.png) no-repeat 50% #fff; box-shadow:0 0 3px rgba(0,0,0,.3) !important;}
+	.con_wrap {margin-top:0;}
+
+	.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio]
+	{margin-right:5px; position:relative; top:2px;}
+	.form-control {height:40px; border:1px solid #e8e8e8;}
+	.form-horizontal .control-label {text-align:left; color:#696969;}
+	.form-horizontal .form-group {margin-right:0 !important; margin-left:0 !important; margin-bottom:0 !important;}
+	pre {overflow:hidden;}
+	
+	.board_ebi .search_box .btn {padding:4px 12px !important;}
+	.board_ebi .page_box .mobile .btn {padding:1px 25px 1px 10px !important;}
+}
+/* 레프트메뉴 고정, 프린트오류방지 */
+@media screen and (max-width:2000px){ 
+	.jbFixed {position:fixed; top:0;}
+}
+
+/* ************************ 태블릿 이하(~991) ************************ */
+@media screen and (max-width: 991px) {
+	
+	html,body {width:100%; font-family:"GmarketSans", sans-serif; overflow-x:hidden; overflow-y:auto;}
+	.pc {display:none !important;}
+	h3 {display:block; margin:0 -15px;text-align:center; font-size:14px; color:#fff; padding:15px; margin-bottom:10px; line-height:1; background:#3b5789;}
+
+	/*헤더*/
+	header {position:relative;}
+	header .head {position:relative; width:100%; height:50px; background-color:#fff;}
+	header .head .gnbView {position:absolute; display:block; width:50px; height:50px; left:0; top:0; border-right:1px solid #ddd; background:url(../images/common/icon_allmenu.png) 50% 50% no-repeat; background-size:35%; border-radius:0;}
+	header .head h1 {margin:0 !important; position:absolute; display:block; width:100%; height:50px; left:0; top:0; text-align:center; border-bottom:1px solid #e5e5e5;}
+	header .head h1 a {display:inline-block; height:50px; padding:12px 0; text-align:center;}
+	header .head h1 a img {display:block; height:100%;}
+	header .head .side {position:absolute; top:0; right:0; height:100%;}
+	header .head .side .login {display:block; width:50px; height:50px; border:0; border-left:1px solid #ddd; background:url(../images/common/icon_login.png) 50% 50% no-repeat; background-size:40%;}
+	header .head .side .logout {display:block; width:50px; height:50px; border:0; border-left:1px solid #ddd; background:url(../images/common/icon_logout.png) 50% 50% no-repeat; background-size:40%;}
+	header .head .side .login span {display:none;}
+	header .head .side .logout span {display:none;}
+	header .head .side .join {display:none;}
+	header .head .side .home {display:none;}
+
+	/*gnb*/
+	nav.mobile {z-index:9999; position:fixed; visibility:hidden; top:0; width:80%; height:100%; overflow:hidden; background:#fff; box-shadow:5px 0px 10px rgba(0,0,0,.7) !important;}
+	nav.mobile .closeWrap {position:relative; height:50px; background-color:#3b5789; color:#fff;}
+	nav.mobile .closeWrap .gnbClose {display:block; width:50px; height:50px; background:url(../images/common/icon_gnbclose.png) 50% 50% no-repeat #000; background-size:40%;}
+	nav.mobile .closeWrap .home {position:absolute; display:block; right:20px; top:15px; color:#fff; font-size:12px;}
+	.gnbCover {z-index:9998; position:fixed; left:0; top:0; display:none; width:100%; height:100%; background:rgba(0,0,0,.5);}
+
+	nav.mobile .gnb * {width:100% !important;}
+	nav.mobile .gnb .home {display:block; width:100%; background-color:#f0f0f0; padding:12px 20px; border-bottom:1px solid #333;}
+	nav.mobile .gnb {position:relative; width:100%; height:100%; overflow-y:auto;}
+	nav.mobile .gnb>ul>li {clear:both; position:relative;}
+	nav.mobile .gnb>ul>li>a {display:block; padding:12px 20px; color:#000; border-bottom:1px solid #ddd; font-size:17px; background:#fff;}
+	nav.mobile .gnb>ul>li>a:hover {background:#333; color:#fff;}
+	nav.mobile .gnb>ul>li.on>a {color:#fff; background:#333; border-bottom:1px solid #000;}
+	nav.mobile .gnb>ul>li>ul {display:none;}
+	nav.mobile .gnb>ul>li>ul>li {position:relative;}
+	nav.mobile .gnb>ul>li>ul>li a {display:block; padding:12px 20px 12px 30px; font-size:14px; color:#333; border-bottom:1px solid #eee; background:#f9f9f9;}
+	nav.mobile .gnb>ul>li>ul>li a:hover {color:#3b5789; background-color:#f5f5f5;}
+	nav.mobile .gnb>ul>li>ul>li.on a {color:#3b5789;}
+
+	/*footer*/
+	footer {max-width:100%; color:#999; text-align:center;}
+	footer .wrap {position:relative; max-width:1000px; margin:0 auto; padding:30px 0 20px;}
+	footer .wrap>* {padding:0; margin:0;}
+	footer .fnb {overflow:hidden; width:100%; text-align:center; background:#696969; padding:15px 10px; margin-bottom:20px;}
+	footer .fnb li {display:inline-block;}
+	footer .fnb li a {display:inline-block; font-size:13px; color:#fff; padding:0 10px;}
+	footer address {display:block; }
+	footer address .logo {text-align:left; margin:0; padding:0;}
+	footer address .logo img {width:90%; height:auto;}
+	footer address .address p {font-size:11px;  line-height:1.4; margin:0; padding-bottom:5px;}
+	footer address .address p:first-child {font-weight:bold; }
+	footer .familysite {right:0; top:2px; text-align:right;}
+
+	footer strong {font-size:14px; color:#333; display:inline-block; margin-bottom:10px;}
+
+	/*컨텐츠*/
+	.contents {padding-top:0 !important;}
+	section {margin-top:0; padding:0 5px;}
+	.service .main_text {padding:20px 0;}
+	.health .main_text {padding:20px 0;}
+
+	footer {margin-top:10px;}
+	footer .fnb {line-height:1; border-radius:0;}
+	footer .fnb li {margin-bottom:5px;}
+	footer .fnb li a {font-size:11px;}
+	footer .wrap {/* padding:0 0 20px 0; */}
+	.juridical .box2 table {margin-bottom:0 !important;}
+	.con_wrap {padding:0 10px;}
+}
+
+/* ************************ 데스크탑 (992~) ************************ */
+@media all and (min-width: 992px){	
+	html,body {font-family:"GmarketSans", sans-serif; font-weight:500; width:100%; position:static;}
+	.mobile {display:none !important;}
+	.affix {top:0;}
+	h3 {font-family:; font-size:24px; color:#000; padding-bottom:15px; line-height:1; margin:0; border-bottom:1px solid #e0e0e0; margin-bottom:40px; }
+
+	/*헤더*/
+	header {z-index:999; position:absolute; width:100%; top:0;}
+	header .head {position:relative; margin:0; background-color:#fff;}
+	header .head .wrap {position:relative; max-width:1200px; margin:0 auto; padding:20px 0 15px 0; }
+	header .wrap h1 {margin:0; line-height:1; font-size:0; padding-left:5px;}
+	header .wrap .side {position:absolute; right:0;bottom:15px; font-size:12px; line-height:1;}
+	header .wrap .side li {float:left;}
+	header .wrap .side li a {display:block; padding:0px 10px; color:#999; font-size:13px; background-color:#fff; }
+	header .wrap .side li a:hover {color:#ffc000;}
+
+	/*gnb*/
+	nav.mobile {visibility:hidden}
+	nav.pc {visibility:hidden; position:relative; display:block; max-width:100%; margin:0 auto; overflow:hidden;}
+	nav.pc.on {box-shadow:2px 2px 5px rgba(0,0,0,.3) !important;}
+	nav.pc .navbg {position:absolute; left:0; top:0; width:100%; height:100%;}
+	nav.pc .navbg .dep1 {height:50px; background-color:#171d33;}
+	nav.pc .navbg .dep2 {height:100%; background-color:#fff; opacity:.95;}
+	nav.pc .gnb {position:relative; display:block; max-width:1200px; margin:0 auto; text-align:center;}
+	nav.pc .gnb a {font-weight:normal;}
+	nav.pc .gnb a.on {color:#ffc000;}
+	nav.pc .gnb>ul>li>a:hover,nav .navWrap>ul>li>a:focus {color:#ffc000;}
+	nav.pc .gnb>ul {margin:0 !important;}
+	nav.pc .gnb>ul>li {float:left; width:25%;}
+	nav.pc .gnb>ul>li>a {display:block; width:100%; height:50px; padding-top:15px; font-size:18px; color:#fff;}
+	nav.pc .gnb>ul>li.on>a {color:#ffc000;}
+	nav.pc .gnb>ul>li>ul {position:absolute; top:70px; left:0; width:100%; text-align:center;}
+	nav.pc .gnb>ul>li>ul>li {display:inline-block; width:12%; text-align:center;}
+	nav.pc .gnb>ul>li>ul>li:hover {text-decoration:underline;}
+	nav.pc .gnb>ul>li>ul>li a {display:block; padding:4px 0; color:#000; font-size:15px;}
+	nav.pc .gnb>ul>li>ul>li a span {display:block; padding:0 0 7px 0;}
+	nav.pc .gnb>ul>li>ul>li.on {text-decoration:underline;}
+
+	/*footer*/
+	footer {max-width:100%; color:#999; padding:30px 0;}
+	footer .wrap {position:relative; max-width:1200px; margin:0 auto; padding:10px 5px;}
+	footer .wrap>* {padding:0; margin:0;}
+	footer .fnb {overflow:hidden; width:100%; text-align:center; background-color:#fff !important; padding:15px 10px; margin-bottom:20px; border-top:1px solid #000;}
+	footer .fnb li {display:inline-block; width:15%;}
+	footer .fnb li a {display:inline-block; font-size:13px; color:#333 !important;}
+	footer .fnb li a:hover {color:#ffc000 !important;}
+	footer address {display:block; }
+	footer address .logo {text-align:left; margin:0; padding:0;}
+	footer address .logo img {width:90%; height:auto;}
+	footer address .address p {font-size:13px;  line-height:1.4; margin:0; padding-bottom:5px; }
+	footer address .address p:first-child {font-weight:bold; }
+	footer .familysite {right:0; top:2px; text-align:right;}
+
+	footer strong {font-size:14px; color:#333; display:inline-block; margin-bottom:10px; font-weight:500}
+	
+	/*서브 상단 배경*/
+	[class*="bgSub"] {background:#fff url(../images/common/sub_visual.jpg) no-repeat;}
+	[class*="bgSub"] .slogan {position:relative; max-width:1000px; padding-top:50px; margin:0 auto;}
+	[class*="bgSub"] .slogan p {text-align:right; color:#fff; font-size:15px; line-height:1.8; padding-right:50px;}
+	[class*="bgSub"] .slogan p strong {display:block; color:#fff; font-size:24px;}
+	[class*="bgSub"] {max-width:100% !important; height:350px; background-size:cover;}
+	.bgSub1 {width:100%; height:210px;}
+
+	/* 컨텐츠*/
+	.con_wrap {width:100%; padding:5px; display:table;}
+	section.con_wrap>div {padding:0;}
+	.address p {font-size:13px; color:#999;}
+	.familysite .move {display:inline-block; background:#ececec; border:1px solid #ddd; font-size:12px; color:#666; padding:7px 10px 6px; float:right; margin-left:5px;}
+	.familysite>div {display:inline-block; width:230px;}
+	.familysite button {border-radius:0 !important; border:1px solid #ddd; color:#666; font-size:13px;}
+	
+	/* 서브메뉴 ->레프트메뉴 */
+	.snb {margin:0; padding:0; background-color:#fff; min-width:200px; display:table-cell; float:none; clear:both;}
+	.snb h2 {display:block; font-size:30px; margin:0; padding:45px 10px 10px 10px; line-height:1; text-align:center; color:#171d33; background-color:#fff; border-bottom:3px solid #171d33; width:200px;}
+	.snb ul {padding:0; margin:0; width:200px;}
+	.snb ul li:first-child {margin-top:50px;}
+	.snb ul li:last-child a {border-bottom:0;}
+	.snb ul li a {display:block; padding:20px 0 17px 25px; line-height:1; font-size:14px; border-bottom:1px solid #eee; background-color:#fff; color:#000;}
+	.snb ul li a:hover {background:#171d33; color:#fff}
+	.snb ul li.on a {color:#fff; background:#3b5789 url(../images/common/snb_on.png) 6% 50% no-repeat;}
+    .other_size {font-size:24px !important;}
+	/*컨텐츠*/
+	.contents_box {float:none; clear:both; width:100%; padding-left:65px !important}
+	.contents_box .contents {padding:50px 0 5px 0;}
+	.contents_box .contents .location {text-align:right; right:5px; font-size:14px; color:#999; position:absolute; top:55px;}
+	.contents_box .contents .location span {display:inline-block; width:20px; text-align:center;}
+	.padLeft0 {padding-left:0 !important;}
+}
+
+@page {
+	size: auto;
+	margin:50px;
+}
+
+/*프린터 전용 */
+@media print {
+	.contents_box { padding-left:55px !important; padding-right:10px !important;}
+	html, body {width:1200px !important; background:#fff;}
+	#gotop {display:none !important;}
+	.affix {position:relative;}
+}
+

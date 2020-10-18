@@ -1,0 +1,141 @@
+/*
+*	로그인, 회원가입, 게시판 관련 CSS
+*/
+
+/* ********************** 부트스트랩 수정 ******************** */
+* {box-shadow:none !important;}
+/* label {display:none;} */
+.checkbox label {display:block;}
+* [class*="inline"] {display:inline-block !important;}
+.block {display:block !important;}
+.dropdown-menu>li>a {padding-left:12px !important;}
+.open>.dropdown-toggle.btn-default {background-color:#f9f9f9 !important;}
+
+.modal {}
+.modal h4 {font-size:14px; font-weight:bold; color:#000;}
+.modal p {font-size:12px;}
+#pop_pwck .form-group {margin:0;}
+
+input[type="hidden"] {}
+input[type="radio"] {top:9px;}
+input[type=checkbox], input[type=radio] {cursor:pointer;}
+/* ********************** 추가 ************************ */
+input:not([type=radio]):not([type=checkbox]) {width:100%; height:40px; line-height:40px; text-indent:5px; font-size:14px; border:1px solid #ddd; border-radius:5px;}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    background:#fff;
+}
+
+.login_box label {display:none !important}
+
+/* 공용 */
+.msg_box * {vertical-align:top;}
+.msg_box p {display:inline-block; font-size:12px !important;}
+.mail2 i {position:absolute; top:5px; left:5px;} /* 메일 입력 두번째 @ 부분에 사용 */
+.mail2 input {padding-left:25px !important;} /* 메일 입력 두번째 @ 부분에 사용 */
+i.msg {display:inline-block; width:40px; height:40px; background:url(../images/common/icon_msg.png) no-repeat 0 4px;}
+
+.join .checkbox {text-align:right;}
+.btn_box {text-align:center;}
+.btn_box li {display:inline-block;}
+/* 회원-아이디/비번찾기 */
+.search .login_box {width:100%;}
+.search .login_box .login {padding:80px 30px 70px 30px; background:#0093ff url(../images/member/search.png) 50% 30% no-repeat; border-radius:10px;}
+.search .login_box .col-sm-6 {padding-left:60px !important; padding-right:60px !important; margin-bottom:40px;}
+/* 아이디찾기-1 */
+.search_id .id_wrap {width:100%; border:1px solid #cfcfcf; border-radius:10px; padding:50px 10px; text-align:center; margin-bottom:20px;}
+.search_id .id_wrap>div {display:inline-block;}
+.search_id .id_wrap p {font-size:16px; padding:0 20px}
+.search_id .id_wrap p span {color:red;}
+.search_id label {display:inline-block; padding:0 30px; cursor:pointer; margin-top:20px; position:relative;}
+.search_id label input {top:0;}
+.search_pwd .id_wrap div[class^="col-"] {margin-bottom:10px;}
+.search_pwd strong {display:inline-block; width:100%; text-align:center; padding:30px; font-size:16px; color:red;}
+
+/*  */
+.login_box .btn {border:1px solid #333;}
+.login_box h3 {border-bottom:0 !important; margin:0; background-color:#fff; color:#000; font-size:24px;}
+.login_box .form-group {text-align:center;}
+.login_box .form-group>* {margin-bottom:15px; padding:0;}
+.login_box .form-group>*:last-child {margin:0;}
+.login_box .form-group .input-lg {padding:6px 16px; height:50px;}
+.login_box .login {width:100%; color:#fff !important; background-color:#0093ff; line-height:1; border:none; font-size:18px; height:60px; line-height: 60px;}
+.login_box .login:hover {background-color:#333;}
+.login_box .info {margin-top:20px; text-align:left; font-size:12px !important; padding:0;}
+.login_box .info>* {padding-top:20px; padding-left:0; margin:0;}
+.login_box .info .btn-sm {border:1px solid #ddd; height:50px; line-height:50px;}
+.login_box .info .btn-sm:hover {border:1px solid #333;}
+.login_box .form-control::placeholder {font-size:17px;}
+
+/* 회원-가입 이용약관*/
+.agree {padding:20px; border:1px solid #eee; background-color:#fafafa;}
+.agree pre {width:100%; font-size:12px; margin:0; padding:0; font-family:inherit !important; line-height:inherit; background-color:transparent; border:none;}
+.privacy {padding:20px; border:1px solid #eee; background-color:#fafafa;}
+.privacy pre {font-size:12px; margin:0; padding:0; font-family:inherit !important; line-height:inherit; background-color:transparent; border:none;}
+
+/* 회원-가입폼 */
+.join_step {margin-bottom:50px; text-align:center; font-size:12px; letter-spacing:-1px;}
+.join_step li {padding-bottom:10px; color:#999; border-bottom:1px solid #ddd; background:url(../images/common/arrow_right.png) no-repeat 100% 30%; opacity:.5;}
+.join_step li:last-child {background:none;}
+.join_step .on {color:#000; border-bottom:1px solid #000; opacity:1; }
+.join label {display:block; margin:0;}
+.join .agree {overflow-y:auto;}
+.join .checkbox label {color:red; font-size:14px;}
+.join .privacy {overflow-y:auto;}
+.join .title {padding-bottom:10px; margin-bottom:30px !important; border-bottom:1px solid #333; font-weight:bold; color:#000;}
+.join .title span {font-size:12px; color:#666; font-weight:normal;}
+.join .form-group a.btn {height:40px; line-height: 40px; font-size:14px; letter-spacing:0; padding:1px 20px; border:1px solid #e8e8e8;}
+.join .form-group label {clear:left;}
+.join .form-group>div {min-height:34px; margin-bottom:20px;}
+.join .form-group>div>div {padding-left:0;}
+.join .form-group>div:last-child {margin-bottom:0;}
+.join .form-group>div p {clear:both; margin:0; font-size:12px; color:#999; line-height:1.4; padding-bottom:15px}
+.join .form-group>div>* {margin-bottom:5px;}
+.join .form-group input[type="text"].inline {height:34px; padding:4px 12px; border:1px solid #ccc;}
+.join .form-group span.inline {display:block; float:left; height:34px; padding:6px 5px;}
+.join .form-group .select_box {height:34px;border:1px solid #ccc;}
+.join .form-group .mail {border-right:0 !important;}
+.join .form-group .divinner>div {padding-right:5px !important;}
+.join .form-group .addr>div:nth-last-child(2) {padding-right:0 !important;}
+.join .form-group .addr>div:last-child {padding-right:0 !important;}
+.join .form-group .checkbox {text-align:left; }
+.join .form-group .addr label {display:none;}
+.join .form-group input[type="checkbox"] {position:relative; top:2px;}
+.join .form-group .autoCode {padding:5px 0; width:80px;}
+.join .years .col-xs-6 {padding-right:5px !important;}
+.join .years .col-xs-6 img {height:40px;}
+.join .years .col-xs-6 label {display:inline-block;}
+.join .radio-inline {font-weight:bold; padding-top:0 !important;}
+.join .gender {margin-top:3px;}
+/* 회원-가입완료 */
+.join_end {text-align:center;}
+.join_end .title {font-size:24px; color:#000;}
+/* 개인정보이용동의 */
+.privacy_wrap {border:1px solid #e5e5e5; padding:25px 20px 5px 20px; margin:5px 0 10px 0; border-radius:8px;}
+.privacy_wrap h4 {padding:0 !important; background:0 !important; border-bottom:0 !important; border-radius:0;}
+.privacy_wrap div {width:100%; padding:0 20px;}
+.privacy_wrap div>div {width:100%; text-align:right; margin:5px 0;}
+.privacy_wrap pre {height:150px; overflow-y:scroll;font-family:"NotoSansKR",sans-serif; border-radius:0 !important; margin-bottom:0 !important; background:#f5f5f5 !important}
+.privacy_wrap pre span.title {font-weight:bold; color:#000;}
+.privacy_wrap input[type=checkbox], input[type=radio] {position:absolute; margin:6px 0 0 -18px;}
+.textBox_support .privacy_wrap {border:0 !important;}
+.textBox_support .wrap .autoCode {width:80px;}
+.textBox_support .form-group>div p {clear:both; margin:0; font-size:12px; color:#999; line-height:1.4;}
+
+@media print, screen and (max-width:992px){
+	.login_box {margin-top:50px;}
+}
+/* 회원-로그인, 아이디비번찾기*/
+@media print, screen and (min-width: 768px){
+	.login_box {text-align:center; padding:0; width:50%;}
+	
+}
+@media print, screen and (max-width: 767px) {
+	.login_box {text-align:center; padding:0; width:100%;}
+	/* 아이디/비밀번호찾기 */
+	.search_id label {margin-bottom:20px;}
+	
+	.privacy_wrap div {padding:0;}
+}
