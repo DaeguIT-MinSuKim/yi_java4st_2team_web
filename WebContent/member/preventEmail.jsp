@@ -18,7 +18,7 @@ if( 로그인했으면 ){
 		<h3>이메일 집단수집거부</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 이메일 집단수집거부</div>
 		
-		<div class="container-fluid col-xs-12 privacy">	
+		<div class="container-fluid privacy page_privacyText">	
 			<%@ include file="/include/preventEmail_inner.jsp"%>	
 		</div>
 	</div>

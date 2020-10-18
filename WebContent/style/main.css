@@ -67,8 +67,8 @@
 #mAdvice .form_box ul li label {display:block; float:left; width:120px; line-height:52px; font-size:16px; color:#fff; font-weight:400; text-align:center; background:#044fa2; margin-bottom:0;}
 #mAdvice .form_box ul li .f_input {display:block; float:left; width:calc(100% - 120px); height:52px; line-height:52px; border:0; background:#fff; box-sizing:border-box; padding:0 15px 0 25px; font-size:16px; font-weight:300; font-family:'GmarketSans';}
 #mAdvice .form_box ul li.btn {position:absolute; right:0; top:0; width:114px; height:100%; display:block; padding:0;}
-#mAdvice .form_box ul li.btn button {width:100%; height:100%; font-size:18px; color:#fff; line-height:1.3em; font-weight:500; background:#044fa2; border-radius:3px; border:0; transition:background 0.5s}
-#mAdvice .form_box ul li.btn button:hover {background:#2c84f0;}
+#mAdvice .form_box ul li.btn .btn_submit {width:100%; height:100%; font-size:18px; color:#fff; line-height:1.3em; font-weight:500; background:#044fa2; border-radius:3px; border:0; transition:background 0.5s}
+#mAdvice .form_box ul li.btn .btn_submit:hover {background:#2c84f0;}
 #mAdvice .form_box .privacy {font-size:16px; line-height:1em; color:#666;}
 #mAdvice .form_box .privacy a {color:#044fa2; border-bottom:1px solid #dbdee5;}
 #mAdvice .form_box .privacy input[type="checkbox"] {width:16px; height:16px; border-color:#c4c4c4; vertical-align:top; margin:0 5px 0 0;}
@@ -114,7 +114,7 @@
 	#mAdvice .form_box ul li label {font-size:13px;line-height:35px;}
 	#mAdvice .form_box ul li .f_input {font-size:13px; height:35px; line-height:35px;}
 	#mAdvice .form_box ul li.btn {width:80px;}
-	#mAdvice .form_box ul li.btn button {font-size:15px}
+	#mAdvice .form_box ul li.btn .btn_submit {font-size:15px}
 
 	
 
