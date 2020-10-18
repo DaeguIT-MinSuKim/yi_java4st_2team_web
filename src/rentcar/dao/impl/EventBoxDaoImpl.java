@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import rentcar.dao.EventBoxDao;
 import rentcar.dto.Event;
@@ -33,6 +34,18 @@ public class EventBoxDaoImpl implements EventBoxDao {
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, Integer.parseInt(eventBox.getEventCode().getEventCode()));
 			pstmt.setString(2, eventBox.getId().getId());
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+	}
+
+	@Override
+	public int deleteEventBox(EventBox eventBox) {
+		String sql = "DELETE FROM EVENT_BOX WHERE EVENT_CODE = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, Integer.parseInt(eventBox.getEventCode().getEventCode()));
 			
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -79,6 +92,27 @@ public class EventBoxDaoImpl implements EventBoxDao {
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}
+	}
+
+	@Override
+	public ArrayList<EventBox> selectEventBoxFindCode(String eventCode) {
+		String sql = "SELECT EVENT_BOX, EVENT_CODE, ID, IS_EVENT FROM EVENT_BOX WHERE EVENT_CODE = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, eventCode);
+			
+			try (ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					ArrayList<EventBox> list = new ArrayList<EventBox>();
+					do {
+						list.add(getEventBox(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
 	}
 
 }

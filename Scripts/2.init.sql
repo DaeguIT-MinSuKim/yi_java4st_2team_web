@@ -405,7 +405,7 @@ CREATE TABLE EVENT_BOX (
 	event_box INTEGER NOT NULL, /* 이벤트보관함번호 */
 	event_code INTEGER, /* 이벤트코드 */
 	id VARCHAR2(50), /* 아이디 */
-	is_event CHAR(1) /* 사용여부 */
+	is_event CHAR(1) DEFAULT 'n' /* 사용여부 */
 );
 
 COMMENT ON TABLE EVENT_BOX IS '이벤트보관함';
