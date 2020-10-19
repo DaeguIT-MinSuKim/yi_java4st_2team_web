@@ -53,9 +53,8 @@ public class MemberDaoImpl implements MemberDao {
 		String license = rs.getString("LICENSE");
 		String email = rs.getString("EMAIL");
 		String address = rs.getString("ADDRESS");
-		String is_black = rs.getString("IS_BLACK");
 		Integer counting = rs.getInt("COUNTING");
-		return new Member(id, pwd, name, tel, license, email, is_black, counting);
+		return new Member(id, pwd, name, tel, license, email, address, counting);
 	}
 
 	@Override

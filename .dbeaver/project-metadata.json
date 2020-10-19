@@ -1,5 +1,29 @@
-<<<<<<< HEAD
-{"resources":{"Scripts/testOSJ.sql":{"sql-editor-data-source-id":"oracle_thin-1753f662a0a-52ef50f45d5072ae","default-datasource":"oracle_thin-1753f662a0a-52ef50f45d5072ae","default-schema":"RENTCAR"}}}
-=======
-{"resources":{"Scripts/1.user.sql":{"default-schema":"SYSTEM","sql-editor-data-source-id":"oracle_thin-1753f4f8a49-3502c7d2f34bd15e","default-datasource":"oracle_thin-1753f4f8a49-3502c7d2f34bd15e"},"Scripts/2.init.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-1753f5003e7-6fcaf379cd65257a","default-datasource":"oracle_thin-1753f5003e7-6fcaf379cd65257a"},"Scripts/3.view_seq.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-1753f5003e7-6fcaf379cd65257a","default-datasource":"oracle_thin-1753f5003e7-6fcaf379cd65257a"},"Scripts/4.data.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-1753f5003e7-6fcaf379cd65257a","default-datasource":"oracle_thin-1753f5003e7-6fcaf379cd65257a"},"Scripts/testKCD.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-1753a555ad9-603847b23b0cb2e1","default-datasource":"oracle_thin-1753a555ad9-603847b23b0cb2e1"},"Scripts/testKDH.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-1752ab008a0-7504e6067bd8ee63","default-datasource":"oracle_thin-1752ab008a0-7504e6067bd8ee63"},"Scripts/testLSE.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-17525ea5aad-781533fb5227891e","default-datasource":"oracle_thin-17525ea5aad-781533fb5227891e"},"Scripts/testMJH.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-1753f5003e7-6fcaf379cd65257a","default-datasource":"oracle_thin-1753f5003e7-6fcaf379cd65257a"},"Scripts/testOSJ.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-175396ffbdc-234ad07083e5c594","default-datasource":"oracle_thin-175396ffbdc-234ad07083e5c594"}}}
->>>>>>> refs/heads/hotfix_jh_join
+{
+	"resources": {
+		"Scripts/1.user.sql": {
+			"default-schema": "SYSTEM",
+			"sql-editor-data-source-id": "oracle_thin-175402f1a36-6c4e2508ee0b1a17",
+			"default-datasource": "oracle_thin-175402f1a36-6c4e2508ee0b1a17"
+		},
+		"Scripts/2.init.sql": {
+			"default-schema": "RENTCAR",
+			"sql-editor-data-source-id": "oracle_thin-175402f94da-45a550b8796067c3",
+			"default-datasource": "oracle_thin-175402f94da-45a550b8796067c3"
+		},
+		"Scripts/3.view_seq.sql": {
+			"default-schema": "RENTCAR",
+			"sql-editor-data-source-id": "oracle_thin-175402f94da-45a550b8796067c3",
+			"default-datasource": "oracle_thin-175402f94da-45a550b8796067c3"
+		},
+		"Scripts/4.data.sql": {
+			"default-schema": "RENTCAR",
+			"sql-editor-data-source-id": "oracle_thin-175402f94da-45a550b8796067c3",
+			"default-datasource": "oracle_thin-175402f94da-45a550b8796067c3"
+		},
+		"Scripts/testMJH.sql": {
+			"default-schema": "RENTCAR",
+			"sql-editor-data-source-id": "oracle_thin-1753f5003e7-6fcaf379cd65257a",
+			"default-datasource": "oracle_thin-1753f5003e7-6fcaf379cd65257a"
+		}
+	}
+}
