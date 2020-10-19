@@ -1,15 +1,19 @@
 package rentcar.controller.handler.rent;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import rentcar.controller.Command;
 import rentcar.dto.Car;
 import rentcar.dto.Kind;
+import rentcar.dto.Rent;
 import rentcar.service.CarService;
 import rentcar.service.KindService;
 
@@ -29,7 +33,11 @@ public class RentHandler implements Command {
 			// 최초 시작시 차량분류 GET
 			List<Kind> kind = KindService.kindList();
 			request.setAttribute("kind", kind);
-		} else {
+			
+		} else { // POST
+//			Gson gson= new Gson();
+//			Rent rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Rent.class);
+			
 		}
 
 		return "/rent/rent.jsp";

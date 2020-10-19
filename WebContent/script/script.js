@@ -11,6 +11,9 @@ function MPopup(){
 
 $(document).ready(function(){
 	
+	// 헤더 로고 (동자승이 눈깜빡이는거 ~)
+	logo_hover();
+	
 	// 장기렌트
 	longrent_pwdConfirm(); // 장기렌트 비밀글 확인
 	longrent_editComment(); // 장기렌트 댓글 수정 
@@ -23,6 +26,7 @@ $(document).ready(function(){
 	rent_optionHours(); // selectBox option 시간 삽입
 	rent_optionHours(); // 단기렌트 - selectBox option 시간 삽입
 	rent_carSearch(); // 단기렌트 - 차량 검색
+	rent_calendarWrap_hover(); // 단기렌트 - 동자승 차 애니메이션
 	
 	//이벤트
 	event_popup();
@@ -30,6 +34,21 @@ $(document).ready(function(){
 	// 관리자 메뉴
 	admin_gnb();
 });
+
+function logo_hover(){
+	var logo = $(".logo").eq(0);
+	var str_logo = "logo";
+
+	logo.on({
+		mouseenter:function(){
+			logo.find("img").attr("src", logo.find("img").attr("src").replace(str_logo, str_logo + "_hover"));
+		},
+		mouseleave:function(){
+			logo.find("img").attr("src", logo.find("img").attr("src").replace(str_logo + "_hover", str_logo));
+		}
+	});
+}
+
 
 
 // 장기렌트 비밀글 확인
@@ -201,7 +220,7 @@ function rent_carSearch(){
 				
 				$.post('rent.do', {dateArr:dateArr}, function(data) {
 			        var result = $.parseJSON(data);
-			        //alert(result.view_count);
+			        alert(result);
 			    }); 
 				
 			}else{ // 반납일 선택
@@ -229,6 +248,29 @@ function rent_carSearch(){
 	
 }
 
+// 단기렌트 - 동자승 차 애니메이션
+function rent_calendarWrap_hover(){
+	var $el_class_calendarWrap = $(".calendarWrap").eq(0);
+	var $el_class_dongja = $(".dongja").eq(0);
+	var $el_class_note1 = $(".note1").eq(0);
+	var $el_class_note2 = $(".note2").eq(0);
+	var str_dong = "dong";
+	
+	$el_class_calendarWrap.on({
+		mouseenter:function(){
+			$el_class_dongja.addClass("dongja_aniOn");
+			$el_class_note1.addClass("dongja_aniOn_note1");
+			$el_class_note2.addClass("dongja_aniOn_note2");
+			$el_class_dongja.find(".dongja_char").attr("src", $el_class_dongja.find(".dongja_char").attr("src").replace(str_dong, str_dong + "_hover2"));
+		},
+		mouseleave:function(){
+			$el_class_dongja.removeClass("dongja_aniOn");
+			$el_class_note1.removeClass("dongja_aniOn_note1");
+			$el_class_note2.removeClass("dongja_aniOn_note2");
+			$el_class_dongja.find(".dongja_char").attr("src", $el_class_dongja.find(".dongja_char").attr("src").replace(str_dong + "_hover2", str_dong));
+		}
+	});
+}
 
 
 // event view 알림 팝업
