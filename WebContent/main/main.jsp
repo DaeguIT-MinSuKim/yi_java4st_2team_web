@@ -176,7 +176,7 @@
 		</div>
 		<div class="wow fadeInUp" data-wow-delay="0.2s">
 			<div class="tit">
-				<h2>온라인상담</h2>
+				<h2>장기렌트</h2>
 				<a href="#">더보기</a>
 			</div>
 			<ul class="online">
