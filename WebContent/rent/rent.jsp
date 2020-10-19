@@ -14,6 +14,7 @@
 </section>
 <!-- //상단배경 -->
 
+
 <section class="con_wrap box">
 
 	<div class="contents_box out page_rent">
@@ -57,7 +58,7 @@
 								<img src="./images/rentcar/small/morning.png" alt="morning">
 							</div>
 							<div class="text">
-								<h4 class="carName">소형</h4>
+								<h4 class="carName"></h4>
 								<p class="price">
 									렌탈 1일기준 <span>50,000원</span>
 								</p>
