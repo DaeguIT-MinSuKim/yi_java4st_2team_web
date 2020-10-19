@@ -11,7 +11,7 @@ public interface BrandDao {
 	List<Brand> selectBrandByAll();
 	
 	//브랜드 불러오기
-	Brand selectBrandByNo(int res);
+	Brand selectBrandByNo(int no);
 	
 	//브랜드 추가하기
 	int insertBrand(Brand brand);

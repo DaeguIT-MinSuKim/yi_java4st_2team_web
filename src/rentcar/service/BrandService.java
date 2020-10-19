@@ -18,7 +18,23 @@ public class BrandService {
 		((BrandDaoImpl) dao).setCon(con);
 	}
 	
-	public List<Brand> selectBrandByAll(){
+	public List<Brand> BrandList(){
 		return dao.selectBrandByAll();
+	}
+	
+	public Brand BrandDetail(int no) {
+		return dao.selectBrandByNo(no);
+	}
+	
+	public int insertBrand(Brand b) {
+		return dao.insertBrand(b);
+	}
+	
+	public int updateBrand(Brand b) {
+		return dao.updateBrand(b);
+	}
+	
+	public int deleteBrand(Brand b) {
+		return dao.deleteBrand(b);
 	}
 }

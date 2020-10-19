@@ -282,6 +282,30 @@ ALTER TABLE LONGRENT
 		PRIMARY KEY (
 			no
 		);
+	
+	
+	
+/* 공지사항게시판 */
+CREATE TABLE notice (
+	no VARCHAR2(20) NOT NULL, /* 번호 */
+	title VARCHAR2(50), /* 제목 */
+	contents VARCHAR2(500), /* 내용 */
+	write_date DATE DEFAULT sysdate, /*등록일 */
+	is_top INTEGER DEFAULT 1 /*공지여부*/
+);
+
+
+CREATE UNIQUE INDEX PK_notice
+	ON notice (
+		no ASC
+	);
+
+ALTER TABLE notice
+	ADD
+		CONSTRAINT PK_notice
+		PRIMARY KEY (
+			no
+		);
 
 /* 옵션 */
 CREATE TABLE OPTIONS (
