@@ -29,14 +29,17 @@
 					<p class="c_gray">대여일만 선택하셔도 차량검색이 가능합니다.</p>
 					<div class="h20"></div>
 					<div class="calendarBox">
-						<input type="text" class="form-control calendar prev" readonly
-							placeholder="렌트카 대여일 선택"> <select class="hours">
+						<input type="text" class="form-control calendar prev" readonly placeholder="렌트카 대여일 선택"> 
+						<select class="hours">
 							<!-- script.js/rent_optionHours(); 메서드 사용 -->
-						</select> <span>-</span> <input type="text"
+						</select>
+						 <span>-</span> 
+						 <input type="text"
 							class="form-control calendar next" readonly
 							placeholder="렌트카 반납일 선택"> <select class="hours">
 							<!-- script.js/rent_optionHours(); 메서드 사용 -->
-						</select> <a href="javascript:;" class="btn btn-blue btn_carSearch">차량검색</a>
+						</select>
+						<a href="javascript:;" class="btn btn-blue btn_carSearch">차량검색</a>
 					</div>
 				</div>
 			</form>

@@ -23,15 +23,17 @@ public class RentHandler implements Command {
 			throws ServletException, IOException {
 
 		if (request.getMethod().equalsIgnoreCase("get")) {
+			// 최초 시작시 차량정보 GET
+			List<Car> car = carService.selectCarByAll();
+			request.setAttribute("car", car);
+			
+			// 최초 시작시 차량분류 GET
+			List<Kind> kind = KindService.kindList();
+			request.setAttribute("kind", kind);
+		}else {
+			int get
 		}
 		
-		// 최초 시작시 차량정보 GET
-		List<Car> car = carService.selectCarByAll();
-		request.setAttribute("car", car);
-		
-		// 최초 시작시 차량분류 GET
-		List<Kind> kind = KindService.kindList();
-		request.setAttribute("kind", kind);
 		
 		
 		return "/rent/rent.jsp";

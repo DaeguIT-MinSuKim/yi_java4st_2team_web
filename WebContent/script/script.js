@@ -21,7 +21,6 @@ $(document).ready(function(){
 	rent_payBox(); //단기렌트 상세 - 결제정보 위치 fixed
 	rent_tabBtn(); // 단기렌트 탭버튼
 	rent_optionHours(); // selectBox option 시간 삽입
-	rent_carSearch();
 	rent_optionHours(); // 단기렌트 - selectBox option 시간 삽입
 	rent_carSearch(); // 단기렌트 - 차량 검색
 	
@@ -162,7 +161,7 @@ function rent_tabBtn(){
 	});
 }
 
-// select option 시간 삽입
+// 단기렌트 - select option 시간 삽입
 function rent_optionHours(){
 	if( $(".hours").length > 0 ){
 		
@@ -198,10 +197,12 @@ function rent_carSearch(){
 					"minDateVal":minDateVal,
 					"minHourVal":minHourVal
 				};
+//				alert("반납일만 선택함");
 				
-//				$.ajax({
-					
-//				});
+				$.post('rent.do', {dateArr:dateArr}, function(data) {
+			        var result = $.parseJSON(data);
+			        //alert(result.view_count);
+			    }); 
 				
 			}else{ // 반납일 선택
 				
