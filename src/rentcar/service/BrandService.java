@@ -18,11 +18,11 @@ public class BrandService {
 		((BrandDaoImpl) dao).setCon(con);
 	}
 	
-	public List<Brand> BrandList(){
+	public List<Brand> brandList(){
 		return dao.selectBrandByAll();
 	}
 	
-	public Brand BrandDetail(int no) {
+	public Brand brandDetail(int no) {
 		return dao.selectBrandByNo(no);
 	}
 	

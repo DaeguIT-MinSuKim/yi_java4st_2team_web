@@ -2,8 +2,8 @@ package rentcar.dto;
 
 public class Car {
 	// 차량dto
-	private String No;		// 차번호(기본키)
-	private String Name;	// 차량이름
+	private String no;		// 차번호(기본키)
+	private String name;	// 차량이름
 	private Kind kind;		// 차량분류
 	private Brand brand;		// 브랜드분류
 	private String remark;	// 차량비고
@@ -18,14 +18,14 @@ public class Car {
 
 	public Car(String no) {
 		super();
-		No = no;
+		no = no;
 	}
 
 	public Car(String no, String name, Kind kind, Brand brand, String remark, String is_rent, int counting,
 			String image) {
 		super();
-		No = no;
-		Name = name;
+		this.no = no;
+		this.name = name;
 		this.kind = kind;
 		this.brand = brand;
 		this.remark = remark;
@@ -35,19 +35,19 @@ public class Car {
 	}
 
 	public String getNo() {
-		return No;
+		return no;
 	}
 
 	public void setNo(String no) {
-		No = no;
+		this.no = no;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public Kind getKind() {
@@ -100,8 +100,8 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return String.format("Car [No=%s, Name=%s, Kind=%s, Brand=%s, remark=%s, is_rent=%s, counting=%s, image=%s]",
-				No, Name, kind, brand, remark, is_rent, counting, image);
+		return String.format("Car [no=%s, name=%s, Kind=%s, Brand=%s, remark=%s, is_rent=%s, counting=%s, image=%s]",
+				no, name, kind, brand, remark, is_rent, counting, image);
 	}
 
 
