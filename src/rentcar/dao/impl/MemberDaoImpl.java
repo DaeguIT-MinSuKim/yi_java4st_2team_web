@@ -54,9 +54,8 @@ public class MemberDaoImpl implements MemberDao {
 		String email = rs.getString("EMAIL");
 		String address = rs.getString("ADDRESS");
 		String is_black = rs.getString("IS_BLACK");
-		String remark = rs.getString("REMARK");
 		Integer counting = rs.getInt("COUNTING");
-		return new Member(id, pwd, name, tel, license, email, address, is_black, remark, counting);
+		return new Member(id, pwd, name, tel, license, email, is_black, counting);
 	}
 
 	@Override
@@ -79,7 +78,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertMember(Member member) {
-		String sql = "INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS, REMARK) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPwd());
@@ -88,7 +87,6 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setString(5, member.getLicense());
 			pstmt.setString(6, member.getEmail());
 			pstmt.setString(7, member.getAddress());
-			pstmt.setString(8, member.getRemark());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

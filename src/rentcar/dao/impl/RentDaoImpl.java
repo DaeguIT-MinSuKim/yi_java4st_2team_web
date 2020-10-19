@@ -51,7 +51,6 @@ public class RentDaoImpl implements RentDao {
 		m.setEmail(rs.getString("EMAIL"));
 		m.setAddress(rs.getString("ADDRESS"));
 		m.setIs_black(rs.getString("IS_BLACK"));
-		m.setRemark(rs.getString("BIRTH"));
 		m.setCounting(rs.getInt("COUNTING"));
 
 		k.setCode(rs.getInt("KIND_CODE"));
