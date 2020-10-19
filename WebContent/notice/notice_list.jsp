@@ -15,34 +15,29 @@
 				<!-- 글 있는 경우 -->
 				<colgroup>
 					<col width="10%">
-					<col width="">
+					<col width="" >
+					<col width="12%">
 					<col width="20%">
 				</colgroup>
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
+					<th>작성자</th>
 					<th>작성일</th>
 				</tr>
-				<tr class="board">
-					<td><span class="notice_board">공지</span></td>
-					<td class="tl"><a href="noticeView.do">공지사항 글 중에서의 공지 글 입니다.</a></td>
-					<td>2020-10-16 12:38:09</td>
-				</tr>
-				<tr class="board">
-					<td>3</td>
-					<td class="tl"><a href="noticeView.do">공지사항입니다.</a></td>
-					<td>2020-10-16 12:38:09</td>
-				</tr>
-				<tr class="board">
-					<td>2</td>
-					<td class="tl"><a href="noticeView.do">공지사항입니다.</a></td>
-					<td>2020-10-16 12:38:09</td>
-				</tr>
-				<tr class="board">
-					<td>1</td>
-					<td class="tl"><a href="noticeView.do">공지사항입니다.</a></td>
-					<td>2020-10-16 12:38:09</td>
-				</tr>
+				
+				<c:forEach var="Notice" items="${list }">
+					<tr class="board">
+						<td>
+							<c:choose>
+								<c:when test="${Notice.isTop == 0 }"><span class="notice_board">공지</span></c:when>
+								<c:when test="${Notice.isTop == 1 }">${Notice.no }</c:when>
+							</c:choose>
+						<td class="tl"><a href="noticeView.do?no=${Notice.no}">${Notice.title }</a></td>
+						<td> 관리자 </td>
+						<td><fmt:formatDate value="${Notice.writeDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td> 
+					</tr>
+				</c:forEach>
 				
 				<!-- 글 없는 경우 -->
 				<tr class="no_board">
@@ -50,7 +45,7 @@
 				</tr>
 			</table>
 			
-			<a href="noticeWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
+			<!-- <a href="noticeWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a> -->
 			
 			<div class="board_list_page clear">
 				<a href="#" class="first arrow"><span class="text_hidden">처음</span></a>
