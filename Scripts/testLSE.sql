@@ -39,3 +39,33 @@ SELECT * FROM LONGRENT;
 
 
 SELECT  COUNT(*) FROM LONGRENT WHERE NO LIKE 1;
+
+
+--공지사항---------------------------------------------------------------------------------------------------------------------------------W-------------------------
+SELECT * FROM notice;
+
+SELECT NO, TITLE, CONTENTS, WRITE_DATE FROM NOTICE ;
+
+SELECT *
+FROM ( SELECT * FROM NOTICE ORDER BY WRITE_DATE DESC)
+WHERE ROWNUM =1;
+
+
+SELECT * FROM notice;
+
+
+SELECT * FROM NOTICE  ORDER BY IS_TOP, NO DESC; 
+UNION 
+SELECT * FROM NOTICE WHERE IS_TOP = 1 ;
+
+SELECT *
+FROM (SELECT * FROM NOTICE WHERE IS_TOP = 0 
+UNION 
+SELECT * FROM NOTICE WHERE IS_TOP = 1)
+ORDER BY IS_TOP;
+
+
+SELECT * FROM NOTICE  ORDER BY IS_TOP, NO DESC;
+
+UPDATE NOTICE SET CONTENTS = '일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지'
+WHERE NO=4;
