@@ -25,7 +25,7 @@
 			</c:when>
 			<c:otherwise>
 				<li><a class="logout" style="cursor:pointer;" id="logout" href="logout.do">로그아웃</a></li>
-				<li><a class="mypage" href="mypage.do">마이페이지</a></li>
+				<li><a class="mypage" href="mypagePassword.do">마이페이지</a></li>
 			</c:otherwise>
 			</c:choose>
 			<li><a href="renting.do">렌트 중인 차량</a></li>
