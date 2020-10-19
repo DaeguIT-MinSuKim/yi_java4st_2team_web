@@ -15,10 +15,9 @@ public class RentHandler implements Command {
 			throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("get")) {
 			return "/rent/rent.jsp";
-		}else {
+		} else {
 			System.out.println("미안하다");
-			return null;
+			return "/rent/rent.jsp";
 		}
-		return "/rent/rent.jsp";
 	}
 }
