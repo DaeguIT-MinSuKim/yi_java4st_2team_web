@@ -1,11 +1,24 @@
 @charset "UTF-8";
 
-#admin_header {position:relative; width:100%; height:60px; background:#e7f6ff; box-sizing:border-box; padding:0 30px; overflow:hidden;}
-#admin_header h1 {margin:0; padding-top:5px; float:left;}
+#admin_header {position:relative; width:100%; height:60px; background:#2c3033; box-sizing:border-box; padding:0 20px; overflow:hidden;}
+#admin_header h1 {margin:0; padding-top:8px; float:left;}
 #admin_header h1 img {height:45px;}
 #admin_header ul {float:right; overflow:hidden;}
-#admin_header ul li {float:left; font-size:14px; color:#222; line-height:60px;}
+#admin_header ul li {float:left; font-size:14px; color:#fff; line-height:60px; margin:0 10px;}
+#admin_header ul li a {color:#fff;}
 
-#admin_gnb {float:left; width:300px; min-height:calc(100vh - 60px); background:#fc0;}
+#admin_gnb {float:left; width:240px; min-height:calc(100vh - 60px); background:#2d3e50;}
+#admin_gnb > ul {border-bottom:1px solid rgba(255,255,255,0.2)}
+#admin_gnb > ul > li {width:100%; line-height:55px; border-bottom:1px solid rgba(0,0,0,0.4); border-top:1px solid rgba(255,255,255,0.2)}
+#admin_gnb > ul > li:first-child {border-top:0;}
+#admin_gnb > ul > li > a {display:block; width:100%; font-size:16px; color:#fff; box-sizing:border-box; padding:0 15px;}
+#admin_gnb > ul > li > ul {display:none;}
+#admin_gnb > ul > li > ul > li {border-top:1px solid rgba(255,255,255,0.1); background:#212f3e;}
+#admin_gnb > ul > li > ul > li > a {display:block; width:100%; font-size:14px; color:#fff ;line-height:50px; box-sizing:border-box; padding:0 15px;}
 
-#adimn_content {float:left; width:calc(100% - 300px); min-height:calc(100vh - 60px)}
+#adimn_content {float:left; width:calc(100% - 240px); min-height:calc(100vh - 60px)}
+#adimn_content h2 {margin:0; widht:100%; background:#f4f4f4; font-size:22px; box-sizing:border-box; padding:16px 20px;}
+#adimn_content .admin_page {width:100%; box-sizing:border-box; padding:25px 20px;}
+
+#admin_footer {width:100%; clear:both; padding:0;}
+#admin_footer p {margin:0; background:#222; text-align:center; font-size:12px; color:#fff; line-height:45px;}
