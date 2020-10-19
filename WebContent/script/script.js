@@ -205,6 +205,18 @@ function rent_carSearch(){
 		var minHourVal = $(".calendar.prev").next(".hours").val();
 		var maxHourVal = $(".calendar.next").next(".hours").val();
 		
+		// 대여일 자르기
+		var minYear = minDateVal.split("-")[0];
+		var minMonth = minDateVal.split("-")[1];
+		var minDay = minDateVal.split("-")[2];
+		
+		// 반납일 자르기
+		var maxYear = maxDateVal.split("-")[0];
+		var maxMonth = maxDateVal.split("-")[1];
+		var maxDay = maxDateVal.split("-")[2];
+		
+//		alert(minYear + minMonth + minDay);
+		
 		if( minDateVal == "" ){ // 대여일 선택 안한 경우
 			alert("차량 검색할 날짜를 선택해주세요");
 			return false;
@@ -212,16 +224,28 @@ function rent_carSearch(){
 		}else{     // 대여일 선택
 			
 			if( maxDateVal == "" ){ // 반납일 선택 안한 경우
-				var dateArr = {
-					"minDateVal":minDateVal,
-					"minHourVal":minHourVal
+				var params = {
+					minYear:minYear,
+					minMonth:minMonth,
+					minDay:minDay,
+					minHour:minHourVal
 				};
-//				alert("반납일만 선택함");
 				
-				$.post('rent.do', {dateArr:dateArr}, function(data) {
-			        var result = $.parseJSON(data);
-			        alert(result);
-			    }); 
+				$.ajax({
+					type:"POST",
+					url:"rent.do",
+					data:JSON.stringify(params),
+					dataType:"json",
+					contentType:"application/json;charset=UTF=8",
+					success:function(data){
+						var result = JSON.parse(data);
+						alert(result);
+						alert("호출 성공!!");
+					},
+					error:function(e){ // 에러날경우 에러메시지 보기
+						alert(e.responseText);
+					}
+				});
 				
 			}else{ // 반납일 선택
 				
