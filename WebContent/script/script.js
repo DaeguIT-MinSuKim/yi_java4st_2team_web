@@ -27,6 +27,9 @@ $(document).ready(function(){
 	
 	//이벤트
 	event_popup();
+	
+	// 관리자 메뉴
+	admin_gnb();
 });
 
 
@@ -237,5 +240,16 @@ function event_popup(){
 	
 	$(".event_img").click(function(){
 		$(".event_popup").css({display:"table"})
+	})
+}
+
+
+// 관리자 메뉴
+function admin_gnb(){
+	$("#admin_gnb > ul > li > a").click(function(){
+		if($(this).parent("li").children().length == 2){
+			$(this).parent("li").children("ul").stop().slideToggle();
+			return false;
+		}
 	})
 }
