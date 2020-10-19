@@ -18,11 +18,23 @@ public class CarService {
 		((CarDaoImpl) dao).setCon(con);
 	}
 	
-	public List<Car> selectCarByAll(){
+	public List<Car> carList(){
 		return dao.selectCarByAll();
 	}
 	
-	public Car selectCarByNo(String no) {
+	public Car carDetail(String no) {
 		return dao.selectCarByNo(no);
+	}
+	
+	public int insertCar(Car c) {
+		return dao.insertCar(c);
+	}
+	
+	public int updateCar(Car c) {
+		return dao.updateCar(c);
+	}
+	
+	public int deleteCar(Car c) {
+		return dao.deleteCar(c);
 	}
 }

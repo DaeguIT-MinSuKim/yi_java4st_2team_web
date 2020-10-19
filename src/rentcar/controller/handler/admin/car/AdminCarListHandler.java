@@ -10,24 +10,30 @@ import javax.servlet.http.HttpSession;
 
 import rentcar.controller.Command;
 import rentcar.dto.Car;
+import rentcar.dto.Car;
 import rentcar.service.CarService;
 
-public class AdminCarInfoHandler implements Command {
+public class AdminCarListHandler implements Command {
 	private CarService service = new CarService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	if (request.getMethod().equalsIgnoreCase("GET")) {
-		System.out.println("GET");
-		
-		List<Car> carList = service.selectCarByAll();
-		request.setAttribute("carList", carList);
-		
-		return null;
-	} else {
-		System.out.println("POST");
+		if (request.getMethod().equalsIgnoreCase("GET")) {
+			System.out.println("GET");
+
+			List<Car> carList = service.carList();
+			request.setAttribute("carList", carList);
+
+			return "Admin/car/list.do";
+		} else {
+			System.out.println("POST");
+
+			String no = (String) request.getAttribute("carNo");
+			Car car = service.carDetail(no);
+			request.setAttribute("car", car);
+
+			return "Admin/car/update.do";
+		}
 	}
-	return null;
-}
 }
