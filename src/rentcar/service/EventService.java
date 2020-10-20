@@ -42,5 +42,16 @@ public class EventService {
 	public int deleteEvent(String code) {
 		return dao.deleteEvent(code);
 	}
+	
+	// 페이징
+	public int totalRecord() {
+		return dao.totalRecord();
+	}
+	public String pageNumber(int tpage, String name) {
+		return dao.pageNumber(tpage, name);
+	}
+	public ArrayList<Event> listEvent(int tpage){
+		return dao.listEvent(tpage);
+	}
 
 }

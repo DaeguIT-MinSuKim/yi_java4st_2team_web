@@ -82,7 +82,7 @@ public class LoginFailDaoImpl implements LoginFailDao {
 		String sql = "UPDATE MEMBER\r\n"
 				+ "   SET IS_LOCK = 'Y', LOCK_COUNTING = LOCK_COUNTING + 1\r\n"
 				+ " WHERE ID = ?\r\n"
-				+ "   AND TRY_COUNTING > 3";
+				+ "   AND TRY_COUNTING > 2";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, member.getId());
 			return pstmt.executeUpdate();

@@ -102,7 +102,7 @@ function id_chk_bb() {
 	$(function() {
 		$("#join").on("click",function() {
 
-			form1 = document.frmName;
+			/* form1 = document.frmName; */
 	
 			// 비밀번호 조합 체크
 			var regMust1 = /[a-zA-Z0-9_]/;
@@ -199,11 +199,12 @@ function id_chk_bb() {
 					id : $('#member_id').val(),
 					pwd : $('#passwd').val(),
 					license : $('#license').val(),
+					gender : $('#gender').val(),
+					birth : ($('#birthYear').val() + $('#birthMonth').val() + $('#birthDay').val()),
 					name : $('#member_name').val(),
 					tel : ($('#cel1').val() + "-" + $('#cel2').val() + "-" + $('#cel3').val()),
 					email : ($('#email1').val() + $('#email2').val()),
 					address : ($('#zipcode').val() + " " + $('#addr1').val() + " " + $('#addr2').val()),
-					remark : $('#remark').val()
 				};
 	
 				$.ajax({
@@ -221,13 +222,39 @@ function id_chk_bb() {
 			}
 	
 		});
-		
+		/* form1.submit(); */
+	});
+</script>
+
+<script>
+$(function() {
+	var date = new Date();
+	var year = date.getFullYear();
+	var selectValue = document.getElementById("birthYear");
+	var optionIndex = 0;
+	for(var i = year-60; i <= year; i++) {
+		selectValue.add(new Option(i, i), optionIndex++);                        
+	}
+	
+	var selectValue = document.getElementById("birthMonth"); 
+	var optionIndex = 0;
+	for(var i = 1; i<13; i++) {
+		selectValue.add(new Option(i, i), optionIndex++);
+	}
+	
+	var selectValue = document.getElementById("birthDay");
+	var optionIndex = 0;
+	for(var i = 1; i<32; i++) {
+		selectValue.add(new Option(i, i), optionIndex++);
+	}
+});
+</script>
+
+<script>
+	$(function() {
 		$("#domain").change(function() {
 			$("#email2").val($("#domain").val());
 		});
-
-		form1.submit();
-
 	});
 </script>
 
@@ -265,7 +292,6 @@ function id_chk_bb() {
 				<div class="title">
 					필수정보 <span>(회원가입 필수 입력 항목입니다.)</span>
 				</div>
-
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">아이디</label>
@@ -309,6 +335,47 @@ function id_chk_bb() {
 						<p>특수문자 - 를 포함하여 입력하십시오.</p>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">성별</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-2">
+							<select name="gender" id="gender"
+								class="selectpicker show-tick form-control">
+								<option value="" selected="selected">선택하기</option>
+								<option value="M">남성</option>
+								<option value="F">여성</option>
+							</select>
+						</div>
+						<p></p>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">생년월일</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<select name="birthYear" id="birthYear"
+								class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected" >년</option>
+							</select>
+						</div>
+						<div class="col-xs-2">
+							<select name="birthMonth" id="birthMonth"
+								class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected">월</option>
+							</select>
+							
+						</div>
+						<div class="col-xs-2">
+							<select name="birthDay" id="birthDay"
+								class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected">일</option>
+							</select>
+						</div>
+						<p></p>
+					</div>
+				</div>
 
 				<div class="form-group cal_Box">
 					<label class="col-sm-2 control-label">이름</label>
@@ -317,6 +384,7 @@ function id_chk_bb() {
 							<input type="text" class="form-control" maxlength="10"
 								name="member_name" id="member_name">
 						</div>
+						<p></p>
 					</div>
 				</div>
 
@@ -342,6 +410,7 @@ function id_chk_bb() {
 							<input type="text" class="form-control onlyNumber" maxlength="4"
 								name="cel3" id="cel3" style="ime-mode: disabled;">
 						</div>
+						<p></p>
 					</div>
 				</div>
 
@@ -356,7 +425,7 @@ function id_chk_bb() {
 							<input type="text" class="form-control" maxlength="40"
 								name="email2" id="email2">
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-4">
 							<select name="email2" class="selectpicker show-tick form-control"
 								id="domain">
 								<option value="" selected="selected">선택하기</option>
@@ -367,6 +436,7 @@ function id_chk_bb() {
 								<option value="">직접입력</option>
 							</select>
 						</div>
+						<p></p>
 					</div>
 				</div>
 
@@ -389,10 +459,11 @@ function id_chk_bb() {
 							<label for="sel1">상세주소</label> <input type="text"
 								class="form-control" maxlength="100" id="addr2" name="addr2">
 						</div>
+						<p></p>
 					</div>
 				</div>
 
-				<div class="h30"></div>
+				<!-- <div class="h30"></div>
 				<div class="title">
 					선택정보 <span>(회원가입 선택 입력 항목입니다.)</span>
 				</div>
@@ -404,9 +475,8 @@ function id_chk_bb() {
 								id="remark" rows="3"></textarea>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
-
 
 			<div class="h30"></div>
 			<!-- 버튼 -->
@@ -418,10 +488,7 @@ function id_chk_bb() {
 				</ul>
 			</div>
 		</form>
-
-
 	</div>
-
 </div>
 <!-- //컨텐츠 -->
 
