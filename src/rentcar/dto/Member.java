@@ -5,6 +5,7 @@ import java.util.Date;
 public class Member {
 	private String id;
 	private String pwd;
+	private String gender;
 	private String name;
 	private String tel;
 	private String license;
