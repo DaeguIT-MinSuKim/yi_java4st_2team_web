@@ -192,11 +192,14 @@
         	</div>
         
         
-        
-        
-        	
         	<div class="rent_empty">
-				<div class="noImg"><img src="./images/member/norent.png" alt=""></div>
+        		<div class="calendarWrap">
+					<div class="dongja">
+						<img src="./images/rent/note1.png" alt="음표1" class="note1">
+						<img src="./images/rent/note2.png" alt="음표2" class="note2">
+						<img src="./images/rent/dong.png" alt="동자승 캐릭터" class="dongja_char">
+					</div>
+				</div>
 				<p>진행중인 렌트 내역이 없습니다 :)</p>
 				<span>
 					지금 원하는 렌트카 빌리고<br>
