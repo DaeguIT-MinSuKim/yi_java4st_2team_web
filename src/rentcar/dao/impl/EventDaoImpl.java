@@ -28,7 +28,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventByAll() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
