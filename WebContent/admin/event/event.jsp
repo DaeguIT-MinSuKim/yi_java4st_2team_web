@@ -69,6 +69,9 @@ $(function(){
 			<a href="#" class="next arrow"><span class="text_hidden">다음</span></a>
 			<a href="#" class="end arrow"><span class="text_hidden">마지막</span></a>
 		</div>
+		
+		
+		${paging}
 	</div>
 </div>
 
