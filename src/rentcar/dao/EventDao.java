@@ -25,4 +25,9 @@ public interface EventDao {
 	
 	// 이벤트 삭제
 	int deleteEvent(String code);
+	
+	// 페이징
+	int totalRecord();
+	String pageNumber(int tpage, String name);
+	ArrayList<Event> listEvent(int tpage);
 }

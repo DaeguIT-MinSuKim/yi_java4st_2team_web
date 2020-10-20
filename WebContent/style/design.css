@@ -26,6 +26,7 @@ footer .bootstrap-select.btn-group .dropdown-toggle .filter-option {padding:0; o
 .dropdown-toggle {height:40px; }
 /* // ******************* 부트스트랩 강제 대응 및 초기화  ******************* */
 
+.c_red {color:red !important}
 .c_gray {color:#666}
 
 /* 팝업창 공용 소스 */

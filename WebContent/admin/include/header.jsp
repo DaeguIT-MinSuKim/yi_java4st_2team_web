@@ -100,7 +100,7 @@
 
 <body>
 <header id="admin_header">
-	<h1><a href="index.do"><img src="./images/common/logo_w.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
+	<h1><a href="index.do" class="admin_logo"><img src="./images/common/logo_w.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 	<ul>
 		<li>관리자님</li>
 		<li><a href="#">로그아웃</a></li>
