@@ -20,7 +20,7 @@ public class CarService {
 	}
 	
 	// 차량리스트 불러오기
-	public List<Car> selectCarByAll(){
+	public List<Car> carList(){
 		return dao.selectCarByAll();
 	}
 	

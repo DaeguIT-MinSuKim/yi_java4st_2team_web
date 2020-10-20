@@ -24,7 +24,7 @@ public class RentHandler implements Command {
 
 		if (request.getMethod().equalsIgnoreCase("get")) {
 			// 최초 시작시 차량정보 GET
-			List<Car> car = carService.selectCarByAll();
+			List<Car> car = carService.carList();
 			request.setAttribute("car", car);
 			
 			// 최초 시작시 차량분류 GET
