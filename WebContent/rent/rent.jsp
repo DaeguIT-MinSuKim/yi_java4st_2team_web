@@ -24,7 +24,11 @@
 			</div>
 			<form method="post">
 				<div class="calendarWrap">
-					<img src="./images/member/norent.png" alt="">
+					<div class="dongja">
+						<img src="./images/rent/note1.png" alt="음표1" class="note1">
+						<img src="./images/rent/note2.png" alt="음표2" class="note2">
+						<img src="./images/rent/dong.png" alt="동자승 캐릭터" class="dongja_char">
+					</div>
 					<h4>언제 떠나세요 ?</h4>
 					<p class="c_gray">대여일만 선택하셔도 차량검색이 가능합니다.</p>
 					<div class="h20"></div>

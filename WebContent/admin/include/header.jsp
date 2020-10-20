@@ -113,9 +113,9 @@
 		<li><a href="#">단기렌트 관리</a></li>
 		<li><a href="#">차량관리</a>
 			<ul>
-				<li><a href="#">차량정보</a></li>
-				<li><a href="#">브랜드</a></li>
-				<li><a href="#">차량분류</a></li>
+				<li><a href="carList.do">차량정보</a></li>
+				<li><a href="brandList.do">브랜드</a></li>
+				<li><a href="kindList.do">차량분류</a></li>
 			</ul>
 		</li>
 		<li><a href="#">대여관리</a>

@@ -38,7 +38,7 @@
 	header .head {position:relative; width:100%; height:50px; background-color:#fff;}
 	header .head .gnbView {position:absolute; display:block; width:50px; height:50px; left:0; top:0; border-right:1px solid #ddd; background:url(../images/common/icon_allmenu.png) 50% 50% no-repeat; background-size:35%; border-radius:0;}
 	header .head h1 {margin:0 !important; position:absolute; display:block; width:100%; height:50px; left:0; top:0; text-align:center; border-bottom:1px solid #e5e5e5;}
-	header .head h1 a {display:inline-block; height:50px; padding:12px 0; text-align:center;}
+	header .head h1 a {display:inline-block; height:50px; padding:5px 0; text-align:center;}
 	header .head h1 a img {display:block; height:100%;}
 	header .head .side {position:absolute; top:0; right:0; height:100%;}
 	header .head .side .login {display:block; width:50px; height:50px; border:0; border-left:1px solid #ddd; background:url(../images/common/icon_login.png) 50% 50% no-repeat; background-size:40%;}

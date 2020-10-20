@@ -1,4 +1,4 @@
-package rentcar.controller.handler.admin.brand;
+package rentcar.controller.handler.brand;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,7 +11,7 @@ import rentcar.controller.Command;
 import rentcar.dto.Brand;
 import rentcar.service.BrandService;
 
-public class AdminBrandListHandler implements Command {
+public class BrandListHandler implements Command {
 	private BrandService service = new BrandService();
 
 	@Override
@@ -20,18 +20,18 @@ public class AdminBrandListHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
 
-			List<Brand> brandList = service.BrandList();
+			List<Brand> brandList = service.brandList();
 			request.setAttribute("brandList", brandList);
 			
-			return "Admin/brand/list.do";
+			return "admin/brand/brandList.jsp";
 		} else {
 			System.out.println("POST");
 
 			int code = (int) request.getAttribute("brandCode");
-			Brand brand = service.BrandDetail(code);
-			request.setAttribute("brand", brand);
+			int res = service.deleteBrand(new Brand(code));
+			request.setAttribute("res", res);
 			
-			return "Admin/brand/update.do";
+			return "admin/brand/brandList.jsp";
 		}
 	}
 }

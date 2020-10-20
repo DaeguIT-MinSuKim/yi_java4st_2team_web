@@ -101,7 +101,7 @@
 <header>
 	<div class="head">
 		<div class="wrap">
-			<h1><a href="index.do"><img src="./images/common/logo.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
+			<h1><a href="index.do" class="logo"><img src="./images/common/logo.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 			<div class="side">
 				<ul>
 					<li class="home"><a href="index.do">HOME</a></li>

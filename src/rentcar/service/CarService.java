@@ -35,7 +35,7 @@ public class CarService {
 	}
 	
 	// 차량정보 불러오기
-	public Car selectCarByNo(String no){
+	public Car carDetail(String no){
 		return dao.selectCarByNo(no);
 	}
 	

@@ -97,9 +97,13 @@ CREATE TABLE MEMBER (
 	license VARCHAR2(20), /* 면허번호 */
 	email VARCHAR2(50), /* 이메일 */
 	address VARCHAR2(500), /* 주소 */
-	is_black CHAR(1), /* 블랙리스트 */
-	remark VARCHAR2(500), /* 회원비고 */
-	counting INTEGER /* 회원대여횟수 */
+	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
+	counting INTEGER, /* 회원대여횟수 */
+	birth INTEGER, /* 생년월일 */
+	login_date DATE, /* 시각 */
+	try_counting INTEGER DEFAULT 0, /* 시도횟수 */
+	is_lock CHAR(1) DEFAULT 'N', /* 제한여부 */
+	lock_counting INTEGER DEFAULT 0 /* 제한횟수 */
 );
 
 COMMENT ON TABLE MEMBER IS '회원';
@@ -120,9 +124,17 @@ COMMENT ON COLUMN MEMBER.address IS '주소';
 
 COMMENT ON COLUMN MEMBER.is_black IS '블랙리스트';
 
-COMMENT ON COLUMN MEMBER.remark IS '회원비고';
-
 COMMENT ON COLUMN MEMBER.counting IS '회원대여횟수';
+
+COMMENT ON COLUMN MEMBER.birth IS '생년월일';
+
+COMMENT ON COLUMN MEMBER.login_date IS '시각';
+
+COMMENT ON COLUMN MEMBER.try_counting IS '시도횟수';
+
+COMMENT ON COLUMN MEMBER.is_lock IS '제한여부';
+
+COMMENT ON COLUMN MEMBER.lock_counting IS '제한횟수';
 
 CREATE UNIQUE INDEX PK_MEMBER
 	ON MEMBER (
@@ -135,7 +147,7 @@ ALTER TABLE MEMBER
 		PRIMARY KEY (
 			id
 		);
-
+	
 /* 관리자 */
 CREATE TABLE ADMIN (
 	id VARCHAR2(50) NOT NULL, /* 아이디 */
@@ -236,7 +248,7 @@ ALTER TABLE INSURANCE
 CREATE TABLE LONGRENT (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
-	contents VARCHAR2(500), /* 내용 */
+	contents VARCHAR2(2000), /* 내용 */
 	rep_yn CHAR(1), /* 답변여부 */
 	write_date DATE, /* 날짜 */
 	rent_term VARCHAR2(50), /* 대여 */
@@ -282,14 +294,13 @@ ALTER TABLE LONGRENT
 		PRIMARY KEY (
 			no
 		);
-	
-	
-	
+
+
 /* 공지사항게시판 */
 CREATE TABLE notice (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
-	contents VARCHAR2(500), /* 내용 */
+	contents VARCHAR2(2000), /* 내용 */
 	write_date DATE DEFAULT sysdate, /*등록일 */
 	is_top INTEGER DEFAULT 1 /*공지여부*/
 );
