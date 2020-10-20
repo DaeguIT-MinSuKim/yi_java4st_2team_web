@@ -36,11 +36,14 @@
 						<li>
 							<div class="tit_box">
 								<p class="name">관리자</p>
-								<p class="date">2020-10-01</p>
+								<p class="date"><fmt:formatDate value="${LongRent.writeDate}" pattern="yyyy-MM-dd"/></p>
 							</div>
 							<div class="content_box">
 								<p>
-									관리자가 답변을 남겼습니다.
+									<c:choose>
+										<c:when test="${LongRent.repContent==null }">문의를 확인 중입니다... <br> 관리자가 답글을 남길 곳입니다. </c:when>
+										<c:otherwise>${LongRent.repContent }</c:otherwise>
+									</c:choose>
 								</p>
 								<form>
 									<textarea>관리자가 답변을 남겼습니다.</textarea>
@@ -48,8 +51,8 @@
 								</form>
 							</div>
 							<ul class="btn">
-								<li><a href="#" class="update">수정</a></li>
-								<li><a href="#" class="delete">삭제</a></li>
+								<li><a href="#" class="update"></a></li>
+								<li><a href="#" class="delete"></a></li>
 							</ul>
 						</li>
 					</ul>

@@ -112,22 +112,24 @@ DELETE FROM OPT_BOX WHERE RENT_NO = 3;
 SELECT * FROM OPT_BOX;
 
 --장기렌트
+
 --INSERT INTO LONGRENT VALUES (1,'제목', '내용', '외관/내장', '안전', '편의/멀티미디어', '시트', 5000000, NULL, NULL, 1, SYSDATE);
 --INSERT INTO LONGRENT(NO, title, CONTENTS, EXTERIOR, SAFETY, MULTI, SHEET, FARE) VALUES (1, '제목', '내용', '외관/내장', '안전', '편의/멀티미디어', '시트', 5000000);
 INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES(LONGRENT_NO_SEQ.NEXTVAL,'제목','내용',1, SYSDATE,'30일','김창동','010-1234-1111','1111','옵션없음');
+VALUES(LONGRENT_NO_SEQ.NEXTVAL,'K3TheNew 1년 장기렌트 문의드립니다. ','K3TheNew 1년 장기렌트 문의드립니다. 예산은 대략 100원 정도로 생각하고 있으며, 유아 카시트 추가 되는지도 답변 부탁드립니다.', 1, SYSDATE,'365일','김창동','010-1234-1111','1111','옵션없음');
 INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES(LONGRENT_NO_SEQ.NEXTVAL,'제목2','내용2',DEFAULT, SYSDATE,'100일','이창동','010-1234-2222','1111','옵션없음');
+VALUES(LONGRENT_NO_SEQ.NEXTVAL,'풀옵션 경차 렌트 문의드립니다. ','풀옵션 경차 렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, SYSDATE,'100일','김동자','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES(LONGRENT_NO_SEQ.NEXTVAL,'제목3','내용3',DEFAULT, SYSDATE,'100일','김창동','010-1234-3333','3333','옵션없음');
+VALUES(LONGRENT_NO_SEQ.NEXTVAL,'외제차 문의, 답변 빨리 주세요.','뚜껑열린 외제차를 렌트하고싶습니다. 연락주세요..................!!',DEFAULT, SYSDATE,'100일', '곽수정','010-1234-3333','3333','옵션없음');
 SELECT * FROM LONGRENT;
 
+
 --공지사항
-INSERT INTO NOTICE VALUES(1,'2020-10-01 동자승 렌터카 시무식 ','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 2020-10-01 금일, 동자승 렌터카 시무식을 진행했습니다. 다시한번 새롭게 도약할 수 있는 한해가 되길 바라며 전 임직원이 자리를 함께 하였습니다. ',sysdate, 0);
+INSERT INTO NOTICE VALUES(1,'2020-10-01 동자승 렌터카 시무식 ','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 2020-10-01 금일, 동자승 렌터카 시무식을 진행했습니다. 다시한번 새롭게 도약할 수 있는 한해가 되길 바라며 전 임직원이 자리를 함께 하였습니다. ',sysdate, 1);
 INSERT INTO NOTICE VALUES(2,'운전면허 갱신기간 연장 안내','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 도로 교통공단에 따라,  운전 코로나19 확산 방지를 위하여 운전면허 적성검사·갱신 기간이 최대 10개월 연장되어
 단기 예약 시 아래 일자에 해당하는 고객님들에 한하여 연장기간까지 운전면허 검증이 통과됩니다.',SYSDATE, 1);
 INSERT INTO NOTICE VALUES(3,'좋은 렌트카 업체는 어덯게 고르나요?','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 좋은 렌터카는 동자승 렌터카 입니다.',SYSDATE, 1);
-INSERT INTO NOTICE VALUES(4,'신종 코로나 바이러스 확산 예방 안내','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 신종 코로나바이러스 확산 예방을 위해 전 직원 마스크 착용을 의무화 하고 전 차량을 향균 소독 하고 있습니다. 보다 안정적이고 편리한 서비스 제공을 위하여 더욱 노력하는 동자승 렌터카가 되겠습니다. 감사합니다.',SYSDATE, 0);
+INSERT INTO NOTICE VALUES(4,'신종 코로나 바이러스 확산 예방 안내','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 신종 코로나바이러스 확산 예방을 위해 전 직원 마스크 착용을 의무화 하고 전 차량을 향균 소독 하고 있습니다. 보다 안정적이고 편리한 서비스 제공을 위하여 더욱 노력하는 동자승 렌터카가 되겠습니다. 감사합니다.',SYSDATE, 1);
 INSERT INTO NOTICE VALUES(5,'고객님께 안내 사항을 공지드립니다.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 시스템 점검 작업으로 인해 아래와 같이 서비스가 일시 중단됨을 알려드립니다. 해당 작업은 상황에 따라서 중단 시간과 범위는 변경될 수 있습니다. 
 - 중단 일시 : 2020-10-20(화) 2:20 ~ 2020-10-20(화) 2:22 
 - 중단 내용 : DB이관에 따른 서비스 일시 중단 

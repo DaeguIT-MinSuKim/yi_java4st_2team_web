@@ -61,7 +61,7 @@ public class LongRentDaoImpl implements LongRentDao {
 		String pwd = rs.getString("PWD");
 		String options = rs.getString("OPTIONS");
 		String repContent = rs.getString("REP_CONTENT");
-		
+
 		return new LongRent(no, title, contents, repYn, writeDate, rentTerm, name, tel, pwd, options, repContent);
 	}
 
@@ -84,9 +84,9 @@ public class LongRentDaoImpl implements LongRentDao {
 
 	@Override
 	public int insertLongRent(LongRent longrent) {
-		String sql = "INSERT INTO LONGRENT(NO, TITLE, CONTENTS,RENT_TERM, NAME, TEL, PWD, OPTIONS) " + 
-				"VALUES(LONGRENT_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
-		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+		String sql = "INSERT INTO LONGRENT(NO, TITLE, CONTENTS,RENT_TERM, NAME, TEL, PWD, OPTIONS) "
+				+ "VALUES(LONGRENT_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, longrent.getTitle());
 			pstmt.setString(2, longrent.getContents());
 			pstmt.setString(3, longrent.getRentTerm());
@@ -95,7 +95,7 @@ public class LongRentDaoImpl implements LongRentDao {
 			pstmt.setString(6, longrent.getPwd());
 			pstmt.setString(7, longrent.getOptions());
 			return pstmt.executeUpdate();
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}
 	}
@@ -103,7 +103,7 @@ public class LongRentDaoImpl implements LongRentDao {
 	@Override
 	public int updateLongRent(LongRent longrent) {
 		String sql = "UPDATE LONGRENT SET TITLE = ?, contents = ?, RENT_TERM = ? , name= ? , tel =? , PWD = ?, OPTIONS = ? WHERE NO = ?";
-		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, longrent.getTitle());
 			pstmt.setString(2, longrent.getContents());
 			pstmt.setString(3, longrent.getRentTerm());
@@ -112,19 +112,19 @@ public class LongRentDaoImpl implements LongRentDao {
 			pstmt.setString(6, longrent.getPwd());
 			pstmt.setString(7, longrent.getOptions());
 			pstmt.setInt(8, longrent.getNo());
-			 return pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new CustomSQLException(e);
-        }
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
 	}
 
 	@Override
 	public int deleteLongRent(int no) {
 		String sql = "DELETE FROM LONGRENT WHERE NO = ?";
-		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}
 	}
@@ -144,6 +144,49 @@ public class LongRentDaoImpl implements LongRentDao {
 			throw new CustomSQLException(e);
 		}
 		return null;
+	}
+
+	/// 관리자
+
+	@Override
+	public int adminUpdateLongRent(String rep, int no) {
+		String sql = "UPDATE LONGRENT SET REP_CONTENT = ?, REP_YN = 2 WHERE NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, rep);
+			pstmt.setInt(2, no);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	// 답변안한거 먼저보이기, 다음 날짜순
+	@Override
+	public ArrayList<LongRent> adminList() {
+		String sql = "SELECT * FROM LONGRENT ORDER BY REP_YN ASC, WRITE_DATE ASC";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				ArrayList<LongRent> list = new ArrayList<>();
+				do {
+					list.add(getLongRent(rs));
+				} while (rs.next());
+				return list;
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	@Override
+	public int adminReplyDeleteLongRent(int no) {
+		String sql = "UPDATE LONGRENT SET REP_CONTENT = null, REP_YN = 1  WHERE NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
 	}
 
 //	@Override

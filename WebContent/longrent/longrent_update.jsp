@@ -75,6 +75,7 @@ $(function() {
 						<input type="password" name="pwd" id="pwd" value="${LongRent.pwd }">
 					</div>
 					<input type="text" class="mt5" name="title" id="title" value="${LongRent.title }">
+					<input type="button" value="희망차종, 희망계약기간 등 자유롭게 문의 사항 작성해주시면, 빠른 답변 및 연락 드리겠습니다. " onclick="">
 					<%-- <input type="text" name="contents" class="write_content mt5" id="contents" value="${LongRent.contents}"> --%>
 					<textarea class="write_content mt5" name="contents" id="contents_ckeditor"></textarea>
 					

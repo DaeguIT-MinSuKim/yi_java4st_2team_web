@@ -125,9 +125,9 @@
 			</ul>
 		</li>
 		<li><a href="#">고객관리</a></li>
-		<li><a href="longRent.do">장기렌트 관리</a></li>
-		<li><a href="#">공지사항</a></li>
-		<li><a href="#">이벤트</a></li>
+		<li><a href="adminLongRent.do">장기렌트 관리</a></li>
+		<li><a href="adminNotice.do">공지사항</a></li>
+		<li><a href="adminEvent.do">이벤트</a></li>
 		<li><a href="#">성과현황</a></li>
 	</ul>
 </nav>

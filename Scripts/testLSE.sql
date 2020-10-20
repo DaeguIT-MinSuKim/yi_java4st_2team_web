@@ -40,6 +40,9 @@ SELECT * FROM LONGRENT;
 
 SELECT  COUNT(*) FROM LONGRENT WHERE NO LIKE 1;
 
+UPDATE LONGRENT SET REP_YN = 2 WHERE NO = 8;
+
+SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT ORDER BY REP_YN ASC, WRITE_DATE ASC;
 
 --공지사항---------------------------------------------------------------------------------------------------------------------------------W-------------------------
 SELECT * FROM notice;
@@ -69,3 +72,10 @@ SELECT * FROM NOTICE  ORDER BY IS_TOP, NO DESC;
 
 UPDATE NOTICE SET CONTENTS = '일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지'
 WHERE NO=4;
+
+-------------------관리자-----------------------------------------------------------------------------------
+SELECT * FROM LONGRENT ;
+UPDATE LONGRENT SET REP_CONTENT = '댓글수정', REP_YN = 2  WHERE NO = 5;
+
+
+UPDATE LONGRENT SET rep_yn = 1 WHERE NO = 8;
