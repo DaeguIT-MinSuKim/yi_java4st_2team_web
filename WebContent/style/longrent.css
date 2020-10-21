@@ -85,10 +85,12 @@
 
 .btn_small {display:block; width:120px !important; height:auto !important; line-height:40px; border:1px solid #4a80e5; font-size:0.93em; text-align:center; border-radius:4px; margin:0 auto; cursor:pointer;}
 
+
 .btn_case1 {background:#4a80e5; color:#fff;}
 .btn_case2 {background:#555; border-color:#555; color:#fff !important;}
 .btn_case3 {background:#fff; color:#4a80e5;}
 .btn_case4 {background:#fff; border-color:#555; color:#555;}
+.btn_case5 {background:#DB9A96; border-color:#DB9A96; color:#fff !important;}
 
 .btn_case1:hover {background:#1355d0; text-decoration:none;}
 .btn_case2:hover {background:#111; border-color:#111; text-decoration:none;}

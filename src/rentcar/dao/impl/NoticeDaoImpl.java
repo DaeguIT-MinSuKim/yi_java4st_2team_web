@@ -73,5 +73,23 @@ public class NoticeDaoImpl implements NoticeDao {
 		return null;
 	}
 
+	@Override
+	public int insertNotice(Notice notice) {
+		return 0;
+		
+	}
 
+
+	@Override
+	public int deleteNotice(Notice notice) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int updateNotice(Notice notice) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -22,6 +22,6 @@ public class LongRentPasswordFormHandler implements Command {
 			int no = Integer.parseInt(request.getParameter("no").trim());
 			System.out.println("여기 nononono >>"+ no);
 			
-				return "adminLongRent.do";
+			return "/longrent/longrent_password.jsp";
 		}
 }
