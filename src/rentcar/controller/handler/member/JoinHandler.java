@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.GsonBuilder;
 
 import rentcar.controller.Command;
 import rentcar.dto.Member;
@@ -29,7 +29,7 @@ public class JoinHandler implements Command {
 		} else {
 			System.out.println("POST");
 
-			Gson gson = new Gson();
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			Member joinMember = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Member.class);
 			System.out.println("joinMember > " + joinMember);
 

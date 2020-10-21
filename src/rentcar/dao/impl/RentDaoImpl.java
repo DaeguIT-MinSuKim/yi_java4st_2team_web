@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import rentcar.dao.RentDao;
@@ -23,7 +21,7 @@ public class RentDaoImpl implements RentDao {
 	private static final RentDaoImpl instance = new RentDaoImpl();
 	private Connection con;
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-	
+
 	public RentDaoImpl() {
 	}
 
@@ -47,7 +45,8 @@ public class RentDaoImpl implements RentDao {
 		m.setPwd(rs.getString("PWD"));
 		m.setName(rs.getString("NAME"));
 		m.setTel(rs.getString("TEL"));
-		m.setLicense(rs.getString("LICENSE"));
+		m.setLi_class(rs.getString("Li_class"));
+		m.setLi_number(rs.getString("Li_number"));
 		m.setEmail(rs.getString("EMAIL"));
 		m.setAddress(rs.getString("ADDRESS"));
 		m.setIs_black(rs.getString("IS_BLACK"));
@@ -135,7 +134,7 @@ public class RentDaoImpl implements RentDao {
 			pstmt.setString(6, rent.getIs_rent());
 			pstmt.setLong(7, rent.getFare());
 			pstmt.setString(8, rent.getRemark());
-			
+
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -155,7 +154,7 @@ public class RentDaoImpl implements RentDao {
 			pstmt.setLong(7, rent.getFare());
 			pstmt.setString(8, rent.getRemark());
 			pstmt.setInt(9, rent.getRentNo());
-			
+
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
