@@ -68,7 +68,7 @@ public class CarWriteHandler implements Command {
 		} catch (Exception e) {
 			System.out.println("예외 발생 : " + e);
 		}
-		return "admin/car/carList.jsp";
+		return "carList.do";
 	}
 }
 }

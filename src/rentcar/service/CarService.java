@@ -63,6 +63,7 @@ public class CarService {
 	
 	// 차량 삭제하기
 	public int deleteCar(Car car){
+		System.out.println("service carNo > " + car.getNo());
 		return dao.deleteCar(car);
 	}
 }

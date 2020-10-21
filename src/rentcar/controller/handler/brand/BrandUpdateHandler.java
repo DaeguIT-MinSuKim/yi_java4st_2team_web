@@ -27,7 +27,7 @@ public class BrandUpdateHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
 			
-			int code = (int) request.getAttribute("brandCode");
+			int code = Integer.parseInt(request.getParameter("brandCode"));
 			Brand brand = service.brandDetail(code);
 			request.setAttribute("brand", brand);
 			
@@ -64,7 +64,7 @@ public class BrandUpdateHandler implements Command {
 			} catch (Exception e) {
 				System.out.println("예외 발생 : " + e);
 			}
-			return "admin/brand/brandList.jsp";
+			return "brandList.do";
 		}
 	}
 }

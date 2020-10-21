@@ -27,7 +27,7 @@ public class CarUpdateHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
 
-			String no = (String) request.getAttribute("carNo");
+			String no = request.getParameter("carNo");
 			Car car = service.carDetail(no);
 			request.setAttribute("car", car);
 
@@ -72,7 +72,7 @@ public class CarUpdateHandler implements Command {
 			} catch (Exception e) {
 				System.out.println("예외 발생 : " + e);
 			}
-			return "admin/car/carList.jsp";
+			return "carList.do";
 		}
 	}
 }

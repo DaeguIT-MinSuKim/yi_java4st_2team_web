@@ -36,14 +36,20 @@ public class CarDaoImpl implements CarDao {
 		Car c = new Car();
 		Kind k = new Kind();
 		Brand b = new Brand();
-
-		k.setCode(rs.getInt("KIND_CODE"));
-		k.setName(rs.getString("KIND_NAME"));
-		k.setFare(rs.getInt("KIND_FARE"));
-
-		b.setCode(rs.getInt("BRAND_CODE"));
-		b.setName(rs.getString("BRAND_NAME"));
-		b.setImage(rs.getString("BRAND_IMAGE"));
+		try {
+			k.setCode(rs.getInt("KIND_CODE"));
+			k.setName(rs.getString("KIND_NAME"));
+			k.setFare(rs.getInt("KIND_FARE"));
+		} catch (NullPointerException e) {
+			System.out.println("차종이 비었습니다");
+		}
+		try {
+			b.setCode(rs.getInt("BRAND_CODE"));
+			b.setName(rs.getString("BRAND_NAME"));
+			b.setImage(rs.getString("BRAND_IMAGE"));
+		} catch (NullPointerException e) {
+			System.out.println("차종이 비었습니다");
+		}
 
 		c.setNo(rs.getString("CAR_NO"));
 		c.setName(rs.getString("CAR_NAME"));
@@ -59,7 +65,7 @@ public class CarDaoImpl implements CarDao {
 	@Override
 	public List<Car> selectCarByAll() {
 		String sql = "SELECT *"
-				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE";
+				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				List<Car> list = new ArrayList<Car>();
@@ -77,7 +83,7 @@ public class CarDaoImpl implements CarDao {
 	@Override
 	public List<Car> selectCarByRent() {
 		String sql = "SELECT * "
-				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
+				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
 				+ "WHERE IS_RENTCAR = 'Y'";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
@@ -96,7 +102,7 @@ public class CarDaoImpl implements CarDao {
 	@Override
 	public List<Car> selectCarByFind(int res, String query) {
 		String sql = "SELECT * "
-				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE"
+				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
 				+ " WHERE ";
 		switch (res) {
 		case 1:
@@ -106,19 +112,19 @@ public class CarDaoImpl implements CarDao {
 			sql += "NAME LIKE '%' || ? || '%'";
 			break;
 		case 3:
-			sql += "KIND_CODE LIKE '%' || ? || '%'";
+			sql += "KIND_NAME LIKE '%' || ? || '%'";
 			break;
 		case 4:
-			sql += "BRAND_CODE LIKE '%' || ? || '%'";
+			sql += "BRAND_NAME LIKE '%' || ? || '%'";
 			break;
 		case 5:
 			sql += "IS_RENTCAR = ?";
 			break;
 		default:
-			System.out.println("해당사항 예외를 선택하셨습니다");
-			System.out.println("CarDaoImpl.90line");
+			System.out.println("CarDaoImpl.selectCarByFind ERROR");
 			return null;
 		}
+		System.out.println(sql);
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, query);
 			try (ResultSet rs = pstmt.executeQuery()) {
@@ -139,7 +145,7 @@ public class CarDaoImpl implements CarDao {
 	@Override
 	public Car selectCarByNo(String no) {
 		String sql = "SELECT * "
-				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE"
+				+ " FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
 				+ " WHERE CAR_NO = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, no);
@@ -156,11 +162,10 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public List<Car> selectRentByCar(LocalDateTime rentDate) {
-		String sql = "SELECT * " + 
-				"  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE " + 
-				" WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
-				"  FROM rent r " + 
-				" WHERE NOT(TO_DATE(RENT_DATE) > TO_DATE(?) OR TO_DATE(RETURN_DATE) < TO_DATE(?)))";
+		String sql = "SELECT * "
+				+ "  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
+				+ " WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + "  FROM rent r "
+				+ " WHERE NOT(TO_DATE(RENT_DATE) > TO_DATE(?) OR TO_DATE(RETURN_DATE) < TO_DATE(?)))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, rentDate.format(formatter));
 			pstmt.setString(2, rentDate.format(formatter));
@@ -181,12 +186,11 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public List<Car> selectRentByCar(LocalDateTime rentDate, LocalDateTime returnDate) {
-		String sql = "SELECT * " + 
-				"  FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE" + 
-				" WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
-				"  FROM rent r " + 
-				" WHERE (TO_DATE(RENT_DATE) > TO_DATE(?) AND TO_DATE(RENT_DATE) < TO_DATE(?)) " + 
-				"	OR (TO_DATE(RETURN_DATE) > TO_DATE(?) AND TO_DATE(RETURN_DATE) < TO_DATE(?)))";
+		String sql = "SELECT * "
+				+ "  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
+				+ " WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + "  FROM rent r "
+				+ " WHERE (TO_DATE(RENT_DATE) > TO_DATE(?) AND TO_DATE(RENT_DATE) < TO_DATE(?)) "
+				+ "	OR (TO_DATE(RETURN_DATE) > TO_DATE(?) AND TO_DATE(RETURN_DATE) < TO_DATE(?)))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, rentDate.format(formatter));
 			pstmt.setString(2, rentDate.format(formatter));
@@ -200,7 +204,7 @@ public class CarDaoImpl implements CarDao {
 					} while (rs.next());
 					return list;
 				}
-			} 
+			}
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}

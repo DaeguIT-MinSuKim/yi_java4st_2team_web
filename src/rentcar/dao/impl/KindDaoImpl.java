@@ -98,7 +98,20 @@ public class KindDaoImpl implements KindDao {
 
 	@Override
 	public int deleteKind(Kind kind) {
+		deleteKindByCar(kind);
+		//차종 삭제
 		String sql = "DELETE FROM KIND WHERE KIND_CODE = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, kind.getCode());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	//차량과 연관된 차종 삭제
+	private int deleteKindByCar(Kind kind) {
+		String sql = "UPDATE CAR SET KIND_CODE = NULL WHERE KIND_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, kind.getCode());
 			return pstmt.executeUpdate();

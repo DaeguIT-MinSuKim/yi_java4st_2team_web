@@ -26,6 +26,10 @@
 
 .page_rent .brand_logo {position:absolute; top:0; right:5px; display:block !important; height:40px;}
 
+.page_rent .dongja {width:135px; height:120px; margin:0 auto; position:relative;}
+.page_rent .dongja .note1 {opacity:0; position:absolute; top:0; left:-10px}
+.page_rent .dongja .note2 {opacity:0; position:absolute; top:-15px; left:20px}
+	
 /* 날짜 검색 */
 .page_rent .calendarWrap {position:relative; padding:50px 30px;
 	background:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNyIgaGVpZ2h0PSIyNyIgdmlld0JveD0iMCAwIDI3IDI3Ij4KICA8ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiIG9wYWNpdHk9Ii4wOTIiPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iNCIgeT0iNCIvPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iMTMiIHk9IjQiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjIyIiB5PSI0Ii8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSI0IiB5PSIxMyIvPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iMTMiIHk9IjEzIi8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSIyMiIgeT0iMTMiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjQiIHk9IjIyIi8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSIxMyIgeT0iMjIiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjIyIiB5PSIyMiIvPgogIDwvZz4KPC9zdmc+Cg==);

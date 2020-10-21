@@ -11,12 +11,18 @@
 				<th>코드번호</th>
 				<th>브랜드명</th>
 				<th>이미지</th>
+				<th>브랜드 수정</th>
+				<th>브랜드 삭제</th>
 			</tr>
 			<c:forEach items="${brandList }" var="brand">
 				<tr>
-					<th>${brand.code}</th>
-					<th>${brand.name}</th>
-					<th>${brand.image}</th>
+					<td>${brand.code}</td>
+					<td>${brand.name}</td>
+					<td>${brand.image}</td>
+					<td><a href="brandUpdate.do?brandCode=${brand.code}"><input type="button"
+										value="수정" class="update"></a></td>
+					<td><a href="brandDelete.do?brandCode=${brand.code}"><input type="button"
+										value="삭제" class="delete"></a></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -12,7 +12,7 @@ import rentcar.dto.Kind;
 import rentcar.dto.Kind;
 import rentcar.service.KindService;
 
-public class KindUpdateHandler implements Command {
+public class KindDeleteHandler implements Command {
 	private KindService service = new KindService();
 
 	@Override
@@ -20,20 +20,15 @@ public class KindUpdateHandler implements Command {
 			throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
-
+			
 			int code = Integer.parseInt(request.getParameter("kindCode"));
-			Kind kind = service.kindDetail(code);
-			request.setAttribute("kind", kind);
-
-			return "admin/kind/kindUpdate.jsp";
-		} else {
-			Kind k = new Kind();
-			k.setCode((int) request.getAttribute("kindCode"));
-			k.setName((String) request.getAttribute("kindName"));
-			k.setFare((int) request.getAttribute("kindFare"));
-
-			int res = service.updateKind(k);
+			int res = service.deleteKind(new Kind(code));
 			request.setAttribute("res", res);
+
+			response.sendRedirect("kindList.do");
+			return null;
+		} else {
+			System.out.println("POST");
 
 			return "kindList.do";
 		}
