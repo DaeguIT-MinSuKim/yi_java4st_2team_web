@@ -36,7 +36,7 @@ $(function(){
 								<c:when test="${Notice.isTop == 0 }"><span class="notice_board">공지</span></c:when>
 								<c:when test="${Notice.isTop == 1 }">${Notice.no }</c:when>
 							</c:choose>
-						<td class="tl"><a href="noticeView.do?no=${Notice.no}">${Notice.title }</a></td>
+						<td class="tl"><a href="adminNoticeView.do?no=${Notice.no}">${Notice.title }</a></td>
 						<td> 관리자 </td>
 						<td><fmt:formatDate value="${Notice.writeDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td> 
 					</tr>
@@ -47,12 +47,14 @@ $(function(){
 					<td colspan="5">작성된 글이 없습니다.</td>
 				</tr>
 			</table>
+		<!-- <form action="adminNoticeWrite.do" method="get">
+		</form> -->
+		<a href="adminNoticeWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
 		
-		<a href="#" class="btn_small btn_case2 floatR mt10">글쓰기</a>
-			
 		<div class="board_list_page clear">
 			<a href="#" class="first arrow"><span class="text_hidden">처음</span></a>
 			<a href="#" class="prev arrow"><span class="text_hidden">이전</span></a>
+			
 			<ul>
 				<li class="active"><a href="#">1</a></li>
 				<li><a href="#">2</a></li>

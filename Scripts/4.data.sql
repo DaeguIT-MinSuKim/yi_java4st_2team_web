@@ -152,6 +152,9 @@ INSERT INTO NOTICE VALUES(7,'대여 자격 기준이 어떻게 되나요? ','동
 운전면허경력증명서와 재취득하신 면허증을 지참하시면 차량대여 가능합니다.'
 ,SYSDATE, 0);
 
+
+INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) VALUES('중요한 공지사항입니다.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 확인용입니다. ',sysdate, 1);
+
 SELECT * FROM notice;
 
 

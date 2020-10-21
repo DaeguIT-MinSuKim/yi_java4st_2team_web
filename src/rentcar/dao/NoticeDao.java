@@ -16,9 +16,9 @@ public interface NoticeDao {
 	//관리자 
 	int insertNotice(Notice notice);
 	
-	int deleteNotice(Notice notice);
-	
 	int updateNotice(Notice notice);
+
+	int deleteNotice(int no);
 	
 	
 	

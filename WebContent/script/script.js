@@ -24,6 +24,8 @@ $(document).ready(function(){
 	// 관리자 메뉴
 	admin_gnb();
 	admin_logoHover(); // 헤더 로고 (동자승이 눈깜빡이는거 ~)
+	
+//	admin_writeCheck();// 공지사항 글쓰기 폼 체크
 });
 
 
@@ -125,6 +127,20 @@ function writeCheck(){
 //		return false;
 //	}
 	
+	return true;
+}
+
+
+// 어드민 - 장기렌트 글쓰기
+function admin_writeCheck(){
+	if(document.frm.name.title.length == 0) {
+		alert("제목을 입력해주세요.");
+		return false;
+	}
+//	if(document.frm.tel.value.length == 0) {
+//		alert("전화번호은 필수항목입니다.");
+//		return false;
+//	}
 	return true;
 }
 

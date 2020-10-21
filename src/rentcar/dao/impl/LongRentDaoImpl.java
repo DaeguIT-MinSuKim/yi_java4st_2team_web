@@ -84,8 +84,8 @@ public class LongRentDaoImpl implements LongRentDao {
 
 	@Override
 	public int insertLongRent(LongRent longrent) {
-		String sql = "INSERT INTO LONGRENT(NO, TITLE, CONTENTS,RENT_TERM, NAME, TEL, PWD, OPTIONS) "
-				+ "VALUES(LONGRENT_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) "
+				+ "VALUES(?,?,?,?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, longrent.getTitle());
 			pstmt.setString(2, longrent.getContents());

@@ -87,6 +87,11 @@ WHERE NO=7;
 
 UPDATE NOTICE SET IS_TOP = 0 WHERE NO =7;
 
+SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE asc;
+
+
+SELECT * FROM notice;
+
 -------------------관리자-----------------------------------------------------------------------------------
 SELECT * FROM LONGRENT ;
 UPDATE LONGRENT SET REP_CONTENT = '댓글수정', REP_YN = 2  WHERE NO = 5;
