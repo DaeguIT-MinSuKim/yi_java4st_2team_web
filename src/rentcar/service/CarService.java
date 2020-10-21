@@ -18,52 +18,53 @@ public class CarService {
 		dao = CarDaoImpl.getInstance();
 		((CarDaoImpl) dao).setCon(con);
 	}
-	
+
 	// 차량리스트 불러오기
-	public List<Car> carList(){
+	public List<Car> carList() {
 		return dao.selectCarByAll();
 	}
-	
+
 	// 렌트중인 차량정보 불러오기
-	public List<Car> selectCarByRent(){
+	public List<Car> selectCarByRent() {
 		return dao.selectCarByRent();
 	}
-	
+
 	// 차량목록 분류별로 검색하기
-	public List<Car> selectCarByFind(int res, String query){
+	public List<Car> selectCarByFind(int res, String query) {
 		return dao.selectCarByFind(res, query);
 	}
-	
+
 	// 차량정보 불러오기
-	public Car carDetail(String no){
+	public Car carDetail(String no) {
 		return dao.selectCarByNo(no);
 	}
-	
+
 	// 대여일기입 대여가능차량 목록 불러오기
-	public List<Car> selectRentByCar(LocalDateTime rentDate){
+	public List<Car> selectRentByCar(LocalDateTime rentDate) {
 		return dao.selectRentByCar(rentDate);
 	}
-	
+
 	// 대여반납일 기입 대여가능차량 목록 불러오기
-	public List<Car> selectRentByCar(LocalDateTime rentdate, LocalDateTime returnDate){
+	public List<Car> selectRentByCar(LocalDateTime rentdate, LocalDateTime returnDate) {
 		return dao.selectRentByCar(rentdate, returnDate);
 	}
-	
-	//차량의 최대 대여일 표기
-	
+
+	// 차량의 최대 대여일 표기
+
 	// 차량 추가하기
-	public int insertCar(Car car){
+	public int insertCar(Car car) {
 		return dao.insertCar(car);
 	}
 
 	// 차량 수정하기
-	public int updateCar(Car car){
+	public int updateCar(Car car) {
 		return dao.updateCar(car);
 	}
-	
+
 	// 차량 삭제하기
-	public int deleteCar(Car car){
+	public int deleteCar(Car car) {
 		System.out.println("service carNo > " + car.getNo());
 		return dao.deleteCar(car);
 	}
+
 }
