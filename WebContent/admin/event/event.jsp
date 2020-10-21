@@ -50,28 +50,38 @@ $(function(){
 		</table>
 		
 		<a href="eventWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
-			
+		
+		
 		<div class="board_list_page clear">
-			<a href="#" class="first arrow"><span class="text_hidden">처음</span></a>
-			<a href="#" class="prev arrow"><span class="text_hidden">이전</span></a>
+			<a href="adminEvent.do?nowPage=1" class="first arrow"><span class="text_hidden">처음</span></a>
+			<c:if test="${paging.nowPage != 1}">
+				<a href="adminEvent.do?nowPage=${paging.nowPage-1}" class="prev arrow"><span class="text_hidden">이전</span></a>
+			</c:if>
+			<c:if test="${paging.nowPage == 1}">
+				<a href="adminEvent.do?nowPage=${paging.nowPage}" class="prev arrow"><span class="text_hidden">이전</span></a>
+			</c:if>
 			<ul>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
+				<c:forEach begin="${paging.startPage}" end="${paging.endPage }"
+					var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<li class="active"><a>${p}</a></li>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<li><a href="adminEvent.do?nowPage=${p}">${p}</a></li>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 			</ul>
-			<a href="#" class="next arrow"><span class="text_hidden">다음</span></a>
-			<a href="#" class="end arrow"><span class="text_hidden">마지막</span></a>
+			
+			<c:if test="${paging.endPage != paging.lastPage}">
+				<a href="adminEvent.do?nowPage=${paging.nowPage+1}" class="next arrow"><span class="text_hidden">다음</span></a>
+			</c:if>
+			<c:if test="${paging.endPage == paging.lastPage}">
+				<a href="adminEvent.do?nowPage=${paging.nowPage}" class="next arrow"><span class="text_hidden">다음</span></a>
+			</c:if>
+			<a href="adminEvent.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
 		</div>
-		
-		
-		${paging}
 	</div>
 </div>
 

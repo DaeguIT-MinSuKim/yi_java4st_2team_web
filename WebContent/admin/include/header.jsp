@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" style="overflow-x:auto">
 <head>
 	<title>동자승 렌터카 관리자</title>
 	<meta charset="utf-8">
@@ -98,7 +98,7 @@
 	</script>
 </head>
 
-<body>
+<body style="min-width:1200px; overflow-x:auto">
 <header id="admin_header">
 	<h1><a href="index.do" class="admin_logo"><img src="./images/common/logo_w.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 	<ul>
