@@ -7,8 +7,9 @@ $(function(){
 	rent_optionHours(); // 단기렌트 - selectBox option 시간 삽입
 	rent_carSearch(); // 단기렌트 - 차량 검색
 	rent_calendarWrap_hover(); // 단기렌트 - 동자승 차 애니메이션
+	rentDetail_priceChange(); // 단기렌트 상세 - 실시간으로 최종금액 계산 + 결제정보 변경
 	
-//	rent_form_goDtl(); // 단기렌트 - 차량 상세로 submit (차량리스트 호출 시 동시 실행함)
+	rent_form_goDtl(); // 단기렌트 - 차량 상세로 submit (차량리스트 호출 시 동시 실행함)
 //	numberWithCommas(); // 3자리 단위 콤마 찍기  (특정 부분만 사용)
 });
 
@@ -201,7 +202,7 @@ function rent_carSearch(){
 					var pos = $(".rentcarList_tabBtn").offset().top - 50;
 					$("html, body").stop().animate({scrollTop:pos}, 500);
 					
-					// 차량리스트의 각 차량에 링크를 부여
+					// 차량리스트의 각 차량에 링크를 재부여 (ajax로 차량리스트를 다시 뿌려서...각 차량의 클릭이벤트가 사라졌기 때문)
 					rent_form_goDtl();
 				},
 				error:function(e){ // 에러날경우 에러메시지 보기
@@ -216,24 +217,77 @@ function rent_carSearch(){
 // 단기렌트 - 차량 상세로 submit
 function rent_form_goDtl(){
 	if( $(".btn_goDtl").length > 0 ){
-		$(".btn_goDtl.active").on("click", function(e){
+		$(".btn_goDtl").on("click", function(e){
 			e.preventDefault();
 			
-			var carNo = $(this).find(".carNo").val();
-			var minDate = $(".calendar.prev").val();
-			var maxDate = $(".calendar.next").val();
-			var minHour = $(".hours.prev").val();
-			var maxHour = $(".hours.next").val();
-			
-			maxHour = maxDate=="" ?	maxHour = "" : '&maxHour=' + maxHour;
-			maxDate = maxDate=="" ? maxDate = '&maxDate=0' : '&maxDate=' + maxDate;
-			
-			location.href='rentDtl.do'
-				+ '?carNo=' + carNo 
-				+ '&minDate=' + minDate 
-				+ '&minHour=' + minHour
-				+ maxDate
-				+ maxHour;
+			if( $(this).hasClass("active") ){ // 아직 날짜를 선택안한 상황일 경우
+				var carNo = $(this).find(".carNo").val();
+				var minDate = $(".calendar.prev").val();
+				var maxDate = $(".calendar.next").val();
+				var minHour = $(".hours.prev").val();
+				var maxHour = $(".hours.next").val();
+				
+				maxHour = maxDate=="" ?	maxHour = "" : '&maxHour=' + maxHour;
+				maxDate = maxDate=="" ? maxDate = '&maxDate=0' : '&maxDate=' + maxDate;
+				
+				location.href='rentDtl.do'
+					+ '?carNo=' + carNo 
+					+ '&minDate=' + minDate 
+					+ '&minHour=' + minHour
+					+ maxDate
+					+ maxHour;
+					
+			}else{
+				alert("대여할 날짜를 먼저 선택해주세요");
+				return false;		
+			}
 		});
 	}
 }
+
+// 단기렌트 상세 - 실시간으로 최종금액 계산 + 결제정보 변경
+function rentDetail_priceChange(){
+	
+	// 값 가져올 변수
+	var $get_ins = $("#get_insurance");
+	var $get_opt = $("#get_option");
+	var $get_dis = $("#get_discount");
+	
+	// 값 넣을 변수
+	var $set_ins = $("#set_insurance");
+	var $set_opt = $("#set_option");
+	var $set_dis = $("#set_discount>span");
+	var $set_total = $("#set_total>span");
+	
+	// 보험 (라디오버튼)
+	$get_ins.find("input").on("click", function(){
+		var val_name = $get_ins.find("input:checked").next("span").text();
+		$set_ins.text(val_name);
+	});
+	
+	// 옵션 (체크버튼)
+	$get_opt.find("input").on("click", function(){
+		var val_name = "";
+		for(var i=0; i < $get_opt.find("label").length; i++){
+			if( $get_opt.find("label").eq(i).find("input").prop("checked") == true ){
+				val_name += $(this).text();
+			}
+		}
+		
+		$set_opt.text(val_name);
+	});
+	
+	// 할인/쿠폰 (셀렉박스)
+
+	
+	// 총 금액 계산
+	function calculator(){
+		
+		var insPay = parseInt($get_ins.find("input:checked").attr("data-insPrice"));
+		var optPay = 0;
+		var disPay = 0;
+		
+		$set_total.text(insPay + optPay + disPay);
+	}
+}
+

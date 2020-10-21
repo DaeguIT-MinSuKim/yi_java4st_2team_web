@@ -36,16 +36,10 @@ function logo_hover() {
 
 	logo.on({
 		mouseenter : function() {
-			logo.find("img").attr(
-					"src",
-					logo.find("img").attr("src").replace(str_logo,
-							str_logo + "_hover"));
+			logo.find("img").attr("src", logo.find("img").attr("src").replace(str_logo, str_logo + "_hover"));
 		},
 		mouseleave : function() {
-			logo.find("img").attr(
-					"src",
-					logo.find("img").attr("src").replace(str_logo + "_hover",
-							str_logo));
+			logo.find("img").attr("src",logo.find("img").attr("src").replace(str_logo + "_hover", str_logo));
 		}
 	});
 }
@@ -116,92 +110,85 @@ function updateCheck() {
 	}
 
 	return true;
+}
 
-	// 장기렌트 글쓰기
-	function writeCheck() {
-		if (document.frm.name.value.length == 0) {
-			alert("이름은 필수항목입니다.");
-			return false;
-		}
-		if (document.frm.tel.value.length == 0) {
-			alert("전화번호은 필수항목입니다.");
-			return false;
-		}
-		if (document.frm.pwd.value.length == 0) {
-			alert("비밀번호는 필수항목입니다.");
-			return false;
-		}
-		if (document.frm.title.value.length == 0) {
-			alert("제목을 입력해주세요.");
-			return false;
-		}
-		// if(document.frm.contents.value.length == 0) {
-		// alert("문의 내용을 입력해주세요.");
-		// return false;
-		// }
+// 장기렌트 글쓰기
+function writeCheck() {
+	if (document.frm.name.value.length == 0) {
+		alert("이름은 필수항목입니다.");
+		return false;
+	}
+	if (document.frm.tel.value.length == 0) {
+		alert("전화번호은 필수항목입니다.");
+		return false;
+	}
+	if (document.frm.pwd.value.length == 0) {
+		alert("비밀번호는 필수항목입니다.");
+		return false;
+	}
+	if (document.frm.title.value.length == 0) {
+		alert("제목을 입력해주세요.");
+		return false;
+	}
+	// if(document.frm.contents.value.length == 0) {
+	// alert("문의 내용을 입력해주세요.");
+	// return false;
+	// }
 
-		if (CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
-			alert("문의 내용을 입력해주세요.");
-			return false;
-		}
-
-		return true;
+	if (CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
+		alert("문의 내용을 입력해주세요.");
+		return false;
 	}
 
-	// 장기렌트 댓글 수정
-	function longrent_editComment() {
-		$(".board_view .comment .comment_list > li .btn .update")
-				.click(
-						function() {
-							$(
-									".board_view .comment .comment_list > li .content_box p")
-									.hide()
-							$(
-									".board_view .comment .comment_list > li .content_box form")
-									.show()
+	return true;
+}
 
-							return false;
-						});
-	}
+// 장기렌트 댓글 수정
+function longrent_editComment() {
+	$(".board_view .comment .comment_list > li .btn .update").click(function() {
+		$(".board_view .comment .comment_list > li .content_box p").hide()
+		$(".board_view .comment .comment_list > li .content_box form").show()
 
-	// event view 알림 팝업
-	function event_popup() {
-		$(".event_popup .cancle").click(function() {
-			$(".event_popup").hide()
+		return false;
+	});
+}
 
-			return false;
+// event view 알림 팝업
+function event_popup() {
+	$(".event_popup .cancle").click(function() {
+		$(".event_popup").hide()
+
+		return false;
+	})
+
+	$(".event_img").click(function() {
+		$(".event_popup").css({
+			display : "table"
 		})
+	})
+}
 
-		$(".event_img").click(function() {
-			$(".event_popup").css({
-				display : "table"
-			})
-		})
-	}
+// 관리자 메뉴
+function admin_gnb() {
+	$("#admin_gnb > ul > li > a").click(function() {
+		if ($(this).parent("li").children().length == 2) {
+			$(this).parent("li").children("ul").stop().slideToggle();
+			return false;
+		}
+	})
+}
 
-	// 관리자 메뉴
-	function admin_gnb() {
-		$("#admin_gnb > ul > li > a").click(function() {
-			if ($(this).parent("li").children().length == 2) {
-				$(this).parent("li").children("ul").stop().slideToggle();
-				return false;
-			}
-		})
-	}
+function form_delete() {
+	$('.delete').on("click", function(e) {
+		e.preventDefault();
+		var chk_del = confirm("정말 삭제하시겠습니까?");
+		if (chk_del == true) {
 
-	function form_delete() {
-		$('.delete').on("click", function(e) {
-			e.preventDefault();
-			var chk_del = confirm("정말 삭제하시겠습니까?");
-			if (chk_del == true) {
-
-				var url = $(this).parent("a").attr("href");
-				alert(url);
-				location.href = url;
-			}
-		});
-	}
-
+			var url = $(this).parent("a").attr("href");
+//			alert(url);
+			location.href = url;
+		}
+	});
 }
 
 // 어드민 - 장기렌트 글쓰기

@@ -45,4 +45,9 @@ $(function(){
 		$('.calendar.prev').datepicker("option", "maxDate", selectedDate );
     });
 	
+	// 단기렌트 상세에서 반납일 인풋만 있을 경우
+	if( $(".calendar.next").length > 0 && $(".calendar.prev").length == 0 ){
+		$(".calendar.next").datepicker("option", "minDate", $(".date_minDateVal").text());
+	}
+	
 });
