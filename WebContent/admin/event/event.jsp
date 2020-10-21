@@ -74,10 +74,10 @@ $(function(){
 				</c:forEach>
 			</ul>
 			
-			<c:if test="${paging.endPage != paging.lastPage}">
+			<c:if test="${paging.nowPage != paging.lastPage}">
 				<a href="adminEvent.do?nowPage=${paging.nowPage+1}" class="next arrow"><span class="text_hidden">다음</span></a>
 			</c:if>
-			<c:if test="${paging.endPage == paging.lastPage}">
+			<c:if test="${paging.nowPage == paging.lastPage}">
 				<a href="adminEvent.do?nowPage=${paging.nowPage}" class="next arrow"><span class="text_hidden">다음</span></a>
 			</c:if>
 			<a href="adminEvent.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
