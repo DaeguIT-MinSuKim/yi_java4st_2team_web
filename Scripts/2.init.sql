@@ -46,6 +46,10 @@ DROP TABLE EVENT_BOX
 DROP TABLE OPT_BOX 
 	CASCADE CONSTRAINTS;
 
+/* 공지사항 */
+DROP TABLE notice
+	CASCADE CONSTRAINTS;
+
 /* 차량 */
 CREATE TABLE CAR (
 	car_no VARCHAR2(20) NOT NULL, /* 차량번호 */
@@ -255,7 +259,7 @@ CREATE TABLE LONGRENT (
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
 	pwd VARCHAR2(50), /* 비밀번호 */
-	rep_content VARCHAR2(500), /* 답변내용 */
+	rep_content CLOB, /* 답변내용 */
 	options VARCHAR2(500) /* 옵션목록 */
 );
 

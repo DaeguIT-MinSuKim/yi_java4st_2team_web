@@ -15,6 +15,7 @@ public class EventBoxService {
 	}
 	
 	public int insertEventBox(EventBox eventBox) {
+		System.out.println("왔따!!");
 		return dao.insertEventBox(eventBox);
 	}
 	

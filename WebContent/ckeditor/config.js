@@ -88,9 +88,9 @@ CKEDITOR.editorConfig = function( config ) {
 	//안드로이드 모바일기기로 접속시 에디터 멈추는 현상 해결 끝
 	
 	
-		//ckfinder 설정 
-	//config.filebrowserBrowseUrl = 'V:/uploads/editor/tempfiles/';
-    //config.filebrowserImageBrowseUrl = 'https://www.vms.or.kr/servlet/ImgServlet?filename=/editor/tempfiles/';
-    //config.filebrowserFlashBrowseUrl = '/ckfinder/ckfinder.html?type=Flash';
-	
+	config.filebrowserBrowseUrl = "../ckfinder/ckfinder.html";
+    config.filebrowserFlashBrowseUrl = "../ckfinder/ckfinder.html?type=Flash";
+    config.filebrowserUploadUrl = "../ckfinder/core/connector/java/connctor.java?command=QuickUpload&type=Files";
+    config.filebrowserImageUploadUrl = "../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images";
+    config.filebrowserFlashUploadUrl = "../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash";
 };
