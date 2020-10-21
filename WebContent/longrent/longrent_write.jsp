@@ -7,12 +7,6 @@
 <script>
 
 	$(function() {
-		/*
-		CKEDITOR.replace('bo_content',{
-			filebrowserUploadUrl: '${pageContext.request.contextPath }/adm/fileupload.do'
-		});
-		*/
-		
 		
 		$('#add').on("click", function(e) {
 			e.preventDefault();
@@ -57,13 +51,12 @@
 			 
 			 
 			if (writeCheck()) {
-
 				var newLongRent = {
 					name : $('#name').val(),
 					tel : $('#tel').val(),
 					pwd : $('#pwd').val(),
 					title : $('#title').val(),
-					contents : $('#contents_ckeditor').val(),
+					contents : CKEDITOR.instances.contents_ckeditor.getData(),
 					options : chkStr
 				};
 
@@ -73,7 +66,7 @@
 					cache : false,
 					data : JSON.stringify(newLongRent),
 					success : function(data) {
-						alert("문의글을 추가했습니다..");
+						alert("문의글을 추가했습니다.");
 						window.location.href = "longRent.do";
 					}
 
@@ -115,6 +108,7 @@
 					<li><a href="longRent.do" class="btn_small btn_case4">취소</a></li>
 					<li><a href="javascript:;" class="btn_small btn_case2" id="add">확인</a></li>
 				</ul>
+				
 			</form>
 		</div>
 	</div>

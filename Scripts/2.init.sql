@@ -259,7 +259,7 @@ CREATE TABLE LONGRENT (
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
 	pwd VARCHAR2(50), /* 비밀번호 */
-	rep_content VARCHAR2(500), /* 답변내용 */
+	rep_content CLOB, /* 답변내용 */
 	options VARCHAR2(500) /* 옵션목록 */
 );
 

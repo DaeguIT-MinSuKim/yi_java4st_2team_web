@@ -2,6 +2,7 @@ package rentcar.dto;
 
 import java.util.Date;
 
+
 public class LongRent {
 	private int no;
 	private String title;

@@ -94,10 +94,10 @@ function updateCheck(){
 		alert("변경할 제목 입력하세요.");
 		return false;
 	}
-//	if(document.frm.contents.value.length == 0) {
-//		alert("변경할 내용 입력하세요.");
-//		return false;
-//	}
+	if(CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
+		alert("변경할 내용 입력하세요.");
+		return false;
+	}
 	
 	return true;
 }
@@ -120,10 +120,10 @@ function writeCheck(){
 		alert("제목을 입력해주세요.");
 		return false;
 	}
-//	if(document.frm.contents.value.length == 0) {
-//		alert("문의 내용을 입력해주세요.");
-//		return false;
-//	}
+	if(CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
+		alert("문의 내용을 입력해주세요.");
+		return false;
+	}
 	
 	return true;
 }
