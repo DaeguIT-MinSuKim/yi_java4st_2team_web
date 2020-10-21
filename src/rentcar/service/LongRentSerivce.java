@@ -39,4 +39,18 @@ public class LongRentSerivce {
 		return dao.checkPassword(no, pwd);
 	}
 	
+	//관리자
+	
+	public List<LongRent> getAdminList(){
+		return dao.adminList();
+	}
+	
+	public int adminUpdateLongRent(String rep, int no) {
+		return dao.adminUpdateLongRent(rep, no);
+	}
+	
+	public int adminReplyDelete(int no) {
+		return dao.adminReplyDeleteLongRent(no);
+	}
+	
 }

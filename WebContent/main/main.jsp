@@ -164,33 +164,42 @@
 		<div class="wow fadeInUp">
 			<div class="tit">
 				<h2>공지사항</h2>
-				<a href="#">더보기</a>
+				<a href="notice.do">더보기</a>
 			</div>
 			<ul>
-				<li><a href="#">도산한 회사 퇴직근로자라면? ‘체당금 제도’ 이용도산한 회사 퇴직근로자라면? ‘체당금 제도’ 이용</a></li>
-				<li><a href="#">한진해운, 사업 청산·빚잔치에 법정관리 ‘급물살’</a></li>
-				<li><a href="#">[회생파산] 최은영 前회장 경영비리에 칼빼든 법원</a></li>
-				<li><a href="#">빚에 찌든 20대, ‘나홀로 파산’</a></li>
-				<li><a href="#">경남기업, 재매각 본입찰 ‘0’, 회생 ‘먹구름’</a></li>
+				<c:forEach items="${noticeList}" var="notice" end="2">
+					<li><a href="noticeView.do?no=${notice.no}">${notice.title }</a></li>
+				</c:forEach>
+				<li class="no_board tc">등록된 글이 없습니다.</li>
 			</ul>
 		</div>
 		<div class="wow fadeInUp" data-wow-delay="0.2s">
 			<div class="tit">
-				<h2>장기렌트</h2>
-				<a href="#">더보기</a>
+				<h2>이벤트</h2>
+				<a href="event.do">더보기</a>
 			</div>
 			<ul class="online">
-				<li><a href="#">개인파산 신청자격개인파산 신청자격개인파산 신청자격개인파산 신청자격개인파산 신청자격<span class="comment">답변대기</span></a></li>
-				<li><a href="#">개인회생 상담좀 부탁드립니다<span class="comment compl">답변완료</span></a></li>
-				<li><a href="#">개인회생하면 회사에 알려지나요?<span class="comment compl">답변완료</span></a></li>
-				<li><a href="#">개인회생 관련 상담 신청합니다.<span class="comment compl">답변완료</span></a></li>
-				<li><a href="#">카드빚 회생 가능할까요?<span class="comment compl">답변완료</span></a></li>
+				<c:forEach items="${eventList}" var="event" end="4">
+					<li><a href="eventView.do?code=${event.eventCode}">${event.name}</a></li>
+				</c:forEach>
+				<li class="no_board tc">등록된 글이 없습니다.</li>
 			</ul>
 		</div>
 	</div><!-- //mBoard -->
 </div>
 <!-- </section> -->
 
+<script>
+	$(function(){
+		$("#mBoard ul").each(function(){
+			console.log($(this).children("li").length)
+			if($(this).children("li").length == 1){
+				$(this).children("li").hide()
+				$(this).find(".no_board").show();
+			}
+		})
+	})
+</script>
 
 <script>
 	var swiper = new Swiper('.visu_slide', {

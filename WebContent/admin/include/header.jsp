@@ -100,7 +100,7 @@
 
 <body>
 <header id="admin_header">
-	<h1><a href="index.do"><img src="./images/common/logo_w.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
+	<h1><a href="index.do" class="admin_logo"><img src="./images/common/logo_w.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 	<ul>
 		<li>관리자님</li>
 		<li><a href="#">로그아웃</a></li>
@@ -125,9 +125,9 @@
 			</ul>
 		</li>
 		<li><a href="#">고객관리</a></li>
-		<li><a href="#">장기렌트 관리</a></li>
-		<li><a href="#">공지사항</a></li>
-		<li><a href="#">이벤트</a></li>
+		<li><a href="adminLongRent.do">장기렌트 관리</a></li>
+		<li><a href="adminNotice.do">공지사항</a></li>
+		<li><a href="adminEvent.do">이벤트</a></li>
 		<li><a href="#">성과현황</a></li>
 	</ul>
 </nav>

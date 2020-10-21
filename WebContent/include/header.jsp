@@ -41,6 +41,7 @@
 	<script type="text/javascript" src="./script/ani_popup.js"></script>
 	<script type="text/javascript" src="./script/form.js"></script>
 	<script type="text/javascript" src="./script/join.js"></script>
+	<script type="text/javascript" src="./script/rent.js"></script>
 
 	<!-- 메인 슬라이더 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css?ver=191202">

@@ -4,6 +4,15 @@
 <!-- // header -->
 <%@ include file="/include/sub_notice.jsp"%>
 
+<script>
+$(function(){
+	if( $(".board").length == 0 ){ // 글이 없는 경우
+		$(".no_board").show();
+		$(".board").hide();
+	}
+})
+</script>
+
 <!-- 컨텐츠 -->
 <div class="contents_box padLeft0">
 	<div class="contents">

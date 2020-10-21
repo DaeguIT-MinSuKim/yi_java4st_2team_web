@@ -18,7 +18,7 @@ import rentcar.exception.CustomSQLException;
 public class CarDaoImpl implements CarDao {
 	private static final CarDaoImpl instance = new CarDaoImpl();
 	private Connection con;
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHH");
 
 	public CarDaoImpl() {
 		super();
@@ -162,10 +162,11 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public List<Car> selectRentByCar(LocalDateTime rentDate) {
-		String sql = "SELECT * "
-				+ "  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
-				+ " WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + "  FROM rent r "
-				+ " WHERE NOT(TO_DATE(RENT_DATE) > TO_DATE(?) OR TO_DATE(RETURN_DATE) < TO_DATE(?)))";
+		String sql = "SELECT * " + 
+				"  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE " + 
+				" WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
+				"  FROM rent r " + 
+				" WHERE NOT(TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') OR TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, rentDate.format(formatter));
 			pstmt.setString(2, rentDate.format(formatter));
@@ -186,11 +187,12 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public List<Car> selectRentByCar(LocalDateTime rentDate, LocalDateTime returnDate) {
-		String sql = "SELECT * "
-				+ "  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
-				+ " WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + "  FROM rent r "
-				+ " WHERE (TO_DATE(RENT_DATE) > TO_DATE(?) AND TO_DATE(RENT_DATE) < TO_DATE(?)) "
-				+ "	OR (TO_DATE(RETURN_DATE) > TO_DATE(?) AND TO_DATE(RETURN_DATE) < TO_DATE(?)))";
+		String sql = "SELECT * " + 
+				"  FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE" + 
+				" WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
+				"  FROM rent r " + 
+				" WHERE (TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RENT_DATE) < TO_DATE(?,'YYYYMMDDHH24')) " + 
+				"	OR (TO_DATE(RETURN_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, rentDate.format(formatter));
 			pstmt.setString(2, rentDate.format(formatter));

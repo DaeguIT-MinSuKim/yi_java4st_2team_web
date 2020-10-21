@@ -1,15 +1,20 @@
 package rentcar.controller.handler.rent;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import rentcar.controller.Command;
 import rentcar.dto.Car;
 import rentcar.dto.Kind;
+import rentcar.dto.rentDate;
 import rentcar.service.CarService;
 import rentcar.service.KindService;
 
@@ -32,27 +37,66 @@ public class RentHandler implements Command {
 			request.setAttribute("kind", kind);
 			
 		} else { // POST
-			int minYear = Integer.parseInt(request.getParameter("minYear"));
-
-			System.out.println("minYear >>>>" + minYear);
 			
-//			int minYear = Integer.parseInt(request.getParameter("minYear"));
-//			int minMonth = Integer.parseInt(request.getParameter("minMonth"));
-//			int minDay = Integer.parseInt(request.getParameter("minDay"));
-//			int minHour = Integer.parseInt(request.getParameter("minHour"));
-
+			// 대여일선택 -> ajax로 값 받아옴
+			Gson gson = new Gson();
+			rentDate rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), rentDate.class);
 			
-//			LocalDateTime minDate = LocalDateTime.of(minYear, minMonth, minDay, minHour, 00, 00);
-//			List<Car> res = carService.selectRentByCar(minDate);
+			// String으로 불러와야 앞자리 0이 사라지지 않기 때문에...
+			String minYear = rent.getMinYear();
+			String minMonth = rent.getMinMonth();
+			String minDay = rent.getMinDay();
+			String minHour = rent.getMinHour();
 			
-//			JSONObject jobj = new JSONObject();
-//			jobj.put("result", "true");
+			String maxYear = rent.getMaxYear();
+			String maxMonth = rent.getMaxMonth();
+			String maxDay = rent.getMaxDay();
+			String maxHour = rent.getMaxHour();
 			
-		    // 응답시 json 타입이라는 걸 명시 ( 안해주면 json 타입으로 인식하지 못함 )
-//			response.setContentType("application/json");
-//			response.getWriter().print(jobj.toJSONString());
+			if( maxYear==null ) { // 대여일만 선택한 경우
+//				System.out.println("대여일 선택");
+				
+				// 형식에 맞게 조립.
+				LocalDateTime minDate = LocalDateTime.of(
+					Integer.parseInt(minYear), 
+					Integer.parseInt(minMonth), 
+					Integer.parseInt(minDay), 
+					Integer.parseInt(minHour), 0
+				);
+				
+				// 차량 목록 호출 
+				List<Car> res = carService.selectRentByCar(minDate);
+				String json = gson.toJson(res);
+				response.getWriter().print(json);
+				
+			} else { // 대여일  + 반납일 선택한 경우 
+//				System.out.println("대여일 + 반납일 선택");
+				
+				// 형식에 맞게 조립.
+				LocalDateTime minDate = LocalDateTime.of(
+					Integer.parseInt(minYear), 
+					Integer.parseInt(minMonth), 
+					Integer.parseInt(minDay), 
+					Integer.parseInt(minHour), 0
+				);
+				
+				LocalDateTime maxDate = LocalDateTime.of(
+					Integer.parseInt(maxYear),
+					Integer.parseInt(maxMonth),
+					Integer.parseInt(maxDay),
+					Integer.parseInt(maxHour), 0
+				);
+				
+				// 차량 목록 호출 
+				List<Car> res = carService.selectRentByCar(minDate, maxDate);
+				String json = gson.toJson(res);
+				response.getWriter().print(json);
+			}
+			
+			return null;
+			
 		}
-
+		
 		return "/rent/rent.jsp";
 	}
 

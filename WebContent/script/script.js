@@ -18,6 +18,7 @@ $(document).ready(function() {
 	longrent_pwdConfirm(); // 장기렌트 비밀글 확인
 	longrent_editComment(); // 장기렌트 댓글 수정
 
+<<<<<<< HEAD
 	// 단기렌트
 	rent_btnNotice(); // 단기렌트 상세 - 버튼 '렌트시 유의사항 보기'
 	rent_payBox(); // 단기렌트 상세 - 결제정보 위치 fixed
@@ -28,16 +29,29 @@ $(document).ready(function() {
 	rent_calendarWrap_hover(); // 단기렌트 - 동자승 차 애니메이션
 
 	// 이벤트
+=======
+	//이벤트
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 	event_popup();
 
 	// 관리자 메뉴
 	admin_gnb();
+<<<<<<< HEAD
 
 	// 관리자 차량관리목록
 	form_delete();
+=======
+	admin_logoHover(); // 헤더 로고 (동자승이 눈깜빡이는거 ~)
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 });
 
+<<<<<<< HEAD
 function logo_hover() {
+=======
+
+// 헤더 로고 (동자승이 눈깜빡이는거 ~)
+function logo_hover(){
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 	var logo = $(".logo").eq(0);
 	var str_logo = "logo";
 
@@ -57,6 +71,26 @@ function logo_hover() {
 	});
 }
 
+<<<<<<< HEAD
+=======
+function admin_logoHover(){
+	var logo = $(".admin_logo").eq(0);
+	var str_logo = "logo_w";
+
+	logo.on({
+		mouseenter:function(){
+			logo.find("img").attr("src", logo.find("img").attr("src").replace(str_logo, str_logo + "_hover"));
+		},
+		mouseleave:function(){
+			logo.find("img").attr("src", logo.find("img").attr("src").replace(str_logo + "_hover", str_logo));
+		}
+	});
+}
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 // 장기렌트 비밀글 확인
 function longrent_pwdConfirm() {
 	$(".board_password_btn").click(function() {
@@ -136,6 +170,7 @@ function longrent_editComment() {
 	});
 }
 
+<<<<<<< HEAD
 // 단기렌트 상세 - 버튼 '렌트시 유의사항 보기'
 function rent_btnNotice() {
 	var $el_class_btnNotice = $(".btn_notice").eq(0);
@@ -310,6 +345,8 @@ function rent_calendarWrap_hover() {
 		}
 	});
 }
+=======
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git
 
 // event view 알림 팝업
 function event_popup() {
@@ -336,6 +373,7 @@ function admin_gnb() {
 	})
 }
 
+<<<<<<< HEAD
 function form_delete() {
 	$('.delete').on("click", function(e) {
 		e.preventDefault();
@@ -348,3 +386,5 @@ function form_delete() {
 		}
 	});
 }
+=======
+>>>>>>> branch 'master' of https://github.com/DaeguIT-MinSuKim/yi_java4st_2team_web.git

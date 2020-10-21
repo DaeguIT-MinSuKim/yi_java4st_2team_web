@@ -248,8 +248,8 @@ ALTER TABLE INSURANCE
 CREATE TABLE LONGRENT (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
-	contents VARCHAR2(500), /* 내용 */
-	rep_yn CHAR(1), /* 답변여부 */
+	contents VARCHAR2(2000), /* 내용 */
+	rep_yn CHAR(1) DEFAULT 1, /* 답변여부 */
 	write_date DATE, /* 날짜 */
 	rent_term VARCHAR2(50), /* 대여 */
 	name VARCHAR2(50), /* 이름 */
@@ -294,14 +294,13 @@ ALTER TABLE LONGRENT
 		PRIMARY KEY (
 			no
 		);
-	
-	
-	
+
+
 /* 공지사항게시판 */
 CREATE TABLE notice (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
-	contents VARCHAR2(500), /* 내용 */
+	contents VARCHAR2(2000), /* 내용 */
 	write_date DATE DEFAULT sysdate, /*등록일 */
 	is_top INTEGER DEFAULT 1 /*공지여부*/
 );
@@ -373,6 +372,8 @@ ALTER TABLE KIND
 			kind_code
 		);
 
+
+	
 /* 이벤트 */
 CREATE TABLE EVENT (
 	event_code INTEGER NOT NULL, /* 이벤트코드 */
