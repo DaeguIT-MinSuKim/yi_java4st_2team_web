@@ -1,15 +1,14 @@
 package rentcar.dao.impl;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
-
-import org.apache.jasper.tagplugins.jstl.core.Catch;
 
 import rentcar.dao.LongRentDao;
 import rentcar.dto.LongRent;
@@ -85,21 +84,56 @@ public class LongRentDaoImpl implements LongRentDao {
 	@Override
 	public int insertLongRent(LongRent longrent) {
 		String sql = "INSERT INTO LONGRENT(NO, TITLE, CONTENTS,RENT_TERM, NAME, TEL, PWD, OPTIONS) "
-				+ "VALUES(LONGRENT_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
+				+ "VALUES(LONGRENT_NO_SEQ.NEXTVAL,?,empty_clob(),?,?,?,?,?)";
+
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			
+			// 업데이트하는동안 다른 porcess의 접근을 막기 위해 오토커밋 닫고 시작
+			con.setAutoCommit(false);
+			
 			pstmt.setString(1, longrent.getTitle());
-			pstmt.setString(2, longrent.getContents());
-			pstmt.setString(3, longrent.getRentTerm());
-			pstmt.setString(4, longrent.getName());
-			pstmt.setString(5, longrent.getTel());
-			pstmt.setString(6, longrent.getPwd());
-			pstmt.setString(7, longrent.getOptions());
-			return pstmt.executeUpdate();
+			pstmt.setString(2, longrent.getRentTerm());
+			pstmt.setString(3, longrent.getName());
+			pstmt.setString(4, longrent.getTel());
+			pstmt.setString(5, longrent.getPwd());
+			pstmt.setString(6, longrent.getOptions());
+			
+			pstmt.executeUpdate(); // CLOB빼고 값 모두 삽입 완료
+			
+			pstmt.close();
+			
+			// 위에서 Insert한 데이터를 다시 가져옵니다.
+			String sql2 = "SELECT CONTENTS FROM LONGRENT "
+					+ "WHERE NO = (SELECT max(NO) FROM LONGRENT)";
+
+			PreparedStatement pstmt2 = con.prepareStatement(sql2);
+			ResultSet rs = pstmt2.executeQuery();
+			if (rs.next()) {
+
+				Clob clob = (Clob) rs.getBlob(1);
+				
+				BufferedWriter bw = new BufferedWriter(clob.setCharacterStream(0L));
+				bw.write(longrent.getContents());
+				bw.close();
+				
+			}
+			// CLOB column에 데이터을 저장하였다면 commit()을 실행시키고  
+			con.commit();
+			// conn.setAutoCommit(true)로 다시 설정합니다.  
+			con.setAutoCommit(true);  
+			
+			return pstmt2.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return 0;
 	}
 
+	
 	@Override
 	public int updateLongRent(LongRent longrent) {
 		String sql = "UPDATE LONGRENT SET TITLE = ?, contents = ?, RENT_TERM = ? , name= ? , tel =? , PWD = ?, OPTIONS = ? WHERE NO = ?";

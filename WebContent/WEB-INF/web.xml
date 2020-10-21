@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>yi_java4st_2team_web</display-name>
+ 	 <display-name>yi_java4st_2team_web</display-name>
 	  <welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
@@ -10,7 +10,7 @@
 		<welcome-file>default.jsp</welcome-file>
 	  </welcome-file-list>
 	  
-
+	<!-- .JSP 파일로 직접 접근 막음 -->
 	<security-constraint>
 	 <web-resource-collection>
 	  <web-resource-name>PreventViewingJSPs
@@ -24,5 +24,28 @@
 	   <role-name></role-name>
 	   </auth-constraint>
 	</security-constraint>
+	<!-- // .JSP 파일로 직접 접근 막음 -->
 	
+	<!-- CKFINDER START -->
+	<servlet>
+	  <servlet-name>ConnectorServlet</servlet-name>
+	  <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+	  <init-param>
+	      <param-name>XMLConfig</param-name>
+	      <param-value>/WEB-INF/config.xml</param-value>
+	  </init-param>
+	  <init-param>
+	      <param-name>debug</param-name>
+	      <param-value>false</param-value>
+	  </init-param>
+	  <load-on-startup>1</load-on-startup>
+	</servlet>
+	  
+	<servlet-mapping>
+	  <servlet-name>ConnectorServlet</servlet-name>
+	  <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
+	</servlet-mapping>  
+	<!-- CKFINDER END -->
+
+
 </web-app>

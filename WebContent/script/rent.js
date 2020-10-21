@@ -131,12 +131,11 @@ function rent_carSearch(){
 
 		if( minDateVal == "" ){ // 대여일 선택 안한 경우
 			
-			if( maxDateVal != "" ){ // 대여일 선택 안한 경우2
-				alert("대여일을 먼저 선택해주세요");
-			}else{
+			if( maxDateVal != "" ){ // 반납일부터 선택한 경우
+				alert("차량 대여일도 선택해주세요");
+			}else{ // 대여일 선택 안한 경우
 				alert("차량 검색할 날짜를 선택해주세요");
 			}
-			return false;
 			
 		}else{     // 대여일 선택
 			
