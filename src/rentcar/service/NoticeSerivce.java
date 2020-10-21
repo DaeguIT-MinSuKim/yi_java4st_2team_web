@@ -23,5 +23,17 @@ public class NoticeSerivce {
 		return dao.getNoticeList(no);
 	}
 	
+	public int insertNotice(Notice notice) {
+		return dao.insertNotice(notice);
+	}
+	
+	public int updateNotice(Notice notice) {
+		return dao.updateNotice(notice);
+	}
+	
+	public int deleteNotice(int no) {
+		return dao.deleteNotice(no);
+	}
+	
 	
 }

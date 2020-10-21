@@ -16,13 +16,13 @@ public class AdminLongRentReplyDeleteHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			System.out.println("Admin UpdateModel Get!!!");
+			System.out.println("Admin reply delete!!!");
 			
 			int no = Integer.parseInt(request.getParameter("no").trim());
 			
 			service.adminReplyDelete(no);
 			
 			
-			return "adminLongRent.do";
+			return "adminLongRentView.do?no="+no;
 	}
 }

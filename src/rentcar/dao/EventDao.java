@@ -3,6 +3,7 @@ package rentcar.dao;
 import java.util.ArrayList;
 
 import rentcar.dto.Event;
+import rentcar.utils.Paging;
 
 public interface EventDao {
 	// 이벤트 리스트
@@ -27,7 +28,6 @@ public interface EventDao {
 	int deleteEvent(String code);
 	
 	// 페이징
-	int totalRecord();
-	String pageNumber(int tpage, String name);
-	ArrayList<Event> listEvent(int tpage);
+	int countEventByAll();
+	ArrayList<Event> pagingEventAyAll(Paging paging);
 }

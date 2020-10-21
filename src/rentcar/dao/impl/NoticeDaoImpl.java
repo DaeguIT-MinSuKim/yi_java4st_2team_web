@@ -32,7 +32,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public ArrayList<Notice> selectNoticeList() {
-		String sql = "SELECT * FROM NOTICE ORDER BY IS_TOP, NO DESC";
+		String sql = "SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE asc";
 		try(PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if(rs.next()) {
@@ -73,5 +73,44 @@ public class NoticeDaoImpl implements NoticeDao {
 		return null;
 	}
 
+	@Override
+	public int insertNotice(Notice notice) {
+		String sql = "INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE, IS_TOP ) "
+				+ "VALUES(?,?,sysdate,?)";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, notice.getTitle());
+			pstmt.setString(2, notice.getContents());
+			pstmt.setInt(3, notice.getIsTop());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+	}
 
+
+	@Override
+	public int deleteNotice(int no) {
+		String sql = "DELETE FROM NOTICE WHERE NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+	}
+
+
+	@Override
+	public int updateNotice(Notice notice) {
+		String sql = "UPDATE NOTICE SET TITLE = ?, contents = ?, is_top = ? where no= ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, notice.getTitle());
+			pstmt.setString(2, notice.getContents());
+			pstmt.setInt(3, notice.getIsTop());
+			pstmt.setInt(4, notice.getNo());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+	}
 }

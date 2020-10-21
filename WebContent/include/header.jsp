@@ -15,6 +15,7 @@
 	<meta name="author" content="">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
+	<link rel="shortcut icon" href="./images/common/favi.ico">
 
 	<link  type="text/css" href="./style/bootstrap.3.3.6.min.css" rel="stylesheet">
 	<link  type="text/css" href="./style/bootstrap-select.css" rel="stylesheet">

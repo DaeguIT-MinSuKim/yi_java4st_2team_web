@@ -21,7 +21,7 @@ public class KindUpdateHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
 
-			int code = (int) request.getAttribute("kindCode");
+			int code = Integer.parseInt(request.getParameter("kindCode"));
 			Kind kind = service.kindDetail(code);
 			request.setAttribute("kind", kind);
 
@@ -35,7 +35,7 @@ public class KindUpdateHandler implements Command {
 			int res = service.updateKind(k);
 			request.setAttribute("res", res);
 
-			return "admin/kind/kindList.jsp";
+			return "kindList.do";
 		}
 	}
 }

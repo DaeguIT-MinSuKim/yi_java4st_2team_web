@@ -11,12 +11,18 @@
 				<th>코드번호</th>
 				<th>분류명</th>
 				<th>분류금액</th>
+				<th>분류수정</th>
+				<th>분류삭제</th>
 			</tr>
 			<c:forEach items="${kindList }" var="kind">
 				<tr>
-					<th>${kind.code}</th>
-					<th>${kind.name}</th>
-					<th>${kind.fare}</th>
+					<td>${kind.code}</td>
+					<td>${kind.name}</td>
+					<td>${kind.fare}</td>
+					<td><a href="kindUpdate.do?kindCode=${kind.code}"><input type="button"
+										value="수정" class="update"></a></td>
+					<td><a href="kindDelete.do?kindCode=${kind.code}"><input type="button"
+										value="삭제" class="delete"></a></td>
 				</tr>
 			</c:forEach>
 		</table>

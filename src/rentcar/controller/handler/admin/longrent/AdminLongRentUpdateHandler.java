@@ -25,6 +25,6 @@ public class AdminLongRentUpdateHandler implements Command {
 			
 			System.out.println(success);
 			
-			return "adminLongRent.do";
+			return "adminLongRentView.do?no="+no;
 	}
 }

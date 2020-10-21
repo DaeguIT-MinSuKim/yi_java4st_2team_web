@@ -46,6 +46,10 @@ DROP TABLE EVENT_BOX
 DROP TABLE OPT_BOX 
 	CASCADE CONSTRAINTS;
 
+/* 공지사항 */
+DROP TABLE notice
+	CASCADE CONSTRAINTS;
+
 /* 차량 */
 CREATE TABLE CAR (
 	car_no VARCHAR2(20) NOT NULL, /* 차량번호 */
@@ -252,14 +256,18 @@ CREATE TABLE LONGRENT (
 	title VARCHAR2(50), /* 제목 */
 	contents VARCHAR2(2000), /* 내용 */
 	rep_yn CHAR(1) DEFAULT 1, /* 답변여부 */
-	write_date DATE, /* 날짜 */
+	write_date DATE DEFAULT SYSDATE, /* 날짜 */
 	rent_term VARCHAR2(50), /* 대여 */
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
 	pwd VARCHAR2(50), /* 비밀번호 */
-	rep_content VARCHAR2(500), /* 답변내용 */
+	rep_content CLOB, /* 답변내용 */
 	options VARCHAR2(500) /* 옵션목록 */
 );
+
+ALTER TABLE LONGRENT MODIFY (WRITE_DATE DEFAULT SYSDATE);
+ALTER TABLE LONGRENT MODIFY (REP_YN DEFAULT 1);
+
 
 COMMENT ON TABLE LONGRENT IS '장기렌트요청게시판';
 
@@ -306,6 +314,12 @@ CREATE TABLE notice (
 	write_date DATE DEFAULT sysdate, /*등록일 */
 	is_top INTEGER DEFAULT 1 /*공지여부*/
 );
+
+ALTER TABLE NOTICE MODIFY (write_date DEFAULT SYSDATE);
+ALTER TABLE NOTICE MODIFY (IS_TOP DEFAULT 1);
+
+SELECT * FROM ALL_CONSTRAINTS
+WHERE TABLE_NAME = 'NOTICE';
 
 
 CREATE UNIQUE INDEX PK_notice

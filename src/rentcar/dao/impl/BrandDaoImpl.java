@@ -9,6 +9,7 @@ import java.util.List;
 
 import rentcar.dao.BrandDao;
 import rentcar.dto.Brand;
+import rentcar.dto.Kind;
 import rentcar.exception.CustomSQLException;
 
 public class BrandDaoImpl implements BrandDao {
@@ -100,6 +101,8 @@ public class BrandDaoImpl implements BrandDao {
 
 	@Override
 	public int deleteBrand(Brand brand) {
+		deleteBrandByCar(brand);
+		//브랜드 삭제
 		String sql = "DELETE FROM BRAND WHERE BRAND_CODE = ?";
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, brand.getCode());
@@ -109,4 +112,14 @@ public class BrandDaoImpl implements BrandDao {
 		}
 	}
 
+	//차량과 연관된 브랜드 삭제
+		private int deleteBrandByCar(Brand brand) {
+			String sql = "UPDATE CAR SET BRAND_CODE = NULL WHERE BRAND_CODE = ?";
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, brand.getCode());
+				return pstmt.executeUpdate();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
 }

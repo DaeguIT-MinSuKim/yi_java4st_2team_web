@@ -28,11 +28,7 @@ public class KindListHandler implements Command {
 		} else {
 			System.out.println("POST");
 
-			int no = (int) request.getAttribute("kindNo");
-			Kind kind = service.kindDetail(no);
-			request.setAttribute("kind", kind);
-
-			return "admin/kind/kindUpdate.do";
+			return "kindList.do";
 		}
 	}
 }

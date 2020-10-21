@@ -70,12 +70,47 @@ ORDER BY IS_TOP;
 
 SELECT * FROM NOTICE  ORDER BY IS_TOP, NO DESC;
 
-UPDATE NOTICE SET CONTENTS = '일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지일반공지'
-WHERE NO=4;
+UPDATE NOTICE SET CONTENTS = '동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. [기본대여자격]
+■ 만 21세 이상, 운전경력 만 1년 이상의 운전면허 소지자
+단, 15인승 (쏠라티) 만 26세 이상 / 1종보통 면허 이상
+■ 대여요금은 현장 결제입니다.
+[상세 면허자격]
+■운전면허 : 도로교통법상 유효하며, 적성검사기간이 지나지 않은 운전면허증 소지자
+■면허경력 및 면허종류 : 승용차, 9인승 승합차 - 2종 보통면허 운전경력 1년 이상
+11인승,12인승, 15인승 승합차 - 1종 보통면허, 운전경력 1년 이상
+■외국인의 면허 : 유효기간이 지나지 않은 국제운전면허증과 여권,신용카드를 지참해 주셔야 대여 가능합니다.
+단, 자국면허증 제출 후 전환 발급한 국내면허증을 소지한
+외국인일 경우 면허경력 1년 미만일 경우에도 차량대여 가능합니다.
+■재취득한 면허 : 재취득한 면허가 1년 미만이며,재취득 이전 면허를 포함하여 운전경력기간이 1년 이상일 경우
+운전면허경력증명서와 재취득하신 면허증을 지참하시면 차량대여 가능합니다.'
+WHERE NO=7;
+
+UPDATE NOTICE SET IS_TOP = 0 WHERE NO =7;
+
+SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE asc;
+
+
+SELECT * FROM notice;
 
 -------------------관리자-----------------------------------------------------------------------------------
 SELECT * FROM LONGRENT ;
 UPDATE LONGRENT SET REP_CONTENT = '댓글수정', REP_YN = 2  WHERE NO = 5;
 
 
-UPDATE LONGRENT SET rep_yn = 1 WHERE NO = 8;
+UPDATE LONGRENT SET rep_yn = 1 WHERE NO = 0;
+
+
+
+
+
+
+
+
+-- 제약조건 추가 
+
+ALTER TABLE LONGRENT MODIFY (WRITE_DATE DEFAULT SYSDATE);
+ALTER TABLE LONGRENT MODIFY (REP_YN DEFAULT 1);
+ALTER TABLE NOTICE MODIFY (REP_YN DEFAULT 1);
+ALTER TABLE NOTICE MODIFY (IS_TOP DEFAULT 1);
+
+

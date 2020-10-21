@@ -13,17 +13,14 @@ public class Car {
 
 	// 생성자
 	public Car() {
-		super();
 	}
 
 	public Car(String no) {
-		super();
-		no = no;
+		this.no = no;
 	}
 
 	public Car(String no, String name, Kind kind, Brand brand, String remark, String is_rent, int counting,
 			String image) {
-		super();
 		this.no = no;
 		this.name = name;
 		this.kind = kind;

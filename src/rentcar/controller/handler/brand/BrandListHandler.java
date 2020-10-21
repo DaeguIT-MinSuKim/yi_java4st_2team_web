@@ -27,11 +27,7 @@ public class BrandListHandler implements Command {
 		} else {
 			System.out.println("POST");
 
-			int code = (int) request.getAttribute("brandCode");
-			int res = service.deleteBrand(new Brand(code));
-			request.setAttribute("res", res);
-			
-			return "admin/brand/brandList.jsp";
+			return "brandList.do";
 		}
 	}
 }
