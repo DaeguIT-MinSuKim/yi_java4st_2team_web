@@ -3,6 +3,7 @@ package rentcar.controller.handler.car;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,10 +17,14 @@ import rentcar.controller.Command;
 import rentcar.dto.Brand;
 import rentcar.dto.Car;
 import rentcar.dto.Kind;
+import rentcar.service.BrandService;
 import rentcar.service.CarService;
+import rentcar.service.KindService;
 
 public class CarUpdateHandler implements Command {
 	private CarService service = new CarService();
+	private KindService kService = new KindService();
+	private BrandService bService = new BrandService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -30,10 +35,17 @@ public class CarUpdateHandler implements Command {
 			String no = request.getParameter("carNo");
 			Car car = service.carDetail(no);
 			request.setAttribute("car", car);
+			
+			List<Kind> kindList = kService.kindList();
+			request.setAttribute("kindList", kindList);
+			
+			List<Brand> brandList = bService.brandList();
+			request.setAttribute("brandList", brandList);
 
 			return "admin/car/carUpdate.jsp";
 		} else {
 			System.out.println("POST");
+			
 			response.setContentType("text/html; charsert=UTF8");
 			PrintWriter out = response.getWriter();
 

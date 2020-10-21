@@ -18,16 +18,28 @@ import rentcar.controller.Command;
 import rentcar.dto.Brand;
 import rentcar.dto.Car;
 import rentcar.dto.Kind;
+import rentcar.service.BrandService;
 import rentcar.service.CarService;
+import rentcar.service.KindService;
 
 public class CarWriteHandler implements Command {
 	private CarService service = new CarService();
+	private KindService kService = new KindService();
+	private BrandService bService = new BrandService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	if (request.getMethod().equalsIgnoreCase("GET")) {
-		return null;
+		if (request.getMethod().equalsIgnoreCase("GET")) {
+			System.out.println("GET");
+			
+			List<Kind> kindList = kService.kindList();
+			request.setAttribute("kindList", kindList);
+			
+			List<Brand> brandList = bService.brandList();
+			request.setAttribute("brandList", brandList);
+			
+		return "/admin/car/carWrite.jsp";
 	} else {
 		System.out.println("POST");
 		response.setContentType("text/html; charsert=UTF8");

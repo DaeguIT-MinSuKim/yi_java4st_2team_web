@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 import rentcar.controller.Command;
 import rentcar.dto.Brand;
 import rentcar.dto.Car;
@@ -17,7 +15,7 @@ import rentcar.service.BrandService;
 import rentcar.service.CarService;
 import rentcar.service.KindService;
 
-public class CarListHandler implements Command {
+public class CarSearchHandler implements Command {
 	private CarService service = new CarService();
 	private KindService kService = new KindService();
 	private BrandService bService = new BrandService();
@@ -28,7 +26,10 @@ public class CarListHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
 			
-			List<Car> carList = service.carList();
+			int res = Integer.parseInt(request.getParameter("res"));
+			String query = request.getParameter("query");
+			
+			List<Car> carList = service.selectCarByFind(res, query);
 			request.setAttribute("carList", carList);
 
 			List<Kind> kindList = kService.kindList();
@@ -41,12 +42,7 @@ public class CarListHandler implements Command {
 		} else {
 			System.out.println("POST");
 
-			int res = Integer.parseInt(request.getParameter("res"));
-			String query = request.getParameter("query");
-			
-			List<Car> carList = service.selectCarByFind(res, query);
-			
-			return "/admin/car/carList.jsp";
+			return null;
 		}
 	}
 }
