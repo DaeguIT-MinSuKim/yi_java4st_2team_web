@@ -34,6 +34,7 @@ public class EventBoxDaoImpl implements EventBoxDao {
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setInt(1, Integer.parseInt(eventBox.getEventCode().getEventCode()));
 			pstmt.setString(2, eventBox.getId().getId());
+			System.out.println("왔따구!!!");
 			
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -26,7 +26,7 @@ public class KindWriteHandler implements Command {
 			Kind kind = service.kindDetail(no);
 			request.setAttribute("kind", kind);
 
-			return "admin/kind/kindUpdate.do";
+			return "kindUpdate.do";
 		}
 	}
 }
