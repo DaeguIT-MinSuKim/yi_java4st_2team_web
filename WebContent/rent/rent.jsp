@@ -33,13 +33,12 @@
 				<div class="h20"></div>
 				<div class="calendarBox">
 					<input type="text" class="form-control calendar prev" readonly placeholder="렌트카 대여일 선택"> 
-					<select class="hours">
+					<select class="hours prev">
 						<!-- script.js/rent_optionHours(); 메서드 사용 -->
 					</select>
 					 <span>-</span> 
-					 <input type="text"
-						class="form-control calendar next" readonly
-						placeholder="렌트카 반납일 선택"> <select class="hours">
+					 <input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
+					 <select class="hours next">
 						<!-- script.js/rent_optionHours(); 메서드 사용 -->
 					</select>
 					<a href="javascript:;" class="btn btn-blue btn_carSearch">차량검색</a>
@@ -58,7 +57,7 @@
 				<ul>
 					<c:forEach var="car" items="${car}">
 						<li data-kindItem="${car.getKind().getCode()}">
-							<a href="rentDtl.do" class="btn_goDtl">
+							<a href="javascript:;" class="btn_goDtl">
 								<div class="img" title="${car.getName()}">
 									<img src="./images/rentcar/${car.getKind().getCode()}/${car.getImage()}" alt="${car.getName()}">
 								</div>
@@ -81,4 +80,10 @@
 		</div>
 	</div>
 	<!-- //컨텐츠 -->
+	
+
+<div class="popup_toast btn-carmore">
+	<p>차량검색 성공 !!</p>
+</div>
+	
 	<%@ include file="/include/footer.jsp"%>

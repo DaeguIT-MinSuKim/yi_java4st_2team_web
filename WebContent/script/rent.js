@@ -7,8 +7,8 @@ $(function(){
 	rent_optionHours(); // 단기렌트 - selectBox option 시간 삽입
 	rent_carSearch(); // 단기렌트 - 차량 검색
 	rent_calendarWrap_hover(); // 단기렌트 - 동자승 차 애니메이션
-	rent_form_goDtl(); // 단기렌트 - 차량 상세로 submit
 	
+//	rent_form_goDtl(); // 단기렌트 - 차량 상세로 submit (차량리스트 호출 시 동시 실행함)
 //	numberWithCommas(); // 3자리 단위 콤마 찍기  (특정 부분만 사용)
 });
 
@@ -16,7 +16,6 @@ $(function(){
 function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-
 
 //단기렌트 상세 - 버튼 '렌트시 유의사항 보기'
 function rent_btnNotice(){
@@ -169,12 +168,12 @@ function rent_carSearch(){
 				dataType:"json",
 				contentType:"application/json",
 				success:function(json){
-					console.log(json[0]);
+//					console.log(json[0]);
 
 					var add_html = "";
 					for( var i=0; i<json.length; i++ ){
 						add_html += '<li data-kindItem="'+ json[i].kind.code +'">';
-						add_html += '<a href="rentDtl.do" class="btn_carChoice">';
+						add_html += '<a href="javascript:;" class="btn_goDtl active">';
 						add_html += '<div class="img" title="'+ json[i].name +'">';
 						add_html += '<img src="./images/rentcar/'+ json[i].kind.code +'/'+ json[i].image +'" alt="'+ json[i].name +'">';
 						add_html += '</div>';
@@ -184,16 +183,26 @@ function rent_carSearch(){
 						add_html += '<p class="price">렌탈1일기준<span> ';
 						add_html += numberWithCommas(json[i].kind.fare) +'원';
 						add_html += '</span></p></div>';
-						add_html += '<input type="hidden" name="carNo" value="' + json[i].no + '">';
+						add_html += '<input type="hidden" name="carNo" class="carNo" value="' + json[i].no + '">';
 						add_html += '</a></li>';
 					}
 					
 					$(".rentcarList>ul").empty().append(add_html);
 					insertBg();
+
+					// 토스트팝업창 띄우기
+					var $el_class_popupToast = $(".popup_toast").eq(0);
+					$el_class_popupToast.show();
+					setTimeout(function(){
+						$el_class_popupToast.hide();
+					},1000);
 					
-					alert("원하시는 날짜의 차량을 검색했어요 :)");
+					// 차량리스트 위치로 이동
 					var pos = $(".rentcarList_tabBtn").offset().top - 50;
-					$("html, body").stop().animate({scrollTop:pos}, 500); // 차량리스트 위치로 이동
+					$("html, body").stop().animate({scrollTop:pos}, 500);
+					
+					// 차량리스트의 각 차량에 링크를 부여
+					rent_form_goDtl();
 				},
 				error:function(e){ // 에러날경우 에러메시지 보기
 					alert("AJAX 에러");
@@ -207,9 +216,24 @@ function rent_carSearch(){
 // 단기렌트 - 차량 상세로 submit
 function rent_form_goDtl(){
 	if( $(".btn_goDtl").length > 0 ){
-		$(".btn_goDtl").on("click", function(){
+		$(".btn_goDtl.active").on("click", function(e){
+			e.preventDefault();
+			
 			var carNo = $(this).find(".carNo").val();
-			location.href='rentDtl.do?carNo=' + encodeURIComponent(carNo);
+			var minDate = $(".calendar.prev").val();
+			var maxDate = $(".calendar.next").val();
+			var minHour = $(".hours.prev").val();
+			var maxHour = $(".hours.next").val();
+			
+			maxHour = maxDate=="" ?	maxHour = "" : '&maxHour=' + maxHour;
+			maxDate = maxDate=="" ? maxDate = '&maxDate=0' : '&maxDate=' + maxDate;
+			
+			location.href='rentDtl.do'
+				+ '?carNo=' + carNo 
+				+ '&minDate=' + minDate 
+				+ '&minHour=' + minHour
+				+ maxDate
+				+ maxHour;
 		});
 	}
 }
