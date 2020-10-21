@@ -10,11 +10,11 @@ DELETE FROM LONGRENT;
 DELETE FROM OPTIONS;
 DELETE FROM EVENT;
 DELETE FROM EVENT_BOX;
+DELETE FROM NOTICE;
 
 -- 회원
 INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS)
 VALUES ('dong', '1234', '동자승', '010-1234-1234', '22-15-061904-90', 'aa@aa.com', '대구시 서구');
-SELECT * FROM "MEMBER";
 
 -- 차량 분류
 INSERT INTO KIND VALUES (1, '소형', 60000);
@@ -89,15 +89,6 @@ INSERT INTO INSURANCE VALUES (1, '자차보험', 5000);
 INSERT INTO INSURANCE VALUES (2, '완전보험', 5000);
 INSERT INTO INSURANCE VALUES (3, '슈퍼보험', 5000);
 
--- 대여
---UPDATE RENT r SET PRICE = TO_CHAR(TO_DATE(RETURN_DATE)-TO_DATE(RENT_DATE)) * (SELECT PRICE FROM CAR WHERE CAR_NO = r.CAR_NO);
-INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values('dong', '11하1234', 1, '2020/10/10', '2020/10/15', 'Y', 500000, '동자동자');
-INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values('dong', '12헤1234', 1, '2020/10/11', '2020/10/16', 'Y', 500000, '동자동자');
-INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values('dong', '13히1234', 1, '2020/10/18', '2020/10/21', 'Y', 500000, '동자동자');
-INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values('dong', '14호1234', 1, '2020/10/22', '2020/10/23', 'Y', 500000, '동자동자');
-INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values('dong', '15후1234', 1, '2020/10/22', '2020/10/30', 'Y', 500000, '동자동자');
-
-SELECT * FROM rent;
 -- 옵션
 INSERT INTO OPTIONS VALUES (1, '후방카메라', 5000);
 INSERT INTO OPTIONS VALUES (2, '블루투스', 5000);
@@ -116,13 +107,12 @@ SELECT * FROM OPT_BOX;
 --INSERT INTO LONGRENT VALUES (1,'제목', '내용', '외관/내장', '안전', '편의/멀티미디어', '시트', 5000000, NULL, NULL, 1, SYSDATE);
 --INSERT INTO LONGRENT(NO, title, CONTENTS, EXTERIOR, SAFETY, MULTI, SHEET, FARE) VALUES (1, '제목', '내용', '외관/내장', '안전', '편의/멀티미디어', '시트', 5000000);
 INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES(LONGRENT_NO_SEQ.NEXTVAL,'K3TheNew 1년 장기렌트 문의드립니다. ','K3TheNew 1년 장기렌트 문의드립니다. 예산은 대략 100원 정도로 생각하고 있으며, 유아 카시트 추가 되는지도 답변 부탁드립니다.', 1, SYSDATE,'365일','김창동','010-1234-1111','1111','옵션없음');
+VALUES(LONGRENT_NO_SEQ.NEXTVAL,empty_clob(),'K3TheNew 1년 장기렌트 문의드립니다. 예산은 대략 100원 정도로 생각하고 있으며, 유아 카시트 추가 되는지도 답변 부탁드립니다.', 1, SYSDATE,'365일','김창동','010-1234-1111','1111','옵션없음');
 INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES(LONGRENT_NO_SEQ.NEXTVAL,'풀옵션 경차 렌트 문의드립니다. ','풀옵션 경차 렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, SYSDATE,'100일','김동자','010-1234-2222','1111','후방카메라');
+VALUES(LONGRENT_NO_SEQ.NEXTVAL,'K3TheNew 1년 장기렌트 문의드립니다.','풀옵션 경차 렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, SYSDATE,'100일','김동자','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES(LONGRENT_NO_SEQ.NEXTVAL,'외제차 문의, 답변 빨리 주세요.','뚜껑열린 외제차를 렌트하고싶습니다. 연락주세요..................!!',DEFAULT, SYSDATE,'100일', '곽수정','010-1234-3333','3333','옵션없음');
 SELECT * FROM LONGRENT;
-
 
 --공지사항
 INSERT INTO NOTICE VALUES(1,'2020-10-01 동자승 렌터카 시무식 ','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 2020-10-01 금일, 동자승 렌터카 시무식을 진행했습니다. 다시한번 새롭게 도약할 수 있는 한해가 되길 바라며 전 임직원이 자리를 함께 하였습니다. ',sysdate, 1);

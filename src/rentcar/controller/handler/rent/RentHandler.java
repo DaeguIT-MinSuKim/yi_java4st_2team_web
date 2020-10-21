@@ -27,8 +27,9 @@ public class RentHandler implements Command {
 			throws ServletException, IOException {
 
 		if (request.getMethod().equalsIgnoreCase("get")) {
+			// 최초 시작시 차량정보 GET
+			List<Car> car = carService.carList();
 			// 최초 시작시 차량정보 GET (화면에서 차량리스트에 뿌림)
-			List<Car> car = carService.selectCarByAll();
 			request.setAttribute("car", car);
 
 			// 최초 시작시 차량분류 GET (화면에서 탭버튼에 뿌림)

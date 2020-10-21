@@ -18,12 +18,13 @@
 .board_list_page .arrow:before {font-weight:900; font-family:'Font Awesome 5 Free';}
 .board_list_page .arrow.first:before {content:'\f100'}
 .board_list_page .arrow.prev:before {content:'\f104'}
-.board_list_page .arrow.next:before {content:'\f101'}
-.board_list_page .arrow.end:before {content:'\f105'}
+.board_list_page .arrow.next:before {content:'\f105'}
+.board_list_page .arrow.end:before {content:'\f101'}
 .board_list_page ul {display:inline-block;}
 .board_list_page ul li {display:inline-block; vertical-align:middle;}
 .board_list_page ul li a {color:#777;}
 .board_list_page ul li.active a {background:#00a7ed; color:#fff;}
+.board_list_page ul li.active a:hover {color:#fff !important}
 
 .board_password {width:95%; max-width:500px; margin:0 auto; padding:90px 50px; box-sizing:border-box; border:1px solid #ddd; border-radius:10px; text-align:center;}
 .board_password i {font-size:60px; color:#0377bf; margin-bottom:20px;}
@@ -105,7 +106,7 @@
 .input_col3 input[type="text"]:nth-child(3n), .input_col3 input[type="password"]:nth-child(3n) {margin-right:0;}
 
 .input_col2 {overflow:hidden;}
-.input_col2 input[type="text"], .input_col3 input[type="password"] {display:block; float:left; width:calc(50% - 2.5px); margin-right:5px;}
+.input_col2 input[type="text"], .input_col2 input[type="password"] {display:block; float:left; width:calc(50% - 2.5px); margin-right:5px;}
 .input_col2 input[type="text"]:nth-child(even) {margin-right:0;}
 
 @media screen and (max-width:992px){

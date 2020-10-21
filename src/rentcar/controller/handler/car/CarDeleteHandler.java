@@ -1,4 +1,4 @@
-package rentcar.controller.handler.kind;
+package rentcar.controller.handler.car;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rentcar.controller.Command;
-import rentcar.dto.Kind;
-import rentcar.dto.Kind;
-import rentcar.service.KindService;
+import rentcar.dto.Car;
+import rentcar.service.CarService;
 
-public class KindListHandler implements Command {
-	private KindService service = new KindService();
+public class CarDeleteHandler implements Command {
+	private CarService service = new CarService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -21,14 +20,16 @@ public class KindListHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
 
-			List<Kind> kindList = service.kindList();
-			request.setAttribute("kindList", kindList);
-
-			return "admin/kind/kindList.jsp";
+			String no = request.getParameter("carNo");
+			int res = service.deleteCar(new Car(no));
+			request.setAttribute("res", res);
+			
+			response.sendRedirect("carList.do");
+			return null;
 		} else {
 			System.out.println("POST");
 
-			return "kindList.do";
+			return "carList.do";
 		}
 	}
 }

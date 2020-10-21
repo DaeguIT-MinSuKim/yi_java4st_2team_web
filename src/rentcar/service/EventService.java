@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import rentcar.dao.impl.EventDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Event;
+import rentcar.utils.Paging;
 
 public class EventService {
 	private EventDaoImpl dao = EventDaoImpl.getInstance();
@@ -44,14 +45,12 @@ public class EventService {
 	}
 	
 	// 페이징
-	public int totalRecord() {
-		return dao.totalRecord();
+	public int countEventByall() {
+		return dao.countEventByAll();
 	}
-	public String pageNumber(int tpage, String name) {
-		return dao.pageNumber(tpage, name);
+	public ArrayList<Event> pagingEventByAll(Paging paging){
+		return dao.pagingEventAyAll(paging);
 	}
-	public ArrayList<Event> listEvent(int tpage){
-		return dao.listEvent(tpage);
-	}
+	
 
 }

@@ -14,6 +14,9 @@
 </section>
 <!-- //상단배경 -->
 
+${carDetail}<br>
+${maxDate}
+
 <section class="con_wrap box">
 
 	<div class="contents_box out padLeft0">
@@ -25,10 +28,28 @@
 			<div class="page_listdDtl">
 				<div class="col-md-7 carInfoBox">
 					<div class="insertBg" data-ratioH="60">
-						<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
+						<div class="img"><img src="./images/rentcar/${carDetail.getKind().getCode()}/${carDetail.getImage()}" alt="${carDetail.getName()}"></div>
 					</div>
-					<h4 class="carName">모닝</h4>
-					<p class="date"><span>10/9</span> 10:00 ~ <span>10/10</span> 10:00 (24시간)</p>
+					<h4 class="carName">${carDetail.getName()}</h4>
+					<p class="date">
+						<span>${minDate}</span> ${minHour}:00
+						<%-- <c:choose>
+							<!-- 사용자가 이전페이지에서 반납일 선택했었다면 -->
+							<c:when test="${maxDate!=0}"> 
+								~ <span>${maxDate}</span> ${maxHour}:00 (24시간)
+							</c:when>
+							<!-- 반납일을 선택 안했다면 -->
+							<c:when test="${maxDate==0}">
+								~ 
+								<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
+								<select class="hours next">
+									<!-- script.js/rent_optionHours(); 메서드 사용 -->
+								</select>
+							</c:when>
+						</c:choose> --%>
+							
+							
+					</p>
 					
 					<hr>
 						

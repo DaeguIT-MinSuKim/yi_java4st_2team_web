@@ -11,7 +11,7 @@ import rentcar.controller.Command;
 import rentcar.dto.Brand;
 import rentcar.service.BrandService;
 
-public class BrandListHandler implements Command {
+public class BrandDeleteHandler implements Command {
 	private BrandService service = new BrandService();
 
 	@Override
@@ -20,13 +20,16 @@ public class BrandListHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
 
-			List<Brand> brandList = service.brandList();
-			request.setAttribute("brandList", brandList);
+			int code = Integer.parseInt(request.getParameter("brandCode"));
+			System.out.println("code > " + code);
+			int res = service.deleteBrand(new Brand(code));
+			request.setAttribute("res", res);
 			
-			return "admin/brand/brandList.jsp";
+			response.sendRedirect("brandList.do");
+			return null;
 		} else {
 			System.out.println("POST");
-
+			
 			return "brandList.do";
 		}
 	}

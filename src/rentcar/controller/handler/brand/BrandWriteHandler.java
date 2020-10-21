@@ -57,7 +57,7 @@ public class BrandWriteHandler implements Command {
 			} catch (Exception e) {
 				System.out.println("예외 발생 : " + e);
 			}
-			return "admin/brand/brandList.jsp";
+			return "brandList.do";
 		}
 	}
 }
