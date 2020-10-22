@@ -87,7 +87,7 @@ select.hours {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:point
 .page_listdDtl .payBox ul li.priceResult .right {color:#0d6ffc; font-size:20px;}
 .page_listdDtl .payBox ul li:last-child {border-bottom:0;}
 .page_listdDtl .payBox ul li .left { font-weight:500}
-.page_listdDtl .payBox ul li .right {position:absolute; right:0; top:20px;}
+.page_listdDtl .payBox ul li .right {position:absolute; right:0; top:20px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; width:295px; text-align:right;}
 .page_listdDtl .payBox .btn-carmore {margin-top:15px;}
 
 .page_listdDtl .mapInfo {padding-top:15px}
@@ -149,4 +149,6 @@ select.hours {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:point
 	.page_rent .brand_logo {height:30px;}
 	.page_rent .rentcarList>ul>li .price,
 	.page_rent .rentcarList>ul>li .carName {font-size:13px}
+	
+	.page_listdDtl .payBox ul li .right {width:280px;}
 }

@@ -60,11 +60,10 @@ public class CarWriteHandler implements Command {
 
 			String no = multi.getParameter("carNo");
 			String name = multi.getParameter("carName");
-			int kindNo = Integer.parseInt(multi.getParameter("carKind"));
-			int brandNo = Integer.parseInt(multi.getParameter("carBrand"));
-			String remark = multi.getParameter("carRemark");
-			String is_rent = multi.getParameter("carIs_rent");
-			String image = multi.getParameter("carImage");
+			int kindNo = Integer.parseInt(multi.getParameter("kind"));
+			int brandNo = Integer.parseInt(multi.getParameter("brand"));
+			String remark = multi.getParameter("remark");
+			String image = multi.getFilesystemName("image");
 
 			Car c = new Car();
 			c.setNo(no);
@@ -72,7 +71,6 @@ public class CarWriteHandler implements Command {
 			c.setKind(new Kind(kindNo));
 			c.setBrand(new Brand(brandNo));
 			c.setRemark(remark);
-			c.setIs_rent(is_rent);
 			c.setImage(image);
 
 			int res = service.insertCar(c);
@@ -80,7 +78,8 @@ public class CarWriteHandler implements Command {
 		} catch (Exception e) {
 			System.out.println("예외 발생 : " + e);
 		}
-		return "carList.do";
+		response.sendRedirect("carList.do");
+		return null;
 	}
 }
 }
