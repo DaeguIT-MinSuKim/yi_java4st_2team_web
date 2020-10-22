@@ -67,4 +67,7 @@ public class CarService {
 		return dao.deleteCar(car);
 	}
 
+	public boolean isCar(String no) {
+		return dao.isCar(no);
+	}
 }

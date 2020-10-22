@@ -36,4 +36,7 @@ public interface CarDao {
 
 	// 차량 삭제하기
 	int deleteCar(Car car);
+
+	//차량추가 전 해당차량이 있을시 false값 반환
+	boolean isCar(String no); 
 }
