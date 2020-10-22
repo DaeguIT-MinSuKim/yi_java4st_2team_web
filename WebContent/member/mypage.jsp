@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/include/header.jsp"%>
 
 <%@ include file="/include/sub_member.jsp"%>
@@ -9,19 +10,17 @@
 	<div class="contents">
 		<h3>마이페이지</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 마이페이지</div>
-		
         <div class=" logincontainer-fluid_box page_mypage">
-        
-        	<form class="form-horizontal" role="form" name="frmName" method="post" action="" onsubmit="return false;" enctype="multipart/form-data">
+        	<form class="form-horizontal" role="form" name="frmName" method="post" action="mypage.do" onsubmit="return false;" enctype="multipart/form-data">	
 				<div class="join">
-	
 					<div class="form-group cal_Box">
 						<label class="col-sm-2 control-label">이름</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" maxlength="10" name="member_name" id="member_name" value="동자승" readonly>
+							<input type="text" class="form-control" maxlength="10" name="member_name" id="member_name" value="${loginUser.name}" readonly>
+
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="col-sm-2 control-label">아이디</label>
 						<div class="col-sm-10 divinner">
@@ -156,7 +155,6 @@
 					</ul>
 				</div>
 			</form>
-			
 		</div>
 	</div>
 </div><!-- //컨텐츠 -->

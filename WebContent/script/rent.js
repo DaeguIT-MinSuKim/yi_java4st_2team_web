@@ -252,42 +252,89 @@ function rentDetail_priceChange(){
 	var $get_ins = $("#get_insurance");
 	var $get_opt = $("#get_option");
 	var $get_dis = $("#get_discount");
+	var $get_minDate = $("#get_minDate");
+	var $get_maxDate = $("#get_maxDate").length ? $get_maxDate : $(".calendar.next");
 	
 	// 값 넣을 변수
 	var $set_ins = $("#set_insurance");
 	var $set_opt = $("#set_option");
 	var $set_dis = $("#set_discount>span");
 	var $set_total = $("#set_total>span");
+
+	// 그 외
+	var $el_id_optResultPrice = $("#optResultPrice"); // 총 합산할 금액 input
+
+	
+	// 대여일 + 반납일
+	//alert($get_minDate - $get_maxDate);
 	
 	// 보험 (라디오버튼)
 	$get_ins.find("input").on("click", function(){
 		var val_name = $get_ins.find("input:checked").next("span").text();
 		$set_ins.text(val_name);
+		calculator();
+		
+		val_name = null;
 	});
+	
 	
 	// 옵션 (체크버튼)
 	$get_opt.find("input").on("click", function(){
-		var val_name = "";
+		
+		// 옵션명 변수
+		var get_name = "";
+		var chk_name = "";
+		
+		// 금액 변수
+		var chk_price = 0;
+		var get_price = 0;
+		
+		$el_id_optResultPrice.val(0); // 계산 값 초기화
+		
 		for(var i=0; i < $get_opt.find("label").length; i++){
-			if( $get_opt.find("label").eq(i).find("input").prop("checked") == true ){
-				val_name += $(this).text();
-			}
+			chk_name = $get_opt.find("label").eq(i).find("input:checked").next("span").text();
+			
+			// 글자넣을 부분이 비어있지 않거나, 옵션이 비어있지 않을때 "," 를 앞에 붙여줌
+			if( get_name!="" && chk_name!="" ){ chk_name = "," + chk_name }
+			get_name += chk_name;
+			
+			// 총 옵션 금액 계산
+			chk_price = $get_opt.find("label").eq(i).find("input:checked").attr("data-optPrice");
+			get_price += !isNaN(chk_price) ? parseInt(chk_price) : parseInt(chk_price = 0); // 숫자가 아닌경우에 0으로 처리
 		}
 		
-		$set_opt.text(val_name);
+		$set_opt.text(get_name); // 조합된 옵션명 화면에 뿌림
+		$el_id_optResultPrice.val(get_price); // 총금액 값 input에 넣음
+
+		calculator();
+		
+		get_name = null;
+		chk_name = null;
+		chk_price = null;
+		get_price = null;
 	});
 	
 	// 할인/쿠폰 (셀렉박스)
-
+	
 	
 	// 총 금액 계산
 	function calculator(){
-		
 		var insPay = parseInt($get_ins.find("input:checked").attr("data-insPrice"));
-		var optPay = 0;
-		var disPay = 0;
+		var optPay = parseInt($el_id_optResultPrice.val());
+		var disPay = parseInt(0);
 		
-		$set_total.text(insPay + optPay + disPay);
+		// 숫자가 맞는지 체크
+		insPay = !isNaN(insPay) ? insPay : insPay=0;
+		optPay = !isNaN(optPay) ? optPay : optPay=0;
+		disPay = !isNaN(disPay) ? disPay : disPay=0;
+				
+//		alert("insPay >> " + insPay + "optPay >> " + optPay + "disPay >> " + disPay);
+		
+		$set_total.text(insPay + optPay + disPay); // 총 결제 금액 화면에 뿌림 
+		
+		insPay = null;
+		optPay = null;
+		disPay = null;
 	}
 }
 

@@ -143,9 +143,9 @@
 					<li><a href="longRent.do">장기렌트</a></li>
 					<li><a href="event.do">이벤트</a></li>
 					<li><a href="notice.do">공지사항</a></li>
-					<li><a href="mypagePassword.do">마이페이지</a></li>
+					<li><a href="mypage.do">마이페이지</a></li>
 					<li class="mobile" data-device="mobile">
-						<a href="./member/login.jsp">회원관리</a>
+						<a href="javascript:;">회원관리</a>
 						<ul>
 						<c:choose>
 							<c:when test="${empty sessionScope.loginUser}">
@@ -155,10 +155,10 @@
 							</c:when>
 								
 							<c:otherwise>
-								<li><a class="logout" style="cursor:pointer;" id="logout" href="logout.do">로그아웃</a></li>
+								<li><a class="logout" id="logout" href="logout.do">로그아웃</a></li>
 							</c:otherwise>
 						</c:choose>
-							<li><a href="mypagePassword.do">마이페이지</a></li>
+							<li><a href="mypage.do">마이페이지</a></li>
 							<li><a href="mypage.do">렌트중인차량</a></li>
 							<li><a href="agree.do">이용약관</a></li>
 							<li><a href="privacy.do">개인정보취급방침</a></li>
@@ -184,7 +184,7 @@
 	<nav class="mobile box">
 		<div class="closeWrap">
 			<a href="javascript:;" class="gnbClose"></a>
-			<a class="home" href="./main/main.jsp">HOME</a>
+			<a class="home" href="index.do">HOME</a>
 		</div>
 	</nav>
 </header><!-- // header -->
