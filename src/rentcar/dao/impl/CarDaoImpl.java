@@ -124,7 +124,6 @@ public class CarDaoImpl implements CarDao {
 			System.out.println("CarDaoImpl.selectCarByFind ERROR");
 			return null;
 		}
-		System.out.println(sql);
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, query);
 			try (ResultSet rs = pstmt.executeQuery()) {
@@ -162,11 +161,10 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public List<Car> selectRentByCar(LocalDateTime rentDate) {
-		String sql = "SELECT * " + 
-				"  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE " + 
-				" WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
-				"  FROM rent r " + 
-				" WHERE NOT(TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') OR TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
+		String sql = "SELECT * "
+				+ "  FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE "
+				+ " WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + "  FROM rent r "
+				+ " WHERE NOT(TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') OR TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, rentDate.format(formatter));
 			pstmt.setString(2, rentDate.format(formatter));
@@ -187,12 +185,11 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public List<Car> selectRentByCar(LocalDateTime rentDate, LocalDateTime returnDate) {
-		String sql = "SELECT * " + 
-				"  FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE" + 
-				" WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
-				"  FROM rent r " + 
-				" WHERE (TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RENT_DATE) < TO_DATE(?,'YYYYMMDDHH24')) " + 
-				"	OR (TO_DATE(RETURN_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
+		String sql = "SELECT * "
+				+ "  FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE"
+				+ " WHERE CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + "  FROM rent r "
+				+ " WHERE (TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RENT_DATE) < TO_DATE(?,'YYYYMMDDHH24')) "
+				+ "	OR (TO_DATE(RETURN_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, rentDate.format(formatter));
 			pstmt.setString(2, rentDate.format(formatter));
@@ -222,8 +219,8 @@ public class CarDaoImpl implements CarDao {
 			pstmt.setInt(3, car.getKind().getCode());
 			pstmt.setInt(4, car.getBrand().getCode());
 			pstmt.setString(5, car.getRemark());
-			pstmt.setString(6, car.getIs_rent());
-			pstmt.setInt(7, car.getCounting());
+			pstmt.setString(6, "Y");
+			pstmt.setInt(7, 0);
 			pstmt.setString(8, car.getImage());
 
 			return pstmt.executeUpdate();
@@ -234,17 +231,15 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public int updateCar(Car car) {
-		String sql = "UPDATE CAR SET CAR_NAME = ? , KIND_CODE = ? , BRAND_CODE = ? , REMARK = ? , IS_RENTCAR = ? , CAR_COUNT = ? , CAR_IMAGE = ? WHERE CAR_NO = ?  ";
+		String sql = "UPDATE CAR SET CAR_NAME = ? , KIND_CODE = ? , BRAND_CODE = ? , REMARK = ? , CAR_IMAGE = ? WHERE CAR_NO = ?  ";
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setString(8, car.getNo());
 			pstmt.setString(1, car.getName());
 			pstmt.setInt(2, car.getKind().getCode());
 			pstmt.setInt(3, car.getBrand().getCode());
 			pstmt.setString(4, car.getRemark());
-			pstmt.setString(5, car.getIs_rent());
-			pstmt.setInt(6, car.getCounting());
-			pstmt.setString(7, car.getImage());
+			pstmt.setString(5, car.getImage());
+			pstmt.setString(6, car.getNo());
 
 			return pstmt.executeUpdate();
 
@@ -265,4 +260,19 @@ public class CarDaoImpl implements CarDao {
 		}
 	}
 
+	@Override
+	public LocalDateTime rentLastDate(Car car) {
+		String sql = "SELECT min(return_date) FROM RENT  WHERE CAR_NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, car.getNo());
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getTimestamp("RETURN_DATE").toLocalDateTime();
+				}
+				return null;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
