@@ -1,7 +1,6 @@
 package rentcar.dao.impl;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import oracle.jdbc.OracleResultSet;
 import rentcar.dao.LongRentDao;
 import rentcar.dto.LongRent;
 import rentcar.exception.CustomSQLException;
@@ -106,17 +106,20 @@ public class LongRentDaoImpl implements LongRentDao {
 			String sql2 = "SELECT CONTENTS FROM LONGRENT "
 					+ "WHERE NO = (SELECT max(NO) FROM LONGRENT)";
 
+//			longrent.getContents()
+			
 			PreparedStatement pstmt2 = con.prepareStatement(sql2);
 			ResultSet rs = pstmt2.executeQuery();
 			if (rs.next()) {
 
-				Clob clob = (Clob) rs.getBlob(1);
-				
-				BufferedWriter bw = new BufferedWriter(clob.setCharacterStream(0L));
-				bw.write(longrent.getContents());
-				bw.close();
+				System.out.println("CLOB 안된다 !!!!!!!!!!! 될거다 ");
+//				Clob cl = ((OracleResultSet)rs).getClob(1);
+//				 BufferedWriter writer = new BufferedWriter(cl.getCharacterOutputStream());
+//				 writer.write(longrent.getContents().toString());
+//				 writer.close();
 				
 			}
+			
 			// CLOB column에 데이터을 저장하였다면 commit()을 실행시키고  
 			con.commit();
 			// conn.setAutoCommit(true)로 다시 설정합니다.  
@@ -126,11 +129,7 @@ public class LongRentDaoImpl implements LongRentDao {
 			
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return 0;
+		} 
 	}
 
 	

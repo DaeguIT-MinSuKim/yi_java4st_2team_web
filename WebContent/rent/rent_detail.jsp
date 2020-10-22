@@ -36,7 +36,7 @@ ${optList }
 						
 						<!-- 사용자가 이전페이지에서 반납일 선택했는지, 안했는지에 따라 구분 출력 -->
 						<c:choose>
-							<c:when test="${maxDate}==0">
+							<c:when test="${maxDate==0}">
 								<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
 								<select class="hours next"><!-- script.js/rent_optionHours(); 메서드 사용 --></select>
 							</c:when>
