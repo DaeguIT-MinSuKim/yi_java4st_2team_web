@@ -85,7 +85,7 @@
 	
 		<ul>
 			<c:forEach items="${carList}" var="car" end="8">
-				<li><a href="#">
+				<li><a href="javascript:;" class="btn_mainRent">
 					<div class="img_box">
 						<p class="name">${car.name}</p>
 						<c:if test="${car.kind.code eq 1}">
@@ -247,6 +247,34 @@
 			<div class="privacyBox">
 				<%@ include file="/include/privacy_inner.jsp"%>
 			</div>
+		</div>
+	</div>
+	<div class="bg popup_close_common"></div>
+</div>
+
+<div class="popup_common popup_mainRent">
+	<div class="con">
+		<div class="top">
+			<div class="title">
+				대여날짜 선택
+				<a href="javascript:;" class="popup_close_common">
+					<img src="./images/member/popup_close.svg" alt="팝업창 닫기">
+				</a>
+			</div>
+		</div>
+		<div class="btm">
+			<form class="mainCalendarBox">
+				<input type="text" class="form-control calendar prev" readonly placeholder="렌트카 대여일 선택"> 
+				<select class="hours prev">
+					<!-- script.js/rent_optionHours(); 메서드 사용 -->
+				</select>
+				 <span>-</span> 
+				 <input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
+				 <select class="hours next">
+					<!-- script.js/rent_optionHours(); 메서드 사용 -->
+				</select>
+				<a href="javascript:;" class="btn btn-blue btn_mainCarRent">예약</a>
+			</form>
 		</div>
 	</div>
 	<div class="bg popup_close_common"></div>

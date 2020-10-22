@@ -60,6 +60,8 @@ public class EventWriteHandler implements Command {
 					System.out.println(ori_file_name);
 				}*/
 				
+				System.out.println("dsfasfdsza"+ uploadFilePath);
+				
 				String name = multi.getParameter("title");
 				int sale = Integer.parseInt(multi.getParameter("sale"));
 				String thumImage = multi.getFilesystemName("uploadfile01");

@@ -28,7 +28,6 @@ public class MainHandler implements Command {
 		List<Notice> noticeList = noticeService.getNoticeList();
 		List<Car> carList = carService.carList();
 		
-		
 		request.setAttribute("eventList", eventList);
 		request.setAttribute("noticeList", noticeList);
 		request.setAttribute("carList", carList);

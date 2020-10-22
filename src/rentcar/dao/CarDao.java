@@ -35,4 +35,7 @@ public interface CarDao {
 
 	// 차량 삭제하기
 	int deleteCar(Car car);
+
+	// 선택한 차량 대여중인지 검색하기
+	Car selectRentByNo(LocalDateTime rentDate, LocalDateTime returnDate, String no);
 }

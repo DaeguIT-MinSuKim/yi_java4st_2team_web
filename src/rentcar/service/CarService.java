@@ -66,5 +66,10 @@ public class CarService {
 		System.out.println("service carNo > " + car.getNo());
 		return dao.deleteCar(car);
 	}
+	
+	// 선택한 차량 대여중인지 검색하기
+	public Car selectRentByNo(LocalDateTime rentDate, LocalDateTime returnDate, String no) {
+		return dao.selectRentByNo(rentDate, returnDate, no);
+	}
 
 }

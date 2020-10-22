@@ -195,8 +195,8 @@ public class CarDaoImpl implements CarDao {
 				"	OR (TO_DATE(RETURN_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, rentDate.format(formatter));
-			pstmt.setString(2, rentDate.format(formatter));
-			pstmt.setString(3, returnDate.format(formatter));
+			pstmt.setString(2, returnDate.format(formatter));
+			pstmt.setString(3, rentDate.format(formatter));
 			pstmt.setString(4, returnDate.format(formatter));
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
@@ -205,6 +205,31 @@ public class CarDaoImpl implements CarDao {
 						list.add(getCar(rs));
 					} while (rs.next());
 					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	@Override
+	public Car selectRentByNo(LocalDateTime rentDate, LocalDateTime returnDate, String no) {
+		String sql = "SELECT * " + 
+				"  FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE" + 
+				" WHERE CAR_NO = ? AND CAR_NO NOT IN (SELECT DISTINCT CAR_NO " + 
+				"  FROM rent r " + 
+				" WHERE (TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RENT_DATE) < TO_DATE(?,'YYYYMMDDHH24')) " + 
+				"	OR (TO_DATE(RETURN_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, no);
+			pstmt.setString(2, rentDate.format(formatter));
+			pstmt.setString(3, returnDate.format(formatter));
+			pstmt.setString(4, rentDate.format(formatter));
+			pstmt.setString(5, returnDate.format(formatter));
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return getCar(rs);
 				}
 			}
 		} catch (SQLException e) {
