@@ -67,11 +67,11 @@ $(function pcFn(){
 	
 	$('nav.mobile .gnb img').css({display:'none'}); // 모바일에서 메뉴 아이콘 없애기 - 판교노인종합복지관용 추가
 	
-	
+	/*
 	$("nav.mobile .gnb>ul>li>a").each(function(){
 		$("nav.mobile .gnb>ul>li>a").attr("href", "#void");
 	});
-	
+	*/
 	
 	$(function mobileFn(){
 		// pc용 dom을 복제해서 사용함.
