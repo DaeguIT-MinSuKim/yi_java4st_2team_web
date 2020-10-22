@@ -40,13 +40,8 @@ public class CarListHandler implements Command {
 			return "/admin/car/carList.jsp";
 		} else {
 			System.out.println("POST");
-
-			int res = Integer.parseInt(request.getParameter("res"));
-			String query = request.getParameter("query");
 			
-			List<Car> carList = service.selectCarByFind(res, query);
-			
-			return "/admin/car/carList.jsp";
+			return null;
 		}
 	}
 }
