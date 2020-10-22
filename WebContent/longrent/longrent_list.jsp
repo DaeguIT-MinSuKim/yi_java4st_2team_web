@@ -49,6 +49,7 @@ $(function(){
 						<option value="title">제목</option>
 					</select> 
 					<input type="text" name="keyword" title="검색어 입력"> 
+					<input type="hidden" name="no" value="${LongRent.no }"> 
 					<input type="submit" value="검색">
 				</form>
 			</div>

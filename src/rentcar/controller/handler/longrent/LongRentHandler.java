@@ -24,11 +24,12 @@ public class LongRentHandler implements Command {
 			String condition = request.getParameter("condition");
 			String keyword = request.getParameter("keyword");
 
-			List<LongRent> res = service.searchLongRentList(condition, keyword);
-			System.out.println("검색결과 찍혀라!!!!!!!!!!!!!!!!!!!!!!!!!!" + res);
-
-			return null;
+			List<LongRent> list = service.searchLongRentList(condition, keyword);
+			System.out.println("검색결과 찍혀라!!!!!!!!!!!!!!!!!!!!!!!!!!" + list);
 			
+			request.setAttribute("list", list);
+
+			return  "/longrent/longrent_list.jsp";
 		} else {
 
 			String nowPage = request.getParameter("nowPage"); // 현재 페이지
