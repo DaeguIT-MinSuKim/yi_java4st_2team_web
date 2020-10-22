@@ -37,7 +37,7 @@ SELECT *
 
 -- 해당차량의 최대 대여일표기
 SELECT min(return_date)
-  FROM RENT r 
+  FROM RENT r
  WHERE CAR_NO = '13히1234';
 
 INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values('dong', '15후1234', 1, to_date('2020/10/22 10:15:15','YYYY-MM-DD HH24:MI:SS'), to_date('2020/10/30 10:15:15','YYYY-MM-DD HH24:MI:SS'), 'Y', 500000, '동자동자');
