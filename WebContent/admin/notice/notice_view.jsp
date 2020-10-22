@@ -9,33 +9,9 @@ $(function(){
 			$(".board").hide();
 		}
 		
-		$("#reply_delete2").click(function(e){	
-			e.preventDefault();
-			if(confirm("댓글을 삭제하시겠습니까?") == true){
-				var val = $(this).attr("href");
-				location.href=val;
-			}
 			
-		});
+});
 		
-		$("#btn_delete2").click(function(e){
-			e.preventDefault();
-			if(confirm("공지사항을 정말 삭제하시겠습니까?") == true){
-				var val = $(this).attr("href");
-				location.href=val;
-			}else{
-				//취소눌렀을때	
-				
-			}
-			
-		});
-		
-		
-		
-		
-	/*삭제 정말 삭제하시겠습니까? 경고창   */		
-		
-})
 </script>
 <!-- 컨텐츠 -->
 <div id="adimn_content">

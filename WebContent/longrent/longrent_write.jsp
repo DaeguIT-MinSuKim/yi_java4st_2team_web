@@ -10,33 +10,6 @@
 		
 		$('#add').on("click", function(e) {
 			e.preventDefault();
-			/* 	
-			function checkbox(){
-				var flag = false;
-				//checkbox 접근 후 체크된 개수 파악
-				//getElementsByName: 태그의 name값에 접근한다.
-				var values = document.getElementsByName("chk");
-				//형태는 배열이 된다.
-				alert(values.length);
-				for(var i=0; i<values.length;i++){
-					if(values[i].checked){
-						alert(values[i].value);
-					}
-				}
-				return flag;
-			} */
-			/* 	var send_array = Array();
-				var send_cnt = 0;
-				var chkbox = $(".checkSelect");
-
-				for(i=0;i<chkbox.length; i++){
-					if(chkbox[i].checked == true){
-						send_array[send_cnt] = chkbox[i].value;
-						send_cnt++;
-					}
-				}
-			 */
-			 
 			 var chkStr = "";
 			 for(var i=0; i< $("input[name='chBoxName']").length; i++){ //checkbox 갯수만큼 반복
 				 if( $("input[name='chBoxName']").eq(i).prop("checked") == true) { //i번째 checkbox가 checked 되어있으면...

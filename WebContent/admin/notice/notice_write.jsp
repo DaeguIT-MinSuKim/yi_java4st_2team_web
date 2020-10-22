@@ -1,14 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/admin/include/header.jsp"%>
-<script>
-</script>
+
 <!-- 컨텐츠 -->
+<script>
+$(function(){
+	$('#noticeAdd').on("click", function(){
+		
+		var chkYN = "";
+		
+		if($('#CHECK_YN').prop("checked") == true ){
+			chkYN = 0;
+			//alert("체크 했다 = 공지");
+		}else{
+			chkYN = 1;
+		}
+		
+		
+		if(admin_writeCheck()) {
+			
+			var newNotice = {
+				title : $('#title').val(),
+				contents : CKEDITOR.instances.contents_ckeditor.getData(),
+				isTop : chkYN
+			};
+
+			$.ajax({
+				type : "post",
+				url : "adminNoticeWrite.do",
+				cache : false,
+				data : JSON.stringify(newNotice),
+				success : function(data) {
+					alert("공지사항을 추가했습니다.");
+					window.location.href = "adminNotice.do";
+				}
+
+			});
+		}
+
+		
+	});
+	
+});
+</script>
+
 	<div id="adimn_content">
 		<h2>공지사항 글쓰기</h2>
 		
 		<div class="admin_page">
-			<form method="post" name="frm" action="adminNoticeWrite.do">
+			<form method="post" name="frm">
 				<div>
 					<input type="hidden" id="YN" name="YN"/>
 					<label><input type="checkbox" id="CHECK_YN" name="CHECK_YN"> <strong>공지</strong><br> <small>(체크하시면 공지로 상단에 등록됩니다.)</small>  </label>
@@ -25,44 +65,5 @@
 		</div>
 	</div>
 
-<script>
-$(function(){
-	$("#noticeAdd").on("click", function(){
-		var chkYN = "";
-		
-		if( $("#CHECK_YN").prop("checked") == true ){
-			chkYN = 0;
-		}else{
-			chkYN = 1;
-		}
-		
-		if (admin_writeCheck()) {
-			alert("asdfkljasf");
-			return false;
-		
-			var newLongRent = {
-				title : $('#title').val(),
-				contents : $('#contents_ckeditor').val(),
-				isTop : chkYN
-			};
-
-			$.ajax({
-				type : "post",
-				url : "adminNoticeUpdate.do",
-				cache : false,
-				data : JSON.stringify(newLongRent),
-				success : function(data) {
-					alert("공지사항을 추가했습니다.");
-					window.location.href = "adminNotice.do";
-				}
-
-			});
-		}
-
-		
-	});
-	
-});
-</script>
 
 <%@ include file="/admin/include/footer.jsp"%>
