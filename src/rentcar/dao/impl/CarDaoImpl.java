@@ -275,4 +275,20 @@ public class CarDaoImpl implements CarDao {
 			throw new RuntimeException(e);
 		}
 	}
+
+	@Override
+	public boolean isCar(String no) {
+		String sql = "SELECT * FROM CAR WHERE CAR_NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, no);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return false;
+				}
+				return true;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

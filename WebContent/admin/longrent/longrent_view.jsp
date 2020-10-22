@@ -92,8 +92,10 @@ $(function(){
 					</li>
 				</ul>
 			</div>
-			<a href="adminLongRentDelete.do?no=${param.no}" id="btn_delete"class="btn_small btn_case5 floatR mt10">글 삭제</a>
+			
+		<a href="adminLongRentDelete.do?no=${param.no}" id="btn_delete"class="btn_small btn_case5 floatR mt10">글 삭제</a>
 			<a href="adminLongRent.do" class="btn_small btn_case2 floatR mt10 mr5">글 목록</a>
+		
 		</div>
 	</div>
 </div><!-- //컨텐츠 -->

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/admin/include/header.jsp"%>
 <!-- // header -->
-<script type="text/javascript" src="./js/main.js?ver=123">
+<script type="text/javascript">
 	$(function() {
 		$('#add').on("click", function() {
 			if ($('#carNo').val() == "") {
@@ -15,20 +15,47 @@
 				$('#carName').focus()
 				return false;
 			}
-			if ($('#remark').val() == "") {
-				alert("차량비고를 기입해주세요")
-				$('#remark').focus()
-				return false;
-			}
 			if ($('#image').val() == "") {
 				alert("차량 이미지를 기입해주세요")
 				$('#image').focus()
 				return false;
 			}
-		});
-		$('#cancel').on("click", function() {
-			alert("너 뭐야");
-			location.href = "carList.do";
+			
+			
+			var newCar = {
+					no : $('#carNo').val(),
+					name : $('#carName').val(),
+					kind : {
+						code : $('#kindList').val()
+					},
+					brand : {
+						code : $('#brandList').val()
+					},
+					remark : $('#remark').val(),
+					image : $('#image').val()
+			};
+			
+			alert(JSON.stringify(newCar));
+			
+			$.ajax({
+				type : "post",
+				url : "carWrite.do",
+				cache : false,
+				data : JSON.stringify(newCar),
+				dataType: "text",
+				complete : function(data){
+					alert(data);
+					/* if(data == 1) {
+						alert("성공");
+						location.href="carList.do";
+					} else {
+						alert("기입하신 차량번호는 존재하는 번호입니다.");
+						history.go(-1);					
+					} */
+				}/* ,
+				error: function(){
+				} */
+			});
 		});
 	});
 </script>
@@ -67,14 +94,13 @@
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td><input type="file" name="image" class="list_file"></td>
+					<td><input type="file" name="image" id="image" class="list_file"></td>
 				</tr>
 			</table>
 			<ul class="button_style3 mt50">
 				<li><input type="submit" value="확인" class="btn_small btn_case2"
 					id="add"></li>
-				<li><a href="carList.do" class="btn_small btn_case4"
-					id="cancel">취소</a></li>
+				<li><a href="carList.do" class="btn_small btn_case4">취소</a></li>
 			</ul>
 		</form>
 	</div>
