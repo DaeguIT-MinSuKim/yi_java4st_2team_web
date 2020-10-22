@@ -10,26 +10,6 @@ $(function(){
 			$(".no_board").show();
 			$(".board").hide();
 		}
-	/* 
-		$(".date").each(function(e){
-			var str, txtDate, txtTime, newStr;
-			
-			str = $(".date").text();
-			txtDate = str.split(" ")[0];
-			txtTime = str.split(" ")[1];
-			
-			newStr = txtDate + "<br>" + txtTime;
-		
-			console.log(newStr);
-			
-			$(this).empty();
-		    $(this).empty().append(newStr);
-		    
-		    newStr = null;
-		});
-
-		   // $(".date").empty(); */
-	
 });
 </script>
 
@@ -41,17 +21,6 @@ $(function(){
 		<div class="location pc">HOME <span>></span> 장기렌트</div>
 		
 		<div class="longrent_content">
-
-			<div class="divSearch">
-				<form name="frmSearch" action="longRent.do" method="post">
-					<select name="condition">
-						<option value="name">이름</option>
-						<option value="title">제목</option>
-					</select> 
-					<input type="text" name="keyword" title="검색어 입력"> 
-					<input type="submit" value="검색">
-				</form>
-			</div>
 
 
 			<table class="table_style1">
@@ -71,15 +40,15 @@ $(function(){
 				</tr>
 				<c:forEach var="LongRent" items="${list}">
 					<tr class="board">
-						<td id="no">${LongRent.no }</td>
-						<td class="tl" id="title"><a href="longRentPasswordForm.do?no=${LongRent.no}">${LongRent.title }</a></td>
-						<td id="name">${LongRent.name }</td>
+						<td id="no">${param.no }</td>
+						<td class="tl" id="title"><a href="longRentPasswordForm.do?no=${param.no}">${param.title }</a></td>
+						<td id="name">${param.name }</td>
 						<%-- <td id="date" class="date">${LongRent.writeDate }</td> --%>
-						<td id="date"><fmt:formatDate value="${LongRent.writeDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td> 
+						<td id="date"><fmt:formatDate value="${param.writeDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td> 
 						<td>
 							<c:choose>
-								<c:when test="${LongRent.repYn==1 }">X</c:when>
-								<c:when test="${LongRent.repYn==2 }">O</c:when>
+								<c:when test="${param.repYn==1 }">X</c:when>
+								<c:when test="${param.repYn==2 }">O</c:when>
 							</c:choose>
 						</td>
 					</tr>

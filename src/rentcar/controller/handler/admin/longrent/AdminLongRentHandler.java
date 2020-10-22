@@ -2,6 +2,7 @@ package rentcar.controller.handler.admin.longrent;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ public class AdminLongRentHandler implements Command {
 		
 		String nowPage = request.getParameter("nowPage"); // 현재 페이지
 		String cntPerPage = "10"; // 페이지당 몇 개의 글을 보일지 저장
+		
 		
 		// 처음 접속했을 때 초기 세팅
 		int total = service.countLongRentByall();

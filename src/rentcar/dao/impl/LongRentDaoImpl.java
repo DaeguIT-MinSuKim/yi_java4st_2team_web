@@ -275,43 +275,40 @@ public class LongRentDaoImpl implements LongRentDao {
 		}
 	
 		
+		
 	//검색
 	@Override
 	public List<LongRent> selectSearch(String condition, String keyword) {
 		//select * from where name like '%?%'
 		//select * from where title like'%?%'
 //			String sql = "SELECT * FROM LONGRENT WHERE NAME LIKE '%?%' ORDER BY WRITE_DATE DESC";
-			String sql = "SELECT * FROM LONGRENT ";
+		
+		String sql = "SELECT * FROM LONGRENT ";
+		//System.out.println("[SQL 1단계]" + sql);
+	//	System.out.println("컨디션: " + condition + " keyword: " + keyword);
 		try {
-			
 			if(keyword != null && !keyword.isEmpty()) {
 			//	sql += "where" + condition.trim() + " like '%" || ? || '%' " + "order by write_date desc" ;
-				sql += "where" + condition.trim() + " like '%\" || ? || '%' ";
+				sql += " where " + condition.trim()+ " like '%"+keyword.trim()+"%' order by write_date desc";
+				
+			//	System.out.println("sql = 처음부분**********************!" + sql);
+			} else { //모든 레코드 검색 
+				sql += "ORDER BY WRITE_DATE DESC";
 			}
-			
-			sql += "ORDER BY WRITE_DATE DESC";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			
-			if(keyword != null && !keyword.isEmpty()) {
-				//검색의 경우
-				ps.setString(1, keyword);
-			}
-//			sql +=" where "+condition+ " like '%"+keyword+"%'";//이것도 가능
-
-			ResultSet rs = ps.executeQuery();
-			
+			//System.out.println("[SQL 2단계]" + sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql); 
+				ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					ArrayList<LongRent> list = new ArrayList<LongRent>();
+					ArrayList<LongRent> list = new ArrayList<>();
 					do {
 						list.add(getLongRent(rs));
 					} while (rs.next());
 					return list;
 				}
-				
-			} catch (SQLException e) {
-				throw new CustomSQLException(e);
 			}
-		return null;
+		} catch(Exception e) {
+			throw new CustomSQLException(e);
 		}
+		return null;
 	}
+}
