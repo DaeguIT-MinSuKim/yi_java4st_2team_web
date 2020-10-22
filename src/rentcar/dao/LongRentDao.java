@@ -1,8 +1,12 @@
 package rentcar.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import rentcar.dto.Event;
 import rentcar.dto.LongRent;
+import rentcar.utils.Paging;
 
 public interface LongRentDao {
 
@@ -29,6 +33,10 @@ public interface LongRentDao {
 //	public String pageNumber(int tpage, String name);
 //
 //	ArrayList<LongRent> listLongRent(int tpage, int no);
+
+	int countLongRentByAll();
+	
+	ArrayList<LongRent>pagingLongRentByAll(Paging paging);
 	
 	
 	//관리자
@@ -43,4 +51,12 @@ public interface LongRentDao {
 
 	//관리자 댓글 삭제 버튼
 	int adminReplyDeleteLongRent(int no);
+
+	//검색
+	List<LongRent> selectSearch(String condition, String keyword) ;
+
+	
+
+	
+	
 }

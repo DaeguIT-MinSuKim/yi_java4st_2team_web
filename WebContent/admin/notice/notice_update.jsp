@@ -20,6 +20,7 @@ $(function(){
 		if(admin_writeCheck()) {
 			
 			var updateNotice = {
+				no : ${param.no},
 				title : $('#title').val(),
 				contents : CKEDITOR.instances.contents_ckeditor.getData(),
 				isTop : chkYN
