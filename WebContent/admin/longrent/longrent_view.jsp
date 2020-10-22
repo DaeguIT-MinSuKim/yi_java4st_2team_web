@@ -9,23 +9,27 @@ $(function(){
 			$(".board").hide();
 		}
 		
-		$("#reply_update").click(function(){	
-			alert("수정되었습니다.");
+		$("#reply_add").click(function(){	
+			alert("댓글이 등록(수정)되었습니다.");
 		});
 		
-		$("#reply_delete").click(function(){	
-			if(confirm("정말 삭제하시겠습니까?")
-			){
-				location.href=".do";
+		$("#reply_delete").click(function(e){	
+			e.preventDefault();
+			if(confirm("댓글을 삭제하시겠습니까?") == true){
+				var val = $(this).attr("href");
+				location.href=val;
 			}
 			
 		});
 		
-		$("#btn_delete").click(function(){	
-			if(confirm("정말 삭제하시겠습니까?")){
-				//alert("확인누름");
+		$("#btn_delete").click(function(e){
+			e.preventDefault();
+			if(confirm("게시글 삭제입니다. 삭제하시겠습니까?") == true){
+				var val = $(this).attr("href");
+				location.href=val;
+			}else{
+				//취소눌렀을때	
 				
-				location.href="adminLongRent.do";
 			}
 			
 		});
@@ -65,7 +69,7 @@ $(function(){
 					<li>
 						<div class="tit_box">
 							<p class="name">관리자</p>
-							<p class="date">2020-10-01</p>
+							<p class="date"><fmt:formatDate value="${LongRent.writeDate}" pattern="yyyy-MM-dd"/></p>
 						</div>
 						<div class="content_box">
 							<p>
@@ -81,14 +85,15 @@ $(function(){
 							</form>	
 						</div>
 						 <ul class="btn">
-                        <li><a href="#" id="reply_update" class="update">댓글 등록</a></li>
+                        <li><a href="#" id="reply_update" class="update">댓글 수정</a></li>
                         <li><a href="adminLongRentReplyDelete.do?no=${param.no }" id ="reply_delete" class="delete">댓글 삭제</a></li>
                      </ul>
 
 					</li>
 				</ul>
 			</div>
-			<a href="adminLongRentDelete.do?no=${param.no}" id="btn_delete"class="btn_small btn_case2 floatR mt10">글 삭제</a>
+			<a href="adminLongRentDelete.do?no=${param.no}" id="btn_delete"class="btn_small btn_case5 floatR mt10">글 삭제</a>
+			<a href="adminLongRent.do" class="btn_small btn_case2 floatR mt10 mr5">글 목록</a>
 		</div>
 	</div>
 </div><!-- //컨텐츠 -->

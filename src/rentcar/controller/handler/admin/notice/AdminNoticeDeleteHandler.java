@@ -1,4 +1,4 @@
-package rentcar.controller.handler.admin.longrent;
+package rentcar.controller.handler.admin.notice;
 
 import java.io.IOException;
 
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 import rentcar.controller.Command;
 import rentcar.dto.LongRent;
 import rentcar.service.LongRentSerivce;
+import rentcar.service.NoticeSerivce;
 
-public class AdminLongRentReplyDeleteHandler implements Command {
-	private LongRentSerivce service = new LongRentSerivce();
+public class AdminNoticeDeleteHandler implements Command {
+	private NoticeSerivce service = new NoticeSerivce();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			System.out.println("Admin reply delete!!!");
-			
-			int no = Integer.parseInt(request.getParameter("no").trim());
-			
-			service.adminReplyDelete(no);
-			
-			
-			return "adminLongRentView.do?no="+no;
+		
+		int no = Integer.parseInt(request.getParameter("no").trim());
+		System.out.println("delete 서블릿 >>>>" + no	);
+		
+		service.deleteNotice(no);
+		 
+		 
+		return "adminNotice.do";
 	}
 }

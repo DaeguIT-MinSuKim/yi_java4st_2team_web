@@ -14,6 +14,9 @@
 </section>
 <!-- //상단배경 -->
 
+${insList }<br>
+${optList }
+
 <section class="con_wrap box">
 
 	<div class="contents_box out padLeft0">
@@ -25,34 +28,47 @@
 			<div class="page_listdDtl">
 				<div class="col-md-7 carInfoBox">
 					<div class="insertBg" data-ratioH="60">
-						<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
+						<div class="img"><img src="./images/rentcar/${carDetail.getKind().getCode()}/${carDetail.getImage()}" alt="${carDetail.getName()}"></div>
 					</div>
-					<h4 class="carName">모닝</h4>
-					<p class="date"><span>10/9</span> 10:00 ~ <span>10/10</span> 10:00 (24시간)</p>
+					<h4 class="carName">${carDetail.getName()}</h4>
+					<p class="date">
+						<span class="date_minDateVal">${minDate}</span> ${minHour}시 ~ 
+						
+						<!-- 사용자가 이전페이지에서 반납일 선택했는지, 안했는지에 따라 구분 출력 -->
+						<c:choose>
+							<c:when test="${maxDate}==0">
+								<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
+								<select class="hours next"><!-- script.js/rent_optionHours(); 메서드 사용 --></select>
+							</c:when>
+							<c:otherwise>
+								<span>${maxDate}</span> ${maxHour}시
+							</c:otherwise>
+						</c:choose>
+						
+						(24시간)
+					</p>
 					
 					<hr>
 						
-					<form class="form-horizontal formDtl" role="form" name="frmName" method="post" action="" onsubmit="return false;" enctype="multipart/form-data">
-						<div class="form-group">
+					<form class="form-horizontal formDtl" role="form" name="frmName">
+						<div class="form-group" id="get_insurance">
 							<label class="col-sm-2">보험</label>
 							<div class="col-sm-10">
-								<label><input type="radio" name="insurance" checked><span>일반자차</span></label>
-								<label><input type="radio" name="insurance"><span>완전자차</span></label>
-								<label><input type="radio" name="insurance"><span>슈퍼자차</span></label>
+								<c:forEach var="ins" items="${insList}">
+									<label><input type="radio" name="insurance" value="${ins.getCode()}" data-insPrice="${ins.getFare() }"><span>${ins.getName()}</span></label>
+								</c:forEach>
 							</div>
 						</div>
 						
-						<div class="form-group">
+						<div class="form-group" id="get_option">
 							<label class="col-sm-2">추가 옵션</label>
 							<div class="col-sm-10">
-								<label><input type="checkbox" name="carOption"><span>후방카메라</span></label>
-								<label><input type="checkbox" name="carOption"><span>블루투스</span></label>
-								<label><input type="checkbox" name="carOption"><span>카시트</span></label>
-								<label><input type="checkbox" name="carOption"><span>내비게이션</span></label>
-								<label><input type="checkbox" name="carOption"><span>하이패스</span></label>
+								<c:forEach var="opt" items="${optList}">
+									<label><input type="checkbox" name="carOption" value="${opt.getCode()}" data-optPrice="${opt.getFare()}"><span>${opt.getName()}</span></label>
+								</c:forEach>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" id="get_discount">
 							<label class="col-sm-2">할인/쿠폰</label>
 							<div class="col-sm-10">
 								<select name="cel1" class="selectpicker show-tick form-control">
@@ -132,22 +148,22 @@
 					<ul>
 						<li>
 							<div class="left">보험</div>
-							<div class="right">일반자차</div>
+							<div class="right" id="set_insurance">선택안함</div>
 						</li>
 						<li>
 							<div class="left">옵션</div>
-							<div class="right">후방카메라</div>
+								<div class="right" id="set_option" data-setOpt="">선택안함</div>
 						</li>
 						<li>
 							<div class="left">할인/쿠폰</div>
-							<div class="right">-10,000원</div>
+							<div class="right" id="set_discount"><span>0</span>원</div>
 						</li>
 						<li class="priceResult">
 							<div class="left">총 결제금액</div>
-							<div class="right">50,000원</div>
+							<div class="right" id="set_total"><span>0</span>원</div>
 						</li>
 					</ul>
-					<a href="rentEnd.do" class="btn-carmore">예약하기</a>
+					<a href="rentEnd.do" class="btn-carmore btn_payBox_submit">예약하기</a>
 				</div>
 			</div>
 		</div>

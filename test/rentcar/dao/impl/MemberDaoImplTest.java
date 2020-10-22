@@ -1,6 +1,8 @@
 package rentcar.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.After;
@@ -53,8 +55,8 @@ public class MemberDaoImplTest {
 	@Test
 	public void test01InsertMember() {
 		System.out.printf("%s()%n", "test01InsertMember");
-		Member insertMember = new Member("test", "1111", "20-15-061904-90", "김자바", "010-1234-1234", "QQ@QQ.com", "대구시",
-				null);
+		Member insertMember = new Member("dong", "1234", "M", new Date(2020-9-1), "창동", "010-1234-1234", "Class1A",
+				"12-12-123456-12", "aaa@aaa.com", "대구");
 		int res = MemberDaoImpl.getInstance().insertMember(insertMember);
 		Assert.assertEquals(1, res);
 
@@ -64,8 +66,7 @@ public class MemberDaoImplTest {
 	@Test
 	public void test02UpdateMember() {
 		System.out.printf("%s()%n", "test02UpdateMember");
-		Member updateMember = new Member("test", "2222", "20-15-061904-90", "김김김", "010-1234-1234", "WW@WW.com", "서울시",
-				null);
+		Member updateMember = new Member();
 		int res = MemberDaoImpl.getInstance().updateMember(updateMember);
 		Assert.assertEquals(1, res);
 

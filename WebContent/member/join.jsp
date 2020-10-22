@@ -162,11 +162,11 @@ function id_chk_bb() {
 				window.alert("비밀번호가 일치하지 않습니다");
 				document.getElementsByName("passwd1")[0].focus();
 				return;
-			} else if (!document.getElementsByName("license")[0].value) {
+			} /* else if (!document.getElementsByName("license")[0].value) {
 				window.alert("운전면허번호를 입력하세요");
 				document.getElementsByName("license")[0].focus();
 				return;
-			} else if (!document.getElementsByName("member_name")[0].value) {
+			}  */else if (!document.getElementsByName("member_name")[0].value) {
 				window.alert("이름을 입력하세요");
 				document.getElementsByName("member_name")[0].focus();
 				return;
@@ -198,11 +198,12 @@ function id_chk_bb() {
 				var joinMember = {
 					id : $('#member_id').val(),
 					pwd : $('#passwd').val(),
-					license : $('#license').val(),
 					gender : $('#gender').val(),
-					birth : ($('#birthYear').val() + $('#birthMonth').val() + $('#birthDay').val()),
+					birth : ($('#birthYear').val() + "-" + $('#birthMonth').val() + "-" + $('#birthDay').val()),
 					name : $('#member_name').val(),
 					tel : ($('#cel1').val() + "-" + $('#cel2').val() + "-" + $('#cel3').val()),
+					li_class : $('#li_class').val(),
+					li_number : ($('#li_number1').val() + "-" + $('#li_number2').val() + "-" +$('#li_number3').val() + "-" +$('#li_number4').val()),
 					email : ($('#email1').val() + $('#email2').val()),
 					address : ($('#zipcode').val() + " " + $('#addr1').val() + " " + $('#addr2').val()),
 				};
@@ -256,9 +257,43 @@ $(function() {
 			$("#email2").val($("#domain").val());
 		});
 	});
+	
+	$(document).ready(function() {
+	    $('input[type="checkbox"][name="li_class"]').click(function(){
+	        if ($(this).prop('checked')) {
+	            $('input[type="checkbox"][name="li_class"]').prop('checked', false);
+	            $(this).prop('checked', true);
+	        }
+	    });
+	});
+</script>
+
+<script language='javascript'>
+
+window.name ="Parent_window";
+
+$(function() {
+	$("#popupChk").on("click",function() {
+		window.open('', 'popupChk', 'width=500, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+		document.form_chk.target = "popupChk";
+		document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
+		document.form_chk.submit();
+		self.close();
+
+	});
+	
+});
 </script>
 
 <%@ include file="/include/sub_member.jsp"%>
+
+	<!-- 본인인증 서비스 팝업을 호출하기 위해서는 다음과 같은 form이 필요합니다. -->
+	<form name="form_chk" method="post">
+		<!-- 필수 데이타로, 누락하시면 안됩니다. -->
+		<input type="hidden" name="m" value="checkplusSerivce">
+		<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
+		<input type="hidden" name="EncodeData" value="AgAFQUQ2MDBowYeIUAG92mzBoun+QMn3fESw5PqDJUUhYTETGgMEBObky1hfOP194qcvbnzmgNQSAOOMJCXeCyp9uCWg/1LShK/lcRsq8oScEOVgcm46M7yY9WWPxCmB7fBrNPI1E6/w50GuhpGKTjeYovRtlfgpFuZX5Y2oQFPf5imrvcJ1ylUYWAa+uPPEhIDF67NHL22+jDgkCXKq3/Q2k+q3R/7Fd9yQo8O2+YnG0qDo3j4DcktKUVWIrXwzdpbiw6NZoQNBU39AiUdbiLLWBcnEVr9HmbiHWNI+U53+b3X+WbpB8kcfek5BH57MpI8Qm5XxoKMDEVuWPC0Fb67XhhQgX0j9n6DZYmHr2sFsomoOdFgmgfcQhV4gHtOZhBccOd5l0agnDvq9g4X+opDb10lEOdA7gCyrJYiAL6IE4cvMRFsDUtlIwMJpOXyWjJNcmrjrCJK2IWi732u/HsHeRWKDaR+vjfd5AiGQtzHZV1HdCF9LIJYe5QZf8FzpdNf37Vm6ukk=">
+	</form>
 
 <!-- 컨텐츠 -->
 <div class="contents_box">
@@ -311,7 +346,7 @@ $(function() {
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">비밀번호</label>
-					<div class="col-sm-10">
+					<div class="col-sm-10 divinner">
 						<input type="password" class="form-control" maxlength="20"
 							name="passwd" id="passwd">
 						<p>특수문자를 하나 이상 포함하여 6 ~ 20자로 입력하십시오.</p>
@@ -320,19 +355,10 @@ $(function() {
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">비밀번호 확인</label>
-					<div class="col-sm-10">
+					<div class="col-sm-10 divinner">
 						<input type="password" class="form-control" maxlength="20"
 							name="passwd1">
 						<p>비밀번호를 동일하게 다시 한 번 입력하십시오.</p>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-2 control-label">운전면호 번호</label>
-					<div class="col-xs-8">
-						<input type="text" class="form-control" maxlength="20"
-							name="license" id="license">
-						<p>특수문자 - 를 포함하여 입력하십시오.</p>
 					</div>
 				</div>
 				
@@ -342,7 +368,7 @@ $(function() {
 						<div class="col-xs-2">
 							<select name="gender" id="gender"
 								class="selectpicker show-tick form-control">
-								<option value="" selected="selected">선택하기</option>
+								<option value="" selected="selected">선택</option>
 								<option value="M">남성</option>
 								<option value="F">여성</option>
 							</select>
@@ -377,12 +403,16 @@ $(function() {
 					</div>
 				</div>
 
-				<div class="form-group cal_Box">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">이름</label>
-					<div class="col-sm-10">
+					<div class="col-sm-10 divinner addr">
 						<div class="col-xs-5">
 							<input type="text" class="form-control" maxlength="10"
 								name="member_name" id="member_name">
+						</div>
+						<div class="col-xs-5">
+							<a href="javascript:;" class="btn btn-normal" id="popupChk"
+								onclick="popupChk(); return false;">안심본인인증</a>
 						</div>
 						<p></p>
 					</div>
@@ -409,6 +439,68 @@ $(function() {
 						<div class="col-xs-3">
 							<input type="text" class="form-control onlyNumber" maxlength="4"
 								name="cel3" id="cel3" style="ime-mode: disabled;">
+						</div>
+						<p></p>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">운전면호종류</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<input type="checkbox" name="li_class" id="li_class" value="Class2A"><span>  2종 보통</span>
+						</div>
+						<div class="col-xs-3">
+							<input type="checkbox" name="li_class" id="li_class" value="Class2M"><span>  2종 수동</span>
+						</div>
+						<div class="col-xs-3">
+							<input type="checkbox" name="li_class" id="li_class" value="Class1A"><span>  1종 보통</span>
+						</div>
+						<div class="col-xs-3">
+							<input type="checkbox" name="li_class" id="li_class" value="Class1B"><span>  1종 대형</span>
+						</div>
+					</div>
+					<p></p>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">운전면호번호</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<select name="li_number1" id="li_number1"
+								class="selectpicker show-tick form-control">
+								<option value="" selected="selected">선택</option>
+								<option value="11">11(서울)</option>
+								<option value="12">12(부산)</option>
+								<option value="13">13(경기)</option>
+								<option value="14">14(강원)</option>
+								<option value="15">15(충북)</option>
+								<option value="16">16(충남)</option>
+								<option value="17">17(전북)</option>
+								<option value="18">18(전남)</option>
+								<option value="19">19(경북)</option>
+								<option value="20">20(경남)</option>
+								<option value="21">21(제주)</option>
+								<option value="22">22(대구)</option>
+								<option value="23">23(인천)</option>
+								<option value="24">24(광주)</option>
+								<option value="25">25(대전)</option>
+								<option value="26">26(울산)</option>
+								<option value="28">28(경기북부)</option>
+								<option value="28">28(경기남부)</option>
+							</select>
+						</div>
+						<div class="col-xs-2">
+							<input type="text" class="form-control onlyNumber" maxlength="2"
+								name="li_number2" id="li_number2" style="ime-mode: disabled;">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="6"
+								name="li_number3" id="li_number3" style="ime-mode: disabled;">
+						</div>
+						<div class="col-xs-2">
+							<input type="text" class="form-control onlyNumber" maxlength="2"
+								name="li_number4" id="li_number4" style="ime-mode: disabled;">
 						</div>
 						<p></p>
 					</div>
@@ -442,7 +534,7 @@ $(function() {
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">주소</label>
-					<div class="col-sm-10 col-sm-10 divinner addr">
+					<div class="col-sm-10 divinner addr">
 						<div class="col-xs-7">
 							<label for="sel1">우편번호</label> <input type="text"
 								class="form-control" readonly name="zipcode" id="zipcode">
@@ -483,7 +575,8 @@ $(function() {
 			<div class="btn_box">
 				<ul>
 					<li><a class="btn btn-blue submit" id="join" type="button">가입하기</a></li>
-					<li><a class="btn btn-gray"
+					
+					<li><a class="btn btn-gray" type="button" id="cancle"
 						href="javascript:if(confirm('가입을 취소하시겠습니까?')) location.href='index.do'">작성취소</a></li>
 				</ul>
 			</div>

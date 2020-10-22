@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import rentcar.dao.MemberDao;
 import rentcar.dto.Member;
@@ -48,15 +50,23 @@ public class MemberDaoImpl implements MemberDao {
 	private Member getMemberList(ResultSet rs) throws SQLException {
 		String id = rs.getString("ID");
 		String pwd = rs.getString("PWD");
+		String gender = rs.getString("GENDER");
+		Date birth = rs.getTimestamp("BIRTH");
 		String name = rs.getString("NAME");
 		String tel = rs.getString("TEL");
-		String license = rs.getString("LICENSE");
+		String li_class = rs.getString("LI_CLASS");
+		String li_number = rs.getString("LI_NUMBER");
 		String email = rs.getString("EMAIL");
 		String address = rs.getString("ADDRESS");
+		String is_black = rs.getString("IS_BLACK");
 		Integer counting = rs.getInt("COUNTING");
-		return new Member(id, pwd, name, tel, license, email, address, counting);
+		Date date = rs.getTimestamp("LOGIN_DATE");
+		Integer try_counting = rs.getInt("TRY_COUNTING");
+		String is_lock = rs.getString("IS_LOCK");
+		Integer lock_counting = rs.getInt("LOCK_COUNTING");
+		return new Member(id, pwd, gender, birth, name, tel, li_class, li_number, email, address, is_black, counting, date, try_counting, is_lock, lock_counting);
 	}
-
+	
 	@Override
 	public Member selectMemberByUserId(Member member) {
 		String sql = "SELECT * FROM MEMBER WHERE id = ?";
@@ -77,15 +87,18 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int insertMember(Member member) {
-		String sql = "INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPwd());
-			pstmt.setString(3, member.getName());
-			pstmt.setString(4, member.getTel());
-			pstmt.setString(5, member.getLicense());
-			pstmt.setString(6, member.getEmail());
-			pstmt.setString(7, member.getAddress());
+			pstmt.setString(3, member.getGender());
+			pstmt.setTimestamp(4, new Timestamp(member.getBirth().getTime()));
+			pstmt.setString(5, member.getName());
+			pstmt.setString(6, member.getTel());
+			pstmt.setString(7, member.getLi_class());
+			pstmt.setString(8, member.getLi_number());
+			pstmt.setString(9, member.getEmail());
+			pstmt.setString(10, member.getAddress());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -98,11 +111,15 @@ public class MemberDaoImpl implements MemberDao {
 		String sql = "UPDATE MEMBER SET PWD=?, NAME=?, TEL=?, LICENSE=?, ADDRESS=? WHERE ID=?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, member.getPwd());
-			pstmt.setString(2, member.getName());
-			pstmt.setString(3, member.getTel());
-			pstmt.setString(4, member.getLicense());
-			pstmt.setString(5, member.getAddress());
-			pstmt.setString(6, member.getId());
+			pstmt.setString(2, member.getGender());
+			pstmt.setTimestamp(3, new Timestamp(member.getBirth().getTime()));
+			pstmt.setString(4, member.getName());
+			pstmt.setString(5, member.getTel());
+			pstmt.setString(6, member.getLi_class());
+			pstmt.setString(7, member.getLi_number());
+			pstmt.setString(8, member.getEmail());
+			pstmt.setString(9, member.getAddress());
+			pstmt.setString(10, member.getId());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

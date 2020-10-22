@@ -13,8 +13,8 @@ DELETE FROM EVENT_BOX;
 DELETE FROM NOTICE;
 
 -- 회원
-INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS)
-VALUES ('dong', '1234', '동자승', '010-1234-1234', '22-15-061904-90', 'aa@aa.com', '대구시 서구');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong', '1234', 'M', '1998-11-6', '동자승', '010-1234-1234', 'Class1A', '12-12-123456-12', 'aa@aa.com', '대구시');
 
 -- 차량 분류
 INSERT INTO KIND VALUES (1, '소형', 60000);
@@ -86,8 +86,8 @@ SELECT * FROM CAR;
 
 -- 보험
 INSERT INTO INSURANCE VALUES (1, '자차보험', 5000);
-INSERT INTO INSURANCE VALUES (2, '완전보험', 5000);
-INSERT INTO INSURANCE VALUES (3, '슈퍼보험', 5000);
+INSERT INTO INSURANCE VALUES (2, '완전보험', 10000);
+INSERT INTO INSURANCE VALUES (3, '슈퍼보험', 15000);
 
 -- 옵션
 INSERT INTO OPTIONS VALUES (1, '후방카메라', 5000);
@@ -141,6 +141,9 @@ INSERT INTO NOTICE VALUES(7,'대여 자격 기준이 어떻게 되나요? ','동
 ■재취득한 면허 : 재취득한 면허가 1년 미만이며,재취득 이전 면허를 포함하여 운전경력기간이 1년 이상일 경우
 운전면허경력증명서와 재취득하신 면허증을 지참하시면 차량대여 가능합니다.'
 ,SYSDATE, 0);
+
+
+INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) VALUES('중요한 공지사항입니다.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 확인용입니다. ',sysdate, 1);
 
 SELECT * FROM notice;
 

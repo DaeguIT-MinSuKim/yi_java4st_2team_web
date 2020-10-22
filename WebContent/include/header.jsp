@@ -85,17 +85,20 @@
 			"-moz-transition","all .1s linear"
 		);
 	});
+	</script>
 	
-	$(function() {
-		$('#logout').on("click", function() {
-			if (confirm("${sessionScope.loginUser.name}님 로그아웃 하시겠습니까?") == true) {	// 확인
-				location.href="logout.do";
-		    } else {	// 취소
-		    	return;
-		    }
+	<script>
+		$(function() {
+			$('#logout').on("click", function() {
+				if (confirm("${sessionScope.loginUser.name}님 로그아웃 하시겠습니까?") == true) {	// 확인
+					location.href="logout.do";
+			    } else {	// 취소
+			    	return;
+			    }
+				
+			});
 			
 		});
-	});
 	</script>
 </head>
 
@@ -111,6 +114,7 @@
 						<c:when test="${empty sessionScope.loginUser}">
 							<li><a class="login" href="login.do"><span>로그인</span></a></li>
 							<li><a class="join" href="joinAgree.do">회원가입</a></li>
+							<li><a class="admin" href="admin.do">관리자</a></li>
 						</c:when>
 						<c:otherwise>
 							<li>${sessionScope.loginUser.name}(${sessionScope.loginUser.id})님</li>
@@ -118,7 +122,6 @@
 							<li><a class="mypage" href="mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
-					<li><a class="admin" href="admin.do">관리자</a></li>
 				</ul>
 			</div>
 

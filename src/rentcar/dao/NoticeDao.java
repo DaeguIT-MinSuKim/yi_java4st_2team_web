@@ -11,7 +11,14 @@ public interface NoticeDao {
 
 	// 게시판 no별 list
 	Notice getNoticeList(int no);
+
 	
+	//관리자 
+	int insertNotice(Notice notice);
+	
+	int updateNotice(Notice notice);
+
+	int deleteNotice(int no);
 	
 	
 	

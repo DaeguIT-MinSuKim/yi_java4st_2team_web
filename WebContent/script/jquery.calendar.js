@@ -21,7 +21,7 @@ $(function(){
 
 	$.datepicker.setDefaults($.datepicker.regional['ko']);
 
-	$('.calendar').datepicker({
+	$('.calendar.prev, .calendar.next').datepicker({
 //		showOn: 'text',
 //		buttonImage: '../images/common/icon_date.png', //이미지 url
 //		imgW:'35',
@@ -32,16 +32,22 @@ $(function(){
 		changeYear: true,
 		showButtonPanel: true, // 오늘 날짜선택
 		minDate: 0, // 오늘 날짜부터 선택 가능
-		
 	});
 	
-	$('.calendar').datepicker
+	//날짜 선택시 전날선택 안되게 막기
+	$('.calendar.prev').datepicker("option", "maxDate", $(".calendar.next").val());
+	$('.calendar.prev').datepicker("option", "onClose", function ( selectedDate ) {
+        $(".calendar.next").datepicker("option", "minDate", selectedDate );
+    });
 	
-//	onClose:function(selectedDate){
-//		if( selectedDate != "" ) {
-//            // yyy의 minDate를 xxx의 날짜로 설정
-//            $(".calendar.prev").datepicker("option", "minDate", selectedDate);
-//        }
-//	},
+//	$(".calendar.next").datepicker("option", "minDate", $(".calendar.prev").val());
+	$(".calendar.next").datepicker("option", "onClose", function ( selectedDate ) {
+		$('.calendar.prev').datepicker("option", "maxDate", selectedDate );
+    });
+	
+	// 단기렌트 상세에서 반납일 인풋만 있을 경우
+	if( $(".calendar.next").length > 0 && $(".calendar.prev").length == 0 ){
+		$(".calendar.next").datepicker("option", "minDate", $(".date_minDateVal").text());
+	}
 	
 });

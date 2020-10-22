@@ -13,7 +13,7 @@ $(function(){
 </script>
 
 <div id="adimn_content">
-	<h2>장기렌트</h2>
+	<h2>공지사항</h2>
 	<div class="admin_page">
 		<table class="table_style1">
 			<!-- 글 있는 경우 -->
@@ -28,33 +28,33 @@ $(function(){
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
-				<th>답변여부</th>
 			</tr>
-			<c:forEach items="${eventList}" var="event">
-			<tr class="board">
-				<td>${event.eventCode}</td>
-				<td class="tl"><a href="eventView.do?code=${event.eventCode}">${event.name}</a></td>
-				<td><fmt:formatNumber value="${event.sale}"/>원</td>
-				<td>
-					<c:choose>
-						<c:when test="${event.isEvent=='y'}">O</c:when>
-						<c:when test="${event.isEvent=='n'}">X</c:when>
-					</c:choose>
-				</td>
-			</tr>
-			</c:forEach>
-			
-			<!-- 글 없는 경우 -->
-			<tr class="no_board">
-				<td colspan="4">작성된 글이 없습니다.</td>
-			</tr>
-		</table>
+			<c:forEach var="Notice" items="${list }">
+					<tr class="board">
+						<td>
+							<c:choose>
+								<c:when test="${Notice.isTop == 0 }"><span class="notice_board">공지</span></c:when>
+								<c:when test="${Notice.isTop == 1 }">${Notice.no }</c:when>
+							</c:choose>
+						<td class="tl"><a href="adminNoticeView.do?no=${Notice.no}">${Notice.title }</a></td>
+						<td> 관리자 </td>
+						<td><fmt:formatDate value="${Notice.writeDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td> 
+					</tr>
+				</c:forEach>
+				
+				<!-- 글 없는 경우 -->
+				<tr class="no_board">
+					<td colspan="5">작성된 글이 없습니다.</td>
+				</tr>
+			</table>
+		<!-- <form action="adminNoticeWrite.do" method="get">
+		</form> -->
+		<a href="adminNoticeWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
 		
-		<a href="eventWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
-			
 		<div class="board_list_page clear">
 			<a href="#" class="first arrow"><span class="text_hidden">처음</span></a>
 			<a href="#" class="prev arrow"><span class="text_hidden">이전</span></a>
+			
 			<ul>
 				<li class="active"><a href="#">1</a></li>
 				<li><a href="#">2</a></li>
