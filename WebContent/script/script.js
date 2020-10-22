@@ -194,12 +194,12 @@ function form_delete() {
 // 어드민 - 장기렌트 글쓰기
 function admin_writeCheck(){
 	if(document.frm.name.title.length == 0) {
-		alert("제목을 입력해주세요.");
 		return false;
 	}
-//	if(document.frm.tel.value.length == 0) {
-//		alert("전화번호은 필수항목입니다.");
-//		return false;
-//	}
+	if (CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
+		alert("문의 내용을 입력해주세요.");
+		return false;
+	}
+
 	return true;
 }
