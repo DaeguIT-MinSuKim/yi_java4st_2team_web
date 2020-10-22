@@ -193,7 +193,8 @@ function form_delete() {
 
 // 어드민 - 장기렌트 글쓰기
 function admin_writeCheck(){
-	if(document.frm.name.title.length == 0) {
+	if(document.frm.title.length == 0) {
+		alert("제목을 입력해주세요.");
 		return false;
 	}
 	if (CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {

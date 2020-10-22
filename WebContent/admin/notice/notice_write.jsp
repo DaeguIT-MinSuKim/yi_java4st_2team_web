@@ -19,8 +19,6 @@ $(function(){
 		
 		if(admin_writeCheck()) {
 			
-			alert("되나");
-		
 			var newNotice = {
 				title : $('#title').val(),
 				contents : CKEDITOR.instances.contents_ckeditor.getData(),
