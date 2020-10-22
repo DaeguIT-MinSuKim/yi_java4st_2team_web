@@ -152,3 +152,15 @@ SELECT * FROM notice;
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('10월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'y');
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('11월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'n');
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('12월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'y');
+
+
+
+-- 할인 / 쿠폰
+--INSERT INTO EVENT_BOX(EVENT_BOX, EVENT_CODE, ID, IS_EVENT) VALUES(1, 1, 'DJS000001', 'N');
+SELECT * FROM event_box;
+SELECT * FROM event;
+
+
+
+
+

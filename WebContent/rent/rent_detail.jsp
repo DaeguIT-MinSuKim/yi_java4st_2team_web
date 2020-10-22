@@ -14,8 +14,8 @@
 </section>
 <!-- //상단배경 -->
 
-${insList }<br>
-${optList }
+<input type="hidden" name="get_carFare" id="get_carFare" value="${carDetail.getKind().getFare()}">
+
 <section class="con_wrap box">
 
 	<div class="contents_box out padLeft0">
@@ -35,7 +35,7 @@ ${optList }
 						
 						<!-- 사용자가 이전페이지에서 반납일 선택했는지, 안했는지에 따라 구분 출력 -->
 						<c:choose>
-							<c:when test="${maxDate==0}">
+							<c:when test="${maxDate=='0'}">
 								<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
 								<select class="hours next"><!-- script.js/rent_optionHours(); 메서드 사용 --></select>
 							</c:when>
@@ -156,6 +156,10 @@ ${optList }
 						<li>
 							<div class="left">할인/쿠폰</div>
 							<div class="right" id="set_discount"><span>0</span>원</div>
+						</li>
+						<li>
+							<div class="left">총 대여일</div>
+							<div class="right" id="set_day"><span>0</span>일</div>
 						</li>
 						<li class="priceResult">
 							<div class="left">총 결제금액</div>
