@@ -36,10 +36,16 @@ function logo_hover() {
 
 	logo.on({
 		mouseenter : function() {
-			logo.find("img").attr("src", logo.find("img").attr("src").replace(str_logo, str_logo + "_hover"));
+			logo.find("img").attr(
+					"src",
+					logo.find("img").attr("src").replace(str_logo,
+							str_logo + "_hover"));
 		},
 		mouseleave : function() {
-			logo.find("img").attr("src",logo.find("img").attr("src").replace(str_logo + "_hover", str_logo));
+			logo.find("img").attr(
+					"src",
+					logo.find("img").attr("src").replace(str_logo + "_hover",
+							str_logo));
 		}
 	});
 }
@@ -182,10 +188,9 @@ function form_delete() {
 	$('.delete').on("click", function(e) {
 		e.preventDefault();
 		var chk_del = confirm("정말 삭제하시겠습니까?");
+		
 		if (chk_del == true) {
-
 			var url = $(this).parent("a").attr("href");
-//			alert(url);
 			location.href = url;
 		}
 	});
@@ -201,6 +206,5 @@ function admin_writeCheck(){
 		alert("문의 내용을 입력해주세요.");
 		return false;
 	}
-
 	return true;
 }

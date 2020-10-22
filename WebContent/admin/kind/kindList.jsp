@@ -8,7 +8,6 @@
 	<div class="admin_page">
 		<table border=1>
 			<tr>
-				<th>코드번호</th>
 				<th>분류명</th>
 				<th>분류금액</th>
 				<th>분류수정</th>
@@ -16,7 +15,6 @@
 			</tr>
 			<c:forEach items="${kindList }" var="kind">
 				<tr>
-					<td>${kind.code}</td>
 					<td>${kind.name}</td>
 					<td>${kind.fare}</td>
 					<td><a href="kindUpdate.do?kindCode=${kind.code}"><input type="button"

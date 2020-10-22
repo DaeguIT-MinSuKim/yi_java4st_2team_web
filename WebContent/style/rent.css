@@ -42,7 +42,7 @@
 .page_rent .calendarWrap {position:relative; padding:50px 30px;
 	background:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNyIgaGVpZ2h0PSIyNyIgdmlld0JveD0iMCAwIDI3IDI3Ij4KICA8ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiIG9wYWNpdHk9Ii4wOTIiPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iNCIgeT0iNCIvPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iMTMiIHk9IjQiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjIyIiB5PSI0Ii8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSI0IiB5PSIxMyIvPgogICAgPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgeD0iMTMiIHk9IjEzIi8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSIyMiIgeT0iMTMiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjQiIHk9IjIyIi8+CiAgICA8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4PSIxMyIgeT0iMjIiLz4KICAgIDxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIHg9IjIyIiB5PSIyMiIvPgogIDwvZz4KPC9zdmc+Cg==);
 }
-.page_rent .calendarWrap select {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:pointer;}
+select.hours {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:pointer;}
 .page_rent .calendarWrap h4 {text-align:center; font-size:30px;}
 .page_rent .calendarWrap .btn-blue {margin-left:5px; height:50px; line-height:50px;}
 
@@ -50,12 +50,12 @@
 .page_rent .calendarWrap>img {height:107px;}
 .page_rent .calendarWrap .calendarBox {display:flex; max-width:600px; margin:0 auto;}
 .page_rent .calendarWrap .calendarBox span {height:50px; line-height:50px; padding:0 3px;}
-.page_rent .calendarWrap .calendarBox .calendar[readonly] {background:#fff !important; height:50px; line-height:50px; border-radius:0; cursor:pointer;}
+.calendar {background:#fff !important; height:50px !important; line-height:50px !important; border-radius:0 !important; cursor:pointer;}
 
 /* 차량 상세 */
 .page_listdDtl {}
 .page_listdDtl .carName {text-align:center; font-size:24px; margin-top:30px !important}
-.page_listdDtl .date {text-align:center; display:flex; justify-content:center; line-height:40px;}
+.page_listdDtl .date {text-align:center; display:flex; justify-content:center; line-height:50px;}
 .page_listdDtl .date .calendar.next {width:150px; border:1px solid #ddd; border-right:0; border-radius:0; background:#fff; cursor:pointer; margin-left:5px; color:#0d6ffc; font-weight:bold;}
 .page_listdDtl .date .calendar.next::placeholder {font-weight:normal;}
 .page_listdDtl .date .hours.next {margin-right:5px; border:1px solid #ddd; cursor:pointer;}
@@ -87,7 +87,7 @@
 .page_listdDtl .payBox ul li.priceResult .right {color:#0d6ffc; font-size:20px;}
 .page_listdDtl .payBox ul li:last-child {border-bottom:0;}
 .page_listdDtl .payBox ul li .left { font-weight:500}
-.page_listdDtl .payBox ul li .right {position:absolute; right:0; top:20px;}
+.page_listdDtl .payBox ul li .right {position:absolute; right:0; top:20px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; width:295px; text-align:right;}
 .page_listdDtl .payBox .btn-carmore {margin-top:15px;}
 
 .page_listdDtl .mapInfo {padding-top:15px}
@@ -149,4 +149,6 @@
 	.page_rent .brand_logo {height:30px;}
 	.page_rent .rentcarList>ul>li .price,
 	.page_rent .rentcarList>ul>li .carName {font-size:13px}
+	
+	.page_listdDtl .payBox ul li .right {width:280px;}
 }

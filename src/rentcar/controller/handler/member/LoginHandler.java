@@ -21,12 +21,12 @@ public class LoginHandler implements Command {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("GET");
+			System.out.println("GET LoginHandler");
 
 			return "member/login.jsp";
 
 		} else {
-			System.out.println("POST");
+			System.out.println("POST LoginHandler");
 
 			String url = "member/login_fail.jsp";
 			String url2 = "member/login_lock.jsp";

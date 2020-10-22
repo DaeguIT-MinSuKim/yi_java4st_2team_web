@@ -8,15 +8,15 @@
 	<div class="admin_page">
 		<table border=1>
 			<tr>
-				<td>${brand.code }</td>
+				<td><input type="text" value="${brand.name }"></td>
 			</tr>
 			<tr>
-				<td>${brand.name }</td>
+				<td><img src="upload/${brand.image }"></td>
 			</tr>
 			<tr>
-				<td>${brand.image }</td>
+				<td><input type="file" name="uploadfile" class="list_file"></td>
 			</tr>
-			</table>
+		</table>
 	</div>
 </div>
 
