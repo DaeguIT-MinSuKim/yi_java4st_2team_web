@@ -36,10 +36,16 @@ function logo_hover() {
 
 	logo.on({
 		mouseenter : function() {
-			logo.find("img").attr("src", logo.find("img").attr("src").replace(str_logo, str_logo + "_hover"));
+			logo.find("img").attr(
+					"src",
+					logo.find("img").attr("src").replace(str_logo,
+							str_logo + "_hover"));
 		},
 		mouseleave : function() {
-			logo.find("img").attr("src",logo.find("img").attr("src").replace(str_logo + "_hover", str_logo));
+			logo.find("img").attr(
+					"src",
+					logo.find("img").attr("src").replace(str_logo + "_hover",
+							str_logo));
 		}
 	});
 }
@@ -182,24 +188,23 @@ function form_delete() {
 	$('.delete').on("click", function(e) {
 		e.preventDefault();
 		var chk_del = confirm("정말 삭제하시겠습니까?");
+		
 		if (chk_del == true) {
-
 			var url = $(this).parent("a").attr("href");
-//			alert(url);
 			location.href = url;
 		}
 	});
 }
 
 // 어드민 - 장기렌트 글쓰기
-function admin_writeCheck(){
-	if(document.frm.name.title.length == 0) {
+function admin_writeCheck() {
+	if (document.frm.name.title.length == 0) {
 		alert("제목을 입력해주세요.");
 		return false;
 	}
-//	if(document.frm.tel.value.length == 0) {
-//		alert("전화번호은 필수항목입니다.");
-//		return false;
-//	}
+	// if(document.frm.tel.value.length == 0) {
+	// alert("전화번호은 필수항목입니다.");
+	// return false;
+	// }
 	return true;
 }
