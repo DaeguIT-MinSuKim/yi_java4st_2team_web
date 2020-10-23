@@ -27,7 +27,7 @@ $(function(){
 					<input type="submit" value="검색">
 				</form>
 			</div>
-	
+			
 		<table class="table_style1">
 			<!-- 글 있는 경우 -->
 			<colgroup>

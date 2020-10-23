@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.Condition;
 
+import org.json.JSONArray;
+
 import rentcar.dao.impl.LongRentDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Event;
@@ -70,5 +72,12 @@ public class LongRentSerivce {
 		return dao.selectSearch(condition, keyword);
 	}
 	
+	public JSONArray getCountLongRent() {
+		return dao.getCountLongRent();
+	}
+	
+	public ArrayList<LongRent> selectLongRentChartList() {
+		return dao.selectLongRentChartList();
+	}
 	
 }

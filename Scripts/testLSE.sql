@@ -132,6 +132,28 @@ SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM NOTICE ORDER BY IS_TOP,
 SELECT * FROM LONGRENT WHERE NAME LIKE '%김%' ORDER BY WRITE_DATE DESC;
 
 
+--------------------------차트실험-------------------------------------------------------------------------------
 
+
+--월별 통계 구하기  (몇월(1개의 월만...), 몇건) 
+SELECT 
+COUNT(*) AS MON_COUNT,
+TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH
+FROM LONGRENT 
+WHERE
+WRITE_DATE >='2020-01-01' AND WRITE_DATE  < '2020-02-01'
+GROUP BY
+TO_CHAR(WRITE_DATE, 'MM');
+
+--월별 합계 구하기
+SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM');
+
+
+SELECT  no, name FROM LONGRENT;
+
+SELECT  extract(MONTH FROM write_date ) AS WRITE_MONTH
+FROM longrent;
+
+SELECT * FROM longrent;
 
 

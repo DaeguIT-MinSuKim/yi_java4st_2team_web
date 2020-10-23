@@ -3,6 +3,9 @@ package rentcar.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.json.JSONArray;
 
 import rentcar.dto.Event;
 import rentcar.dto.LongRent;
@@ -56,7 +59,10 @@ public interface LongRentDao {
 	List<LongRent> selectSearch(String condition, String keyword) ;
 
 	
+	//차트용
+	JSONArray getCountLongRent();
 
+	ArrayList<LongRent> selectLongRentChartList();
 	
 	
 }
