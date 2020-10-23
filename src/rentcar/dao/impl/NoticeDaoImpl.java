@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import rentcar.dao.NoticeDao;
 import rentcar.dto.LongRent;
@@ -153,6 +154,32 @@ public class NoticeDaoImpl implements NoticeDao {
 				return null;
 			}
 		
-
-
+		//검색 기능 구현
+		 @Override
+		 public ArrayList<Notice> selectSearchNotice(String condition, String keyword){
+			//select * from where title like '%?%'
+			//select * from where no like '%?%'
+			 String sql = "SELECT * FROM NOTICE";
+			 try {
+				 if(keyword != null && !keyword.isEmpty()) {
+					 sql += " where " + condition.trim() + " like '%"+keyword.trim()+"%' ORDER BY IS_TOP, WRITE_DATE asc";
+				 }else {
+					 //모든 레코드 검색
+					 sql += " ORDER BY IS_TOP, WRITE_DATE asc";
+				 }
+				 try(PreparedStatement pstmt = con.prepareStatement(sql);
+						 ResultSet rs = pstmt.executeQuery()){
+					 if(rs.next()) {
+						 ArrayList<Notice> list = new ArrayList<Notice>();
+						 do {
+							 list.add(getNotice(rs));
+						 }while(rs.next());
+						 return list;
+					 }
+				 }
+			 }catch(Exception e) {
+				 throw new CustomSQLException(e);
+			 }
+		 return null;
+		 }
 }

@@ -28,6 +28,8 @@ public interface NoticeDao {
 	int countNoticeByAll();
 
 	ArrayList<Notice> pagingNoticeByAll(Paging paging);
+
+	ArrayList<Notice> selectSearchNotice(String condition, String keyword);
 	
 	
 	

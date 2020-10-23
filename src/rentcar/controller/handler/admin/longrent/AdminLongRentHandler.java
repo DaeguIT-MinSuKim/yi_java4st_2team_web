@@ -19,7 +19,20 @@ public class AdminLongRentHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		if(request.getMethod().equalsIgnoreCase("post")) {
+			
+			String condition = request.getParameter("condition");
+			String keyword = request.getParameter("keyword");
+
+			List<LongRent> list = service.searchLongRentList(condition, keyword);
+//			System.out.println("검색결과 찍혀라!!!!!!!!!!!!!!!!!!!!!!!!!!" + list);
+			
+			request.setAttribute("list", list);
+
+			return "/admin/longrent/longrent.jsp";
+			
+		}else {
+			
 		String nowPage = request.getParameter("nowPage"); // 현재 페이지
 		String cntPerPage = "10"; // 페이지당 몇 개의 글을 보일지 저장
 		
@@ -52,6 +65,7 @@ public class AdminLongRentHandler implements Command {
 		
 		
 		return "/admin/longrent/longrent.jsp";
+		}
 	}
 
 }

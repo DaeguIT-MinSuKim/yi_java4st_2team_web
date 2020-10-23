@@ -47,6 +47,7 @@ $(function(){
 					<select name="condition">
 						<option value="name">이름</option>
 						<option value="title">제목</option>
+						<option value="contents">내용</option>
 					</select> 
 					<input type="text" name="keyword" title="검색어 입력"> 
 					<input type="hidden" name="no" value="${LongRent.no }"> 

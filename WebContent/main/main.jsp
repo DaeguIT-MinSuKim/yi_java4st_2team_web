@@ -165,7 +165,7 @@
 				<p class="price"><span>24H기준</span>60,000원</p>
 			</a></li> -->
 		</ul>
-		<p class="t4">상단 사량 포함 모은 차량 <span>장기렌트 상담</span> 가능합니다.</p>
+		<p class="t4">상단 차량 포함 모든 차종 <span>장기렌트 상담</span> 가능합니다.</p>
 	</div>
 	
 	<div id="mBanner">
@@ -184,7 +184,7 @@
 				<a href="notice.do">더보기</a>
 			</div>
 			<ul>
-				<c:forEach items="${noticeList}" var="notice" end="2">
+				<c:forEach items="${noticeList}" var="notice" end="3">
 					<li><a href="noticeView.do?no=${notice.no}">${notice.title }</a></li>
 				</c:forEach>
 				<li class="no_board tc">등록된 글이 없습니다.</li>
