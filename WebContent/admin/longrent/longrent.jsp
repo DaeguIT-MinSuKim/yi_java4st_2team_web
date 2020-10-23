@@ -14,6 +14,20 @@ $(function(){
 <div id="adimn_content">
 	<h2>장기렌트</h2>
 	<div class="admin_page">
+	
+		<div class="divSearch">
+				<form name="frmSearch" action="adminLongRent.do" method="post">
+					<select name="condition">
+						<option value="name">이름</option>
+						<option value="title">제목</option>
+						<option value="contents">내용</option>
+					</select> 
+					<input type="text" name="keyword" title="검색어 입력"> 
+					<input type="hidden" name="no" value="${LongRent.no }"> 
+					<input type="submit" value="검색">
+				</form>
+		</div>
+	
 		<table class="table_style1">
 			<!-- 글 있는 경우 -->
 			<colgroup>
@@ -87,5 +101,5 @@ $(function(){
 		</div>
 		</div>
 
-
+</div>
 <%@ include file="/admin/include/footer.jsp"%>

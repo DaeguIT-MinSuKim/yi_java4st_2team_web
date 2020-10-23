@@ -23,6 +23,4 @@ public class EventBoxService {
 		return dao.selectEventBoxFindCodeId(eventCode, id);
 	}
 	
-	
-
 }

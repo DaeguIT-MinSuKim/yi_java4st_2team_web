@@ -106,4 +106,24 @@ public class CarDaoImplTest {
 		Assert.assertNotNull(list);
 		System.out.println(list);
 	}
+
+	@Test
+	public void test10selectRentByNo() {
+		System.out.println("test10selectRentByNo");
+		LocalDateTime rent = LocalDateTime.of(2020, 10, 23, 0, 0);
+		
+		LocalDateTime return_d = LocalDateTime.of(2020, 10, 25, 0, 0);
+		
+		Car list = dao.selectRentByNo(rent, return_d, "11하5678");
+		Assert.assertNotNull(list);
+		System.out.println(list);
+	}
+
+	@Test
+	public void test11selectCarByRentCount() {
+		System.out.println("test11selectCarByRentCount");
+		List<Car> list = dao.selectCarByRentCount();
+		Assert.assertNotNull(list);
+		list.stream().forEach(System.out::println);
+	}
 }

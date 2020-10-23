@@ -3,6 +3,7 @@ package rentcar.dao;
 import java.util.ArrayList;
 
 import rentcar.dto.Event;
+import rentcar.dto.EventBox;
 import rentcar.utils.Paging;
 
 public interface EventDao {
@@ -30,4 +31,7 @@ public interface EventDao {
 	// 페이징
 	int countEventByAll();
 	ArrayList<Event> pagingEventAyAll(Paging paging);
+	
+	// 이벤트 - 한 회원이 갖고 있는 할인쿠폰 찾기 
+	ArrayList<Event> selectEventBoxFindMemberCoupon(String id);
 }

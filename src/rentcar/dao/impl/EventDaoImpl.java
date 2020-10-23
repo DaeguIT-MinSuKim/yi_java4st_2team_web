@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import rentcar.dao.EventDao;
 import rentcar.dto.Event;
+import rentcar.dto.EventBox;
 import rentcar.exception.CustomSQLException;
 import rentcar.utils.Paging;
 
@@ -192,4 +193,35 @@ public class EventDaoImpl implements EventDao {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Event> selectEventBoxFindMemberCoupon(String id) {
+		String sql = "SELECT E.NAME, E.SALE " + 
+					"FROM EVENT_BOX B, EVENT E " + 
+					"WHERE B.IS_EVENT = 'n' AND B.ID = ? AND B.EVENT_CODE = E.EVENT_CODE";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setString(1, id);
+			
+			try(ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					ArrayList<Event> list = new ArrayList<Event>();
+					do {
+						list.add(getMemberEvent(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	private Event getMemberEvent(ResultSet rs) throws SQLException {
+		Event event = new Event();
+		
+		event.setName(rs.getString("NAME"));
+		event.setSale(rs.getInt("SALE"));
+		
+		return event;
+	}
 }

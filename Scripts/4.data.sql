@@ -112,6 +112,22 @@ INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, T
 VALUES(LONGRENT_NO_SEQ.NEXTVAL,'K3TheNew 1년 장기렌트 문의드립니다.','풀옵션 경차 렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, SYSDATE,'100일','김동자','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT( TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('외제차 문의, 답변 빨리 주세요.','뚜껑열린 외제차를 렌트하고싶습니다. 연락주세요..................!!',DEFAULT, SYSDATE,'100일', '곽수정','010-1234-3333','3333','옵션없음');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('레이 3년 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-08-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김동자','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('그렌저 5년 장기렌트 문의드립니다.','  렌트 문의드립니다. 5년정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-02-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','최동자','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('BMW 1달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 1달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-02-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','문중희','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('벤츠 3달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 3달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-05-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','박민수','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('용달차 5달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-02-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김대훈','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('버스 5달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-03-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','이지수','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('소울 2달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-07-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','곽철두','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('투싼 2달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-01-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김동자','010-1234-2222','1111','후방카메라');
 SELECT * FROM LONGRENT;
 
 --공지사항
@@ -152,15 +168,9 @@ SELECT * FROM notice;
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('10월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'y');
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('11월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'n');
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('12월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'y');
+SELECT * FROM EVENT;
 
-
-
--- 할인 / 쿠폰
---INSERT INTO EVENT_BOX(EVENT_BOX, EVENT_CODE, ID, IS_EVENT) VALUES(1, 1, 'DJS000001', 'N');
-SELECT * FROM event_box;
-SELECT * FROM event;
-
-
-
-
+-- 이벤트 박스
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(1, 'dong');
+SELECT * FROM EVENT_BOX;
 

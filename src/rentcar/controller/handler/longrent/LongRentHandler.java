@@ -25,7 +25,7 @@ public class LongRentHandler implements Command {
 			String keyword = request.getParameter("keyword");
 
 			List<LongRent> list = service.searchLongRentList(condition, keyword);
-			System.out.println("검색결과 찍혀라!!!!!!!!!!!!!!!!!!!!!!!!!!" + list);
+//			System.out.println("검색결과 찍혀라!!!!!!!!!!!!!!!!!!!!!!!!!!" + list);
 			
 			request.setAttribute("list", list);
 

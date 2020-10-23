@@ -3,6 +3,8 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 
+<input type="hidden" id="loginUser" name="loginUser" value="${loginUser.getId()}">
+
 <div class="main_wrap box">
 	<div id="mVisual">
 		<div class="visu_slide">
@@ -85,87 +87,17 @@
 	
 		<ul>
 			<c:forEach items="${carList}" var="car" end="8">
-				<li><a href="#">
+				<li><a href="javascript:;" class="btn_mainRent">
+					<input type="hidden" name="carNo" value="${car.no}" class="carNo">
 					<div class="img_box">
 						<p class="name">${car.name}</p>
-						<c:if test="${car.kind.code eq 1}">
-							<div class="img"><img src="./images/rentcar/1/${car.image}"></div>
-						</c:if>
-						<c:if test="${car.kind.code eq 2}">
-							<div class="img"><img src="./images/rentcar/2/${car.image}"></div>
-						</c:if>
-						<c:if test="${car.kind.code eq 3}">
-							<div class="img"><img src="./images/rentcar/3/${car.image}"></div>
-						</c:if>
+						<div class="img"><img src="./images/rentcar/${car.kind.code}/${car.image}"></div>
 					</div>
 					<p class="price"><span>24H기준</span><fmt:formatNumber value="${car.kind.fare}"/>원</p>
 				</a></li>
 			</c:forEach>
-			<!-- <li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img1.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li>
-			<li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img2.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li>
-			<li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img3.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li>
-			<li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img1.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li>
-			<li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img2.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li>
-			<li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img3.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li>
-			<li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img1.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li>
-			<li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img2.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li>
-			<li><a href="#">
-				<div class="img_box">
-					<p class="name">K7</p>
-					<div class="img"><img src="images/main/mProduct_img3.jpg"></div>
-				</div>
-				<p class="price"><span>24H기준</span>60,000원</p>
-			</a></li> -->
 		</ul>
-		<p class="t4">상단 사량 포함 모은 차량 <span>장기렌트 상담</span> 가능합니다.</p>
+		<p class="t4">상단 차량 포함 모든 차종 <span>장기렌트 상담</span> 가능합니다.</p>
 	</div>
 	
 	<div id="mBanner">
@@ -184,7 +116,7 @@
 				<a href="notice.do">더보기</a>
 			</div>
 			<ul>
-				<c:forEach items="${noticeList}" var="notice" end="2">
+				<c:forEach items="${noticeList}" var="notice" end="3">
 					<li><a href="noticeView.do?no=${notice.no}">${notice.title }</a></li>
 				</c:forEach>
 				<li class="no_board tc">등록된 글이 없습니다.</li>
@@ -247,6 +179,35 @@
 			<div class="privacyBox">
 				<%@ include file="/include/privacy_inner.jsp"%>
 			</div>
+		</div>
+	</div>
+	<div class="bg popup_close_common"></div>
+</div>
+
+<div class="popup_common popup_mainRent">
+	<div class="con">
+		<div class="top">
+			<div class="title">
+				대여날짜 선택
+				<a href="javascript:;" class="popup_close_common">
+					<img src="./images/member/popup_close.svg" alt="팝업창 닫기">
+				</a>
+			</div>
+		</div>
+		<div class="btm">
+			<form class="mainCalendarBox">
+				<input type="hidden" name="carNoPopup" class="carNoPopup">
+				<input type="text" class="form-control calendar prev" readonly placeholder="렌트카 대여일 선택"> 
+				<select class="hours prev">
+					<!-- script.js/rent_optionHours(); 메서드 사용 -->
+				</select>
+				 <span>-</span> 
+				 <input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
+				 <select class="hours next">
+					<!-- script.js/rent_optionHours(); 메서드 사용 -->
+				</select>
+				<a href="javascript:;" class="btn btn-blue btn_mainCarRent">예약</a>
+			</form>
 		</div>
 	</div>
 	<div class="bg popup_close_common"></div>

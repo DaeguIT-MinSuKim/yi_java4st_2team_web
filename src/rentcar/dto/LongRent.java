@@ -15,12 +15,19 @@ public class LongRent {
 	private String pwd;
 	private String options;
 	private String repContent; //답변 내용
-	
+	private int write_month;
+	private int totalCount;
 	
 	public LongRent() {
 	}
 	
-	
+
+	public LongRent(int write_month, int totalCount) {
+		this.write_month = write_month;
+		this.totalCount = totalCount;
+	}
+
+
 
 	public LongRent(int no, String title, String contents, int repYn, Date writeDate, String rentTerm, String name,
 			String tel, String pwd, String options, String repContent) {
@@ -35,6 +42,27 @@ public class LongRent {
 		this.pwd = pwd;
 		this.options = options;
 		this.repContent = repContent;
+	}
+
+	
+
+	public int getWrite_month() {
+		return write_month;
+	}
+
+
+	public void setWrite_month(int write_month) {
+		this.write_month = write_month;
+	}
+
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
 
 

@@ -21,7 +21,18 @@ public class AdminNoticeHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		if (request.getMethod().equalsIgnoreCase("post")) {
+
+			String condition = request.getParameter("condition");
+			String keyword = request.getParameter("keyword");
+
+			List<Notice> list = service.selectSearchNotice(condition, keyword);
+			request.setAttribute("list", list);
+
+			return "/admin/notice/notice.jsp";
+			
+		}else {
+			
 		String nowPage = request.getParameter("nowPage"); // 현재 페이지
 		String cntPerPage = "13"; // 페이지당 몇 개의 글을 보일지 저장
 		
@@ -47,6 +58,7 @@ public class AdminNoticeHandler implements Command {
 		request.setAttribute("list", list);
 
 		return "/admin/notice/notice.jsp";
+		}
 	}
 
 }

@@ -50,4 +50,6 @@ $(function(){
 		$(".calendar.next").datepicker("option", "minDate", $(".date_minDateVal").text());
 	}
 	
+	
+	
 });
