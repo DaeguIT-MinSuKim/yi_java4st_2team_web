@@ -85,6 +85,7 @@ $(function(){
 			<a href="adminLongRent.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
 			</div>
 		</div>
+		</div>
 
 
 <%@ include file="/admin/include/footer.jsp"%>
