@@ -20,6 +20,21 @@ $(function(){
 		<div class="location pc">HOME <span>></span> 공지사항</div>
 		
 		<div class="notice_content">
+		
+			<div class="divSearch">
+				<form name="frmSearch" action="notice.do" method="post">
+					<select name="condition">
+						<option value="title">제목</option>
+						<option value="no">번호</option>
+						<option value="contents">내용</option>
+					</select> 
+					<input type="text" name="keyword" title="검색어 입력"> 
+					<input type="hidden" name="no" value="${Notice.no }"> 
+					<input type="submit" value="검색">
+				</form>
+			</div>
+		
+		
 			<table class="table_style1">
 				<!-- 글 있는 경우 -->
 				<colgroup>
@@ -39,7 +54,7 @@ $(function(){
 					<tr class="board">
 						<td>
 							<c:choose>
-								<c:when test="${Notice.isTop == 0 }"><span class="notice_board">공지</span></c:when>
+								<c:when test="${Notice.isTop == 0 }"><span class="notice_board">공지(${Notice.no})</span></c:when>
 								<c:when test="${Notice.isTop == 1 }">${Notice.no }</c:when>
 							</c:choose>
 						<td class="tl"><a href="noticeView.do?no=${Notice.no}">${Notice.title }</a></td>
