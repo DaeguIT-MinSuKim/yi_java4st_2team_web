@@ -1,11 +1,14 @@
 package rentcar.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dao.impl.NoticeDaoImpl;
 import rentcar.ds.JndiDS;
+import rentcar.dto.LongRent;
 import rentcar.dto.Notice;
+import rentcar.utils.Paging;
 
 public class NoticeSerivce {
 	private NoticeDaoImpl dao = NoticeDaoImpl.getInstance();
@@ -34,6 +37,15 @@ public class NoticeSerivce {
 	public int deleteNotice(int no) {
 		return dao.deleteNotice(no);
 	}
+	
+	// 페이징
+		public int countNoticeByall() {
+			return dao.countNoticeByAll();
+		}
+
+		public ArrayList<Notice> pagingNoticeByAll(Paging paging) {
+			return dao.pagingNoticeByAll(paging);
+		}
 	
 	
 }

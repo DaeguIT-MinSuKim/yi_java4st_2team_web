@@ -72,4 +72,7 @@ public class CarService {
 		return dao.selectRentByNo(rentDate, returnDate, no);
 	}
 
+	public boolean isCar(String no) {
+		return dao.isCar(no);
+	}
 }

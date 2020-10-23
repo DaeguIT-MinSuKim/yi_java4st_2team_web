@@ -1,7 +1,7 @@
 package rentcar.dao.impl;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
+
 import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,10 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import oracle.jdbc.OracleResultSet;
 import rentcar.dao.LongRentDao;
 import rentcar.dto.LongRent;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class LongRentDaoImpl implements LongRentDao {
 	private static final LongRentDaoImpl instance = new LongRentDaoImpl();
@@ -29,10 +32,12 @@ public class LongRentDaoImpl implements LongRentDao {
 	public void setCon(Connection con) {
 		this.con = con;
 	}
+	
+	//SELECT * FROM longrent ORDER BY WRITE_DATE desc
 
 	@Override
 	public ArrayList<LongRent> selectLongRentList() {
-		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT ORDER BY NO DESC";
+		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT ORDER BY WRITE_DATE desc";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				ArrayList<LongRent> list = new ArrayList<>();
@@ -106,17 +111,24 @@ public class LongRentDaoImpl implements LongRentDao {
 			String sql2 = "SELECT CONTENTS FROM LONGRENT "
 					+ "WHERE NO = (SELECT max(NO) FROM LONGRENT)";
 
+//			longrent.getContents()
+			
 			PreparedStatement pstmt2 = con.prepareStatement(sql2);
 			ResultSet rs = pstmt2.executeQuery();
 			if (rs.next()) {
 
-				Clob clob = (Clob) rs.getBlob(1);
+				System.out.println("CLOB 안된다 !!!!!!!!!!! 될거다 ");
+//				Clob cl = ((OracleResultSet)rs).getClob(1);
+//				 BufferedWriter writer = new BufferedWriter(cl.getCharacterOutputStream());
+//				 writer.write(longrent.getContents().toString());
+//				 writer.close();
 				
-				BufferedWriter bw = new BufferedWriter(clob.setCharacterStream(0L));
-				bw.write(longrent.getContents());
-				bw.close();
+//				BufferedWriter bw = new BufferedWriter(clob.setCharacterStream(0L));
+//				bw.write(longrent.getContents());
+//				bw.close();
 				
 			}
+			
 			// CLOB column에 데이터을 저장하였다면 commit()을 실행시키고  
 			con.commit();
 			// conn.setAutoCommit(true)로 다시 설정합니다.  
@@ -126,11 +138,7 @@ public class LongRentDaoImpl implements LongRentDao {
 			
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		return 0;
 	}
 
 	
@@ -239,22 +247,78 @@ public class LongRentDaoImpl implements LongRentDao {
 //		}return total_pages;
 //	}
 //
-//	private static int VIEW_ROWS = 5; //페이지의 개수
-//	private static int COUNTS = 5; //한 페이지에 나타낼 no의 개수
-//	
-//	@Override
-//	public String pageNumber(int tpage, String name) {
-//		String str = "";
-//		
-//		int total_pates
-//		
-//		return null;
-//	}
-//
-//	@Override
-//	public ArrayList<LongRent> listLongRent(int tpage, int no) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	
+	// 페이징
+		@Override
+		public int countLongRentByAll() {
+			String sql = "select count(*) from longrent";
+			try(PreparedStatement pstmt = con.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				throw new CustomSQLException(e);
+			}
+			return 0;
+		}
 
+		@Override
+		public ArrayList<LongRent> pagingLongRentByAll(Paging paging) {
+			String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM longrent ORDER BY WRITE_DATE desc) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+			try (PreparedStatement pstmt = con.prepareStatement(sql)){
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				try (ResultSet rs = pstmt.executeQuery()){
+					if (rs.next()) {
+						ArrayList<LongRent> list = new ArrayList<LongRent>();
+						do {
+							list.add(getLongRent(rs));
+						} while (rs.next());
+						return list;
+					}
+				}
+			} catch (SQLException e) {
+				throw new CustomSQLException(e);
+			}
+			return null;
+		}
+	
+		
+		
+	//검색
+	@Override
+	public List<LongRent> selectSearch(String condition, String keyword) {
+		//select * from where name like '%?%'
+		//select * from where title like'%?%'
+//			String sql = "SELECT * FROM LONGRENT WHERE NAME LIKE '%?%' ORDER BY WRITE_DATE DESC";
+		
+		String sql = "SELECT * FROM LONGRENT ";
+		//System.out.println("[SQL 1단계]" + sql);
+	//	System.out.println("컨디션: " + condition + " keyword: " + keyword);
+		try {
+			if(keyword != null && !keyword.isEmpty()) {
+			//	sql += "where" + condition.trim() + " like '%" || ? || '%' " + "order by write_date desc" ;
+				sql += " where " + condition.trim()+ " like '%"+keyword.trim()+"%' order by write_date desc";
+				
+			//	System.out.println("sql = 처음부분**********************!" + sql);
+			} else { //모든 레코드 검색 
+				sql += "ORDER BY WRITE_DATE DESC";
+			}
+			//System.out.println("[SQL 2단계]" + sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql); 
+				ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					ArrayList<LongRent> list = new ArrayList<>();
+					do {
+						list.add(getLongRent(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
 }

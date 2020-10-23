@@ -37,7 +37,7 @@ public class CarSearchHandler implements Command {
 			
 			List<Brand> brandList = bService.brandList();
 			request.setAttribute("brandList", brandList);
-
+			
 			return "/admin/car/carList.jsp";
 		} else {
 			System.out.println("POST");

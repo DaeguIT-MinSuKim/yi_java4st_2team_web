@@ -5,14 +5,39 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import rentcar.controller.Command;
+import rentcar.dto.Member;
 
 public class MypageHandler implements Command {
-	
-	@Override	
+
+	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "member/mypage.jsp";
+
+		if (request.getMethod().equalsIgnoreCase("GET")) {
+			System.out.println("GET MypageHandler");
+
+			HttpSession session = request.getSession();
+
+			Member loginUser = (Member) session.getAttribute("loginUser");
+			System.out.println("loginUser > " + loginUser);
+
+			if (loginUser != null) {
+				return "member/mypage_password.jsp";
+			} else {
+				response.sendRedirect("login.do");
+			}
+			return null;
+
+		} else {
+			System.out.println("POST MypageHandler");
+
+			return null;
+
+		}
+
 	}
+
 }

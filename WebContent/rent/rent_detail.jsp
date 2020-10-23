@@ -14,8 +14,7 @@
 </section>
 <!-- //상단배경 -->
 
-${insList }<br>
-${optList }
+<input type="hidden" name="get_carFare" id="get_carFare" value="${carDetail.getKind().getFare()}">
 
 <section class="con_wrap box">
 
@@ -32,19 +31,18 @@ ${optList }
 					</div>
 					<h4 class="carName">${carDetail.getName()}</h4>
 					<p class="date">
-						<span class="date_minDateVal">${minDate}</span> ${minHour}시 ~ 
+						<span class="date_minDateVal" id="get_minDate">${minDate}</span> ${minHour}시 ~ 
 						
 						<!-- 사용자가 이전페이지에서 반납일 선택했는지, 안했는지에 따라 구분 출력 -->
 						<c:choose>
-							<c:when test="${maxDate}==0">
+							<c:when test="${maxDate=='0'}">
 								<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
 								<select class="hours next"><!-- script.js/rent_optionHours(); 메서드 사용 --></select>
 							</c:when>
 							<c:otherwise>
-								<span>${maxDate}</span> ${maxHour}시
+								<span id="get_maxDate">${maxDate}</span>${maxHour}시
 							</c:otherwise>
 						</c:choose>
-						
 						(24시간)
 					</p>
 					
@@ -66,6 +64,7 @@ ${optList }
 								<c:forEach var="opt" items="${optList}">
 									<label><input type="checkbox" name="carOption" value="${opt.getCode()}" data-optPrice="${opt.getFare()}"><span>${opt.getName()}</span></label>
 								</c:forEach>
+								<input type="hidden" id="optResultPrice" name="optResultPrice" value="0">
 							</div>
 						</div>
 						<div class="form-group" id="get_discount">
@@ -157,6 +156,10 @@ ${optList }
 						<li>
 							<div class="left">할인/쿠폰</div>
 							<div class="right" id="set_discount"><span>0</span>원</div>
+						</li>
+						<li>
+							<div class="left">총 대여일</div>
+							<div class="right" id="set_day"><span>0</span>일</div>
 						</li>
 						<li class="priceResult">
 							<div class="left">총 결제금액</div>

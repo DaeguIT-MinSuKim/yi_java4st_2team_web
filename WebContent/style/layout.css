@@ -41,6 +41,7 @@
 	header .head h1 a {display:inline-block; height:50px; padding:5px 0; text-align:center;}
 	header .head h1 a img {display:block; height:100%;}
 	header .head .side {position:absolute; top:0; right:0; height:100%;}
+	header .head .side li:not(:nth-child(3)) {display:none;}
 	header .head .side .login {display:block; width:50px; height:50px; border:0; border-left:1px solid #ddd; background:url(../images/common/icon_login.png) 50% 50% no-repeat; background-size:40%;}
 	header .head .side .logout {display:block; width:50px; height:50px; border:0; border-left:1px solid #ddd; background:url(../images/common/icon_logout.png) 50% 50% no-repeat; background-size:40%;}
 	header .head .side .login span {display:none;}

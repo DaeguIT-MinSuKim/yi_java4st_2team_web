@@ -8,9 +8,6 @@
 	<div class="admin_page">
 		<table border=1>
 			<tr>
-				<td>${kind.code }</td>
-			</tr>
-			<tr>
 				<td>${kind.name }</td>
 			</tr>
 			<tr>
