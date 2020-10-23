@@ -12,6 +12,7 @@ import rentcar.dto.Car;
 import rentcar.dto.Ins;
 import rentcar.dto.Opt;
 import rentcar.service.CarService;
+import rentcar.service.EventBoxService;
 import rentcar.service.InsService;
 import rentcar.service.OptService;
 
@@ -19,6 +20,7 @@ public class RentDetailHandler implements Command {
 	private CarService carService = new CarService();
 	private InsService insService = new InsService();
 	private OptService OptService = new OptService();
+	private EventBoxService eventBoxService = new EventBoxService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -36,9 +38,10 @@ public class RentDetailHandler implements Command {
 			String carNo = request.getParameter("carNo");
 			Car res = carService.carDetail(carNo);
 			
-			// 보험, 옵션 정보 가져옴
+			// 보험, 옵션, 할인쿠폰 정보 가져옴
 			List<Ins> ins = insService.selectInsByAll();
 			List<Opt> opt = OptService.selectOptByAll();
+//			List<Opt> evt = eventBoxService.selectEventBoxFindMemberCoupon();
 			
 			request.setAttribute("minDate", minDate);
 			request.setAttribute("maxDate", maxDate);

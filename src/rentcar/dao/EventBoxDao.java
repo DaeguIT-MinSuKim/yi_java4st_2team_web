@@ -14,6 +14,9 @@ public interface EventBoxDao {
 	// 이벤트 보관함 - 아이디 및 쿠폰 코드 찾기
 	EventBox selectEventBoxFindCodeId(String eventCode, String id);
 	
+	// 이벤트 - 한 회원이 갖고 있는 할인쿠폰 찾기 
+	EventBox selectEventBoxFindMemberCoupon(String id);
+	
 	// 이벤트 찾기 - 코드
 	ArrayList<EventBox> selectEventBoxFindCode(String eventCode);
 	

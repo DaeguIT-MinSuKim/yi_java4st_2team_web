@@ -3,6 +3,8 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 
+<input type="hidden" id="loginUser" name="loginUser" value="${loginUser.getId()}">
+
 <div class="main_wrap box">
 	<div id="mVisual">
 		<div class="visu_slide">
