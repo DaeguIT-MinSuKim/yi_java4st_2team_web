@@ -10,6 +10,9 @@ public class rentDate {
 	String maxMonth;
 	String maxDay;
 	String maxHour;
+	
+	String carNo;
+	
 	public rentDate() {
 		// TODO Auto-generated constructor stub
 	}
@@ -119,7 +122,13 @@ public class rentDate {
 		this.maxHour = maxHour;
 	}
 
+	public String getCarNo() {
+		return carNo;
+	}
 
+	public void setCarNo(String carNo) {
+		this.carNo = carNo;
+	}
 
 	@Override
 	public String toString() {

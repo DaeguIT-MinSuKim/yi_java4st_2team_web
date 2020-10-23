@@ -75,4 +75,9 @@ public class CarService {
 	public boolean isCar(String no) {
 		return dao.isCar(no);
 	}
+	
+	// 차량 대여 횟수 순위
+	public List<Car> selectCarByRentCount(){
+		return dao.selectCarByRentCount();
+	}
 }

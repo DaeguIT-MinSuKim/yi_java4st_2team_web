@@ -375,6 +375,12 @@ function rentDetail_priceChange(){
 
 //메인 - 차량 예약
 function main_carRent(){
+	var carNo;
+	
+	$("#mProduct ul li").click(function(){
+		$(".carNoPopup").val($(this).find(".carNo").val())
+	})
+	
 	$(".btn_mainCarRent").on("click", function(){
 		var minDateVal = $(".calendar.prev").val().trim();
 		var maxDateVal = $(".calendar.next").val().trim();
@@ -390,6 +396,8 @@ function main_carRent(){
 		var maxYear = maxDateVal.split("-")[0];
 		var maxMonth = maxDateVal.split("-")[1];
 		var maxDay = maxDateVal.split("-")[2];
+		
+		carNo = $(".carNoPopup").val().trim()
 
 		if( minDateVal == "" ){ // 대여일 선택 안한 경우
 			alert("차량 대여일을 선택해주세요");
@@ -409,7 +417,8 @@ function main_carRent(){
 				maxYear:maxYear,
 				maxMonth:maxMonth,
 				maxDay:maxDay,
-				maxHour:maxHourVal
+				maxHour:maxHourVal,
+				carNo:carNo
 			};
 			console.log(params)
 			
@@ -420,7 +429,17 @@ function main_carRent(){
 				dataType:"json",
 				contentType:"application/json",
 				success:function(json){
-					alert("성공!")
+					console.log(json)
+					if (json == "noLogin") {
+						alert("로그인 후 예약이 가능합니다.");
+						window.location = "login.do";
+					} else {
+						if (json == null){
+							window.location = "rentDtl.do?carNo="+carNo+"&minDate="+minDateVal+"&minHour="+minHourVal+"&maxDate="+maxDateVal+"&maxHour="+maxHourVal;
+						} else {
+							alert("해당하는 차량은 예약이 불가능합니다.")
+						}
+					}
 				},
 				error:function(e){ // 에러날경우 에러메시지 보기
 					alert("AJAX 에러");

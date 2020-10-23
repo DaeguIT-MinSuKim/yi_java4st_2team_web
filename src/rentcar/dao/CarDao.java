@@ -42,5 +42,8 @@ public interface CarDao {
 
 	//차량추가 전 해당차량이 있을시 false값 반환
 	boolean isCar(String no); 
+	
+	// 차량 대여 횟수 순위
+	List<Car> selectCarByRentCount();
 
 }
