@@ -101,7 +101,7 @@ $(function(){
 			<a href="notice.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
 			</div>
 		</div>
-		
+	</div>	
 </div><!-- //컨텐츠 -->
 
 <%@ include file="/include/footer.jsp"%>

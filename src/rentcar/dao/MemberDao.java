@@ -3,6 +3,7 @@ package rentcar.dao;
 import java.util.ArrayList;
 
 import rentcar.dto.Member;
+import rentcar.utils.Paging;
 
 public interface MemberDao {
 
@@ -20,5 +21,10 @@ public interface MemberDao {
 
 	// 회원 탈퇴
 	int deleteMember(Member member);
+
+	// 페이징
+	int countMemberByAll();
+
+	ArrayList<Member> pagingMemberByAll(Paging paging);
 
 }

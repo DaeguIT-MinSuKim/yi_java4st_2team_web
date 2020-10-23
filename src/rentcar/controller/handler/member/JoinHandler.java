@@ -21,13 +21,13 @@ public class JoinHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getMethod().equalsIgnoreCase("GET")) {
+		if (request.getMethod().equalsIgnoreCase("GET JoinHandler")) {
 			System.out.println("GET");
 
 			return "member/join.jsp";
 
 		} else {
-			System.out.println("POST");
+			System.out.println("POST JoinHandler");
 
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			Member joinMember = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Member.class);

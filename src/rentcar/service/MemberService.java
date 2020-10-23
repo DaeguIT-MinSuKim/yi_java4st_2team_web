@@ -7,6 +7,7 @@ import rentcar.dao.MemberDao;
 import rentcar.dao.impl.MemberDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Member;
+import rentcar.utils.Paging;
 
 public class MemberService {
 
@@ -37,6 +38,15 @@ public class MemberService {
 
 	public int deleteMember(Member member) {
 		return dao.deleteMember(member);
+	}
+
+	// 페이징
+	public int countMemberByAll() {
+		return dao.countMemberByAll();
+	}
+
+	public ArrayList<Member> pagingMemberByAll(Paging paging) {
+		return dao.pagingMemberByAll(paging);
 	}
 
 }

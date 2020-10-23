@@ -1,8 +1,5 @@
 package rentcar.dao.impl;
 
-import java.io.BufferedWriter;
-
-import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +8,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import oracle.jdbc.OracleResultSet;
+import org.json.JSONArray;
+
 import rentcar.dao.LongRentDao;
+import rentcar.ds.JndiDS;
 import rentcar.dto.LongRent;
 import rentcar.exception.CustomSQLException;
 import rentcar.utils.Paging;
@@ -35,6 +34,43 @@ public class LongRentDaoImpl implements LongRentDao {
 	
 	//SELECT * FROM longrent ORDER BY WRITE_DATE desc
 
+	//차트용
+	@Override
+	public JSONArray getCountLongRent() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		JSONArray jsonArray = new JSONArray();
+		
+		JSONArray colNameArray = new JSONArray(); //컬 타이틀 설정
+		colNameArray.put("해당 월");
+		colNameArray.put("월별 건수");
+		jsonArray.put(colNameArray);
+		
+		try {
+			con = JndiDS.getConnection();
+			//sql="SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
+			sql="SELECT  no, name FROM LONGRENT";
+			pstmt = con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				JSONArray rowArray = new JSONArray();
+				rowArray.put(rs.getString("NAME"));
+				rowArray.put(rs.getInt("no"));
+//				rowArray.put(rs.getString("WRITE_MONTH"));
+//				rowArray.put(rs.getInt("MON_COUNT"));
+				
+				jsonArray.put(rowArray);
+			}//while
+		}catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+		
+	
 	@Override
 	public ArrayList<LongRent> selectLongRentList() {
 		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT ORDER BY WRITE_DATE desc";
@@ -43,6 +79,23 @@ public class LongRentDaoImpl implements LongRentDao {
 				ArrayList<LongRent> list = new ArrayList<>();
 				do {
 					list.add(getLongRent(rs));
+				} while (rs.next());
+				return list;
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	@Override
+	public ArrayList<LongRent> selectLongRentChartList() {
+		String sql = "SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				ArrayList<LongRent> list = new ArrayList<>();
+				do {
+					list.add(getLongRentChart(rs));
 				} while (rs.next());
 				return list;
 			}
@@ -67,6 +120,14 @@ public class LongRentDaoImpl implements LongRentDao {
 		String repContent = rs.getString("REP_CONTENT");
 
 		return new LongRent(no, title, contents, repYn, writeDate, rentTerm, name, tel, pwd, options, repContent);
+	}
+	
+	private LongRent getLongRentChart(ResultSet rs) throws SQLException {
+	//NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT		
+		int write_month = rs.getInt("write_month");
+		int totalCount = rs.getInt("totalCount");
+		
+		return new LongRent(write_month, totalCount);
 	}
 
 	@Override
@@ -321,4 +382,5 @@ public class LongRentDaoImpl implements LongRentDao {
 		}
 		return null;
 	}
+
 }

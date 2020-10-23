@@ -34,6 +34,7 @@ public class MypagePasswordHandler implements Command {
 			if (loginUser.getPwd().equals(pwd)) {
 				request.setAttribute("loginUser", loginUser);
 				return "member/mypage.jsp";
+				//return "mypage/modify.jsp";
 			}
 			request.setAttribute("loginUser", loginUser);
 
