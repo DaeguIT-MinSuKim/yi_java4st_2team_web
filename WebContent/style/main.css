@@ -256,3 +256,13 @@
 	#mBoard ul.online li a {padding-right:75px;}
 	#mBoard ul.online li a .comment {width:70px; line-height:22px}
 }
+
+
+/* 대여 날짜 팝업 */
+.popup_common.popup_mainRent .con {height:auto; top:50%; transform:translateY(-50%)}
+.mainCalendarBox select {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:pointer;}
+.mainCalendarBox .btn-blue {margin-left:5px; height:50px; line-height:50px;}
+.mainCalendarBox {display:flex; max-width:600px; margin:0 auto;}
+.mainCalendarBox span {height:50px; line-height:50px; padding:0 3px;}
+.mainCalendarBox .calendar[readonly] {background:#fff !important; height:50px; line-height:50px; border-radius:0; cursor:pointer;}
+.ui-widget-content {z-index:9000 !important}

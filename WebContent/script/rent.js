@@ -11,6 +11,8 @@ $(function(){
 	
 	rent_form_goDtl(); // 단기렌트 - 차량 상세로 submit (차량리스트 호출 시 동시 실행함)
 //	numberWithCommas(); // 3자리 단위 콤마 찍기  (특정 부분만 사용)
+	
+	main_carRent() // 메인 - 자동차 렌트
 });
 
 //3자리 단위 콤마 찍기
@@ -371,3 +373,79 @@ function rentDetail_priceChange(){
 	}
 }
 
+//메인 - 차량 예약
+function main_carRent(){
+	var carNo;
+	
+	$("#mProduct ul li").click(function(){
+		$(".carNoPopup").val($(this).find(".carNo").val())
+	})
+	
+	$(".btn_mainCarRent").on("click", function(){
+		var minDateVal = $(".calendar.prev").val().trim();
+		var maxDateVal = $(".calendar.next").val().trim();
+		var minHourVal = $(".calendar.prev").next(".hours").val();
+		var maxHourVal = $(".calendar.next").next(".hours").val();
+		
+		// 대여일 자르기
+		var minYear = minDateVal.split("-")[0];
+		var minMonth = minDateVal.split("-")[1];
+		var minDay = minDateVal.split("-")[2];
+		
+		// 반납일 자르기
+		var maxYear = maxDateVal.split("-")[0];
+		var maxMonth = maxDateVal.split("-")[1];
+		var maxDay = maxDateVal.split("-")[2];
+		
+		carNo = $(".carNoPopup").val().trim()
+
+		if( minDateVal == "" ){ // 대여일 선택 안한 경우
+			alert("차량 대여일을 선택해주세요");
+			return false
+			
+		} else if( maxDateVal == "" ){
+			alert("차량 반납일 선택해주세요");
+			return false
+			
+		} else{     // 대여일 선택
+			
+			var params = {
+				minYear:minYear,
+				minMonth:minMonth,
+				minDay:minDay,
+				minHour:minHourVal,
+				maxYear:maxYear,
+				maxMonth:maxMonth,
+				maxDay:maxDay,
+				maxHour:maxHourVal,
+				carNo:carNo
+			};
+			console.log(params)
+			
+			$.ajax({
+				type:"POST",
+				url:"rentDtlMain.do",
+				data:JSON.stringify(params),
+				dataType:"json",
+				contentType:"application/json",
+				success:function(json){
+					console.log(json)
+					if (json == "noLogin") {
+						alert("로그인 후 예약이 가능합니다.");
+						window.location = "login.do";
+					} else {
+						if (json == null){
+							window.location = "rentDtl.do?carNo="+carNo+"&minDate="+minDateVal+"&minHour="+minHourVal+"&maxDate="+maxDateVal+"&maxHour="+maxHourVal;
+						} else {
+							alert("해당하는 차량은 예약이 불가능합니다.")
+						}
+					}
+				},
+				error:function(e){ // 에러날경우 에러메시지 보기
+					alert("AJAX 에러");
+					console.log(e.responseText);
+				}
+			});
+		};
+	});
+};
