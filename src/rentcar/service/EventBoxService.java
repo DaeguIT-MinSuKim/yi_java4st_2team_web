@@ -23,8 +23,4 @@ public class EventBoxService {
 		return dao.selectEventBoxFindCodeId(eventCode, id);
 	}
 	
-	public EventBox selectEventBoxFindMemberCoupon(String id) {
-		return dao.selectEventBoxFindMemberCoupon(id);
-	}
-
 }

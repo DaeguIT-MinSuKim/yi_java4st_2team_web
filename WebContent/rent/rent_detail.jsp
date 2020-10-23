@@ -14,6 +14,8 @@
 </section>
 <!-- //상단배경 -->
 
+${evtList}
+
 <input type="hidden" name="get_carFare" id="get_carFare" value="${carDetail.getKind().getFare()}">
 
 <section class="con_wrap box">
@@ -71,9 +73,14 @@
 							<label class="col-sm-2">할인/쿠폰</label>
 							<div class="col-sm-10">
 								<select name="cel1" class="selectpicker show-tick form-control">
-									<option value="" selected="selected">이벤트할인</option>
+									<%-- <c:forEach var="evt" items="${evtList}">
+										<label><input type="checkbox" name="carOption" value="${opt.getCode()}" data-optPrice="${opt.getFare()}"><span>${opt.getName()}</span></label>
+										<option value="">이벤트할인</option>
+									</c:forEach> --%>
 									<option value="">이벤트할인</option>
 								</select>
+								
+								
 								<!-- 
 									사용가능한 할인/쿠폰이 없습니다.
 								 -->

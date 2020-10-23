@@ -33,10 +33,10 @@ public class RentHandler implements Command {
 			HttpSession session = request.getSession();
 			Member loginUser = (Member) session.getAttribute("loginUser");
 			
-//			if(loginUser==null) { // 로그인 했을때만 들어오도록
-//				response.sendRedirect("login.do");
-//				return null;
-//			}else {
+			if(loginUser==null) { // 로그인 했을때만 들어오도록
+				response.sendRedirect("login.do");
+				return null;
+			}else {
 				// 최초 시작시 차량정보 GET
 				List<Car> car = carService.carList();
 				// 최초 시작시 차량정보 GET (화면에서 차량리스트에 뿌림)
@@ -45,7 +45,7 @@ public class RentHandler implements Command {
 				// 최초 시작시 차량분류 GET (화면에서 탭버튼에 뿌림)
 				List<Kind> kind = KindService.kindList();
 				request.setAttribute("kind", kind);
-//			}
+			}
 		
 		} else { // POST
 			

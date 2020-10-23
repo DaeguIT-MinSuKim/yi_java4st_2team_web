@@ -117,23 +117,5 @@ public class EventBoxDaoImpl implements EventBoxDao {
 	}
 	
 	
-	@Override
-	public EventBox selectEventBoxFindMemberCoupon(String id) {
-		String sql = "SELECT E.NAME, E.SALE " + 
-					"FROM EVENT_BOX B, EVENT E " + 
-					"WHERE B.IS_EVENT = 'n' AND B.ID = ? AND B.EVENT_CODE = E.EVENT_CODE";
-		try(PreparedStatement pstmt = con.prepareStatement(sql)){
-			pstmt.setString(1, id);
-			
-			try(ResultSet rs = pstmt.executeQuery()){
-				if (rs.next()) {
-					return getEventBox(rs);
-				}
-			}
-			
-		} catch (SQLException e) {
-			throw new CustomSQLException(e);
-		}
-		return null;
-	}
+	
 }
