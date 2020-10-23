@@ -3,6 +3,7 @@ $(window).load(function(){
 	
 	// 메인 - 개인정보취급방침 팝업창  
     ani_popup( $('.btn_mainPrivacy'), $('.popup_mainPrivacy').eq(0), 'top');
+    ani_popup( $('.btn_mainRent'), $('.popup_mainRent').eq(0), 'top');
     
     
 });
