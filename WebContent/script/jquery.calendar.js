@@ -47,7 +47,15 @@ $(function(){
 	
 	// 단기렌트 상세에서 반납일 인풋만 있을 경우
 	if( $(".calendar.next").length > 0 && $(".calendar.prev").length == 0 ){
-		$(".calendar.next").datepicker("option", "minDate", $(".date_minDateVal").text());
+		
+		// 한 차량에 대한 최대 대여일이 없을 경우
+		if( $("#get_maxDateLimit").val()==null || $("#get_maxDateLimit").val()=="" ){
+			$(".calendar.next").datepicker("option", "minDate", $(".date_minDateVal").text());
+		}else{ // 있을 경우
+			$(".calendar.next").datepicker("option", "minDate", $(".date_minDateVal").text());
+			$(".calendar.next").datepicker("option", "maxDate", $("#get_maxDateLimit").val().split("T")[0]);
+		}
+		
 	}
 	
 	

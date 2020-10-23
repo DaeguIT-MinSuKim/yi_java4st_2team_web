@@ -307,7 +307,7 @@ function rentDetail_priceChange(){
 				chk_price = $get_opt.find("label").eq(i).find("input:checked").attr("data-optPrice");
 				get_price += !isNaN(chk_price) ? parseInt(chk_price) : parseInt(chk_price = 0); // 숫자가 아닌경우에 0으로 처리
 			}
-			
+			get_name = get_name=="" ? get_name="선택안함" : get_name;
 			$set_opt.text(get_name); // 조합된 옵션명 화면에 뿌림
 			$el_id_optResultPrice.val(get_price); // 총금액 값 input에 넣음
 	
@@ -320,6 +320,10 @@ function rentDetail_priceChange(){
 		});
 		
 		// 할인/쿠폰 (셀렉박스)
+		$get_dis.find("select").change(function(){
+			$set_dis.text($(this).val());
+			calculator();
+		});
 		
 		
 		// 총 렌트대여날짜 계산하기 (반납일 - 대여일)
@@ -348,13 +352,13 @@ function rentDetail_priceChange(){
 		function calculator(){
 			var insPay = parseInt($get_ins.find("input:checked").attr("data-insPrice"));
 			var optPay = parseInt($el_id_optResultPrice.val());
-			var disPay = parseInt(0);
+			var disPay = parseInt($get_dis.find("select").val());
 			
 			// 숫자가 맞는지 체크
 			insPay = !isNaN(insPay) ? insPay : insPay=0;
 			optPay = !isNaN(optPay) ? optPay : optPay=0;
 			disPay = !isNaN(disPay) ? disPay : disPay=0;
-
+			
 			// 렌트 총 날짜 * 금액 계산			
 			calculator_date();
 			var carPay = parseInt($get_carFare.val()) * parseInt($set_day.text());

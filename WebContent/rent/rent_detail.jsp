@@ -7,16 +7,15 @@
 <section class="bgTop bgSub1 pc">
 	<div class="slogan">
 		<p>
-			<strong>동자승 렌터카</strong> 따라올 수 없는 압도적 1등<br> 이제부터 렌트카 예약은
+			<strong>동자승 렌터카</strong> 따라올 수 없는 압도적 1등<br> 이제부터 렌터카 예약은
 			동자승렌터카입니다.
 		</p>
 	</div>
 </section>
 <!-- //상단배경 -->
 
-${evtList}
-
 <input type="hidden" name="get_carFare" id="get_carFare" value="${carDetail.getKind().getFare()}">
+<input type="hidden" name="get_maxDateLimit" id="get_maxDateLimit" value="${maxDateLimit.getReturn_date()}">
 
 <section class="con_wrap box">
 
@@ -38,7 +37,7 @@ ${evtList}
 						<!-- 사용자가 이전페이지에서 반납일 선택했는지, 안했는지에 따라 구분 출력 -->
 						<c:choose>
 							<c:when test="${maxDate=='0'}">
-								<input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
+								<input type="text" class="form-control calendar next" readonly placeholder="렌터카 반납일 선택">
 								<select class="hours next"><!-- script.js/rent_optionHours(); 메서드 사용 --></select>
 							</c:when>
 							<c:otherwise>
@@ -49,11 +48,12 @@ ${evtList}
 					</p>
 					
 					<hr>
-						
+					
 					<form class="form-horizontal formDtl" role="form" name="frmName">
 						<div class="form-group" id="get_insurance">
 							<label class="col-sm-2">보험</label>
 							<div class="col-sm-10">
+								<label><input type="radio" name="insurance" value="0" data-insPrice="0" checked><span>선택안함</span></label>
 								<c:forEach var="ins" items="${insList}">
 									<label><input type="radio" name="insurance" value="${ins.getCode()}" data-insPrice="${ins.getFare() }"><span>${ins.getName()}</span></label>
 								</c:forEach>
@@ -72,15 +72,19 @@ ${evtList}
 						<div class="form-group" id="get_discount">
 							<label class="col-sm-2">할인/쿠폰</label>
 							<div class="col-sm-10">
-								<select name="cel1" class="selectpicker show-tick form-control">
-									<%-- <c:forEach var="evt" items="${evtList}">
-										<label><input type="checkbox" name="carOption" value="${opt.getCode()}" data-optPrice="${opt.getFare()}"><span>${opt.getName()}</span></label>
-										<option value="">이벤트할인</option>
-									</c:forEach> --%>
-									<option value="">이벤트할인</option>
+								<select class="selectpicker show-tick form-control">
+									<c:choose>
+										<c:when test="${evtList==null}">
+											<option value="0">쿠폰없음</option>
+										</c:when>
+										<c:otherwise>
+											<option value="0">사용하지 않음</option>
+											<c:forEach var="evt" items="${evtList}">
+												<option value="${evt.getSale()}">${evt.getName()} (${evt.getSale()}원)</option>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 								</select>
-								
-								
 								<!-- 
 									사용가능한 할인/쿠폰이 없습니다.
 								 -->
@@ -134,7 +138,7 @@ ${evtList}
 								아래의 내용을 유의해주세요!<br>1. 운전자 대여 조건<br>-운전 면허 취득한 지 1년
 								이상인지<br>-내 나이가 예약할 차량의 자차보험 나이 조건에 맞는지<br>조건에 맞지 않아
 								현장 배차가 불가능한 경우 수수료가 발생합니다 T.T<br>
-								<br>2. 업체 영업 시간 외 인수 &amp; 반납<br>렌트카 업체의 영업 시간보다 일찍
+								<br>2. 업체 영업 시간 외 인수 &amp; 반납<br>렌터카 업체의 영업 시간보다 일찍
 								혹은 늦게 인수 &amp; 반납하는 것을 말합니다. 필요할 경우, 동자승 고객센터를 통한 상담 후 예약해주시길
 								바랍니다.<br>
 								<br>3. 조기반납<br>앱을 통해 예약한 시간보다 일찍 반납하는 것을 말합니다. 필요 시
@@ -158,7 +162,7 @@ ${evtList}
 						</li>
 						<li>
 							<div class="left">옵션</div>
-								<div class="right" id="set_option" data-setOpt="">선택안함</div>
+								<div class="right" id="set_option">선택안함</div>
 						</li>
 						<li>
 							<div class="left">할인/쿠폰</div>

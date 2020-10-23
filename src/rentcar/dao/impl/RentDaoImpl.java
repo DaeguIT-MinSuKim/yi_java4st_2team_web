@@ -85,6 +85,12 @@ public class RentDaoImpl implements RentDao {
 
 		return r;
 	}
+	
+	private Rent getMaxDateLimit(ResultSet rs) throws SQLException {
+		Rent r = new Rent();
+		r.setReturn_date(rs.getTimestamp("RETURN_DATE").toLocalDateTime());
+		return r;
+	}
 
 	@Override
 	public List<Rent> selectRentByAll() {
@@ -121,7 +127,25 @@ public class RentDaoImpl implements RentDao {
 		}
 		return null;
 	}
-
+	
+	@Override
+	public Rent selectRentByDate(String id) {
+		String sql = "SELECT min(return_date) AS RETURN_DATE FROM RENT WHERE CAR_NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, id);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return getMaxDateLimit(rs);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		} catch (NullPointerException e) {
+			return new Rent(0);
+		}
+		return null;
+	}
+	
 	@Override
 	public int insertRent(Rent rent) {
 		String sql = "INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values(?, ?, ?, to_date(?,'YYYY-MM-DD HH24:MI:SS'), to_date(?,'YYYY-MM-DD HH24:MI:SS'), ?, ?, ?)";

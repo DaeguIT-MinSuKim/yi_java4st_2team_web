@@ -16,4 +16,6 @@ public interface RentDao {
 	int updateRent(Rent rent);
 	//대여정보 삭제하기
 	int deleteRent(Rent rent);
+	// 한 차량에 대한 대여가능일 불러오기
+	Rent selectRentByDate(String id);
 }

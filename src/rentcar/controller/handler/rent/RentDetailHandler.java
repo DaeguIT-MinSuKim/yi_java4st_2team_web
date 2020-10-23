@@ -15,16 +15,19 @@ import rentcar.dto.Event;
 import rentcar.dto.Ins;
 import rentcar.dto.Member;
 import rentcar.dto.Opt;
+import rentcar.dto.Rent;
 import rentcar.service.CarService;
 import rentcar.service.EventService;
 import rentcar.service.InsService;
 import rentcar.service.OptService;
+import rentcar.service.RentService;
 
 public class RentDetailHandler implements Command {
 	private CarService carService = new CarService();
 	private InsService insService = new InsService();
 	private OptService OptService = new OptService();
 	private EventService eventService = new EventService();
+	private RentService rentService = new RentService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -50,7 +53,9 @@ public class RentDetailHandler implements Command {
 			Member loginUser = (Member) session.getAttribute("loginUser");
 			String id = loginUser.getId();
 			ArrayList<Event> evt = eventService.selectEventBoxFindMemberCoupon(id);
-			System.out.println(evt);
+			
+			// 한 차량에 대한 최대 대여 가능일 가져옴
+			Rent ren = rentService.selectRentByDate(carNo);
 			
 			request.setAttribute("minDate", minDate);
 			request.setAttribute("maxDate", maxDate);
@@ -60,6 +65,7 @@ public class RentDetailHandler implements Command {
 			request.setAttribute("insList", ins);
 			request.setAttribute("optList", opt);
 			request.setAttribute("evtList", evt);
+			request.setAttribute("maxDateLimit", ren);
 		}
 		
 		return "/rent/rent_detail.jsp";

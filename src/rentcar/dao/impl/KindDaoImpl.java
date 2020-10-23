@@ -37,7 +37,7 @@ public class KindDaoImpl implements KindDao {
 
 	@Override
 	public List<Kind> selectKindByAll() {
-		String sql = "SELECT * FROM KIND";
+		String sql = "SELECT * FROM KIND ORDER BY KIND_CODE";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				List<Kind> list = new ArrayList<Kind>();

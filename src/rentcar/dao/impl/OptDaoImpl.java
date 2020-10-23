@@ -37,7 +37,7 @@ public class OptDaoImpl implements OptDao {
 
 	@Override
 	public List<Opt> selectOptByAll() {
-		String sql = "SELECT * FROM OPTIONS";
+		String sql = "SELECT * FROM OPTIONS ORDER BY OPT_CODE";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				List<Opt> list = new ArrayList<Opt>();
