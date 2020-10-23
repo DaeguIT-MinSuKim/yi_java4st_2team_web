@@ -29,7 +29,7 @@ $(function() {
 				tel : $('#tel').val(),
 				pwd : $('#pwd').val(),
 				title : $('#title').val(),
-				contents : $('#contents_ckeditor').val(),
+				contents : CKEDITOR.instances.contents_ckeditor.getData(),
 				options : chkStr
 			};
 
@@ -60,11 +60,12 @@ $(function() {
 			<form method="post" name="frm">
 				<div>
 					<div class="input_col3">
-						<input type="text" name="m_name" value="${param.m_name}" id="name">
-						<input type="text" name="m_tel" value="${param.m_tel}" id="tel">
+						<input type="text" name="name" placeholder="이름" id="name">
+						<input type="text" name="tel" placeholder="연락처" id="tel">
 						<input type="password" name="pwd" placeholder="비밀번호 " id="pwd">
 					</div>
 					<input type="text" class="mt5" name="title" placeholder="제목을 입력해주세요" id="title">
+					<input type="button" value="희망차종, 희망계약기간 등 자유롭게 문의 사항 작성해주시면, 빠른 답변 및 연락 드리겠습니다. ">
 					<textarea class="write_content mt5" name="contents" id="contents_ckeditor"></textarea>
 					<div class="option_check" id="options">
 						<label><input type="checkbox" name="chBoxName" value="후방 카메라" > 후방 카메라</label>
@@ -80,6 +81,7 @@ $(function() {
 					<li><a href="longRent.do" class="btn_small btn_case4">취소</a></li>
 					<li><a href="javascript:;" class="btn_small btn_case2" id="add">확인</a></li>
 				</ul>
+				
 			</form>
 		</div>
 	</div>
