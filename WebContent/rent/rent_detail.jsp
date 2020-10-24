@@ -177,12 +177,15 @@
 							<div class="right" id="set_total"><span>0</span>원</div>
 						</li>
 					</ul>
+					<div class="text">
+						차량 대여일이 <span class="c_red">15일 이상</span>일 경우,<br>장기렌트로 예약하면 가격이 저렴합니다.
+						<a href="longRent.do">> 장기렌트로 예약하기</a>
+					</div>
 					<a href="rentEnd.do" class="btn-carmore btn_payBox_submit">예약하기</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- //컨텐츠 -->
-
 
 	<%@ include file="/include/footer.jsp"%>

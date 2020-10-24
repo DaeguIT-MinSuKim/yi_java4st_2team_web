@@ -43,6 +43,15 @@ $(function(){
 //	$(".calendar.next").datepicker("option", "minDate", $(".calendar.prev").val());
 	$(".calendar.next").datepicker("option", "onClose", function ( selectedDate ) {
 		$('.calendar.prev').datepicker("option", "maxDate", selectedDate );
+		
+			
+		// 대여 날짜 15일 이상이면 장기렌트로 유도하는 글자 표시
+		var dayChk = parseInt($("#set_day>span").text());
+		if(dayChk >= 15){ 
+			$(".payBox .text").show();
+		}else{
+			$(".payBox .text").hide();
+		}
     });
 	
 	// 단기렌트 상세에서 반납일 인풋만 있을 경우

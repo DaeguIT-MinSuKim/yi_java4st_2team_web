@@ -324,6 +324,7 @@ function rentDetail_priceChange(){
 			$set_dis.text($(this).val());
 			calculator();
 		});
+	
 		
 		
 		// 총 렌트대여날짜 계산하기 (반납일 - 대여일)

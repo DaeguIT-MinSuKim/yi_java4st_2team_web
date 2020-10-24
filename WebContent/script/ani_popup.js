@@ -6,6 +6,8 @@ $(window).load(function(){
     ani_popup( $('.btn_mainRent'), $('.popup_mainRent').eq(0), 'top');
     
     
+	// 단기렌트 - 예약하기
+	ani_popup( $('.btn_mainRent'), $('.popup_mainRent').eq(0), 'top');
 });
 
 function ani_popup(btn, popup, direction){
@@ -69,7 +71,7 @@ function ani_popup(btn, popup, direction){
         
         // 공통 요소
         function showFn(){
-        	bg.fadeIn(1000);
+        	bg.fadeIn(400);
         	$("html, body").css({overflow:"hidden"});
         }
         
