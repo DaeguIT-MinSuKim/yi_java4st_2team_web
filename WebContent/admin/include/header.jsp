@@ -111,7 +111,7 @@
 
 <nav id="admin_gnb">
 	<ul>
-		<li><a href="#">단기렌트 관리</a></li>
+		<li><a href="adminRent.do">단기렌트 관리</a></li>
 		<li><a href="#">차량관리</a>
 			<ul>
 				<li><a href="carList.do">차량정보</a></li>

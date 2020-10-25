@@ -310,41 +310,41 @@ public class LongRentDaoImpl implements LongRentDao {
 //
 	
 	// 페이징
-		@Override
-		public int countLongRentByAll() {
-			String sql = "select count(*) from longrent";
-			try(PreparedStatement pstmt = con.prepareStatement(sql);
-					ResultSet rs = pstmt.executeQuery()){
-				if (rs.next()) {
-					return rs.getInt(1);
-				}
-			} catch (SQLException e) {
-				throw new CustomSQLException(e);
+	@Override
+	public int countLongRentByAll() {
+		String sql = "select count(*) from longrent";
+		try(PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			if (rs.next()) {
+				return rs.getInt(1);
 			}
-			return 0;
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
 		}
+		return 0;
+	}
 
-		@Override
-		public ArrayList<LongRent> pagingLongRentByAll(Paging paging) {
-			String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM longrent ORDER BY WRITE_DATE desc) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
-			try (PreparedStatement pstmt = con.prepareStatement(sql)){
-				pstmt.setInt(1, paging.getStart());
-				pstmt.setInt(2, paging.getEnd());
-				try (ResultSet rs = pstmt.executeQuery()){
-					if (rs.next()) {
-						ArrayList<LongRent> list = new ArrayList<LongRent>();
-						do {
-							list.add(getLongRent(rs));
-						} while (rs.next());
-						return list;
-					}
+	@Override
+	public ArrayList<LongRent> pagingLongRentByAll(Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM longrent ORDER BY WRITE_DATE desc) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					ArrayList<LongRent> list = new ArrayList<LongRent>();
+					do {
+						list.add(getLongRent(rs));
+					} while (rs.next());
+					return list;
 				}
-			} catch (SQLException e) {
-				throw new CustomSQLException(e);
 			}
-			return null;
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
 		}
-	
+		return null;
+	}
+
 		
 		
 	//검색

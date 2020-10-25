@@ -69,7 +69,7 @@ $(function(){
 		<!-- <a href="#" class="btn_small btn_case2 floatR mt10">답글쓰기</a> -->
 			
 		
-			<div class="board_list_page clear">
+		<div class="board_list_page clear">
 			<a href="adminLongRent?nowPage=1" class="first arrow"><span class="text_hidden">처음</span></a>
 			<c:if test="${paging.nowPage != 1}">
 				<a href="adminLongRent.do?nowPage=${paging.nowPage-1}" class="prev arrow"><span class="text_hidden">이전</span></a>
@@ -99,7 +99,6 @@ $(function(){
 			<a href="adminLongRent.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
 			</div>
 		</div>
-		</div>
-
+	</div>
 </div>
 <%@ include file="/admin/include/footer.jsp"%>

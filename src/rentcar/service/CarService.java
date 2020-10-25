@@ -80,4 +80,5 @@ public class CarService {
 	public List<Car> selectCarByRentCount(){
 		return dao.selectCarByRentCount();
 	}
+	
 }

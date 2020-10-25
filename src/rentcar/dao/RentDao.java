@@ -1,9 +1,12 @@
 package rentcar.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import rentcar.dto.LongRent;
 import rentcar.dto.Rent;
+import rentcar.utils.Paging;
 
 public interface RentDao {
 	//대여목록 불러오기
@@ -18,4 +21,11 @@ public interface RentDao {
 	int deleteRent(Rent rent);
 	// 한 차량에 대한 대여가능일 불러오기
 	Rent selectRentByDate(String id);
+	// 관리자 단기렌트 검색
+//	List<Rent> selectSearch(String condition, String keyword);
+	List<Rent> selectSearchAndPaging(String condition, String keyword, Paging paging);
+	// 페이징용 카운팅
+	int countRentByAll();
+	// 페이징용 카운팅2
+	List<Rent> pagingRentByAll(Paging paging);
 }

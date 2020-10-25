@@ -46,7 +46,6 @@ public class LongRentSerivce {
 	}
 	
 	//관리자
-	
 	public List<LongRent> getAdminList(){
 		return dao.adminList();
 	}
