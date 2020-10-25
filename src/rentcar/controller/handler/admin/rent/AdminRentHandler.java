@@ -26,7 +26,7 @@ public class AdminRentHandler implements Command {
 	void searchAndPaging(HttpServletRequest request) {
 		// 페이징 (GET + POST 공통)
 		String nowPage = request.getParameter("nowPage"); // 현재 페이지
-		String cntPerPage = "13"; // 페이지당 몇 개의 글을 보일지 저장
+		String cntPerPage = "12"; // 페이지당 몇 개의 글을 보일지 저장
 		
 		int total = rentService.countRentByAll();
 		if (nowPage == null) {

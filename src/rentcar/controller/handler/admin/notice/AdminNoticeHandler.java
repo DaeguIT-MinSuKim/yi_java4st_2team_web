@@ -34,7 +34,7 @@ public class AdminNoticeHandler implements Command {
 		}else {
 			
 		String nowPage = request.getParameter("nowPage"); // 현재 페이지
-		String cntPerPage = "13"; // 페이지당 몇 개의 글을 보일지 저장
+		String cntPerPage = "12"; // 페이지당 몇 개의 글을 보일지 저장
 		
 		// 처음 접속했을 때 초기 세팅
 		int total = service.countNoticeByall();

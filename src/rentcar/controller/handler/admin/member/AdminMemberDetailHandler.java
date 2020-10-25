@@ -1,7 +1,6 @@
 package rentcar.controller.handler.admin.member;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +21,13 @@ public class AdminMemberDetailHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET AdminMemberDetailHandler");
 
-			ArrayList<Member> memberList = service.selectMemberByAll();
-			request.setAttribute("memberList", memberList);
+			String id = request.getParameter("id").trim();
+			Member selectMember = service.selectMemberByUserId(new Member(id));
 
-			return "/admin/member/memberDetail.jsp";
+			request.setAttribute("selectMember", selectMember);
+			System.out.println(selectMember);
+
+			return "admin/member/memberDetail.jsp";
 
 		} else {
 			System.out.println("POST AdminMemberDetailHandler");

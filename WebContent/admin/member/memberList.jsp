@@ -10,21 +10,31 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>고객 목록</title>
+		<script>
+			$(function(){
+				if( $(".board").length == 0 ){ // 글이 없는 경우
+					$(".no_board").show();
+					$(".board").hide();
+				}
+			});
+		</script>
 	</head>
 	
 	<body>
 		<div id="adimn_content">
 		<h2>고객 목록</h2>
 		<div class="admin_page">
+			<p>※ 고객님의 상세 정보는 아이디를 클릭하세요.</p>
 			<table class="table_style1">
 				<!-- 글 있는 경우 -->
 				<colgroup>
+					<%-- <col width="10%">
 					<col width="10%">
 					<col width="10%">
 					<col width="10%">
-					<col width="10%">
-					<col width="10%">
+					<col width="10%"> --%>
 				</colgroup>
+				
 				<tr>
 					<th>아이디</th>
 					<th>이름</th>
@@ -32,9 +42,11 @@
 					<th>면허종류</th>
 					<th>면허번호</th>		
 				</tr>
+
 				<c:forEach items="${memberPaging}" var="member">
+
 				<tr class="board">
-					<td>${member.id}</td>
+					<td><a href="adminMemberDetail.do?id=${member.id}">${member.id}</a></td>
 					<td>${member.name}</td>
 					<td>${member.tel}</td>
 					<td>
