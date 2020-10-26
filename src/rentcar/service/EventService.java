@@ -2,6 +2,7 @@ package rentcar.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import rentcar.dao.impl.EventDaoImpl;
 import rentcar.ds.JndiDS;
@@ -54,6 +55,14 @@ public class EventService {
 	}
 	public ArrayList<Event> selectEventBoxFindMemberCoupon(String id) {
 		return dao.selectEventBoxFindMemberCoupon(id);
+	}
+	
+	// 관리자 이벤트 - 검색
+	public List<Event> searchEventList(String condition, String keyword, Paging paging){
+		return dao.searchEventList(condition, keyword, paging);
+	}
+	public int countSearchEventByall(String condition, String keyword) {
+		return dao.countSearchEventByAll(condition, keyword);
 	}
 
 

@@ -1,6 +1,6 @@
 package rentcar.dto;
 
-public class rentDate {
+public class RentDate {
 	String minYear;
 	String minMonth;
 	String minDay;
@@ -13,18 +13,18 @@ public class rentDate {
 	
 	String carNo;
 	
-	public rentDate() {
+	public RentDate() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public rentDate(String minYear, String minMonth, String minDay, String minHour) {
+	public RentDate(String minYear, String minMonth, String minDay, String minHour) {
 		this.minYear = minYear;
 		this.minMonth = minMonth;
 		this.minDay = minDay;
 		this.minHour = minHour;
 	}
 
-	public rentDate(String minYear, String minMonth, String minDay, String minHour, String maxYear, String maxMonth,
+	public RentDate(String minYear, String minMonth, String minDay, String minHour, String maxYear, String maxMonth,
 			String maxDay, String maxHour) {
 		this.minYear = minYear;
 		this.minMonth = minMonth;
@@ -133,7 +133,7 @@ public class rentDate {
 	@Override
 	public String toString() {
 		return String.format(
-				"rentDate [minYear=%s, minMonth=%s, minDay=%s, minHour=%s, maxYear=%s, maxMonth=%s, maxDay=%s, maxHour=%s]",
+				"RentDate [minYear=%s, minMonth=%s, minDay=%s, minHour=%s, maxYear=%s, maxMonth=%s, maxDay=%s, maxHour=%s]",
 				minYear, minMonth, minDay, minHour, maxYear, maxMonth, maxDay, maxHour);
 	}
 	

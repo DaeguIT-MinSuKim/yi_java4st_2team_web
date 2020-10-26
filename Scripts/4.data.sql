@@ -81,6 +81,8 @@ INSERT INTO BRAND VALUES (7, '미니', 'mini.png');
 INSERT INTO BRAND VALUES (8, '테슬라', 'tesla.png');
 SELECT * FROM BRAND;
 
+-- 렌트 예약시 옵션박스에 저장
+
 -- 차량 ------------------------------------------
 -- 차량 (소형)
 INSERT INTO CAR VALUES ('11하1234', '모닝', 1, 1, '', 'Y', 0, 'morning.png');
@@ -144,6 +146,7 @@ INSERT INTO OPTIONS VALUES (5, '하이패스', 5000);
 SELECT * FROM OPTIONS;
 
 -- 옵션 보관함
+INSERT INTO OPT_BOX(OPT_CODE, RENT_NO) VALUES (2, 3);
 INSERT INTO OPT_BOX(OPT_CODE, RENT_NO) VALUES (2, 3);
 DELETE FROM OPT_BOX WHERE RENT_NO = 3;
 SELECT * FROM OPT_BOX;

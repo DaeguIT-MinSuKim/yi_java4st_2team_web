@@ -14,8 +14,13 @@
 </section>
 <!-- //상단배경 -->
 
+${carDetail}
+
+<input type="hidden" name="get_loginUser" id="get_loginUser" value="${loginUser.getId()}">
 <input type="hidden" name="get_carFare" id="get_carFare" value="${carDetail.getKind().getFare()}">
 <input type="hidden" name="get_maxDateLimit" id="get_maxDateLimit" value="${maxDateLimit.getReturn_date()}">
+<input type="hidden" name="get_carNo" id="get_carNo" value="${carDetail.getNo()}">
+
 
 <section class="con_wrap box">
 
@@ -85,9 +90,6 @@
 										</c:otherwise>
 									</c:choose>
 								</select>
-								<!-- 
-									사용가능한 할인/쿠폰이 없습니다.
-								 -->
 							</div>
 						</div>
 					</form>	
@@ -166,22 +168,45 @@
 						</li>
 						<li>
 							<div class="left">할인/쿠폰</div>
-							<div class="right" id="set_discount"><span>0</span>원</div>
+							<div class="right" id="set_discount">사용하지않음</div>
+						</li>
+						<li>
+							<div class="left">차량</div>
+							<div class="right">${carDetail.getKind().getName()}</div>
 						</li>
 						<li>
 							<div class="left">총 대여일</div>
 							<div class="right" id="set_day"><span>0</span>일</div>
 						</li>
+						<li class="priceCalcul">
+							<div class="left">
+								<span>(보험)</span>
+								<b class="c_blue"></b> 
+								+ <br>
+								
+								<span>(옵션)</span>
+								<b class="c_blue"></b> 
+								+ <br>
+								
+								<span>(할인/쿠폰)</span>
+								<b class="c_blue"></b> 
+								+ <br>
+								
+								<span>(차량)</span>
+								<b class="c_blue">${carDetail.getKind().getFare()}</b>
+								+  <br>
+							</div>
+						</li>
 						<li class="priceResult">
 							<div class="left">총 결제금액</div>
-							<div class="right" id="set_total"><span>0</span>원</div>
+							<div class="right" id="set_total"><span data-total="">0</span>원</div>
 						</li>
 					</ul>
 					<div class="text">
 						차량 대여일이 <span class="c_red">15일 이상</span>일 경우,<br>장기렌트로 예약하면 가격이 저렴합니다.
 						<a href="longRent.do">> 장기렌트로 예약하기</a>
 					</div>
-					<a href="rentEnd.do" class="btn-carmore btn_payBox_submit">예약하기</a>
+					<a href="javascript:;" class="btn-carmore btn_payBox_submit" id="btn_payBox_submit">예약하기</a>
 				</div>
 			</div>
 		</div>
