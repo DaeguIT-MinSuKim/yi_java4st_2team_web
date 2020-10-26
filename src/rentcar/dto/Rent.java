@@ -21,6 +21,11 @@ public class Rent {
 		super();
 		this.rentNo = rentNo;
 	}
+	
+
+	public Rent(LocalDateTime return_date) {
+		this.return_date = return_date;
+	}
 
 	public Rent(Member id, Car carNo, Ins insCode, LocalDateTime rent_date, LocalDateTime return_date, String is_rent, long fare,
 			String remark) {

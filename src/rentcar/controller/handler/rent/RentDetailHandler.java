@@ -1,24 +1,33 @@
 package rentcar.controller.handler.rent;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import rentcar.controller.Command;
 import rentcar.dto.Car;
+import rentcar.dto.Event;
 import rentcar.dto.Ins;
+import rentcar.dto.Member;
 import rentcar.dto.Opt;
+import rentcar.dto.Rent;
 import rentcar.service.CarService;
+import rentcar.service.EventService;
 import rentcar.service.InsService;
 import rentcar.service.OptService;
+import rentcar.service.RentService;
 
 public class RentDetailHandler implements Command {
 	private CarService carService = new CarService();
 	private InsService insService = new InsService();
 	private OptService OptService = new OptService();
+	private EventService eventService = new EventService();
+	private RentService rentService = new RentService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -36,9 +45,17 @@ public class RentDetailHandler implements Command {
 			String carNo = request.getParameter("carNo");
 			Car res = carService.carDetail(carNo);
 			
-			// 보험, 옵션 정보 가져옴
+			// 보험, 옵션, 할인쿠폰 정보 가져옴
 			List<Ins> ins = insService.selectInsByAll();
 			List<Opt> opt = OptService.selectOptByAll();
+			
+			HttpSession session = request.getSession();
+			Member loginUser = (Member) session.getAttribute("loginUser");
+			String id = loginUser.getId();
+			ArrayList<Event> evt = eventService.selectEventBoxFindMemberCoupon(id);
+			
+			// 한 차량에 대한 최대 대여 가능일 가져옴
+			Rent ren = rentService.selectRentByDate(carNo);
 			
 			request.setAttribute("minDate", minDate);
 			request.setAttribute("maxDate", maxDate);
@@ -47,6 +64,10 @@ public class RentDetailHandler implements Command {
 			request.setAttribute("carDetail", res);
 			request.setAttribute("insList", ins);
 			request.setAttribute("optList", opt);
+			request.setAttribute("evtList", evt);
+			request.setAttribute("maxDateLimit", ren);
+		}else {
+			
 		}
 		
 		return "/rent/rent_detail.jsp";

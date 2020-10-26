@@ -15,6 +15,52 @@ DELETE FROM NOTICE;
 -- 회원
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
 VALUES ('dong', '1234', 'M', '1998-11-6', '동자승', '010-1234-1234', 'Class1A', '12-12-123456-12', 'aa@aa.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong1', '1234', 'M', '1998-11-6', '김자승', '010-1234-1234', 'Class1A', '11-11-123456-11', 'dong1@naver.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong2', '1234', 'F', '1998-11-6', '이자승', '010-1234-1234', 'Class1B', '12-12-123456-12', 'dong2@daum.net', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong3', '1234', 'M', '1998-11-6', '박자승', '010-1234-1234', 'Class2A', '13-12-123456-12', 'dong3@nate.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong4', '1234', 'F', '1998-11-6', '최자승', '010-1234-1234', 'Class2M', '14-12-123456-12', 'dong4@gmail.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong5', '1234', 'M', '1998-11-6', '정자승', '010-1234-1234', 'Class1A', '15-12-123456-12', 'dong5@naver.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong6', '1234', 'F', '1998-11-6', '강자승', '010-1234-1234', 'Class1B', '16-12-123456-12', 'dong6@daum.net', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong7', '1234', 'M', '1998-11-6', '조자승', '010-1234-1234', 'Class2A', '17-12-123456-12', 'dong7@nate.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong8', '1234', 'F', '1998-11-6', '윤자승', '010-1234-1234', 'Class2M', '18-12-123456-12', 'dong8@gmail.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong9', '1234', 'M', '1998-11-6', '창자승', '010-1234-1234', 'Class1A', '19-12-123456-12', 'dong9@naver.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong10', '1234', 'F', '1998-11-6', '임자승', '010-1234-1234', 'Class1B', '20-12-123456-12', 'dong10@daum.net', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong11', '1234', 'M', '1998-11-6', '한자승', '010-1234-1234', 'Class2A', '21-12-123456-12', 'dong11@nate.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong12', '1234', 'F', '1998-11-6', '오자승', '010-1234-1234', 'Class2M', '22-12-123456-12', 'dong12@gmail.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong13', '1234', 'M', '1998-11-6', '서자승', '010-1234-1234', 'Class1A', '23-12-123456-12', 'dong13@naver.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong14', '1234', 'F', '1998-11-6', '신자승', '010-1234-1234', 'Class1B', '24-12-123456-12', 'dong14@daum.net', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong15', '1234', 'M', '1998-11-6', '권자승', '010-1234-1234', 'Class2A', '25-12-123456-12', 'dong15@nate.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong16', '1234', 'F', '1998-11-6', '황자승', '010-1234-1234', 'Class2M', '26-12-123456-12', 'dong16@gmail.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong17', '1234', 'M', '1998-11-6', '안자승', '010-1234-1234', 'Class1A', '28-12-123456-12', 'dong17@naver.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong18', '1234', 'F', '1998-11-6', '송자승', '010-1234-1234', 'Class1B', '11-12-123456-12', 'dong18@daum.net', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong19', '1234', 'M', '1998-11-6', '전자승', '010-1234-1234', 'Class2A', '12-12-123456-12', 'dong19@nate.com', '대구시');
+INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
+VALUES ('dong20', '1234', 'F', '1998-11-6', '홍자승', '010-1234-1234', 'Class2M', '13-12-123456-12', 'dong20@gmail.com', '대구시');
+
+-- 렌트
+INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong', '11하1234', 1, '2020-11-17', '2020-11-20', 'n', 65000, '반납X');
+INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong', '11하1234', 1, '2020-11-13', '2020-11-14', 'y', 65000, '');
+INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'kim', '11하5678', 1, '2020-11-13', '2020-11-14', 'y', 65000, '');
+SELECT * FROM RENT;
 
 -- 차량 분류
 INSERT INTO KIND VALUES (1, '소형', 60000);
@@ -34,6 +80,8 @@ INSERT INTO BRAND VALUES (6, 'DS오토모빌', 'ds.png');
 INSERT INTO BRAND VALUES (7, '미니', 'mini.png');
 INSERT INTO BRAND VALUES (8, '테슬라', 'tesla.png');
 SELECT * FROM BRAND;
+
+-- 렌트 예약시 옵션박스에 저장
 
 -- 차량 ------------------------------------------
 -- 차량 (소형)
@@ -103,8 +151,24 @@ INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, T
 VALUES(LONGRENT_NO_SEQ.NEXTVAL,empty_clob(),'K3TheNew 1년 장기렌트 문의드립니다. 예산은 대략 100원 정도로 생각하고 있으며, 유아 카시트 추가 되는지도 답변 부탁드립니다.', 1, SYSDATE,'365일','김창동','010-1234-1111','1111','옵션없음');
 INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES(LONGRENT_NO_SEQ.NEXTVAL,'K3TheNew 1년 장기렌트 문의드립니다.','풀옵션 경차 렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, SYSDATE,'100일','김동자','010-1234-2222','1111','후방카메라');
-INSERT INTO LONGRENT(NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES(LONGRENT_NO_SEQ.NEXTVAL,'외제차 문의, 답변 빨리 주세요.','뚜껑열린 외제차를 렌트하고싶습니다. 연락주세요..................!!',DEFAULT, SYSDATE,'100일', '곽수정','010-1234-3333','3333','옵션없음');
+INSERT INTO LONGRENT( TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('외제차 문의, 답변 빨리 주세요.','뚜껑열린 외제차를 렌트하고싶습니다. 연락주세요..................!!',DEFAULT, SYSDATE,'100일', '곽수정','010-1234-3333','3333','옵션없음');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('레이 3년 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-08-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김동자','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('그렌저 5년 장기렌트 문의드립니다.','  렌트 문의드립니다. 5년정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-02-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','최동자','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('BMW 1달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 1달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-02-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','문중희','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('벤츠 3달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 3달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-05-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','박민수','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('용달차 5달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-02-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김대훈','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('버스 5달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-03-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','이지수','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('소울 2달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-07-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','곽철두','010-1234-2222','1111','후방카메라');
+INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
+VALUES('투싼 2달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-01-20 15:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김동자','010-1234-2222','1111','후방카메라');
 SELECT * FROM LONGRENT;
 
 --공지사항
@@ -145,3 +209,11 @@ SELECT * FROM notice;
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('10월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'y');
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('11월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'n');
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES('12월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', 'y');
+SELECT * FROM EVENT;
+
+-- 이벤트 박스
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(21, 'dong');
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(22, 'dong');
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong');
+SELECT * FROM EVENT_BOX;
+

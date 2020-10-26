@@ -124,6 +124,36 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<div class="board_list_page clear">
+			<a href="carList.do?nowPage=1" class="first arrow"><span class="text_hidden">처음</span></a>
+			<c:if test="${paging.nowPage != 1}">
+				<a href="carList.do?nowPage=${paging.nowPage-1}" class="prev arrow"><span class="text_hidden">이전</span></a>
+			</c:if>
+			<c:if test="${paging.nowPage == 1}">
+				<a href="carList.do?nowPage=${paging.nowPage}" class="prev arrow"><span class="text_hidden">이전</span></a>
+			</c:if>
+			<ul>
+				<c:forEach begin="${paging.startPage}" end="${paging.endPage }"
+					var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<li class="active"><a>${p}</a></li>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<li><a href="carList.do?nowPage=${p}">${p}</a></li>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+			</ul>
+			
+			<c:if test="${paging.nowPage != paging.lastPage}">
+				<a href="carList.do?nowPage=${paging.nowPage+1}" class="next arrow"><span class="text_hidden">다음</span></a>
+			</c:if>
+			<c:if test="${paging.nowPage == paging.lastPage}">
+				<a href="carList.do?nowPage=${paging.nowPage}" class="next arrow"><span class="text_hidden">다음</span></a>
+			</c:if>
+			<a href="carList.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
+		</div>
 	</div>
 </div>
 

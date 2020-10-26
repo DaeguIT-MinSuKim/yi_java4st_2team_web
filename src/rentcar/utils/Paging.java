@@ -10,7 +10,11 @@ public class Paging {
 	private int start; // sql쿼리에 쓸 start
 	private int end; // end
 	private int cntPage = 5;
-	
+	private String keyword;		//검색어
+	private String condition;	//검색조건
+	private int startRowNo;   //조회 시작 row번호
+	private int endRowNo;	// 조회 마지막 row번호 
+		
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -82,6 +86,41 @@ public class Paging {
 	public void setCntPage(int cntPage) {
 		this.cntPage = cntPage;
 	}
+	
+	
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+	
+
+	public int getStartRowNo() {
+		return startRowNo;
+	}
+
+	public void setStartRowNo(int startRowNo) {
+		this.startRowNo = startRowNo;
+	}
+
+	public int getEndRowNo() {
+		return endRowNo;
+	}
+
+	public void setEndRowNo(int endRowNo) {
+		this.endRowNo = endRowNo;
+	}
 
 	public Paging(int nowPage, int total, int cntPerPage) {
 		setNowPage(nowPage);
@@ -107,6 +146,13 @@ public class Paging {
 		if (getStartPage() < 1) {
 			setStartPage(1);
 		}
+		
+		  //--조회 시작 row, 조회 마지막 row 계산
+	    int startRowNo = ( (nowPage-1) * cntPerPage ) + 1;
+	    int endRowNo = nowPage * cntPerPage; 
+	    setStartRowNo( startRowNo );
+	    setEndRowNo( endRowNo );
+		
 	}
 
 	// db 쿼리에서 사용할 start, end 값 계산
@@ -115,11 +161,19 @@ public class Paging {
 		setStart(getEnd() - cntPerPage + 1); 
 		
 	}
+	
+	
+	
+
+	
 
 	@Override
 	public String toString() {
 		return "Paging [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
 				+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
-				+ ", cntPage=" + cntPage + "]";
+				+ ", cntPage=" + cntPage + ", keyword=" + keyword + ", condition=" + condition + ", startRowNo=" + startRowNo + ", endRowNo=" + endRowNo + " ]";
 	}
+	
+	
+	
 }

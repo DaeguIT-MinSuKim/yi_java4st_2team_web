@@ -14,6 +14,18 @@ public class RentEndHandler implements Command {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+//		if (request.getMethod().equalsIgnoreCase("POST")) {
+//			
+//			Gson gson = new Gson();
+//			Rent rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Rent.class);
+//			
+//			String minHour = request.getParameter("minHour");
+//			String maxHour = request.getParameter("maxHour");
+//			
+//			
+//			System.out.println("RentDetail >>>>>>>>>" + rent);
+//		}
+		
 		return "/rent/rent_end.jsp";
 	}
 	

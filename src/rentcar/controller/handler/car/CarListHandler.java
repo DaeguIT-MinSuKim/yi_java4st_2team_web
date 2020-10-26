@@ -31,9 +31,6 @@ public class CarListHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
 			
-			List<Car> carList = service.carList();
-			request.setAttribute("carList", carList);
-			
 			List<Kind> kindList = kService.kindList();
 			request.setAttribute("kindList", kindList);
 			
@@ -55,14 +52,11 @@ public class CarListHandler implements Command {
 			
 			// 이후 페이지 클래스로 정리하는곳
 			Paging paging = new Paging(Integer.parseInt(nowPage), total, Integer.parseInt(cntPerPage));
-			ArrayList<Car> eventList = service.pagingEventByAll(paging);
+			ArrayList<Car> carList = service.pagingEventByAll(paging);
 			
-			System.out.println(paging);
-			System.out.println(eventList);
-
 			request.setAttribute("total", total);
 			request.setAttribute("paging", paging);
-			request.setAttribute("eventList", eventList);
+			request.setAttribute("carList", carList);
 
 			return "/admin/car/carList.jsp";
 		} else {

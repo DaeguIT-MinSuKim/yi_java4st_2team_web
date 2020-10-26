@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import rentcar.dao.NoticeDao;
+import rentcar.dto.LongRent;
 import rentcar.dto.Notice;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class NoticeDaoImpl implements NoticeDao {
 	
@@ -113,4 +116,70 @@ public class NoticeDaoImpl implements NoticeDao {
 			throw new CustomSQLException(e);
 		}
 	}
+
+
+	// 페이징
+			@Override
+			public int countNoticeByAll() {
+				String sql = "select count(*) from Notice";
+				try(PreparedStatement pstmt = con.prepareStatement(sql);
+						ResultSet rs = pstmt.executeQuery()){
+					if (rs.next()) {
+						return rs.getInt(1);
+					}
+				} catch (SQLException e) {
+					throw new CustomSQLException(e);
+				}
+				return 0;
+			}
+
+			@Override
+			public ArrayList<Notice> pagingNoticeByAll(Paging paging) {
+				String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE asc) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+				try (PreparedStatement pstmt = con.prepareStatement(sql)){
+					pstmt.setInt(1, paging.getStart());
+					pstmt.setInt(2, paging.getEnd());
+					try (ResultSet rs = pstmt.executeQuery()){
+						if (rs.next()) {
+							ArrayList<Notice> list = new ArrayList<Notice>();
+							do {
+								list.add(getNotice(rs));
+							} while (rs.next());
+							return list;
+						}
+					}
+				} catch (SQLException e) {
+					throw new CustomSQLException(e);
+				}
+				return null;
+			}
+		
+		//검색 기능 구현
+		 @Override
+		 public ArrayList<Notice> selectSearchNotice(String condition, String keyword){
+			//select * from where title like '%?%'
+			//select * from where no like '%?%'
+			 String sql = "SELECT * FROM NOTICE";
+			 try {
+				 if(keyword != null && !keyword.isEmpty()) {
+					 sql += " where " + condition.trim() + " like '%"+keyword.trim()+"%' ORDER BY IS_TOP, WRITE_DATE asc";
+				 }else {
+					 //모든 레코드 검색
+					 sql += " ORDER BY IS_TOP, WRITE_DATE asc";
+				 }
+				 try(PreparedStatement pstmt = con.prepareStatement(sql);
+						 ResultSet rs = pstmt.executeQuery()){
+					 if(rs.next()) {
+						 ArrayList<Notice> list = new ArrayList<Notice>();
+						 do {
+							 list.add(getNotice(rs));
+						 }while(rs.next());
+						 return list;
+					 }
+				 }
+			 }catch(Exception e) {
+				 throw new CustomSQLException(e);
+			 }
+		 return null;
+		 }
 }

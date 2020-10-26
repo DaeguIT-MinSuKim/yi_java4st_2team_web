@@ -16,6 +16,7 @@ import rentcar.dto.Kind;
 import rentcar.dto.Member;
 import rentcar.dto.Rent;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class RentDaoImpl implements RentDao {
 	private static final RentDaoImpl instance = new RentDaoImpl();
@@ -85,11 +86,17 @@ public class RentDaoImpl implements RentDao {
 
 		return r;
 	}
+	
+	private Rent getMaxDateLimit(ResultSet rs) throws SQLException {
+		Rent r = new Rent();
+		r.setReturn_date(rs.getTimestamp("RETURN_DATE").toLocalDateTime());
+		return r;
+	}
 
 	@Override
 	public List<Rent> selectRentByAll() {
 		String sql = "SELECT * FROM Rent r LEFT OUTER JOIN MEMBER m ON r.ID = m.ID JOIN INSURANCE i ON r.INS_CODE = i.INS_CODE"
-				+ " JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE";
+				+ " JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE ORDER BY RENT_NO DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				List<Rent> list = new ArrayList<Rent>();
@@ -121,7 +128,25 @@ public class RentDaoImpl implements RentDao {
 		}
 		return null;
 	}
-
+	
+	@Override
+	public Rent selectRentByDate(String id) {
+		String sql = "SELECT min(return_date) AS RETURN_DATE FROM RENT WHERE CAR_NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, id);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return getMaxDateLimit(rs);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		} catch (NullPointerException e) {
+			return new Rent(0);
+		}
+		return null;
+	}
+	
 	@Override
 	public int insertRent(Rent rent) {
 		String sql = "INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values(?, ?, ?, to_date(?,'YYYY-MM-DD HH24:MI:SS'), to_date(?,'YYYY-MM-DD HH24:MI:SS'), ?, ?, ?)";
@@ -171,6 +196,80 @@ public class RentDaoImpl implements RentDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	//검색 + 페이징
+	@Override
+	public List<Rent> selectSearchAndPaging(String condition, String keyword, Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM Rent r LEFT OUTER JOIN MEMBER m ON r.ID = m.ID JOIN INSURANCE i ON r.INS_CODE = i.INS_CODE " + 
+				"JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE";
+		try {
+			if(keyword != null && !keyword.isEmpty()) {
+				if( condition.equals("car_name")) {
+					sql += " WHERE c.";
+				}else{
+					sql += " WHERE r.";
+				}
+				sql += condition.trim() + " LIKE '%"+keyword.trim()+"%' ";
+			}
+			sql += " ) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+			
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				try(ResultSet rs = pstmt.executeQuery()){
+					if (rs.next()) {
+						ArrayList<Rent> list = new ArrayList<>();
+						do {
+							list.add(getRent(rs));
+						} while (rs.next());
+						return list;
+					}
+				}
+			}
+		} catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	
+	@Override
+	public int countRentByAll() {
+		String sql = "SELECT count(*) FROM Rent r LEFT OUTER JOIN MEMBER m ON r.ID = m.ID JOIN INSURANCE i ON r.INS_CODE = i.INS_CODE " + 
+				"JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE";
+		try(PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+	
+
+	@Override
+	public List<Rent> pagingRentByAll(Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM Rent r LEFT OUTER JOIN MEMBER m ON r.ID = m.ID JOIN INSURANCE i ON r.INS_CODE = i.INS_CODE " + 
+				"JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					ArrayList<Rent> list = new ArrayList<Rent>();
+					do {
+						list.add(getRent(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
 	}
 
 }

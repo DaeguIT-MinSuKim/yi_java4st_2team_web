@@ -47,6 +47,8 @@ public class LoginHandler implements Command {
 				if (getId.getPwd().equals(pwd)) {
 					session.removeAttribute(id);
 					session.setAttribute("loginUser", getId);
+					int loginFail = service2.loginFailCount(new Member(id));
+					System.out.println("loginFail > " + loginFail);
 					int resetLFC = service2.resetLoginFailCount(new Member(id));
 					System.out.println("resetLFC > " + resetLFC);
 					int resetLLC = service2.resetLockCount(new Member(id));

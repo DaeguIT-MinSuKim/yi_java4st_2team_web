@@ -23,10 +23,13 @@ $(document).ready(function() {
 
 	// 관리자 메뉴
 	admin_gnb();
+	admin_gnb_height(); // gnb 부족한 높이 채움
 
 	// 관리자 차량관리목록
 	form_delete();
 	admin_logoHover(); // 헤더 로고 (동자승이 눈깜빡이는거 ~)
+	
+	
 });
 
 // 헤더 로고 (동자승이 눈깜빡이는거 ~)
@@ -207,4 +210,16 @@ function admin_writeCheck(){
 		return false;
 	}
 	return true;
+}
+
+// gnb 부족한 높이 채움
+function admin_gnb_height(){
+	var left_gnb = $("#admin_gnb");
+	if(	left_gnb.length > 0 ){
+		var right_content = $(".admin_page");
+		
+		if( left_gnb.outerHeight() < right_content.outerHeight() ){
+			left_gnb.height(right_content.outerHeight() + $("#adimn_content>h2").outerHeight());
+		}
+	}
 }

@@ -111,7 +111,7 @@
 
 <nav id="admin_gnb">
 	<ul>
-		<li><a href="#">단기렌트 관리</a></li>
+		<li><a href="adminRent.do">단기렌트 관리</a></li>
 		<li><a href="#">차량관리</a>
 			<ul>
 				<li><a href="carList.do">차량정보</a></li>
@@ -125,7 +125,12 @@
 				<li><a href="#">옵션</a></li>
 			</ul>
 		</li>
-		<li><a href="#">고객관리</a></li>
+		<li><a href="#">고객관리</a>
+			<ul>
+				<li><a href="adminMemberList.do">고객목록</a></li>
+				<li><a href="adminBlackList.do">블랙리스트</a></li>
+			</ul>
+		</li>
 		<li><a href="adminLongRent.do">장기렌트 관리</a></li>
 		<li><a href="adminNotice.do">공지사항</a></li>
 		<li><a href="adminEvent.do">이벤트</a></li>

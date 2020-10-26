@@ -23,6 +23,11 @@ public class Event {
 		this.viewImage = viewImage;
 		this.isEvent = isEvent;
 	}
+	
+	public Event(String name, int sale) {
+		this.name = name;
+		this.sale = sale;
+	}
 
 	public String getEventCode() {
 		return eventCode;

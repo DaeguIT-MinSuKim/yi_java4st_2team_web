@@ -37,7 +37,7 @@ public class InsDaoImpl implements InsDao {
 
 	@Override
 	public List<Ins> selectInsByAll() {
-		String sql = "SELECT * FROM INSURANCE";
+		String sql = "SELECT * FROM INSURANCE ORDER BY INS_CODE";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				List<Ins> list = new ArrayList<Ins>();

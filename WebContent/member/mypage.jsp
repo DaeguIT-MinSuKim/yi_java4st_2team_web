@@ -1,9 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ include file="/include/header.jsp"%>
 
 <%@ include file="/include/sub_member.jsp"%>
+
+<script>
+$(function() {
+	var date = new Date();
+	var year = date.getFullYear();
+	var selectValue = document.getElementById("birthYear");
+	var optionIndex = 0;
+	for(var i = year-60; i <= year; i++) {
+		selectValue.add(new Option(i, i), optionIndex++);                        
+	}
+	
+	var selectValue = document.getElementById("birthMonth"); 
+	var optionIndex = 0;
+	for(var i = 1; i<13; i++) {
+		selectValue.add(new Option(i, i), optionIndex++);
+	}
+	
+	var selectValue = document.getElementById("birthDay");
+	var optionIndex = 0;
+	for(var i = 1; i<32; i++) {
+		selectValue.add(new Option(i, i), optionIndex++);
+	}
+});
+</script>
 
 <!-- 컨텐츠 -->
 <div class="contents_box padLeft0">
@@ -13,118 +38,212 @@
         <div class=" logincontainer-fluid_box page_mypage">
         	<form class="form-horizontal" role="form" name="frmName" method="post" action="mypage.do" onsubmit="return false;" enctype="multipart/form-data">	
 				<div class="join">
-					<div class="form-group cal_Box">
-						<label class="col-sm-2 control-label">이름</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" maxlength="10" name="member_name" id="member_name" value="${loginUser.name}" readonly>
-
-						</div>
-					</div>
-
 					<div class="form-group">
-						<label class="col-sm-2 control-label">아이디</label>
-						<div class="col-sm-10 divinner">
-							<input type="text" class="form-control" maxlength="20" name="member_id" id="member_id" value="dong" readonly>
-						</div>
-					</div>
-	
-					<div class="form-group">
-						<label class="col-sm-2 control-label">비밀번호</label>
-						<div class="col-sm-10">
-							<input type="password" class="form-control" maxlength="20" name="passwd" id="passwd">
-							<p>특수문자를 하나 이상 포함하여 6 ~ 20자로 입력하십시오.</p>
-						</div>
-					</div>
-	
-					<div class="form-group">
-						<label class="col-sm-2 control-label">비밀번호 확인</label>
-						<div class="col-sm-10">
-							<input type="password" class="form-control" maxlength="20"
-								name="passwd1">
-							<p>비밀번호를 동일하게 다시 한 번 입력하십시오.</p>
-						</div>
-					</div>
-	
-					<div class="form-group">
-						<label class="col-sm-2 control-label">운전면호 번호</label>
+					<label class="col-sm-2 control-label">아이디</label>
+					<div class="col-sm-10 divinner">
 						<div class="col-xs-8">
-							<input type="text" class="form-control" maxlength="20"
-								name="license" id="license">
-							<p>특수문자 - 를 포함하여 입력하십시오.</p>
+							<input type="text" class="form-control" maxlength="20" name="member_id" id="member_id" value="${loginUser.id}" readonly>
+						</div>
+						<p></p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">비밀번호</label>
+					<div class="col-sm-10 divinner">
+						<input type="password" class="form-control" maxlength="20" name="new_passwd" id="new_passwd">
+						<p>특수문자를 하나 이상 포함하여 6 ~ 20자로 입력하십시오.</p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">새 비밀번호</label>
+					<div class="col-sm-10 divinner">
+						<input type="password" class="form-control" maxlength="20" name="new_passwd2" id="new_passwd2">
+						<p>비밀번호를 동일하게 다시 한 번 입력하십시오.</p>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">성별</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-2">
+							<select name="gender" id="gender" class="selectpicker show-tick form-control">
+								<option value="${loginUser.gender}" selected="selected">${loginUser.gender}</option>
+								<option value="M">남성</option>
+								<option value="F">여성</option>
+							</select>
+						</div>
+						<p></p>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">생년월일</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<select name="birthYear" id="birthYear" class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected" >${fn:substring(loginUser.birth, 0, 4)}</option>
+							</select>
+						</div>
+						<div class="col-xs-2">
+							<select name="birthMonth" id="birthMonth" class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected">${fn:substring(loginUser.birth, 5, 7)}</option>
+							</select>
+							
+						</div>
+						<div class="col-xs-2">
+							<select name="birthDay" id="birthDay" class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected">${fn:substring(loginUser.birth, 8, 10)}</option>
+							</select>
+						</div>
+						<p></p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">이름</label>
+					<div class="col-sm-10 divinner addr">
+						<div class="col-xs-5">
+							<input type="text" class="form-control" maxlength="10" name="member_name" id="member_name" value="${loginUser.name}" readonly>
+						</div>
+						<p></p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">휴대전화</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="4"
+								name="cel1" id="cel1" style="ime-mode: disabled;" value="${fn:substring(loginUser.tel, 0, 3)}" readonly>
+						</div>
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="4"
+								name="cel2" id="cel2" style="ime-mode: disabled;" value="${fn:substring(loginUser.tel, 4, 8)}" readonly>
+						</div>
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="4"
+								name="cel3" id="cel3" style="ime-mode: disabled;" value="${fn:substring(loginUser.tel, 9, 13)}" readonly>
+						</div>
+						<p></p>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">운전면호종류</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<input type="checkbox" name="li_class" id="li_class" value="Class2A" >
+							<span>  2종 보통</span>
+						</div>
+						<div class="col-xs-3">
+							<input type="checkbox" name="li_class" id="li_class" value="Class2M">
+							<span>  2종 수동</span>
+						</div>
+						<div class="col-xs-3">
+							<input type="checkbox" name="li_class" id="li_class" value="Class1A">
+							<span>  1종 보통</span>
+						</div>
+						<div class="col-xs-3">
+							<input type="checkbox" name="li_class" id="li_class" value="Class1B">
+							<span>  1종 대형</span>
 						</div>
 					</div>
-	
-					<div class="form-group">
-						<label class="col-sm-2 control-label">휴대전화</label>
-						<div class="col-sm-10 divinner">
-							<div class="col-xs-3">
-								<select name="cel1" id="cel1"
-									class="selectpicker show-tick form-control">
-									<option value="010" selected="selected">010</option>
-									<option value="011">011</option>
-									<option value="016">016</option>
-									<option value="017">017</option>
-									<option value="018">018</option>
-									<option value="019">019</option>
-								</select>
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control onlyNumber" maxlength="4"
-									name="cel2" id="cel2" style="ime-mode: disabled;">
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control onlyNumber" maxlength="4"
-									name="cel3" id="cel3" style="ime-mode: disabled;">
-							</div>
+					<p></p>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">운전면호번호</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<select name="li_number1" id="li_number1"
+								class="selectpicker show-tick form-control">
+								<option value="" selected="selected">선택</option>
+								<option value="11">11(서울)</option>
+								<option value="12">12(부산)</option>
+								<option value="13">13(경기)</option>
+								<option value="14">14(강원)</option>
+								<option value="15">15(충북)</option>
+								<option value="16">16(충남)</option>
+								<option value="17">17(전북)</option>
+								<option value="18">18(전남)</option>
+								<option value="19">19(경북)</option>
+								<option value="20">20(경남)</option>
+								<option value="21">21(제주)</option>
+								<option value="22">22(대구)</option>
+								<option value="23">23(인천)</option>
+								<option value="24">24(광주)</option>
+								<option value="25">25(대전)</option>
+								<option value="26">26(울산)</option>
+								<option value="28">28(경기북부)</option>
+								<option value="28">28(경기남부)</option>
+							</select>
 						</div>
-					</div>
-	
-					<div class="form-group">
-						<label class="col-sm-2 control-label">이메일</label>
-						<div class="col-sm-10 divinner">
-							<div class="col-xs-3">
-								<input type="text" class="form-control" maxlength="40"
-									name="email1" id="email1">
-							</div>
-							<div class="col-xs-4">
-								<input type="text" class="form-control" maxlength="40"
-									name="email2" id="email2">
-							</div>
-							<div class="col-xs-3">
-								<select name="email2" class="selectpicker show-tick form-control"
-									id="domain">
-									<option value="" selected="selected">선택하기</option>
-									<option value="@naver.com">@naver.com</option>
-									<option value="@daum.net">@daum.net</option>
-									<option value="@nate.com">@nate.com</option>
-									<option value="@gmail.com">@gmail.com</option>
-									<option value="">직접입력</option>
-								</select>
-							</div>
+						<div class="col-xs-2">
+							<input type="text" class="form-control onlyNumber" maxlength="2"
+								name="li_number2" id="li_number2" style="ime-mode: disabled;">
 						</div>
-					</div>
-	
-					<div class="form-group">
-						<label class="col-sm-2 control-label">주소</label>
-						<div class="col-sm-10 col-sm-10 divinner addr">
-							<div class="col-xs-7">
-								<label for="sel1">우편번호</label> <input type="text"
-									class="form-control" readonly name="zipcode" id="zipcode">
-							</div>
-							<div class="col-xs-5">
-								<a href="javascript:;" class="btn btn-normal"
-									onclick="execDaumPostcode();">우편번호찾기</a>
-							</div>
-							<div class="col-xs-12">
-								<label for="sel1">주소</label> <input type="text"
-									class="form-control" maxlength="100" id="addr1" name="addr1">
-							</div>
-							<div class="col-xs-12">
-								<label for="sel1">상세주소</label> <input type="text"
-									class="form-control" maxlength="100" id="addr2" name="addr2">
-							</div>
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="6"
+								name="li_number3" id="li_number3" style="ime-mode: disabled;">
 						</div>
+						<div class="col-xs-2">
+							<input type="text" class="form-control onlyNumber" maxlength="2"
+								name="li_number4" id="li_number4" style="ime-mode: disabled;">
+						</div>
+						<p></p>
 					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">이메일</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<input type="text" class="form-control" maxlength="40"
+								name="email1" id="email1">
+						</div>
+						<div class="col-xs-4">
+							<input type="text" class="form-control" maxlength="40"
+								name="email2" id="email2">
+						</div>
+						<div class="col-xs-4">
+							<select name="email2" class="selectpicker show-tick form-control"
+								id="domain">
+								<option value="" selected="selected">선택하기</option>
+								<option value="@naver.com">@naver.com</option>
+								<option value="@daum.net">@daum.net</option>
+								<option value="@nate.com">@nate.com</option>
+								<option value="@gmail.com">@gmail.com</option>
+								<option value="">직접입력</option>
+							</select>
+						</div>
+						<p></p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">주소</label>
+					<div class="col-sm-10 divinner addr">
+						<div class="col-xs-7">
+							<label for="sel1">우편번호</label> <input type="text"
+								class="form-control" readonly name="zipcode" id="zipcode">
+						</div>
+						<div class="col-xs-5">
+							<a href="javascript:;" class="btn btn-normal"
+								onclick="execDaumPostcode();">우편번호찾기</a>
+						</div>
+						<div class="col-xs-12">
+							<label for="sel1">주소</label> <input type="text"
+								class="form-control" maxlength="100" id="addr1" name="addr1">
+						</div>
+						<div class="col-xs-12">
+							<label for="sel1">상세주소</label> <input type="text"
+								class="form-control" maxlength="100" id="addr2" name="addr2">
+						</div>
+						<p></p>
+					</div>
+				</div>
 	
 					<div class="h30"></div>
 					<div class="mypage_coupon">

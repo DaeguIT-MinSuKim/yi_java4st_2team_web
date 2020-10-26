@@ -11,6 +11,7 @@ import java.util.Date;
 import rentcar.dao.MemberDao;
 import rentcar.dto.Member;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class MemberDaoImpl implements MemberDao {
 
@@ -64,9 +65,10 @@ public class MemberDaoImpl implements MemberDao {
 		Integer try_counting = rs.getInt("TRY_COUNTING");
 		String is_lock = rs.getString("IS_LOCK");
 		Integer lock_counting = rs.getInt("LOCK_COUNTING");
-		return new Member(id, pwd, gender, birth, name, tel, li_class, li_number, email, address, is_black, counting, date, try_counting, is_lock, lock_counting);
+		return new Member(id, pwd, gender, birth, name, tel, li_class, li_number, email, address, is_black, counting,
+				date, try_counting, is_lock, lock_counting);
 	}
-	
+
 	@Override
 	public Member selectMemberByUserId(Member member) {
 		String sql = "SELECT * FROM MEMBER WHERE id = ?";
@@ -126,6 +128,18 @@ public class MemberDaoImpl implements MemberDao {
 		}
 
 	}
+	
+	@Override
+	public int updateBlack(Member member) {
+		String sql = "UPDATE MEMBER SET IS_BLACK = ? WHERE ID = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, member.getIs_black());
+			pstmt.setString(2, member.getId());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	@Override
 	public int deleteMember(Member member) {
@@ -138,5 +152,102 @@ public class MemberDaoImpl implements MemberDao {
 		}
 
 	}
+
+	// 페이징 - 회원 리스트
+	@Override
+	public int countMemberByAll() {
+		String sql = "SELECT COUNT(*) FROM MEMBER";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Member> pagingMemberByAll(Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM MEMBER ORDER BY NAME ASC) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					ArrayList<Member> list = new ArrayList<Member>();
+					do {
+						list.add(getMemberList(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<Member> selectMemberBlackList() {
+		String sql = "SELECT * FROM MEMBER WHERE IS_BLACK = 'Y' ORDER BY NAME ASC";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				ArrayList<Member> list = new ArrayList<Member>();
+				do {
+					list.add(getMemberList(rs));
+				} while (rs.next());
+				return list;
+			}
+
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	// 페이징 - 회원 블랙 리스트
+		@Override
+		public int countMemberBlackList() {
+			String sql = "SELECT COUNT(*) FROM MEMBER WHERE IS_BLACK = 'Y'";
+			try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				throw new CustomSQLException(e);
+			}
+			return 0;
+		}
+
+		@Override
+		public ArrayList<Member> pagingMemberBlackList(Paging paging) {
+			String sql = "SELECT *\r\n"
+					+ "FROM (SELECT rownum RN, a.*\r\n"
+					+ "          FROM (SELECT * \r\n"
+					+ "                  FROM MEMBER\r\n"
+					+ "                 WHERE IS_BLACK = 'Y'\r\n"
+					+ "                 ORDER BY NAME ASC) a)\r\n"
+					+ "         WHERE RN BETWEEN ? AND ?\r\n"
+					+ "         ORDER BY RN";
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				try (ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+						ArrayList<Member> list = new ArrayList<Member>();
+						do {
+							list.add(getMemberList(rs));
+						} while (rs.next());
+						return list;
+					}
+				}
+			} catch (SQLException e) {
+				throw new CustomSQLException(e);
+			}
+			return null;
+		}
+
+
 
 }

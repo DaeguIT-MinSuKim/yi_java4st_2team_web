@@ -7,7 +7,7 @@
 <section class="bgTop bgSub1 pc">
 	<div class="slogan">
 		<p>
-			<strong>동자승 렌터카</strong> 따라올 수 없는 압도적 1등<br> 이제부터 렌트카 예약은
+			<strong>동자승 렌터카</strong> 따라올 수 없는 압도적 1등<br> 이제부터 렌터카 예약은
 			동자승렌터카입니다.
 		</p>
 	</div>
@@ -32,12 +32,12 @@
 				<p class="c_gray"><span class="c_red">대여일</span>만 선택하셔도 차량검색이 가능합니다.</p>
 				<div class="h20"></div>
 				<div class="calendarBox">
-					<input type="text" class="form-control calendar prev" readonly placeholder="렌트카 대여일 선택"> 
+					<input type="text" class="form-control calendar prev" readonly placeholder="렌터카 대여일 선택"> 
 					<select class="hours prev">
 						<!-- script.js/rent_optionHours(); 메서드 사용 -->
 					</select>
 					 <span>-</span> 
-					 <input type="text" class="form-control calendar next" readonly placeholder="렌트카 반납일 선택">
+					 <input type="text" class="form-control calendar next" readonly placeholder="렌터카 반납일 선택">
 					 <select class="hours next">
 						<!-- script.js/rent_optionHours(); 메서드 사용 -->
 					</select>

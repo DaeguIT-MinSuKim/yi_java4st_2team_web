@@ -1,18 +1,20 @@
 package rentcar.dao.impl;
 
-import java.io.BufferedWriter;
-import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import oracle.jdbc.OracleResultSet;
+import org.json.JSONArray;
+
 import rentcar.dao.LongRentDao;
+import rentcar.ds.JndiDS;
 import rentcar.dto.LongRent;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class LongRentDaoImpl implements LongRentDao {
 	private static final LongRentDaoImpl instance = new LongRentDaoImpl();
@@ -29,15 +31,71 @@ public class LongRentDaoImpl implements LongRentDao {
 	public void setCon(Connection con) {
 		this.con = con;
 	}
+	
+	//SELECT * FROM longrent ORDER BY WRITE_DATE desc
 
+	//차트용
+	@Override
+	public JSONArray getCountLongRent() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		JSONArray jsonArray = new JSONArray();
+		
+		JSONArray colNameArray = new JSONArray(); //컬 타이틀 설정
+		colNameArray.put("해당 월");
+		colNameArray.put("월별 건수");
+		jsonArray.put(colNameArray);
+		
+		try {
+			con = JndiDS.getConnection();
+			//sql="SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
+			sql="SELECT  no, name FROM LONGRENT";
+			pstmt = con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				JSONArray rowArray = new JSONArray();
+				rowArray.put(rs.getString("NAME"));
+				rowArray.put(rs.getInt("no"));
+//				rowArray.put(rs.getString("WRITE_MONTH"));
+//				rowArray.put(rs.getInt("MON_COUNT"));
+				
+				jsonArray.put(rowArray);
+			}//while
+		}catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+		
+	
 	@Override
 	public ArrayList<LongRent> selectLongRentList() {
-		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT ORDER BY NO DESC";
+		String sql = "SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT ORDER BY WRITE_DATE desc";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				ArrayList<LongRent> list = new ArrayList<>();
 				do {
 					list.add(getLongRent(rs));
+				} while (rs.next());
+				return list;
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	@Override
+	public ArrayList<LongRent> selectLongRentChartList() {
+		String sql = "SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				ArrayList<LongRent> list = new ArrayList<>();
+				do {
+					list.add(getLongRentChart(rs));
 				} while (rs.next());
 				return list;
 			}
@@ -62,6 +120,14 @@ public class LongRentDaoImpl implements LongRentDao {
 		String repContent = rs.getString("REP_CONTENT");
 
 		return new LongRent(no, title, contents, repYn, writeDate, rentTerm, name, tel, pwd, options, repContent);
+	}
+	
+	private LongRent getLongRentChart(ResultSet rs) throws SQLException {
+	//NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT		
+		int write_month = rs.getInt("write_month");
+		int totalCount = rs.getInt("totalCount");
+		
+		return new LongRent(write_month, totalCount);
 	}
 
 	@Override
@@ -118,6 +184,10 @@ public class LongRentDaoImpl implements LongRentDao {
 //				 writer.write(longrent.getContents().toString());
 //				 writer.close();
 				
+//				BufferedWriter bw = new BufferedWriter(clob.setCharacterStream(0L));
+//				bw.write(longrent.getContents());
+//				bw.close();
+				
 			}
 			
 			// CLOB column에 데이터을 저장하였다면 commit()을 실행시키고  
@@ -129,7 +199,7 @@ public class LongRentDaoImpl implements LongRentDao {
 			
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
-		} 
+		}
 	}
 
 	
@@ -238,22 +308,79 @@ public class LongRentDaoImpl implements LongRentDao {
 //		}return total_pages;
 //	}
 //
-//	private static int VIEW_ROWS = 5; //페이지의 개수
-//	private static int COUNTS = 5; //한 페이지에 나타낼 no의 개수
-//	
-//	@Override
-//	public String pageNumber(int tpage, String name) {
-//		String str = "";
-//		
-//		int total_pates
-//		
-//		return null;
-//	}
-//
-//	@Override
-//	public ArrayList<LongRent> listLongRent(int tpage, int no) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	
+	// 페이징
+	@Override
+	public int countLongRentByAll() {
+		String sql = "select count(*) from longrent";
+		try(PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+
+	@Override
+	public ArrayList<LongRent> pagingLongRentByAll(Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM longrent ORDER BY WRITE_DATE desc) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					ArrayList<LongRent> list = new ArrayList<LongRent>();
+					do {
+						list.add(getLongRent(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+		
+		
+	//검색
+	@Override
+	public List<LongRent> selectSearch(String condition, String keyword) {
+		//select * from where name like '%?%'
+		//select * from where title like'%?%'
+//			String sql = "SELECT * FROM LONGRENT WHERE NAME LIKE '%?%' ORDER BY WRITE_DATE DESC";
+		
+		String sql = "SELECT * FROM LONGRENT ";
+		//System.out.println("[SQL 1단계]" + sql);
+	//	System.out.println("컨디션: " + condition + " keyword: " + keyword);
+		try {
+			if(keyword != null && !keyword.isEmpty()) {
+			//	sql += "where" + condition.trim() + " like '%" || ? || '%' " + "order by write_date desc" ;
+				sql += " where " + condition.trim()+ " like '%"+keyword.trim()+"%' order by write_date desc";
+				
+			//	System.out.println("sql = 처음부분**********************!" + sql);
+			} else { //모든 레코드 검색 
+				sql += "ORDER BY WRITE_DATE DESC";
+			}
+			//System.out.println("[SQL 2단계]" + sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql); 
+				ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					ArrayList<LongRent> list = new ArrayList<>();
+					do {
+						list.add(getLongRent(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
 
 }

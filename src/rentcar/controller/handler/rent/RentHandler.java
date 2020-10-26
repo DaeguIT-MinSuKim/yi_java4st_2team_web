@@ -8,13 +8,15 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
 import rentcar.controller.Command;
 import rentcar.dto.Car;
 import rentcar.dto.Kind;
-import rentcar.dto.rentDate;
+import rentcar.dto.Member;
+import rentcar.dto.RentDate;
 import rentcar.service.CarService;
 import rentcar.service.KindService;
 
@@ -27,20 +29,29 @@ public class RentHandler implements Command {
 			throws ServletException, IOException {
 
 		if (request.getMethod().equalsIgnoreCase("get")) {
-			// 최초 시작시 차량정보 GET
-			List<Car> car = carService.carList();
-			// 최초 시작시 차량정보 GET (화면에서 차량리스트에 뿌림)
-			request.setAttribute("car", car);
-
-			// 최초 시작시 차량분류 GET (화면에서 탭버튼에 뿌림)
-			List<Kind> kind = KindService.kindList();
-			request.setAttribute("kind", kind);
 			
+			HttpSession session = request.getSession();
+			Member loginUser = (Member) session.getAttribute("loginUser");
+			
+			if(loginUser==null) { // 로그인 했을때만 들어오도록
+				response.sendRedirect("login.do");
+				return null;
+			}else {
+				// 최초 시작시 차량정보 GET
+				List<Car> car = carService.carList();
+				// 최초 시작시 차량정보 GET (화면에서 차량리스트에 뿌림)
+				request.setAttribute("car", car);
+
+				// 최초 시작시 차량분류 GET (화면에서 탭버튼에 뿌림)
+				List<Kind> kind = KindService.kindList();
+				request.setAttribute("kind", kind);
+			}
+		
 		} else { // POST
 			
 			// 대여일선택 -> ajax로 값 받아옴
 			Gson gson = new Gson();
-			rentDate rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), rentDate.class);
+			RentDate rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), RentDate.class);
 			
 			// String으로 불러와야 앞자리 0이 사라지지 않기 때문에...
 			String minYear = rent.getMinYear();
@@ -92,9 +103,7 @@ public class RentHandler implements Command {
 				String json = gson.toJson(res);
 				response.getWriter().print(json);
 			}
-			
 			return null;
-			
 		}
 		
 		return "/rent/rent.jsp";

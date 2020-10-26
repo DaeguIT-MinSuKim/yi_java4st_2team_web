@@ -8,7 +8,15 @@ $(function(){
 			$(".no_board").show();
 			$(".board").hide();
 		}
-		
+	
+		$("#btn_delete2").click(function(e){	
+			e.preventDefault();
+			if(confirm("공지사항 게시글을 삭제하시겠습니까?") == true){
+				var val = $(this).attr("href");
+				location.href=val;
+			}
+			
+		});	
 			
 });
 		
@@ -29,7 +37,7 @@ $(function(){
 				</div>
 				<a href="adminNotice.do" class="btn_small btn_case2 floatR mt10 mr5">목록</a>
 				<a href="adminNoticeDelete.do?no=${param.no }" class="btn_small btn_case5 floatR mt10 mr5" id="btn_delete2">삭제</a>
-				<a href="#" class="btn_small btn_case2 floatR mt10 mr5">수정</a>
+				<a href="adminNoticeUpdate.do?no=${param.no }" class="btn_small btn_case2 floatR mt10 mr5">수정</a>
 			</div>
 
 			</div>

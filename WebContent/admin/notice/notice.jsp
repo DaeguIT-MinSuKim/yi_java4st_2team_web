@@ -15,6 +15,19 @@ $(function(){
 <div id="adimn_content">
 	<h2>공지사항</h2>
 	<div class="admin_page">
+		<div class="divSearch">
+				<form name="frmSearch" action="adminNotice.do" method="post">
+					<select name="condition">
+						<option value="title">제목</option>
+						<option value="no">번호</option>
+						<option value="contents">내용</option>
+					</select> 
+					<input type="text" name="keyword" title="검색어 입력"> 
+					<input type="hidden" name="no" value="${Notice.no }"> 
+					<input type="submit" value="검색">
+				</form>
+			</div>
+			
 		<table class="table_style1">
 			<!-- 글 있는 경우 -->
 			<colgroup>
@@ -33,7 +46,7 @@ $(function(){
 					<tr class="board">
 						<td>
 							<c:choose>
-								<c:when test="${Notice.isTop == 0 }"><span class="notice_board">공지</span></c:when>
+								<c:when test="${Notice.isTop == 0 }"><span class="notice_board">공지(${Notice.no})</span></c:when>
 								<c:when test="${Notice.isTop == 1 }">${Notice.no }</c:when>
 							</c:choose>
 						<td class="tl"><a href="adminNoticeView.do?no=${Notice.no}">${Notice.title }</a></td>
@@ -51,27 +64,40 @@ $(function(){
 		</form> -->
 		<a href="adminNoticeWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
 		
+		
 		<div class="board_list_page clear">
-			<a href="#" class="first arrow"><span class="text_hidden">처음</span></a>
-			<a href="#" class="prev arrow"><span class="text_hidden">이전</span></a>
-			
+			<a href="adminNotice.do?nowPage=1" class="first arrow"><span class="text_hidden">처음</span></a>
+			<c:if test="${paging.nowPage != 1}">
+				<a href="adminNotice.do?nowPage=${paging.nowPage-1}" class="prev arrow"><span class="text_hidden">이전</span></a>
+			</c:if>
+			<c:if test="${paging.nowPage == 1}">
+				<a href="adminNotice.do?nowPage=${paging.nowPage}" class="prev arrow"><span class="text_hidden">이전</span></a>
+			</c:if>
 			<ul>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
+				<c:forEach begin="${paging.startPage}" end="${paging.endPage }" var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<li class="active"><a>${p}</a></li>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<li><a href="adminNotice.do?nowPage=${p}">${p}</a></li>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 			</ul>
-			<a href="#" class="next arrow"><span class="text_hidden">다음</span></a>
-			<a href="#" class="end arrow"><span class="text_hidden">마지막</span></a>
+			
+			<c:if test="${paging.nowPage != paging.lastPage}">
+				<a href="adminNotice.do?nowPage=${paging.nowPage+1}" class="next arrow"><span class="text_hidden">다음</span></a>
+			</c:if>
+			<c:if test="${paging.nowPage == paging.lastPage}">
+				<a href="adminNotice.do?nowPage=${paging.nowPage}" class="next arrow"><span class="text_hidden">다음</span></a>
+			</c:if>
+			<a href="adminNotice.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
+			</div>
 		</div>
-	</div>
-</div>
+		
+
+</div><!--컨텐츠  -->
 
 
 

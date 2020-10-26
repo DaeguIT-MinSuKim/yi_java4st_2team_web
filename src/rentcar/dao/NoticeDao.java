@@ -3,7 +3,9 @@ package rentcar.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import rentcar.dto.LongRent;
 import rentcar.dto.Notice;
+import rentcar.utils.Paging;
 
 public interface NoticeDao {
 
@@ -19,6 +21,15 @@ public interface NoticeDao {
 	int updateNotice(Notice notice);
 
 	int deleteNotice(int no);
+
+	
+	//페이징 
+
+	int countNoticeByAll();
+
+	ArrayList<Notice> pagingNoticeByAll(Paging paging);
+
+	ArrayList<Notice> selectSearchNotice(String condition, String keyword);
 	
 	
 	

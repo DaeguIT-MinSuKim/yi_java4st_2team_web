@@ -26,8 +26,7 @@ public class MainHandler implements Command {
 			throws ServletException, IOException {
 		ArrayList<Event> eventList = eventService.listEvent();
 		List<Notice> noticeList = noticeService.getNoticeList();
-		List<Car> carList = carService.carList();
-		
+		List<Car> carList = carService.selectCarByRentCount();
 		
 		request.setAttribute("eventList", eventList);
 		request.setAttribute("noticeList", noticeList);
