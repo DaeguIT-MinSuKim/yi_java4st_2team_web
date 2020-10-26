@@ -35,17 +35,17 @@ public class CarUpdateHandler implements Command {
 			String no = request.getParameter("carNo");
 			Car car = service.carDetail(no);
 			request.setAttribute("car", car);
-			
+
 			List<Kind> kindList = kService.kindList();
 			request.setAttribute("kindList", kindList);
-			
+
 			List<Brand> brandList = bService.brandList();
 			request.setAttribute("brandList", brandList);
 
 			return "admin/car/carUpdate.jsp";
 		} else {
 			System.out.println("POST");
-			
+
 			response.setContentType("text/html; charsert=UTF8");
 			PrintWriter out = response.getWriter();
 
@@ -57,34 +57,35 @@ public class CarUpdateHandler implements Command {
 			String uploadFilePath = context.getRealPath(savePath);
 
 			try {
-				System.out.println(request);
+				System.out.println("request > " + request);
 				MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, enctype,
 						new DefaultFileRenamePolicy());
 				Enumeration files = multi.getFileNames();
 
 				String no = multi.getParameter("carNo");
 				String name = multi.getParameter("carName");
-				int kindNo = Integer.parseInt(multi.getParameter("carKind"));
-				int brandNo = Integer.parseInt(multi.getParameter("carBrand"));
-				String remark = multi.getParameter("carRemark");
-				String is_rent = multi.getParameter("carIs_rent");
-				String image = multi.getParameter("carImage");
+				int kindNo = Integer.parseInt(multi.getParameter("kind"));
+				int brandNo = Integer.parseInt(multi.getParameter("brand"));
+				String remark = multi.getParameter("remark");
+				String image = multi.getFilesystemName("image");
 
-				Car c = new Car();
-				c.setNo(no);
+				Car c = service.carDetail(no);
 				c.setName(name);
 				c.setKind(new Kind(kindNo));
 				c.setBrand(new Brand(brandNo));
 				c.setRemark(remark);
-				c.setIs_rent(is_rent);
-				c.setImage(image);
+				if (image != null) {
+					c.setImage(image);
+				}
 
-				int res = service.insertCar(c);
+				int res = service.updateCar(c);
 				request.setAttribute("res", res);
+				
+				response.sendRedirect("carList.do");
 			} catch (Exception e) {
 				System.out.println("예외 발생 : " + e);
 			}
-			return "carList.do";
+			return null;
 		}
 	}
 }

@@ -18,6 +18,16 @@ public class Car {
 	public Car(String no) {
 		this.no = no;
 	}
+	
+	public Car(String no, String name, Kind kind, Brand brand, String remark, String image) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.kind = kind;
+		this.brand = brand;
+		this.remark = remark;
+		this.image = image;
+	}
 
 	public Car(String no, String name, Kind kind, Brand brand, String remark, String is_rent, int counting,
 			String image) {

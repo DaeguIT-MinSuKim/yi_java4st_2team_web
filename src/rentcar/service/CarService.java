@@ -2,12 +2,14 @@ package rentcar.service;
 
 import java.sql.Connection;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dao.CarDao;
 import rentcar.dao.impl.CarDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Car;
+import rentcar.utils.Paging;
 
 public class CarService {
 	private static Connection con;
@@ -69,5 +71,13 @@ public class CarService {
 
 	public boolean isCar(String no) {
 		return dao.isCar(no);
+	}
+	
+	public int countCarByall() {
+		return dao.countCarByAll();
+	}
+	
+	public ArrayList<Car> pagingEventByAll(Paging paging){
+		return dao.pagingEventAyAll(paging);
 	}
 }

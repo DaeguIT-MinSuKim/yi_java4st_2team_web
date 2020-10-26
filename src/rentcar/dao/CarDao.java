@@ -1,9 +1,11 @@
 package rentcar.dao;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dto.Car;
+import rentcar.utils.Paging;
 
 public interface CarDao {
 
@@ -24,10 +26,10 @@ public interface CarDao {
 
 	// 대여반납일 기입 대여가능차량 목록 불러오기
 	List<Car> selectRentByCar(LocalDateTime rentdate, LocalDateTime returnDate);
-	
-	//차량의 최대 대여일 표기
+
+	// 차량의 최대 대여일 표기
 	LocalDateTime rentLastDate(Car car);
-	
+
 	// 차량 추가하기
 	int insertCar(Car car);
 
@@ -37,6 +39,10 @@ public interface CarDao {
 	// 차량 삭제하기
 	int deleteCar(Car car);
 
-	//차량추가 전 해당차량이 있을시 false값 반환
-	boolean isCar(String no); 
+	// 차량추가 전 해당차량이 있을시 false값 반환
+	boolean isCar(String no);
+
+	// 페이징
+	int countCarByAll();
+	ArrayList<Car> pagingEventAyAll(Paging paging);
 }

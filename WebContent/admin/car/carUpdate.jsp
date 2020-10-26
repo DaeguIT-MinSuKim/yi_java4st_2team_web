@@ -10,6 +10,14 @@
 		
 		var brandCode = ${car.brand.code};
 		$('#brandList').val(brandCode);
+		
+			$('#add').on("click", function() {
+				if ($('#carName').val() == "") {
+					alert("차량이름을 기입해주세요")
+					$('#carName').focus()
+					return false;
+				}
+			});
 	});
 </script>
 
@@ -21,15 +29,15 @@
 			<table border=1>
 				<tr>
 					<td>차량번호</td>
-					<td>${car.no }</td>
+					<td><input type="hidden" value="${car.no }" name="carNo">${car.no }</td>
 				</tr>
 				<tr>
-					<th>차량이름</th>
-					<td><input type="text" value="${car.name}"></td>
+					<th><label for="carName">차량이름</label></th>
+					<td><input type="text" name="carName" id="carName" value="${car.name}"></td>
 				</tr>
 				<tr>
 					<th>차량분류</th>
-					<td><select id="kindList">
+					<td><select id="kindList" name="kind">
 							<c:forEach items="${kindList }" var="kind">
 								<option value="${kind.code}">${kind.name}</option>
 							</c:forEach>
@@ -37,7 +45,7 @@
 				</tr>
 				<tr>
 					<th>브랜드명</th>
-					<td><select id="brandList">
+					<td><select id="brandList" name="brand">
 							<c:forEach items="${brandList}" var="brand">
 								<option value="${brand.code}">${brand.name}</option>
 							</c:forEach>
@@ -56,17 +64,19 @@
 					<td>${car.counting}</td>
 				</tr>
 				<tr>
-					<th>이미지</th>
-					<td><input type="file" name="image" class="list_file"></td>
+					<th>현 이미지</th>
+					<td><img src="upload/${car.image}" width="200px" height="200px"></td>
+				</tr>
+				<tr>
+					<th>바꿀 이미지</th>	
+					<td><input type="file" name="image" class="list_file"
+						id="image"></td>
 				</tr>
 			</table>
 			<ul class="button_style3 mt50">
-				<li><input type="submit" value="수정" class="btn_small btn_case2"
-					id="add"></li>
-				<li><a href="carList.do" class="btn_small btn_case4"
-					id="cancel">취소</a></li>
+				<li><input type="submit" value="수정" class="btn_small btn_case2" id="add"></li>
+				<li><a href="carList.do" class="btn_small btn_case4" id="cancel">취소</a></li>
 			</ul>
-			<img src="upload/${car.image}">
 		</form>
 	</div>
 </div>

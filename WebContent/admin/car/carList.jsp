@@ -51,6 +51,8 @@
 		})
 	});
 </script>
+
+		<!-- 차량 검색 -->
 <div id="adimn_content">
 	<h2>차량 목록</h2>
 	<div class="admin_page">
@@ -79,6 +81,8 @@
 
 			<button class="search">검색</button>
 		</div>
+		
+		<!-- 차량 목록 -->
 		<table border=1 class="carTable">
 			<tr>
 				<th>차량 번호</th>

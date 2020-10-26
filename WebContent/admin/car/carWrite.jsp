@@ -32,7 +32,7 @@
 						code : $('#brandList').val()
 					},
 					remark : $('#remark').val(),
-					image : $('#image').val()
+					image :	''
 			};
 			
 			alert(JSON.stringify(newCar));
@@ -42,7 +42,7 @@
 				url : "carWrite.do",
 				cache : false,
 				data : JSON.stringify(newCar),
-				dataType: "text",
+				dataType: "JSON",
 				complete : function(data){
 					alert(data);
 					/* if(data == 1) {

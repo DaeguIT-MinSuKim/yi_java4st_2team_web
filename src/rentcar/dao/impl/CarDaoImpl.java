@@ -12,8 +12,10 @@ import java.util.List;
 import rentcar.dao.CarDao;
 import rentcar.dto.Brand;
 import rentcar.dto.Car;
+import rentcar.dto.Event;
 import rentcar.dto.Kind;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class CarDaoImpl implements CarDao {
 	private static final CarDaoImpl instance = new CarDaoImpl();
@@ -291,4 +293,40 @@ public class CarDaoImpl implements CarDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	// 페이징
+		@Override
+		public int countCarByAll() {
+			String sql = "select count(*) from CAR";
+			try(PreparedStatement pstmt = con.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				throw new CustomSQLException(e);
+			}
+			return 0;
+		}
+
+		@Override
+		public ArrayList<Car> pagingEventAyAll(Paging paging) {
+			String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE ORDER BY c.KIND_CODE) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+			try (PreparedStatement pstmt = con.prepareStatement(sql)){
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				try (ResultSet rs = pstmt.executeQuery()){
+					if (rs.next()) {
+						ArrayList<Car> list = new ArrayList<Car>();
+						do {
+							list.add(getCar(rs));
+						} while (rs.next());
+						return list;
+					}
+				}
+			} catch (SQLException e) {
+				throw new CustomSQLException(e);
+			}
+			return null;
+		}
 }
