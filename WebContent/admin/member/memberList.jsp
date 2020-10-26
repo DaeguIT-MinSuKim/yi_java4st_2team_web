@@ -28,11 +28,13 @@
 			<table class="table_style1">
 				<!-- 글 있는 경우 -->
 				<colgroup>
-					<%-- <col width="10%">
 					<col width="10%">
 					<col width="10%">
 					<col width="10%">
-					<col width="10%"> --%>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
 				</colgroup>
 				
 				<tr>
@@ -40,7 +42,9 @@
 					<th>이름</th>
 					<th>전화번호</th>
 					<th>면허종류</th>
-					<th>면허번호</th>		
+					<th>면허번호</th>
+					<th>블랙</th>
+					<th>최근접속</th>
 				</tr>
 
 				<c:forEach items="${memberPaging}" var="member">
@@ -58,6 +62,8 @@
 						</c:choose>
 					</td>
 					<td>${member.li_number}</td>
+					<td>${member.is_black}</td>
+					<td>${member.date}</td>
 				</tr>
 				</c:forEach>
 				

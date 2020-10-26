@@ -21,6 +21,9 @@ public interface MemberDao {
 
 	// 회원 수정
 	int updateMember(Member member);
+	
+	// 회원 블랙리스트 수정
+	int updateBlack(Member member);
 
 	// 회원 탈퇴
 	int deleteMember(Member member);

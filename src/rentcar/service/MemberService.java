@@ -39,6 +39,10 @@ public class MemberService {
 	public int updateMember(Member member) {
 		return dao.updateMember(member);
 	}
+	
+	public int updateBlack(Member member) {
+		return dao.updateBlack(member);
+	}
 
 	public int deleteMember(Member member) {
 		return dao.deleteMember(member);

@@ -128,6 +128,18 @@ public class MemberDaoImpl implements MemberDao {
 		}
 
 	}
+	
+	@Override
+	public int updateBlack(Member member) {
+		String sql = "UPDATE MEMBER SET IS_BLACK = ? WHERE ID = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, member.getIs_black());
+			pstmt.setString(2, member.getId());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	@Override
 	public int deleteMember(Member member) {
@@ -235,5 +247,7 @@ public class MemberDaoImpl implements MemberDao {
 			}
 			return null;
 		}
+
+
 
 }
