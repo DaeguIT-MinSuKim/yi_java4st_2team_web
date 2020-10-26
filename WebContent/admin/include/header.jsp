@@ -128,7 +128,6 @@
 		<li><a href="#">고객관리</a>
 			<ul>
 				<li><a href="adminMemberList.do">고객목록</a></li>
-				<li><a href="adminMemberDetail.do">[임시]고객상세정보</a></li>
 				<li><a href="adminBlackList.do">블랙리스트</a></li>
 			</ul>
 		</li>

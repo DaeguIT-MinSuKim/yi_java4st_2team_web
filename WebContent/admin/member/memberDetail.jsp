@@ -14,7 +14,7 @@
 	
 	<body>
 		<div id="adimn_content">
-		<h2>고객 상세정보</h2>
+		<h2>${selectMember.name}(${selectMember.id})고객님 상세정보</h2>
 		<div class="admin_page">
 		<table class="table_style1" class="tl">
 			<colgroup>
@@ -74,6 +74,10 @@
 			<tr>
 				<th scope="row">블랙</th>
 				<td class="tl">${selectMember.is_black}</td>
+			</tr>
+			<tr>
+				<th scope="row">대여 횟수</th>
+				<td class="tl">${selectMember.counting}</td>
 			</tr>
 		</table>
 		</div>
