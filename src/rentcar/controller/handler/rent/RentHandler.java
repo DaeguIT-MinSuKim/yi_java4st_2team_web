@@ -16,7 +16,7 @@ import rentcar.controller.Command;
 import rentcar.dto.Car;
 import rentcar.dto.Kind;
 import rentcar.dto.Member;
-import rentcar.dto.rentDate;
+import rentcar.dto.RentDate;
 import rentcar.service.CarService;
 import rentcar.service.KindService;
 
@@ -51,7 +51,7 @@ public class RentHandler implements Command {
 			
 			// 대여일선택 -> ajax로 값 받아옴
 			Gson gson = new Gson();
-			rentDate rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), rentDate.class);
+			RentDate rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), RentDate.class);
 			
 			// String으로 불러와야 앞자리 0이 사라지지 않기 때문에...
 			String minYear = rent.getMinYear();

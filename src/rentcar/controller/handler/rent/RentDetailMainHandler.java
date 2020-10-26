@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import rentcar.controller.Command;
 import rentcar.dto.Car;
 import rentcar.dto.Member;
-import rentcar.dto.rentDate;
+import rentcar.dto.RentDate;
 import rentcar.service.CarService;
 
 public class RentDetailMainHandler implements Command {
@@ -41,7 +41,7 @@ public class RentDetailMainHandler implements Command {
 			} else {
 
 				Gson gson = new Gson();
-				rentDate rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), rentDate.class);
+				RentDate rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), RentDate.class);
 				
 				// String으로 불러와야 앞자리 0이 사라지지 않기 때문에...
 				String minYear = rent.getMinYear();

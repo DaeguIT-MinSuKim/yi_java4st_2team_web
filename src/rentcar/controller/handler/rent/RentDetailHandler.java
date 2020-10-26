@@ -66,6 +66,8 @@ public class RentDetailHandler implements Command {
 			request.setAttribute("optList", opt);
 			request.setAttribute("evtList", evt);
 			request.setAttribute("maxDateLimit", ren);
+		}else {
+			
 		}
 		
 		return "/rent/rent_detail.jsp";
