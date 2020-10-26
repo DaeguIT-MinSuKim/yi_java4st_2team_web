@@ -15,6 +15,17 @@ $(function(){
 <div id="adimn_content">
 	<h2>이벤트</h2>
 	<div class="admin_page">
+		<div class="divSearch">
+		<form name="frmSearch" action="adminEvent.do" method="post">
+			<select name="condition">
+				<option value="event_code">코드</option>
+				<option value="name">제목</option>
+			</select> 
+			<input type="text" name="keyword" title="검색어 입력">
+			<input type="submit" value="검색">
+		</form>
+		</div>
+		
 		<table class="table_style1">
 			<!-- 글 있는 경우 -->
 			<colgroup>
@@ -84,6 +95,28 @@ $(function(){
 		</div>
 	</div>
 </div>
+
+<c:if test="${method eq 'post'}">
+	<input type="hidden" name="post_condition" value="${condition}">
+	<input type="hidden" name="post_keyword" value="${keyword}">
+	
+	<script>
+		$(document).ready(function(){
+			$(".divSearch select").val($("input[name=post_condition]").val())
+			$(".divSearch input[name=keyword]").val($("input[name=post_keyword]").val())
+			
+			$(".board_list_page a").click(function(){
+				var href = $(this).attr("href");
+				var hrefArray = href.split('=');
+				
+				$(".divSearch form").append('<input type="hidden" name="nowPage" value="'+ hrefArray[1] +'">')
+				$(".divSearch form").submit();
+				return false;
+			})
+			
+		})
+	</script>
+</c:if>
 
 
 

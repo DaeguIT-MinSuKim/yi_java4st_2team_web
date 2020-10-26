@@ -1,6 +1,7 @@
 package rentcar.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rentcar.dto.Event;
 import rentcar.dto.EventBox;
@@ -34,4 +35,8 @@ public interface EventDao {
 	
 	// 이벤트 - 한 회원이 갖고 있는 할인쿠폰 찾기 
 	ArrayList<Event> selectEventBoxFindMemberCoupon(String id);
+	
+	// 관리자 이벤트 - 검색
+	int countSearchEventByAll(String condition, String keyword);
+	List<Event> searchEventList(String condition, String keyword, Paging paging);
 }

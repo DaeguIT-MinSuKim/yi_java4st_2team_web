@@ -24,6 +24,10 @@ public class MemberService {
 		return dao.selectMemberByAll();
 	}
 
+	public ArrayList<Member> selectMemberBlackList() {
+		return dao.selectMemberBlackList();
+	}
+
 	public Member selectMemberByUserId(Member member) {
 		return dao.selectMemberByUserId(member);
 	}
@@ -40,13 +44,22 @@ public class MemberService {
 		return dao.deleteMember(member);
 	}
 
-	// 페이징
+	// 페이징 - 회원 리스트
 	public int countMemberByAll() {
 		return dao.countMemberByAll();
 	}
 
 	public ArrayList<Member> pagingMemberByAll(Paging paging) {
 		return dao.pagingMemberByAll(paging);
+	}
+
+	// 페이징 - 회원 블랙 리스트
+	public int countMemberBlackList() {
+		return dao.countMemberBlackList();
+	}
+
+	public ArrayList<Member> pagingMemberBlackList(Paging paging) {
+		return dao.pagingMemberBlackList(paging);
 	}
 
 }

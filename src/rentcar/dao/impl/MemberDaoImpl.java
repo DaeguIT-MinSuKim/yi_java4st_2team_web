@@ -141,7 +141,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
-	// 페이징
+	// 페이징 - 회원 리스트
 	@Override
 	public int countMemberByAll() {
 		String sql = "SELECT COUNT(*) FROM MEMBER";
@@ -175,5 +175,65 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return null;
 	}
+
+	@Override
+	public ArrayList<Member> selectMemberBlackList() {
+		String sql = "SELECT * FROM MEMBER WHERE IS_BLACK = 'Y' ORDER BY NAME ASC";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				ArrayList<Member> list = new ArrayList<Member>();
+				do {
+					list.add(getMemberList(rs));
+				} while (rs.next());
+				return list;
+			}
+
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	// 페이징 - 회원 블랙 리스트
+		@Override
+		public int countMemberBlackList() {
+			String sql = "SELECT COUNT(*) FROM MEMBER WHERE IS_BLACK = 'Y'";
+			try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				throw new CustomSQLException(e);
+			}
+			return 0;
+		}
+
+		@Override
+		public ArrayList<Member> pagingMemberBlackList(Paging paging) {
+			String sql = "SELECT *\r\n"
+					+ "FROM (SELECT rownum RN, a.*\r\n"
+					+ "          FROM (SELECT * \r\n"
+					+ "                  FROM MEMBER\r\n"
+					+ "                 WHERE IS_BLACK = 'Y'\r\n"
+					+ "                 ORDER BY NAME ASC) a)\r\n"
+					+ "         WHERE RN BETWEEN ? AND ?\r\n"
+					+ "         ORDER BY RN";
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				try (ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+						ArrayList<Member> list = new ArrayList<Member>();
+						do {
+							list.add(getMemberList(rs));
+						} while (rs.next());
+						return list;
+					}
+				}
+			} catch (SQLException e) {
+				throw new CustomSQLException(e);
+			}
+			return null;
+		}
 
 }
