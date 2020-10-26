@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import rentcar.dao.EventDao;
 import rentcar.dto.Event;
@@ -223,5 +224,53 @@ public class EventDaoImpl implements EventDao {
 		event.setSale(rs.getInt("SALE"));
 		
 		return event;
+	}
+
+	@Override
+	public List<Event> searchEventList(String condition, String keyword, Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM EVENT ORDER BY EVENT_CODE DESC) a) WHERE RN BETWEEN ? AND ? ";
+		try {
+			if (keyword != null && !keyword.isEmpty()) {
+				sql += " AND " + condition.trim() + " LIKE '%" + keyword.trim() + "%' ";
+			}
+			sql += "ORDER BY EVENT_CODE DESC";
+			try (PreparedStatement pstmt = con.prepareStatement(sql)){
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				
+				try (ResultSet rs = pstmt.executeQuery()){
+					if (rs.next()) {
+						List<Event> list = new ArrayList<Event>();
+						do {
+							list.add(getEvent(rs));
+						} while (rs.next());
+						return list;
+					}
+				}
+				
+			}
+		} catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	@Override
+	public int countSearchEventByAll(String condition, String keyword) {
+		String sql = "select count(*) from EVENT";
+		try {
+			if (keyword != null && !keyword.isEmpty()) {
+				sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+			}
+			try(PreparedStatement pstmt = con.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
 	}
 }
