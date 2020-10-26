@@ -171,7 +171,7 @@ ${carDetail}
 							<div class="right" id="set_discount">사용하지않음</div>
 						</li>
 						<li>
-							<div class="left">차량</div>
+							<div class="left">차량종류</div>
 							<div class="right">${carDetail.getKind().getName()}</div>
 						</li>
 						<li>
@@ -180,21 +180,28 @@ ${carDetail}
 						</li>
 						<li class="priceCalcul">
 							<div class="left">
-								<span>(보험)</span>
-								<b class="c_blue"></b> 
-								+ <br>
-								
-								<span>(옵션)</span>
-								<b class="c_blue"></b> 
-								+ <br>
-								
-								<span>(할인/쿠폰)</span>
-								<b class="c_blue"></b> 
-								+ <br>
-								
-								<span>(차량)</span>
-								<b class="c_blue">${carDetail.getKind().getFare()}</b>
-								+  <br>
+								<ul>
+									<li>
+										<span>(보험)</span>
+										<b class="c_blue set_insurance">0</b>
+									</li>
+									<li>
+										<span>(옵션)</span>
+										<b class="c_blue set_option">0</b> 
+									</li>
+									<li>
+										<span>(할인/쿠폰)</span>
+										<b class="c_blue set_discount">0</b> 
+									</li>
+									<li>
+										<span>(차량)</span>
+										<b class="c_blue">${carDetail.getKind().getFare()}</b>
+									</li>
+									<li>
+										<span>(대여일)</span>
+										<b class="c_blue set_day">0</b>
+									</li>
+								</ul>
 							</div>
 						</li>
 						<li class="priceResult">
