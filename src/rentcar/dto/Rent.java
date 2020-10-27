@@ -13,6 +13,7 @@ public class Rent {
 	private long fare;
 	private String remark;
 	private String optAll;
+	private Event eventCode;
 	
 	
 	public Rent() {
@@ -55,10 +56,9 @@ public class Rent {
 		this.remark = remark;
 	}
 	
-	
 
 	public Rent(int rentNo, Member id, Car carNo, Ins insCode, LocalDateTime rent_date, LocalDateTime return_date,
-			String is_rent, long fare, String remark, String optAll) {
+			String is_rent, long fare, String remark, String optAll, Event eventCode) {
 		this.rentNo = rentNo;
 		this.id = id;
 		this.carNo = carNo;
@@ -69,6 +69,7 @@ public class Rent {
 		this.fare = fare;
 		this.remark = remark;
 		this.optAll = optAll;
+		this.eventCode = eventCode;
 	}
 
 	public int getRentNo() {
@@ -152,13 +153,23 @@ public class Rent {
 	public void setOptAll(String optAll) {
 		this.optAll = optAll;
 	}
+	
+
+	public Event getEventCode() {
+		return eventCode;
+	}
+
+	public void setEventCode(Event eventCode) {
+		this.eventCode = eventCode;
+	}
 
 	@Override
 	public String toString() {
 		return String.format(
-				"Rent [rentNo=%s, id=%s, carNo=%s, insCode=%s, rent_date=%s, return_date=%s, is_rent=%s, fare=%s, remark=%s, optAll=%s]",
-				rentNo, id, carNo, insCode, rent_date, return_date, is_rent, fare, remark, optAll);
+				"Rent [rentNo=%s, id=%s, carNo=%s, insCode=%s, rent_date=%s, return_date=%s, is_rent=%s, fare=%s, remark=%s, optAll=%s, eventCode=%s]",
+				rentNo, id, carNo, insCode, rent_date, return_date, is_rent, fare, remark, optAll, eventCode);
 	}
 
+	
 	
 }

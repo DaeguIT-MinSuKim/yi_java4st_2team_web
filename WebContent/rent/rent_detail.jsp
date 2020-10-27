@@ -19,7 +19,6 @@
 <input type="hidden" name="get_maxDateLimit" id="get_maxDateLimit" value="${maxDateLimit.getReturn_date()}">
 <input type="hidden" name="get_carNo" id="get_carNo" value="${carDetail.getNo()}">
 
-
 <section class="con_wrap box">
 
 	<div class="contents_box out padLeft0">
@@ -81,9 +80,9 @@
 											<option value="0">쿠폰없음</option>
 										</c:when>
 										<c:otherwise>
-											<option value="0">사용하지 않음</option>
+											<option value="0" data-code="0">사용하지 않음</option>
 											<c:forEach var="evt" items="${evtList}">
-												<option value="${evt.getSale()}">${evt.getName()} (${evt.getSale()}원)</option>
+												<option value="${evt.getSale()}" data-code="${evt.getEventCode()}">${evt.getName()} (${evt.getSale()}원)</option>
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>

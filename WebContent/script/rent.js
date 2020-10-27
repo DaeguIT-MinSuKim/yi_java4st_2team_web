@@ -474,17 +474,15 @@ function btn_payBox_submit(){
 				var $get_minDate = $("#get_minDate").text();				// 대여일
 				var $get_maxDate = $("#get_maxDate").length ? $("#get_maxDate").text() : $(".calendar.next").val(); // 반납일
 				var $set_total = $("#set_total>span").attr("data-total");	// 총 결제금액
-//				
-				$get_ins = $get_ins==0 ? $get_ins=null : $get_ins;
+				var $get_eventCode = $("#get_discount option:checked").attr("data-code");		// 할인/쿠폰 번호
 				
-//				var $set_dis = $("#set_discount>span");						// 할인/쿠폰
-
 				var optAll = "";
+				
 				
 				// 옵션 체크된 항목 번호 저장
 				for( var i=0; i < $("#get_option input").length; i++ ){
 					if( $("#get_option input").eq(i).prop("checked") ){
-						optAll += String($("#get_option input").eq(i).val());
+						optAll += String($("#get_option input").eq(i).val()) + ",";
 					};
 				};
 				
@@ -518,7 +516,10 @@ function btn_payBox_submit(){
 					return_date:$get_maxDate,
 					is_rent:'y',
 					fare:$set_total,
-					optAll:optAll
+					optAll:optAll,
+					eventCode: {
+						eventCode:$get_eventCode
+					}
 				};
 				
 				$.ajax({
@@ -548,10 +549,6 @@ function btn_payBox_submit(){
 	});
 	
 }
-
-
-
-
 
 
 

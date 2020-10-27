@@ -87,6 +87,12 @@ public class RentDaoImpl implements RentDao {
 		return r;
 	}
 	
+	private Rent getRentNo(ResultSet rs) throws SQLException {
+		Rent r = new Rent();
+		r.setRentNo(rs.getInt("RENT_NO"));
+		return r;
+	}
+	
 	private Rent getMaxDateLimit(ResultSet rs) throws SQLException {
 		Rent r = new Rent();
 		r.setReturn_date(rs.getTimestamp("RETURN_DATE").toLocalDateTime());
@@ -276,11 +282,11 @@ public class RentDaoImpl implements RentDao {
 	
 	@Override
 	public Rent selectRecentByNo() {
-		String sql = "SELECT MAX(RENT_NO) AS RENT_NO FROM RENT ORDER BY RENT_NO DESC";
+		String sql = "SELECT MAX(RENT_NO) AS RENT_NO FROM rent WHERE RENT_DATE = (SELECT MAX(RENT_DATE) FROM RENT)";
 		try(PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()){
-				return getRent(rs);
+				return getRentNo(rs);
 			}
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);

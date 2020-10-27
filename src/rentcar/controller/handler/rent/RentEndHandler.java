@@ -19,7 +19,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
 import rentcar.controller.Command;
+import rentcar.dto.Event;
+import rentcar.dto.EventBox;
+import rentcar.dto.Member;
 import rentcar.dto.Rent;
+import rentcar.service.EventBoxService;
 import rentcar.service.OptBoxService;
 import rentcar.service.RentService;
 
@@ -27,6 +31,7 @@ public class RentEndHandler implements Command {
 
 	private RentService rentService = new RentService();
 	private OptBoxService optBoxService = new OptBoxService();
+	private EventBoxService eventBoxService = new EventBoxService();
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -43,26 +48,38 @@ public class RentEndHandler implements Command {
 			       }
 			}).create();
 			Rent rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Rent.class);
+			System.out.println("RentDetail >>>>>>>>>" + rent);
 
-//			System.out.println("RentDetail >>>>>>>>>" + rent);
 			
+			/*
+			 * 예약하기 누를 시 DB변경 항목
+			 * 1. 렌트(RENT) INSERT
+			 * 2. 옵션(OPT_BOX) 체크한 종류별로 각각 INSERT
+			 * 3. 해당 회원의 할인/쿠폰(EVENT_BOX) 사용 했다면 UPDATE
+			 * */
 			
-			// 렌트 INSERT 
-//			int rentIn = rentService.insertRent(rent);
-//			System.out.println(rentIn);
-			
-//			if( rentIn==1 ) {
-				Rent res = rentService.selectRecentByNo();
-				System.out.println("res >>>>>>>" + res.getRentNo());
-//			}else {
-				
+			// 1. 렌트(RENT) INSERT
+//			int rentInsert = rentService.insertRent(rent);
+//			
+//			if( rentInsert==1 ) { // INSERT 성공하면
+//				Rent rentNo = rentService.selectRecentByNo(); // 1번에서 삽입한 RENT_NO 가져옴
+//				
+//				// 2. 옵션(OPT_BOX) 체크한 종류별로 각각 INSERT
+//				String optAll = rent.getOptAll();
+//				String optStr[] = optAll.split(",");
+//				for( String opt : optStr ) {
+//					optBoxService.insertOptByRent(Integer.parseInt(opt), rentNo.getRentNo());
+//				}
 //			}
 			
-			// 옵션 여러개 INSERT
-//			int optInsert = optBoxService.insertOptByRent(optCode, rentNo);
-			
 			// 회원의 쿠폰 UPDATE
+			Member userId = rent.getId();
+			Event eventCode = rent.getEventCode();
+			EventBox eventBox = new EventBox();
+			eventBox.setId(userId);
+			eventBox.setEventCode(eventCode);
 			
+//			eventBoxService.
 			
 //			response.getWriter().print(rentIn);
 			return null;
