@@ -27,6 +27,7 @@ public class CarWriteHandler implements Command {
 	private CarService service = new CarService();
 	private KindService kService = new KindService();
 	private BrandService bService = new BrandService();
+	private int res = 0;
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -40,6 +41,8 @@ public class CarWriteHandler implements Command {
 			List<Brand> brandList = bService.brandList();
 			request.setAttribute("brandList", brandList);
 			
+			request.setAttribute("res", res);
+			
 		return "/admin/car/carWrite.jsp";
 	} else {
 		System.out.println("POST");
@@ -49,7 +52,6 @@ public class CarWriteHandler implements Command {
 		String savePath = "upload";
 		int uploadFileSizeLimit = 5 * 1024 * 1024;
 		String enctype = "UTF-8";
-		int res = 0;
 
 		ServletContext context = request.getServletContext(); // 컨트롤러 인터페이스를 상속받아 처리하는 경우 request 사용
 		String uploadFilePath = context.getRealPath(savePath);
@@ -60,37 +62,32 @@ public class CarWriteHandler implements Command {
 			Enumeration files = multi.getFileNames();
 
 			String no = multi.getParameter("carNo");
-//			String name = multi.getParameter("carName");
-//			int kindNo = Integer.parseInt(multi.getParameter("kind"));
-//			int brandNo = Integer.parseInt(multi.getParameter("brand"));
-//			String remark = multi.getParameter("remark");
-//			String image = multi.getFilesystemName("image");
-//
-//			Car c = new Car();
-//			c.setNo(no);
-//			c.setName(name);
-//			c.setKind(new Kind(kindNo));
-//			c.setBrand(new Brand(brandNo));
-//			c.setRemark(remark);
-//			c.setImage(image);
+			String name = multi.getParameter("carName");
+			int kindNo = Integer.parseInt(multi.getParameter("kind"));
+			int brandNo = Integer.parseInt(multi.getParameter("brand"));
+			String remark = multi.getParameter("remark");
+			String image = multi.getFilesystemName("image");
+
+			Car c = new Car();
+			c.setNo(no);
+			c.setName(name);
+			c.setKind(new Kind(kindNo));
+			c.setBrand(new Brand(brandNo));
+			c.setRemark(remark);
+			c.setImage(image);
 			if(service.isCar(no)) {
-				Gson gson = new Gson();
-				Car c = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Car.class);
 				System.out.println("json 잘 왔니^^? " + c);
-//				res = service.insertCar(c);
-				
-				response.setCharacterEncoding("UTF-8");
-				response.setStatus(HttpServletResponse.SC_ACCEPTED);
-				
-				PrintWriter pw = response.getWriter();
-				pw.print(res);
-				pw.flush();
-//				response.sendRedirect("carList.do");
+				res = service.insertCar(c);
+				request.setAttribute("res", res);
+			}else {
+				request.setAttribute("res", res);
+				response.sendRedirect("/admin/car/carWrite.jsp");
 			}
 		} catch (Exception e) {
 			System.out.println("예외 발생 : " + e);
 		}
 	}
+		response.sendRedirect("carList.do");
 		return null;
 }
 }

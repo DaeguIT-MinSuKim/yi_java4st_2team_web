@@ -50,5 +50,9 @@ public interface CarDao {
 
 	// 페이징
 	int countCarByAll();
-	ArrayList<Car> pagingEventAyAll(Paging paging);
+	ArrayList<Car> pagingCarByAll(Paging paging);
+	
+	// 관리자 차량 - 검색
+	int countSearchCarByAll(String condition, String keyword);
+	ArrayList<Car> searchCarList(String condition, String keyword, Paging paging);
 }

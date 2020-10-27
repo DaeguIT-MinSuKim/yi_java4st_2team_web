@@ -9,13 +9,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>고객 블랙 리스트</title>
+		<title>고객 블랙리스트</title>
 		<script>
-			$(function(){
-				if( $(".board").length == 0 ){ // 글이 없는 경우
+			$(function() {
+				if ($(".board").length == 0) { // 글이 없는 경우
 					$(".no_board").show();
 					$(".board").hide();
 				}
+				
 			});
 		</script>
 	</head>

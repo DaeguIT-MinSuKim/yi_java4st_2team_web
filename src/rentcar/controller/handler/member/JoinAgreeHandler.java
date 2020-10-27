@@ -9,10 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 import rentcar.controller.Command;
 
 public class JoinAgreeHandler implements Command {
-	
-	@Override	
+
+	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "member/join_agree.jsp";
+
+		if (request.getMethod().equalsIgnoreCase("GET JoinAgreeHandler")) {
+			System.out.println("GET");
+
+			return null;
+
+		} else {
+			System.out.println("POST JoinAgreeHandler");
+
+			return "member/join_agree.jsp";
+		}
+
 	}
+
 }

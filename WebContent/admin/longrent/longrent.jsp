@@ -9,6 +9,13 @@ $(function(){
 			$(".no_board").show();
 			$(".board").hide();
 		}
+	
+	$('#repX').on("click", function(){
+		if($('#selectBox option:selected').val() == "rep_yn" && frmSearch.keyword.value == ""){
+	//		alert("됐다");
+			frmSearch.keyword.value = 1;
+		}
+	})		
 })
 </script>
 <div id="adimn_content">
@@ -17,14 +24,15 @@ $(function(){
 	
 		<div class="divSearch">
 				<form name="frmSearch" action="adminLongRent.do" method="post">
-					<select name="condition">
+					<select name="condition" id="selectBox">
 						<option value="name">이름</option>
 						<option value="title">제목</option>
 						<option value="contents">내용</option>
+						<option value="rep_yn" id="repYn">답변여부X</option>
 					</select> 
-					<input type="text" name="keyword" title="검색어 입력"> 
+					<input type="text" name="keyword" title="검색어 입력" id="keyword" > 
 					<input type="hidden" name="no" value="${LongRent.no }"> 
-					<input type="submit" value="검색">
+					<input type="submit" value="검색" id="repX">
 				</form>
 		</div>
 	
@@ -33,8 +41,8 @@ $(function(){
 			<colgroup>
 				<col width="10%">
 				<col width="">
-				<col width="12%">
-				<col width="16%">
+				<col width="13%">
+				<col width="18%">
 				<col width="10%">
 			</colgroup>
 			<tr>
@@ -99,6 +107,31 @@ $(function(){
 			<a href="adminLongRent.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
 			</div>
 		</div>
+
+
 	</div>
+
+	<c:if test="${method eq 'post'}">
+		<input type="hidden" name="post_condition" value="${condition}">
+		<input type="hidden" name="post_keyword" value="${keyword}">
+	
+	<script>
+		$(document).ready(function(){
+			$(".divSearch select").val($("input[name=post_condition]").val())
+			$(".divSearch input[name=keyword]").val($("input[name=post_keyword]").val())
+			
+			$(".board_list_page a").click(function(){
+				var href = $(this).attr("href");
+				var hrefArray = href.split('=');
+				
+				$(".divSearch form").append('<input type="hidden" name="nowPage" value="'+ hrefArray[1] +'">')
+				$(".divSearch form").submit();
+				return false;
+			})
+			
+		})
+	</script>
+</c:if>
+
 </div>
 <%@ include file="/admin/include/footer.jsp"%>

@@ -20,18 +20,24 @@
 				$('#image').focus()
 				return false;
 			}
+		});
 			
-			
-			var newCar = {
+			/* var newCar = {
 					no : $('#carNo').val(),
 					name : $('#carName').val(),
 					kind : {
-						code : $('#kindList').val()
+						code : $('#kindList').val(),
+						name : '',
+						fare : ''
 					},
 					brand : {
-						code : $('#brandList').val()
+						code : $('#brandList').val(),
+						name : '',
+						image : ''
 					},
 					remark : $('#remark').val(),
+					is_rent : '',
+					counting : '',
 					image :	''
 			};
 			
@@ -42,21 +48,20 @@
 				url : "carWrite.do",
 				cache : false,
 				data : JSON.stringify(newCar),
-				dataType: "JSON",
 				complete : function(data){
-					alert(data);
-					/* if(data == 1) {
+					if(data == 1) {
 						alert("성공");
 						location.href="carList.do";
 					} else {
 						alert("기입하신 차량번호는 존재하는 번호입니다.");
 						history.go(-1);					
-					} */
-				}/* ,
+					}
+				} ,
 				error: function(){
-				} */
+				}
 			});
-		});
+		}); */
+		alert(res);
 	});
 </script>
 <div id="adimn_content">

@@ -1,7 +1,6 @@
 package rentcar.controller.handler.kind;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,15 +17,21 @@ public class KindWriteHandler implements Command {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			return null;
+			
+			return "admin/kind/kindWrite.jsp";
 		} else {
 			System.out.println("POST");
 
-			int no = (int) request.getAttribute("kindNo");
-			Kind kind = service.kindDetail(no);
-			request.setAttribute("kind", kind);
+			String name = request.getParameter("name");
+			int fare = Integer.parseInt(request.getParameter("fare"));
+			
+			Kind k = new Kind();
+			k.setName(name);
+			k.setFare(fare);
+			service.insertKind(k);
 
-			return "kindUpdate.do";
+			response.sendRedirect("kindList.do");
+			return null;
 		}
 	}
 }
