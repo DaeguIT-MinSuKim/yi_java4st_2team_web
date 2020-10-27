@@ -78,17 +78,25 @@ public class CarService {
 		return dao.isCar(no);
 	}
 	
+	// 차량 대여 횟수 순위
+	public List<Car> selectCarByRentCount(){
+		return dao.selectCarByRentCount();
+	}
+	
 	public int countCarByall() {
 		return dao.countCarByAll();
 	}
 	
 	public ArrayList<Car> pagingEventByAll(Paging paging){
-		return dao.pagingEventAyAll(paging);
+		return dao.pagingCarByAll(paging);
 	}
 	
-	// 차량 대여 횟수 순위
-	public List<Car> selectCarByRentCount(){
-		return dao.selectCarByRentCount();
+	public int countSearchCarByAll(String condition, String keyword) {
+		return dao.countSearchCarByAll(condition, keyword);
+	}
+
+	public ArrayList<Car> searchCarList(String condition, String keyword, Paging paging){
+		return dao.searchCarList(condition, keyword, paging);
 	}
 	
 }
