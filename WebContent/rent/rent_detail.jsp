@@ -14,8 +14,6 @@
 </section>
 <!-- //상단배경 -->
 
-${carDetail}
-
 <input type="hidden" name="get_loginUser" id="get_loginUser" value="${loginUser.getId()}">
 <input type="hidden" name="get_carFare" id="get_carFare" value="${carDetail.getKind().getFare()}">
 <input type="hidden" name="get_maxDateLimit" id="get_maxDateLimit" value="${maxDateLimit.getReturn_date()}">

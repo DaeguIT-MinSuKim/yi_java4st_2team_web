@@ -12,13 +12,14 @@ public class Rent {
 	private String is_rent; // 반납여부
 	private long fare;
 	private String remark;
-
+	private String optAll;
+	
+	
 	public Rent() {
 		super();
 	}
 
 	public Rent(int rentNo) {
-		super();
 		this.rentNo = rentNo;
 	}
 	
@@ -52,6 +53,22 @@ public class Rent {
 		this.is_rent = is_rent;
 		this.fare = fare;
 		this.remark = remark;
+	}
+	
+	
+
+	public Rent(int rentNo, Member id, Car carNo, Ins insCode, LocalDateTime rent_date, LocalDateTime return_date,
+			String is_rent, long fare, String remark, String optAll) {
+		this.rentNo = rentNo;
+		this.id = id;
+		this.carNo = carNo;
+		this.insCode = insCode;
+		this.rent_date = rent_date;
+		this.return_date = return_date;
+		this.is_rent = is_rent;
+		this.fare = fare;
+		this.remark = remark;
+		this.optAll = optAll;
 	}
 
 	public int getRentNo() {
@@ -125,11 +142,23 @@ public class Rent {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	
+	
+
+	public String getOptAll() {
+		return optAll;
+	}
+
+	public void setOptAll(String optAll) {
+		this.optAll = optAll;
+	}
 
 	@Override
 	public String toString() {
 		return String.format(
-				"Rent [rentNo=%s, id=%s, carNo=%s, insCode=%s, rent_date=%s, return_date=%s, is_rent=%s, fare=%s, remark=%s]",
-				rentNo, id, carNo, insCode, rent_date, return_date, is_rent, fare, remark);
+				"Rent [rentNo=%s, id=%s, carNo=%s, insCode=%s, rent_date=%s, return_date=%s, is_rent=%s, fare=%s, remark=%s, optAll=%s]",
+				rentNo, id, carNo, insCode, rent_date, return_date, is_rent, fare, remark, optAll);
 	}
+
+	
 }

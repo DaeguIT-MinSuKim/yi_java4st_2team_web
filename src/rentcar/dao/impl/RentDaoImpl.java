@@ -151,6 +151,7 @@ public class RentDaoImpl implements RentDao {
 	public int insertRent(Rent rent) {
 		String sql = "INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values(?, ?, ?, to_date(?,'YYYY-MM-DD HH24:MI:SS'), to_date(?,'YYYY-MM-DD HH24:MI:SS'), ?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			
 			pstmt.setString(1, rent.getId().getId());
 			pstmt.setString(2, rent.getCarNo().getNo());
 			pstmt.setInt(3, rent.getInsCode().getCode());
@@ -159,9 +160,9 @@ public class RentDaoImpl implements RentDao {
 			pstmt.setString(6, rent.getIs_rent());
 			pstmt.setLong(7, rent.getFare());
 			pstmt.setString(8, rent.getRemark());
-
+			
 			return pstmt.executeUpdate();
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -265,6 +266,21 @@ public class RentDaoImpl implements RentDao {
 					} while (rs.next());
 					return list;
 				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	
+	@Override
+	public Rent selectRecentByNo() {
+		String sql = "SELECT MAX(RENT_NO) AS RENT_NO FROM RENT ORDER BY RENT_NO DESC";
+		try(PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			if (rs.next()){
+				return getRent(rs);
 			}
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
