@@ -6,6 +6,7 @@
 <div id="adimn_content">
 	<h2>차량분류 목록</h2>
 	<div class="admin_page">
+		<a href="kindWrite.do">분류항목 추가</a>
 		<table border=1>
 			<tr>
 				<th>분류명</th>
