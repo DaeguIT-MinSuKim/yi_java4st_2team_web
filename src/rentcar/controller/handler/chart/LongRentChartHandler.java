@@ -21,10 +21,10 @@ public class LongRentChartHandler implements Command {
 			throws ServletException, IOException {
 		
 		JSONArray jsonArray = service.getCountLongRent();
-		System.out.println(jsonArray);
+		System.out.println("jsonArray >>> " + jsonArray);
 		
 		List<LongRent> chartList = service.selectLongRentChartList();
-		System.out.println(chartList);
+		System.out.println("chartList >>> " + chartList);
 		
 		return "/chart/longrent_chart.jsp";
 	}

@@ -50,17 +50,17 @@ public class LongRentDaoImpl implements LongRentDao {
 		
 		try {
 			con = JndiDS.getConnection();
-			//sql="SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
-			sql="SELECT  no, name FROM LONGRENT";
+			sql="SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
+//			sql="SELECT  no, name FROM LONGRENT";
 			pstmt = con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
 			
 			while(rs.next()) {
 				JSONArray rowArray = new JSONArray();
-				rowArray.put(rs.getString("NAME"));
-				rowArray.put(rs.getInt("no"));
-//				rowArray.put(rs.getString("WRITE_MONTH"));
-//				rowArray.put(rs.getInt("MON_COUNT"));
+//				rowArray.put(rs.getString("NAME"));
+//				rowArray.put(rs.getInt("no"));
+				rowArray.put(rs.getString("WRITE_MONTH"));
+				rowArray.put(rs.getInt("MON_COUNT"));
 				
 				jsonArray.put(rowArray);
 			}//while
@@ -124,10 +124,21 @@ public class LongRentDaoImpl implements LongRentDao {
 	
 	private LongRent getLongRentChart(ResultSet rs) throws SQLException {
 	//NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT		
-		int write_month = rs.getInt("write_month");
-		int totalCount = rs.getInt("totalCount");
+		int no = rs.getInt("NO");
+		String title = rs.getString("TITLE");
+		String contents = rs.getString("CONTENTS");
+		int repYn = rs.getInt("REP_YN");
+		Date writeDate = rs.getTimestamp("WRITE_DATE");
+		String rentTerm = rs.getString("RENT_TERM");
+		String name = rs.getString("NAME");
+		String tel = rs.getString("TEL");
+		String pwd = rs.getString("PWD");
+		String options = rs.getString("OPTIONS");
+		String repContent = rs.getString("REP_CONTENT");
+		String write_month = rs.getString("WRITE_MONTH");
+		int totalCount = rs.getInt("MON_COUNT");
 		
-		return new LongRent(write_month, totalCount);
+		return new LongRent(no, title, contents, repYn, writeDate, rentTerm, name, tel, pwd, options, repContent, write_month, totalCount);
 	}
 
 	@Override
