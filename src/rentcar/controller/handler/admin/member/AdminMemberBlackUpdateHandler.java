@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -28,15 +29,15 @@ public class AdminMemberBlackUpdateHandler implements Command {
 
 		} else {
 			System.out.println("POST AdminMemberBlackUpdateHandler");
-			
+					
 			Gson gson = new Gson();
 			Member blackMember = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Member.class);
 			System.out.println("blackMember > " + blackMember);
-
+			
 			int res = service.updateBlack(blackMember);
 			response.getWriter().print(res);
-
-			return "member/join_end.jsp";
+			
+			return "/admin/member/memberBlackList.jsp";
 		}
 
 	}

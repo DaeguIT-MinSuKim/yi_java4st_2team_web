@@ -28,9 +28,9 @@
 			<table class="table_style1">
 				<!-- 글 있는 경우 -->
 				<colgroup>
+					<col width="5%">
 					<col width="10%">
-					<col width="10%">
-					<col width="10%">
+					<col width="5%">
 					<col width="10%">
 					<col width="10%">
 					<col width="10%">
@@ -38,18 +38,24 @@
 				</colgroup>
 				
 				<tr>
+					<th>블랙</th>
 					<th>아이디</th>
 					<th>이름</th>
 					<th>전화번호</th>
 					<th>면허종류</th>
 					<th>면허번호</th>
-					<th>블랙</th>
 					<th>최근접속</th>
 				</tr>
 
 				<c:forEach items="${memberPaging}" var="member">
 
 				<tr class="board">
+					<td>
+						<c:choose>
+							<c:when test="${member.is_black == 'Y'}">✔</c:when>
+							<c:when test="${member.is_black == 'N'}"></c:when>
+						</c:choose>
+					</td>
 					<td><a href="adminMemberDetail.do?id=${member.id}">${member.id}</a></td>
 					<td>${member.name}</td>
 					<td>${member.tel}</td>
@@ -62,7 +68,6 @@
 						</c:choose>
 					</td>
 					<td>${member.li_number}</td>
-					<td>${member.is_black}</td>
 					<td>${member.date}</td>
 				</tr>
 				</c:forEach>
