@@ -11,11 +11,12 @@
 		<meta charset="UTF-8">
 		<title>고객 목록</title>
 		<script>
-			$(function(){
-				if( $(".board").length == 0 ){ // 글이 없는 경우
+			$(function() {
+				if ($(".board").length == 0) { // 글이 없는 경우
 					$(".no_board").show();
 					$(".board").hide();
 				}
+				
 			});
 		</script>
 	</head>
@@ -24,7 +25,19 @@
 		<div id="adimn_content">
 		<h2>고객 목록</h2>
 		<div class="admin_page">
-			<p>※ 고객님의 상세 정보는 아이디를 클릭하세요.</p>
+		<p>※ 고객님의 상세 정보는 아이디를 클릭하세요.</p>
+			<div class="divSearch">
+				<form name="frmSearch" action="adminMemberList.do" method="post">
+					<select name="condition">
+						<option value="name">이름</option>
+						<option value="id">아이디</option>
+					</select> 
+					<input type="text" name="keyword" title="검색어 입력"> 
+					<input type="hidden" name="id" value="${member.id}"> 
+					<input type="submit" value="검색">
+				</form>
+			</div>
+			
 			<table class="table_style1">
 				<!-- 글 있는 경우 -->
 				<colgroup>

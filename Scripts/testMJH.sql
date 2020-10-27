@@ -10,6 +10,7 @@ SELECT * FROM EVENT;
 SELECT * FROM BRAND;
 SELECT * FROM EVENT_BOX;
 SELECT * FROM OPT_BOX;
+SELECT * FROM NOTICE;
 --조회----------------------------------------------------------------------------------------------------------------------------------------------------------
 SELECT * 
   FROM MEMBER;
