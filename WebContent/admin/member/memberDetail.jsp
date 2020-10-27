@@ -14,17 +14,18 @@
 			$(function() {
 				$("#blackUpdate").on("click",function() {
 					var blackMember = {
+						id : $('#member_id').text().trim(),
 						is_black : $('#black').val()
 					};
 					
 					$.ajax({
 						type : "post",
-						url : "join.do",
+						url : "adminBlackUpdate.do",
 						cache : false,
 						data : JSON.stringify(blackMember),
 						complete : function(data) {
 							alert("수정 되었습니다.");
-							window.location.href = "joinEnd.do";
+							window.location.href = "adminBlackList.do";
 						}
 						
 					});
@@ -36,6 +37,7 @@
 	</head>
 	
 	<body>
+	<form action="adminMemberDetail.do" method="post">
 		<div id="adimn_content">
 		<h2>${selectMember.name}(${selectMember.id})고객님 상세정보</h2>
 		<div class="admin_page">
@@ -48,7 +50,7 @@
 				<th scope="row">아이디</th>
 				<td class="tl">
 					<div class="col-xs-5" id="member_id">
-							${selectMember.id}
+						${selectMember.id}
 					</div>
 				</td>
 			</tr>
@@ -151,6 +153,7 @@
 		</div>
 			<a href="adminMemberList.do" class="btn_small btn_case2 floatR mt10 mr5" >고객 목록</a>
 		</div>
+		</form>
 	</body>
 </html>
 

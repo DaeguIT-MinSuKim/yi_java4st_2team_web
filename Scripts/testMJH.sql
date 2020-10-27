@@ -10,6 +10,7 @@ SELECT * FROM EVENT;
 SELECT * FROM BRAND;
 SELECT * FROM EVENT_BOX;
 SELECT * FROM OPT_BOX;
+SELECT * FROM NOTICE;
 --조회----------------------------------------------------------------------------------------------------------------------------------------------------------
 SELECT * 
   FROM MEMBER;
@@ -56,9 +57,16 @@ UPDATE MEMBER
    SET LOGIN_DATE = SYSDATE
  WHERE ID = 'dong20';
 
- 
+SELECT * FROM MEMBER WHERE id = 'dong';
+
 UPDATE MEMBER SET IS_BLACK = 'N' WHERE ID = 'dong';
- 
+
+UPDATE MEMBER SET IS_BLACK = 'Y' WHERE ID = 'dong';
+
+
+SELECT * FROM MEMBER ORDER BY NAME ASC; /* 정렬 - 이름 오름차순 */
+SELECT * FROM MEMBER ORDER BY NAME DESC; /* 정렬 - 이름 내림차순 */
+
 /* 로그인 상태 화인 */
 SELECT COUNT(1) CNT
   FROM MEMBER

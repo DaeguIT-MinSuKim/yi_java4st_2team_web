@@ -26,11 +26,11 @@ public class BrandUpdateHandler implements Command {
 			throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET");
-			
+
 			int code = Integer.parseInt(request.getParameter("brandCode"));
 			Brand brand = service.brandDetail(code);
 			request.setAttribute("brand", brand);
-			
+
 			return "admin/brand/brandUpdate.jsp";
 		} else {
 			System.out.println("POST");
@@ -50,21 +50,23 @@ public class BrandUpdateHandler implements Command {
 						new DefaultFileRenamePolicy());
 				Enumeration files = multi.getFileNames();
 
-				int code = Integer.parseInt(multi.getParameter("brandCode"));
-				String name = multi.getParameter("brandName");
-				String image = multi.getFilesystemName("uploadfile");
-
-				Brand b = new Brand();
-				b.setCode(code);
+				int code = Integer.parseInt(multi.getParameter("code"));
+				String name = multi.getParameter("name");
+				String image = multi.getFilesystemName("image");
+				
+				Brand b = service.brandDetail(code);
 				b.setName(name);
-				b.setImage(image);
-
-				int res = service.insertBrand(b);
+				if (image != null) {
+					b.setImage(image);
+				}
+				
+				int res = service.updateBrand(b);
 				request.setAttribute("res", res);
 			} catch (Exception e) {
 				System.out.println("예외 발생 : " + e);
 			}
-			return "brandList.do";
+			response.sendRedirect("brandList.do");
+			return null;
 		}
 	}
 }

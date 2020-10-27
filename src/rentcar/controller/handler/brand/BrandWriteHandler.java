@@ -46,7 +46,7 @@ public class BrandWriteHandler implements Command {
 				Enumeration files = multi.getFileNames();
 
 				String name = multi.getParameter("name");
-				String image = multi.getFilesystemName("uploadfile");
+				String image = multi.getFilesystemName("image");
 
 				Brand b = new Brand();
 				b.setName(name);
@@ -54,10 +54,12 @@ public class BrandWriteHandler implements Command {
 
 				int res = service.insertBrand(b);
 				request.setAttribute("res", res);
+				
 			} catch (Exception e) {
 				System.out.println("예외 발생 : " + e);
 			}
-			return "brandList.do";
+			response.sendRedirect("brandList.do");
+			return null;
 		}
 	}
 }
