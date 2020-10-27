@@ -44,6 +44,10 @@ public class AdminMemberListHandler implements Command {
 			request.setAttribute("total", total);
 			request.setAttribute("paging", paging);
 			request.setAttribute("memberPaging", memberPaging);
+			
+			String name = request.getParameter("name");
+			String nameDESC = "SELECT * FROM MEMBER ORDER BY " + name + " DESC";
+			System.out.println(nameDESC);
 
 			return "/admin/member/memberList.jsp";
 

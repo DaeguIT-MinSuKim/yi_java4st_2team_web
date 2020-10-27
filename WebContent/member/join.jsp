@@ -102,7 +102,7 @@ function id_chk_bb() {
 	$(function() {
 		$("#join").on("click",function() {
 
-			/* form1 = document.frmName; */
+			form1 = document.frmName;
 	
 			// 비밀번호 조합 체크
 			var regMust1 = /[a-zA-Z0-9_]/;
@@ -223,7 +223,7 @@ function id_chk_bb() {
 			}
 	
 		});
-		/* form1.submit(); */
+		form1.submit();
 	});
 </script>
 
