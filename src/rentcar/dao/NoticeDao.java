@@ -30,6 +30,12 @@ public interface NoticeDao {
 	ArrayList<Notice> pagingNoticeByAll(Paging paging);
 
 	ArrayList<Notice> selectSearchNotice(String condition, String keyword);
+
+	
+	//검색 + 페이징 구현
+	ArrayList<Notice> selectPagingSearchNotice(String condition, String keyword, Paging paging);
+
+	int countSearchNoticeByAll(String condition, String keyword);
 	
 	
 	

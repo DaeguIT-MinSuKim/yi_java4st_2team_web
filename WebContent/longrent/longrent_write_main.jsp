@@ -60,8 +60,8 @@ $(function() {
 			<form method="post" name="frm">
 				<div>
 					<div class="input_col3">
-						<input type="text" name="name" placeholder="이름" id="name">
-						<input type="text" name="tel" placeholder="연락처" id="tel">
+						<input type="text" name="m_name" placeholder="이름" id="name" value="${param.m_name }">
+						<input type="text" name="m_tel" placeholder="연락처" id="tel" value="${param.m_tel }">
 						<input type="password" name="pwd" placeholder="비밀번호 " id="pwd">
 					</div>
 					<input type="text" class="mt5" name="title" placeholder="제목을 입력해주세요" id="title">

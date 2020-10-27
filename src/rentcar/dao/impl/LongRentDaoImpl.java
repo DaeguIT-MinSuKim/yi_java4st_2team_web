@@ -312,7 +312,7 @@ public class LongRentDaoImpl implements LongRentDao {
 	// 페이징
 	@Override
 	public int countLongRentByAll() {
-		String sql = "select count(*) from longrent";
+		String sql = "select count(*) from longrent ";
 		try(PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -383,4 +383,58 @@ public class LongRentDaoImpl implements LongRentDao {
 		return null;
 	}
 
+	@Override
+	public List<LongRent> selectSearchPaging(String condition, String keyword, Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent";
+		try {
+			if(keyword != null && !keyword.isEmpty()) {
+				sql += " where " + condition.trim()+ " like '%"+keyword.trim()+"%' ORDER BY write_date desc) a) where rn between ? and ? order by rn ";
+				System.out.println("키워드가 있을때 --> "+ sql);
+				
+			} else { //모든 레코드 검색 
+				sql += " ORDER BY WRITE_DATE DESC) a ) WHERE rn BETWEEN ? AND ? ORDER BY rn";
+
+				System.out.println("모든 레코드 일때 -------------------->"+ sql);
+
+			}
+
+			try (PreparedStatement pstmt = con.prepareStatement(sql)){
+					pstmt.setInt(1, paging.getStart());
+					pstmt.setInt(2, paging.getEnd());
+					
+				try(ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+					ArrayList<LongRent> list = new ArrayList<>();
+					do {
+						list.add(getLongRent(rs));
+					} while (rs.next());
+					return list;
+					}
+				}
+			}
+		} catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	
+	@Override
+	public int countSearchLongRentByAll(String condition, String keyword) {
+		String sql = "select count(*) from LONGRENT";
+		try {
+			if (keyword != null && !keyword.isEmpty()) {
+				sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+			}
+			try(PreparedStatement pstmt = con.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
 }

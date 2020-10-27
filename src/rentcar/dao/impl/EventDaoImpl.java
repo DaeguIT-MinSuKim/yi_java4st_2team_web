@@ -228,7 +228,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public List<Event> searchEventList(String condition, String keyword, Paging paging) {
-		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM EVENT ORDER BY EVENT_CODE DESC) a) WHERE RN BETWEEN ? AND ? ";
+		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN ? AND ? ORDER BY rn";
 		try {
 			if (keyword != null && !keyword.isEmpty()) {
 				sql += " AND " + condition.trim() + " LIKE '%" + keyword.trim() + "%' ";

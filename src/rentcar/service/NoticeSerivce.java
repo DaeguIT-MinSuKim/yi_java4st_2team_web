@@ -52,4 +52,14 @@ public class NoticeSerivce {
 		return dao.selectSearchNotice(condition, keyword);
 	}
 	
+	
+	// 검색 + 페이징 
+	public ArrayList<Notice> selectPagingSearchNotice(String condition, String keyword, Paging paging){
+		return dao.selectPagingSearchNotice(condition, keyword, paging);
+	}
+	
+	public int countSearchNoticeByAll(String condition, String keyword) {
+		return dao.countSearchNoticeByAll(condition, keyword);
+	}
+	
 }

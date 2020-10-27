@@ -200,7 +200,8 @@ INSERT INTO NOTICE VALUES(7,'대여 자격 기준이 어떻게 되나요? ','동
 ,SYSDATE, 0);
 
 
-INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) VALUES('중요한 공지사항입니다.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 확인용입니다. ',sysdate, 1);
+INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) VALUES('중요한 공지사항입니다2.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 확인용입니다. ',sysdate, 0);
+INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) VALUES('중요한 공지사항입니다3.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 확인용입니다. ',sysdate, 1);
 
 SELECT * FROM notice;
 
