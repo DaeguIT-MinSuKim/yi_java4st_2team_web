@@ -3,25 +3,26 @@
 <%@ include file="/include/header.jsp"%>
 
 
-<script language='javascript'>
+<script>
 window.name ="Parent_window";
 
-function fnPopup(){
-
-	if(document.getElementById("checkboxA").checked==false) {
-		window.alert("이용약관에 동의를 하셔야 회원가입이 가능합니다.");
-		document.getElementById("checkboxA").focus();
-		return;
-	}
+$(function() {
+	$("#next").on("click",function() {
+		if(document.getElementById("checkboxA").checked==false) {
+			window.alert("이용약관에 동의를 하셔야 회원가입이 가능합니다.");
+			document.getElementById("checkboxA").focus();
+			return;
+		} 
+		
+		if(document.getElementById("checkboxB").checked==false) {
+			window.alert("개인정보취급방침에 동의를 하셔야 회원가입이 가능합니다.");
+			document.getElementById("checkboxB").focus();
+			return;
+		}
+		form_chk.submit();
+	});
 	
-	if(document.getElementById("checkboxB").checked==false) {
-		window.alert("개인정보취급방침에 동의를 하셔야 회원가입이 가능합니다.");
-		document.getElementById("checkboxB").focus();
-		return;
-	}
-	
-    document.form_chk.submit();
-}
+});
 </script>
 <%@ include file="/include/sub_member.jsp"%>
 
@@ -67,7 +68,7 @@ function fnPopup(){
                 <!-- 버튼 -->
                 <div class="btn_box">
                     <ul>
-                        <li><a href="javascript:;" class="btn btn-black" onclick="fnPopup(); return false;">다음단계</a></li>
+                        <li><a class="btn btn-black submit" type="button" id="next">다음단계</a></li>
                     </ul>
                 </div>
             </div>

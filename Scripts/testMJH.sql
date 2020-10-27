@@ -62,6 +62,10 @@ UPDATE MEMBER SET IS_BLACK = 'N' WHERE ID = 'dong';
 
 UPDATE MEMBER SET IS_BLACK = 'Y' WHERE ID = 'dong';
 
+
+SELECT * FROM MEMBER ORDER BY NAME ASC; /* 정렬 - 이름 오름차순 */
+SELECT * FROM MEMBER ORDER BY NAME DESC; /* 정렬 - 이름 내림차순 */
+
 /* 로그인 상태 화인 */
 SELECT COUNT(1) CNT
   FROM MEMBER

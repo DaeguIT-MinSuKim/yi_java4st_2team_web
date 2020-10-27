@@ -26,7 +26,11 @@ public class AdminMemberDetailHandler implements Command {
 
 			request.setAttribute("selectMember", selectMember);
 			System.out.println(selectMember);
-
+			
+			/*String name = request.getParameter("name");
+			String nameDESC = "SELECT * FROM MEMBER ORDER BY " + name + " DESC";
+			System.out.println(nameDESC);*/
+		
 			return "admin/member/memberDetail.jsp";
 
 		} else {
