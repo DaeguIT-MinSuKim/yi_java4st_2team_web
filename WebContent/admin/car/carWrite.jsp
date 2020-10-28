@@ -20,48 +20,32 @@
 				$('#image').focus()
 				return false;
 			}
+			if($('#chkForm').val() == "N"){
+				alert("중복확인 해주세요")
+				$('#chkForm').focus()
+				return false;
+			}
 		});
 			
-			/* var newCar = {
-					no : $('#carNo').val(),
-					name : $('#carName').val(),
-					kind : {
-						code : $('#kindList').val(),
-						name : '',
-						fare : ''
-					},
-					brand : {
-						code : $('#brandList').val(),
-						name : '',
-						image : ''
-					},
-					remark : $('#remark').val(),
-					is_rent : '',
-					counting : '',
-					image :	''
-			};
-			
-			alert(JSON.stringify(newCar));
-			
+		$('#chkNo').on("click", function() {
+			// location.href="carWrite.do?carNo=" + $('#carNo').val();
 			$.ajax({
-				type : "post",
-				url : "carWrite.do",
-				cache : false,
-				data : JSON.stringify(newCar),
+				type : "get",
+				url : "carWrite.do?carNo=" +  $('#carNo').val(),
 				complete : function(data){
-					if(data == 1) {
-						alert("성공");
-						location.href="carList.do";
+					if(data.responseText == 1) {
+						alert("확인되었습니다")
+						$('#chkForm').val('Y');
+						$('#carNo').attr('readonly', true);
 					} else {
 						alert("기입하신 차량번호는 존재하는 번호입니다.");
-						history.go(-1);					
 					}
 				} ,
 				error: function(){
+					alert("기입")
 				}
 			});
-		}); */
-		alert(res);
+		});
 	});
 </script>
 <div id="adimn_content">
@@ -71,7 +55,11 @@
 			<table border=1>
 				<tr>
 					<th>차량번호</th>
-					<td><input type="text" id="carNo" name="carNo"></td>
+					<td style="display : flex;">
+						<input type="text" id="carNo" name="carNo">
+						<input type="button" value="중복확인" id="chkNo" style="width : 100px">
+						<input type="hidden" value="N" id="chkForm">
+					</td>
 				</tr>
 				<tr>
 					<th>차량이름</th>
