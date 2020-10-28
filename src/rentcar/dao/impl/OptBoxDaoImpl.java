@@ -9,6 +9,7 @@ import java.util.List;
 
 import rentcar.dao.OptBoxDao;
 import rentcar.dto.Opt;
+import rentcar.dto.Rent;
 import rentcar.exception.CustomSQLException;
 
 public class OptBoxDaoImpl implements OptBoxDao {

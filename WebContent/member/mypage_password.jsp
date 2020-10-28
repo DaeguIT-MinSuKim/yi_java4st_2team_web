@@ -18,8 +18,9 @@
 				<p>비밀번호를 입력해 주세요.</p>
 				<input type="password" placeholder="비밀번호" name="passwd" id="passwd">
 				<a class="btn_small btn_case2 mt30 board_password_btn">확인</a>
+				<br>
+				${message }
 			</form>
-			
 		</div>
 	</div>
 </div><!-- //컨텐츠 -->
