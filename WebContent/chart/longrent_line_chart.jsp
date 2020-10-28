@@ -63,7 +63,7 @@
 	};        
 </script>
 </head>
-<body bgcolor="#808F97">
+<body>
     <div id="chart_div"></div>
 </body>
 </html>
