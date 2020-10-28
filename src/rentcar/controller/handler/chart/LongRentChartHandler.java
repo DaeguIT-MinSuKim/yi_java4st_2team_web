@@ -1,16 +1,15 @@
 package rentcar.controller.handler.chart;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import rentcar.controller.Command;
-import rentcar.dto.LongRent;
 import rentcar.service.LongRentSerivce;
 
 public class LongRentChartHandler implements Command {
@@ -22,10 +21,16 @@ public class LongRentChartHandler implements Command {
 		
 		JSONArray jsonArray = service.getCountLongRent();
 		System.out.println("jsonArray >>> " + jsonArray);
+
+		request.setAttribute("jsonArray",jsonArray);
+		//		List<LongRent> chartList = service.selectLongRentChartList();
+//		System.out.println("chartList >>> " + chartList);
 		
-		List<LongRent> chartList = service.selectLongRentChartList();
-		System.out.println("chartList >>> " + chartList);
+		
+		
 		
 		return "/chart/longrent_chart.jsp";
+		
+		
 	}
 }
