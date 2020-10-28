@@ -32,9 +32,9 @@
 						<option value="name">이름</option>
 						<option value="id">아이디</option>
 					</select> 
-					<input type="text" name="keyword" title="검색어 입력"> 
-					<input type="hidden" name="id" value="${member.id}"> 
+					<input type="text" name="keyword" title="검색어 입력">
 					<input type="submit" value="검색">
+					<a href="adminMemberList.do" type="button" class="btn btn_case2">목록보기</a>
 				</form>
 			</div>
 			
@@ -87,7 +87,7 @@
 				
 				<!-- 글 없는 경우 -->
 				<tr class="no_board">
-					<td colspan="4">고객 목록이 없습니다.</td>
+					<td colspan="7">고객 목록이 없습니다.</td>
 				</tr>
 			</table>
 			
