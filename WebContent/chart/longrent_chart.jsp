@@ -71,6 +71,5 @@ $(function(){
 	<button type="button" id="btn">버튼</button>
 	<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
 	${jsonArray}
-	</div>
 </body>
 </html>
