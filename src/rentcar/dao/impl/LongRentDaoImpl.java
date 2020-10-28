@@ -50,17 +50,17 @@ public class LongRentDaoImpl implements LongRentDao {
 		
 		try {
 			con = JndiDS.getConnection();
-			//sql="SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
-			sql="SELECT  no, name FROM LONGRENT";
+			sql="SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
+//			sql="SELECT  no, name FROM LONGRENT";
 			pstmt = con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
 			
 			while(rs.next()) {
 				JSONArray rowArray = new JSONArray();
-				rowArray.put(rs.getString("NAME"));
-				rowArray.put(rs.getInt("no"));
-//				rowArray.put(rs.getString("WRITE_MONTH"));
-//				rowArray.put(rs.getInt("MON_COUNT"));
+//				rowArray.put(rs.getString("NAME"));
+//				rowArray.put(rs.getInt("no"));
+				rowArray.put(rs.getString("WRITE_MONTH"));
+				rowArray.put(rs.getInt("MON_COUNT"));
 				
 				jsonArray.put(rowArray);
 			}//while
@@ -124,10 +124,21 @@ public class LongRentDaoImpl implements LongRentDao {
 	
 	private LongRent getLongRentChart(ResultSet rs) throws SQLException {
 	//NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS, REP_CONTENT FROM LONGRENT		
-		int write_month = rs.getInt("write_month");
-		int totalCount = rs.getInt("totalCount");
+		int no = rs.getInt("NO");
+		String title = rs.getString("TITLE");
+		String contents = rs.getString("CONTENTS");
+		int repYn = rs.getInt("REP_YN");
+		Date writeDate = rs.getTimestamp("WRITE_DATE");
+		String rentTerm = rs.getString("RENT_TERM");
+		String name = rs.getString("NAME");
+		String tel = rs.getString("TEL");
+		String pwd = rs.getString("PWD");
+		String options = rs.getString("OPTIONS");
+		String repContent = rs.getString("REP_CONTENT");
+		String write_month = rs.getString("WRITE_MONTH");
+		int totalCount = rs.getInt("MON_COUNT");
 		
-		return new LongRent(write_month, totalCount);
+		return new LongRent(no, title, contents, repYn, writeDate, rentTerm, name, tel, pwd, options, repContent, write_month, totalCount);
 	}
 
 	@Override
@@ -312,7 +323,7 @@ public class LongRentDaoImpl implements LongRentDao {
 	// 페이징
 	@Override
 	public int countLongRentByAll() {
-		String sql = "select count(*) from longrent";
+		String sql = "select count(*) from longrent ";
 		try(PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -383,4 +394,58 @@ public class LongRentDaoImpl implements LongRentDao {
 		return null;
 	}
 
+	@Override
+	public List<LongRent> selectSearchPaging(String condition, String keyword, Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent";
+		try {
+			if(keyword != null && !keyword.isEmpty()) {
+				sql += " where " + condition.trim()+ " like '%"+keyword.trim()+"%' ORDER BY write_date desc) a) where rn between ? and ? order by rn ";
+				System.out.println("키워드가 있을때 --> "+ sql);
+				
+			} else { //모든 레코드 검색 
+				sql += " ORDER BY WRITE_DATE DESC) a ) WHERE rn BETWEEN ? AND ? ORDER BY rn";
+
+				System.out.println("모든 레코드 일때 -------------------->"+ sql);
+
+			}
+
+			try (PreparedStatement pstmt = con.prepareStatement(sql)){
+					pstmt.setInt(1, paging.getStart());
+					pstmt.setInt(2, paging.getEnd());
+					
+				try(ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+					ArrayList<LongRent> list = new ArrayList<>();
+					do {
+						list.add(getLongRent(rs));
+					} while (rs.next());
+					return list;
+					}
+				}
+			}
+		} catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	
+	@Override
+	public int countSearchLongRentByAll(String condition, String keyword) {
+		String sql = "select count(*) from LONGRENT";
+		try {
+			if (keyword != null && !keyword.isEmpty()) {
+				sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+			}
+			try(PreparedStatement pstmt = con.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
 }

@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import rentcar.controller.Command;
 import rentcar.service.LongRentSerivce;
 
-public class LongRentChartHandler implements Command {
+public class LongRentLineChartHandler implements Command {
 	private LongRentSerivce service = new LongRentSerivce();
 
 	@Override
@@ -29,7 +29,7 @@ public class LongRentChartHandler implements Command {
 		
 		
 		
-		return "/chart/longrent_chart.jsp";
+		return "/chart/longrent_line_chart.jsp";
 		
 		
 	}

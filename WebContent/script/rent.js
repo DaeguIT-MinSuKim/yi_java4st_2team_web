@@ -474,39 +474,52 @@ function btn_payBox_submit(){
 				var $get_minDate = $("#get_minDate").text();				// 대여일
 				var $get_maxDate = $("#get_maxDate").length ? $("#get_maxDate").text() : $(".calendar.next").val(); // 반납일
 				var $set_total = $("#set_total>span").attr("data-total");	// 총 결제금액
-//				
-//				var $set_dis = $("#set_discount>span");						// 할인/쿠폰
-				var chk_optAll = "";
+				var $get_eventCode = $("#get_discount option:checked").attr("data-code");		// 할인/쿠폰 번호
 				
-//				// 옵션 체크된 항목 번호 저장
-//				for( var i=0; i < $("#get_option input").length; i++ ){
-//					if( $("#get_option input").eq(i).prop("checked") ){
-//						chk_optAll += String($("#get_option input").eq(i).val());
-//					};
-//				};
+				var optAll = "";
+				
+				
+				// 옵션 체크된 항목 번호 저장
+				for( var i=0; i < $("#get_option input").length; i++ ){
+					if( $("#get_option input").eq(i).prop("checked") ){
+						optAll += String($("#get_option input").eq(i).val()) + ",";
+					};
+				};
+				
+				// UTC 국제표준시로 변경 => (JSP localDateTime 변수에 넣으려면 이렇게 해야함)
+				$get_minDate = parseInt(
+						Date.UTC(
+							$get_minDate.split("-")[0],
+							$get_minDate.split("-")[1],
+							$get_minDate.split("-")[2]
+						)
+				);
+				$get_maxDate = parseInt(
+						Date.UTC(
+							$get_maxDate.split("-")[0],
+							$get_maxDate.split("-")[1],
+							$get_maxDate.split("-")[2]
+						)
+				);
 				
 				var params = {
-					rentNo:4,
 					id : {
-						Member:{
-							id:$get_loginUser
-						},
+						id:$get_loginUser
 					},
 					carNo:{
-						Car:{
-							no:$get_carNo
-						}
+						no:$get_carNo
 					},
 					insCode:{
-						Kind:{
-							code:$get_ins
-						}
+						code:$get_ins
 					},
-					//rent_date:$get_minDate + "T00:00",
-					//return_date:$get_maxDate + "T00:00",
-					//is_rent:'y',
-					//fare:$set_total
-					//chk_optAll:chk_optAll
+					rent_date:$get_minDate,
+					return_date:$get_maxDate,
+					is_rent:'y',
+					fare:$set_total,
+					optAll:optAll,
+					eventCode: {
+						eventCode:$get_eventCode
+					}
 				};
 				
 				$.ajax({
@@ -514,9 +527,8 @@ function btn_payBox_submit(){
 					url:"rentEnd.do",
 					data:JSON.stringify(params),
 					dataType:"json",
-					success:function(json){
-						alert("AJAX 성공");
-						console.log(json);
+					success:function(data){
+						location.href="rentEnd.do"; // GET으로 다시 이동
 					},
 					error:function(e){ // 에러날경우 에러메시지 보기
 						alert("AJAX 에러");
@@ -537,10 +549,6 @@ function btn_payBox_submit(){
 	});
 	
 }
-
-
-
-
 
 
 

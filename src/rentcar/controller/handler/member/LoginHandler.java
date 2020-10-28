@@ -29,7 +29,6 @@ public class LoginHandler implements Command {
 			System.out.println("POST LoginHandler");
 
 			String url = "member/login_fail.jsp";
-			String url2 = "member/login_lock.jsp";
 
 			HttpSession session = request.getSession();
 
@@ -43,7 +42,9 @@ public class LoginHandler implements Command {
 			int lock = service2.loginLockStatus(new Member(id));
 			System.out.println("lock > " + lock);
 			
-			if (lock == 0) {
+			if (getId == null) {
+				
+			} else if (lock == 0) {
 				if (getId.getPwd().equals(pwd)) {
 					session.removeAttribute(id);
 					session.setAttribute("loginUser", getId);
@@ -53,20 +54,23 @@ public class LoginHandler implements Command {
 					System.out.println("resetLFC > " + resetLFC);
 					int resetLLC = service2.resetLockCount(new Member(id));
 					System.out.println("resetLLC > " + resetLLC);
-					url = "index.do";
+					return "index.do";
 				} else {
 					int loginFail = service2.loginFailCount(new Member(id));
 					System.out.println("loginFail > " + loginFail);
 					int loginLock = service2.loginLock(new Member(id));
 					System.out.println("loginLock > " + loginLock);
+					request.setAttribute("message", "비밀번호가 틀렸습니다.");
+					request.setAttribute("message2", "다시 확인해주세요.");
+					return "member/login.jsp";
 				}
-				return url;
 				
 			} else {
-
+				request.setAttribute("message", "로그인을 1분간 할 수 없습니다.");
+				return "member/login.jsp";
 			}
-
-			return url2;
+			request.setAttribute("message", "존재하지 않는 아이디입니다.");
+			return "member/login.jsp";
 		}
 
 	}

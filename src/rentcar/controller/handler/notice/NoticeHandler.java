@@ -20,42 +20,53 @@ public class NoticeHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getMethod().equalsIgnoreCase("post")) {
+		String nowPage = request.getParameter("nowPage"); // 현재페이지
+		System.out.println("longrent nowPage : " + nowPage);
+		String cntPerPage = "5"; // 페이지당 몇 개의 글을 보일지 저장
 
-			String condition = request.getParameter("condition");
-			String keyword = request.getParameter("keyword");
+		String condition = request.getParameter("condition");
+		String keyword = request.getParameter("keyword");
 
-			List<Notice> list = service.selectSearchNotice(condition, keyword);
-			request.setAttribute("list", list);
+		int total = 0;
 
-			return "/notice/notice_list.jsp";
-
-		} else {
-			String nowPage = request.getParameter("nowPage"); // 현재 페이지
-			String cntPerPage = "10"; // 페이지당 몇 개의 글을 보일지 저장
-
+		if (request.getMethod().equalsIgnoreCase("get")) {
 			// 처음 접속했을 때 초기 세팅
-			int total = service.countNoticeByall();
-			if (nowPage == null) {
-				nowPage = "1";
-			}
-
-			System.out.println("공지사항 현재 페이지 ===>" + nowPage);
-			System.out.println("공지사항 한 페이지당 나오는 게시물수 ===>" + cntPerPage);
-			System.out.println("공지사항 총게시물 갯수 ===>" + total);
-
-			// 이후 페이지 클래스로 정리하는 곳
-			Paging paging = new Paging(Integer.parseInt(nowPage), total, Integer.parseInt(cntPerPage));
-			ArrayList<Notice> list = service.pagingNoticeByAll(paging);
-
-			System.out.println(paging);
-			System.out.println(list);
-
-			request.setAttribute("total", total);
-			request.setAttribute("paging", paging);
-			request.setAttribute("list", list);
-
-			return "/notice/notice_list.jsp";
+			total = service.countNoticeByall();
+		} else {
+			System.out.println("longrent ->>>>> post");
+			total = service.countSearchNoticeByAll(condition, keyword);
 		}
+
+		if (nowPage == null) {
+			nowPage = "1";
+		}
+
+		// 이후 페이지 클래스로 정리하는 곳
+		Paging paging = new Paging(Integer.parseInt(nowPage), total, Integer.parseInt(cntPerPage));
+
+		ArrayList<Notice> list = null;
+		if (request.getMethod().equalsIgnoreCase("get")) {
+			list = service.pagingNoticeByAll(paging);
+		} else { // POST
+
+			list = (ArrayList<Notice>) service.selectPagingSearchNotice(condition, keyword, paging);
+			request.setAttribute("condition", condition);
+			request.setAttribute("keyword", keyword);
+			request.setAttribute("method", "post");
+		}
+
+		System.out.println("현재 페이지 ===>" + nowPage);
+		System.out.println("한 페이지당 나오는 게시물수 ===>" + cntPerPage);
+		System.out.println("총게시물 갯수 ===>" + total);
+
+		System.out.println(paging);
+		System.out.println(list);
+
+		request.setAttribute("total", total);
+		request.setAttribute("paging", paging);
+		request.setAttribute("list", list);
+		
+		return "/notice/notice_list.jsp";
+
 	}
 }

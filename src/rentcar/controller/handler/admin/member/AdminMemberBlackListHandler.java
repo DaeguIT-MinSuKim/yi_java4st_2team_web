@@ -2,6 +2,7 @@ package rentcar.controller.handler.admin.member;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,13 @@ public class AdminMemberBlackListHandler implements Command {
 		} else {
 			System.out.println("POST AdminMemberBlackListHandler");
 
-			return null;
+			String condition = request.getParameter("condition");
+			String keyword = request.getParameter("keyword");
+
+			List<Member> blackPaging = service.selectSearchMember(condition, keyword);
+			request.setAttribute("blackPaging", blackPaging);
+
+			return "/admin/member/memberBlackList.jsp";
 
 		}
 

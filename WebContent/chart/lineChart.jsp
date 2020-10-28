@@ -44,12 +44,15 @@
 			function drawDashboard() {
 
 				var data = new google.visualization.DataTable();
+				
+
 				//그래프에 표시할 컬럼 추가
 				data.addColumn('datetime', '날짜');
 				data.addColumn('number', '남성');
 				data.addColumn('number', '여성');
 				data.addColumn('number', '전체');
 
+				
 				//그래프에 표시할 데이터
 				var dataRow = [];
 
@@ -62,6 +65,7 @@
 							total ];
 					data.addRow(dataRow);
 				}
+				
 
 				var chart = new google.visualization.ChartWrapper({
 					chartType : 'LineChart',
@@ -86,7 +90,7 @@
 							trigger : 'both'
 						},
 						hAxis : {
-							format : chartDateformat,
+							 format : chartDateformat,
 							gridlines : {
 								count : chartLineCount,
 								units : {
@@ -103,19 +107,19 @@
 										format : [ 'HH시' ]
 									}
 								}
-							},
+							}, 
 							textStyle : {
 								fontSize : 12
 							}
 						},
 						vAxis : {
-							minValue : 100,
+							 minValue : 100,
 							viewWindow : {
 								min : 0
 							},
 							gridlines : {
 								count : -1
-							},
+							}, 
 							textStyle : {
 								fontSize : 12
 							}
@@ -160,18 +164,7 @@
 									gridlines : {
 										count : controlLineCount,
 										units : {
-											years : {
-												format : [ 'yyyy년' ]
-											},
-											months : {
-												format : [ 'MM월' ]
-											},
-											days : {
-												format : [ 'dd일' ]
-											},
-											hours : {
-												format : [ 'HH시' ]
-											}
+											
 										}
 									}
 								}
@@ -180,11 +173,6 @@
 						filterColumnIndex : 0
 					}
 				});
-
-				var date_formatter = new google.visualization.DateFormat({
-					pattern : chartDateformat
-				});
-				date_formatter.format(data, 0);
 
 				var dashboard = new google.visualization.Dashboard(document
 						.getElementById('Line_Controls_Chart'));
@@ -198,7 +186,6 @@
 			google.charts.setOnLoadCallback(drawDashboard);
 
 		}
-	}
 
 	$(document).ready(function() {
 		google.charts.load('current', {

@@ -39,7 +39,7 @@ public class MemberService {
 	public int updateMember(Member member) {
 		return dao.updateMember(member);
 	}
-	
+
 	public int updateBlack(Member member) {
 		return dao.updateBlack(member);
 	}
@@ -64,6 +64,11 @@ public class MemberService {
 
 	public ArrayList<Member> pagingMemberBlackList(Paging paging) {
 		return dao.pagingMemberBlackList(paging);
+	}
+
+	// 검색
+	public ArrayList<Member> selectSearchMember(String condition, String keyword) {
+		return dao.selectSearchMember(condition, keyword);
 	}
 
 }

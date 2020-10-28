@@ -2,15 +2,14 @@ package rentcar.controller.handler.admin.member;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rentcar.controller.Command;
-import rentcar.dto.Event;
 import rentcar.dto.Member;
-import rentcar.service.EventService;
 import rentcar.service.MemberService;
 import rentcar.utils.Paging;
 
@@ -44,17 +43,19 @@ public class AdminMemberListHandler implements Command {
 			request.setAttribute("total", total);
 			request.setAttribute("paging", paging);
 			request.setAttribute("memberPaging", memberPaging);
-			
-			String name = request.getParameter("name");
-			String nameDESC = "SELECT * FROM MEMBER ORDER BY " + name + " DESC";
-			System.out.println(nameDESC);
 
 			return "/admin/member/memberList.jsp";
 
 		} else {
 			System.out.println("POST AdminMemberListHandler");
 
-			return null;
+			String condition = request.getParameter("condition");
+			String keyword = request.getParameter("keyword");
+
+			List<Member> memberPaging = service.selectSearchMember(condition, keyword);
+			request.setAttribute("memberPaging", memberPaging);
+
+			return "/admin/member/memberList.jsp";
 
 		}
 

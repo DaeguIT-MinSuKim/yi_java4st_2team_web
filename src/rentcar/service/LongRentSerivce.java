@@ -59,8 +59,12 @@ public class LongRentSerivce {
 	}
 	
 	// 페이징
-	public int countLongRentByall() {
+	public int countLongRentByAll() {
 		return dao.countLongRentByAll();
+	}
+	
+	public int countSearchLongRentByAll(String condition, String keyword) {
+		return dao.countSearchLongRentByAll(condition, keyword);
 	}
 
 	public ArrayList<LongRent> pagingLongRentByAll(Paging paging) {
@@ -70,6 +74,9 @@ public class LongRentSerivce {
 	public List<LongRent> searchLongRentList(String condition, String keyword){
 		return dao.selectSearch(condition, keyword);
 	}
+	public List<LongRent> searchLongRentPagingList(String condition, String keyword, Paging paging){
+		return dao.selectSearchPaging(condition, keyword, paging);
+	}
 	
 	public JSONArray getCountLongRent() {
 		return dao.getCountLongRent();
@@ -78,5 +85,8 @@ public class LongRentSerivce {
 	public ArrayList<LongRent> selectLongRentChartList() {
 		return dao.selectLongRentChartList();
 	}
+	
+	
+	
 	
 }

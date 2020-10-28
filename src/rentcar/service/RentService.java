@@ -1,12 +1,10 @@
 package rentcar.service;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dao.impl.RentDaoImpl;
 import rentcar.ds.JndiDS;
-import rentcar.dto.LongRent;
 import rentcar.dto.Rent;
 import rentcar.utils.Paging;
 
@@ -35,7 +33,15 @@ public class RentService {
 		return dao.countRentByAll();
 	}
 	
+	public int insertRent(Rent rent){
+		return dao.insertRent(rent);
+	}
+	
 	public List<Rent> pagingRentByAll(Paging paging){
 		return dao.pagingRentByAll(paging);
+	}
+	
+	public Rent selectRecentByNo(){
+		return dao.selectRecentByNo();
 	}
 }

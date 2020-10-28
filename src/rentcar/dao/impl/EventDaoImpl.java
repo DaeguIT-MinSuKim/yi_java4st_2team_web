@@ -196,7 +196,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventBoxFindMemberCoupon(String id) {
-		String sql = "SELECT E.NAME, E.SALE " + 
+		String sql = "SELECT E.EVENT_CODE, E.NAME, E.SALE " + 
 					"FROM EVENT_BOX B, EVENT E " + 
 					"WHERE B.IS_EVENT = 'n' AND B.ID = ? AND B.EVENT_CODE = E.EVENT_CODE";
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -220,6 +220,7 @@ public class EventDaoImpl implements EventDao {
 	private Event getMemberEvent(ResultSet rs) throws SQLException {
 		Event event = new Event();
 		
+		event.setEventCode(rs.getString("EVENT_CODE"));
 		event.setName(rs.getString("NAME"));
 		event.setSale(rs.getInt("SALE"));
 		
@@ -228,7 +229,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public List<Event> searchEventList(String condition, String keyword, Paging paging) {
-		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM EVENT ORDER BY EVENT_CODE DESC) a) WHERE RN BETWEEN ? AND ? ";
+		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN ? AND ? ORDER BY rn";
 		try {
 			if (keyword != null && !keyword.isEmpty()) {
 				sql += " AND " + condition.trim() + " LIKE '%" + keyword.trim() + "%' ";

@@ -10,17 +10,15 @@ SELECT * FROM EVENT;
 SELECT * FROM BRAND;
 SELECT * FROM EVENT_BOX;
 SELECT * FROM OPT_BOX;
+SELECT * FROM NOTICE;
 --조회----------------------------------------------------------------------------------------------------------------------------------------------------------
-SELECT * 
-  FROM MEMBER;
- 
-SELECT *
-  FROM MEMBER
- WHERE id = 'dong6';
- 
 SELECT *
   FROM MEMBER
  ORDER BY NAME ASC;
+
+SELECT *
+  FROM MEMBER
+ WHERE id = 'dong6';
 
 /* 페이징 - 회원 리스트 수 */
 SELECT COUNT(*) FROM MEMBER;
@@ -43,15 +41,15 @@ SELECT *
                  ORDER BY NAME ASC) a)
          WHERE RN BETWEEN 0 AND 50
          ORDER BY RN;
-        
+
 SELECT ID , NAME , LOGIN_DATE , TRY_COUNTING , IS_LOCK , LOCK_COUNTING
   FROM MEMBER;
 
 SELECT *
   FROM MEMBER
  WHERE ID = 'dong20'
- SET LOGIN_DATE = SYSDATE;
- 
+   SET LOGIN_DATE = SYSDATE;
+
 UPDATE MEMBER
    SET LOGIN_DATE = SYSDATE
  WHERE ID = 'dong20';
@@ -61,7 +59,6 @@ SELECT * FROM MEMBER WHERE id = 'dong';
 UPDATE MEMBER SET IS_BLACK = 'N' WHERE ID = 'dong';
 
 UPDATE MEMBER SET IS_BLACK = 'Y' WHERE ID = 'dong';
-
 
 SELECT * FROM MEMBER ORDER BY NAME ASC; /* 정렬 - 이름 오름차순 */
 SELECT * FROM MEMBER ORDER BY NAME DESC; /* 정렬 - 이름 내림차순 */
@@ -95,12 +92,12 @@ UPDATE MEMBER
    SET LOCK_COUNTING = 0
  WHERE ID = 'dong';
 
+/* 추가 */
 INSERT INTO MEMBER(ID, PWD, NAME, TEL, LICENSE, EMAIL, ADDRESS)
 VALUES ('dong1', '1234', '동자승', '010-1234-1234', '22-15-061904-90', 'aa@aa.com', '대구시 서구');
 
+/* 삭제 */
 DELETE FROM MEMBER WHERE ID = 'dong';
-
-SELECT * FROM MEMBER WHERE id = 'dong';
 
 SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS FROM LONGRENT WHERE NO = 3 AND PWD = '1111'
 
@@ -110,7 +107,6 @@ SELECT * FROM MEMBER WHERE IS_BLACK = 'Y' ORDER BY NAME ASC;
 SELECT BIRTH
   FROM MEMBER
  WHERE id = 'dong1';
-
 
 /* 더미 회원 */
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
