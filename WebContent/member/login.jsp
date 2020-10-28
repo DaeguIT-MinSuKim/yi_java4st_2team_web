@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ include file="/include/header.jsp"%>
 
 <!-- // header -->
-
-
 <script language="JavaScript">
 <!--
 function enter_checklogin() {
@@ -40,7 +39,6 @@ window.onload = function(){ document.usrlog.member_id.focus(); }
 	<div class="contents">
 		<h3>회원 로그인</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 회원 로그인</div>
-		
 		<div class="container-fluid login_box">
 			<div class="">
 				<h3>회원 로그인</h3>
@@ -57,6 +55,8 @@ window.onload = function(){ document.usrlog.member_id.focus(); }
 						<label for="pwd">비밀번호</label>
 						<input type="password" class="form-control input-lg" name="passwd" placeholder="비밀번호" onkeypress="enter_checklogin();">
 					</div>
+					<div style="font-style: italic;">${message}</div>
+					<div style="font-style: italic;">${message2}</div>
 					<div>
 						<a class="btn btn-normal login" href="#void" onclick="frm_mm_chk(); return false;">로그인</a>
 					</div>
@@ -75,7 +75,6 @@ window.onload = function(){ document.usrlog.member_id.focus(); }
 			</div>
 		</div>
 	</div>
-
 </div><!-- //컨텐츠 -->
 
 <%@ include file="/include/footer.jsp"%>
