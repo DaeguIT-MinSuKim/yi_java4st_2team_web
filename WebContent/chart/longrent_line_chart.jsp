@@ -14,23 +14,27 @@
   	var data = google.visualization.arrayToDataTable(${jsonArray});
 
   	var options = {
-            backgroundColor:'#808F97', //배경색
+            backgroundColor:'#FFFFFF', //배경색
             title: '장기렌트 월별 건수', // 타이틀
             pointSize:14,
             titleTextStyle: { 
-                color: 'white' // 타이틀 색
+                color: 'black' // 타이틀 색
             },
             hAxis:{  // 가로
                 textStyle:{
                     fontSize:14,
-                    color:'white'
+                    color:'black'
                 },
-                baselineColor:'white' // 수직 왼쪽 선
+                baselineColor:'black' // 수직 왼쪽 선
             },
             vAxis:{ // 세로 
+            	gridlines:{
+            		count:10
+            	},
+            	
                 textStyle:{
                     fontSize:14,
-                    color:'white'
+                    color:'black'
                 },
                 gridlines: { // 중간의 선
                     color: '#8898A1'
@@ -41,7 +45,7 @@
             legend:{ // 항목
                 textStyle:{
                     fontSize:14,
-                    color:'white'
+                    color:'black'
                 }
             },
             series: { // 선색
@@ -65,5 +69,6 @@
 </head>
 <body>
     <div id="chart_div"></div>
+    
 </body>
 </html>
