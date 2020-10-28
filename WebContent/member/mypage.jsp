@@ -235,7 +235,7 @@ $(function() {
 						</div>
 						<div class="col-xs-12">
 							<label for="sel1">주소</label> <input type="text"
-								class="form-control" maxlength="100" id="addr1" name="addr1">
+								class="form-control" maxlength="100" id="addr1" name="addr1" value="<?=inputTextPrint($row['addr1'])>">
 						</div>
 						<div class="col-xs-12">
 							<label for="sel1">상세주소</label> <input type="text"
@@ -271,6 +271,7 @@ $(function() {
 				<div class="btn_box">
 					<ul>
 						<li><a class="btn btn-blue submit" id="mypage_modify" type="button">수정하기</a></li>
+						<li><a class="btn btn-gray" href="">회원탈퇴</a></li>
 					</ul>
 				</div>
 			</form>
