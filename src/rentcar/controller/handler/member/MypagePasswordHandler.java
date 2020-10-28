@@ -37,6 +37,7 @@ public class MypagePasswordHandler implements Command {
 				//return "mypage/modify.jsp";
 			} else {
 				request.setAttribute("message", "비밀번호가 틀렸습니다.");
+				request.setAttribute("message2", "다시 확인해주세요.");
 			}
 			request.setAttribute("loginUser", loginUser);
 

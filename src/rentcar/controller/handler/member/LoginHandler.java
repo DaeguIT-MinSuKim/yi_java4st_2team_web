@@ -28,6 +28,8 @@ public class LoginHandler implements Command {
 		} else {
 			System.out.println("POST LoginHandler");
 
+			String url = "member/login_fail.jsp";
+
 			HttpSession session = request.getSession();
 
 			String id = request.getParameter("member_id").trim();
@@ -58,10 +60,11 @@ public class LoginHandler implements Command {
 					System.out.println("loginFail > " + loginFail);
 					int loginLock = service2.loginLock(new Member(id));
 					System.out.println("loginLock > " + loginLock);
+					request.setAttribute("message", "비밀번호가 틀렸습니다.");
+					request.setAttribute("message2", "다시 확인해주세요.");
+					return "member/login.jsp";
 				}
-				request.setAttribute("message", "비밀번호가 틀렸습니다.");
-				request.setAttribute("message2", "다시 확인해주세요.");
-				return "member/login.jsp";
+				
 			} else {
 				request.setAttribute("message", "로그인을 1분간 할 수 없습니다.");
 				return "member/login.jsp";
