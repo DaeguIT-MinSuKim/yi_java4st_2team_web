@@ -63,7 +63,7 @@ public class RentEndHandler implements Command {
 			       }
 			}).create();
 			Rent rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Rent.class);
-//			System.out.println("RentDetail >>>>>>>>>" + rent);
+			System.out.println("RentDetail >>>>>>>>>" + rent);
 
 			
 			/*
@@ -90,7 +90,6 @@ public class RentEndHandler implements Command {
 				
 				if( rentInsert==1 ) { // INSERT 성공하면
 					Rent rentNo = rentDao.selectRecentByNo(); // 1번에서 삽입한 RENT_NO 가져옴
-//					System.out.println("rentNo >>>" + rentNo.getRentNo());
 					
 					
 					// 2. 옵션(OPT_BOX) 체크한 종류별로 각각 INSERT
@@ -120,40 +119,45 @@ public class RentEndHandler implements Command {
 					eventBox.setId(userId);
 					eventBox.setEventCode(eventCode);
 					int eventBoxUpdate = eventBoxDao.updateEventBoxEndIsEventFromMember(eventBox);
+					
 				}
-
 				//// 오토커밋 살림
 				con.commit();
 				response.getWriter().print(1); // ajax에 성공 값 전송
-				
 			} catch (SQLException e) {
 				rollbackUtil(con, e);
+				response.getWriter().print(0);
 			}
 			return null;
 			
 		}else { // GET	
 			String id = request.getParameter("id");
 			String carNo = request.getParameter("carNo");
+			String eventCode = request.getParameter("eventCode");
 			
 			Rent rent = rentService.selectRecentByRent(id, carNo);
 			
 			// 추가옵션 불러옴
 			int rentNo = rent.getRentNo();
-			List<Integer> optList = optBoxService.selectOptByRent(rentNo);
+			List<String> optList = optBoxService.selectOptByRent(rentNo);
 			
-			// 할인/쿠폰
-//			int rentNo = rent.getRentNo();
-//			List<Integer> optList = optBoxService.selectEventBoxFindCodeId(eventcode, id);
+			System.out.println("eventCode num>>>>" + eventCode);
 			
+			//할인/쿠폰
+			if( eventCode.equals("0") ) {
+				System.out.println("쿠폰 사용안함");
+			}else {
+				System.out.println("쿠폰 사용함");
+				EventBox evtList = eventBoxDao.selectEventBoxFindCodeId(eventCode, id);
+				request.setAttribute("evtList", evtList);
+				System.out.println("evtList >>>>>>>>" + evtList);
+			}
 			
 			System.out.println("optList>>>>>" + optList);
 			System.out.println("rent >>>>>>>>" + rent);
-			System.out.println("rent >>>>>>>>" + rent);
-			
 			
 			request.setAttribute("optList", optList);
 			request.setAttribute("rent", rent);
-			
 		}
 		return "/rent/rent_end.jsp";
 	}

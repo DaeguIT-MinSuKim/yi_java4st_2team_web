@@ -22,7 +22,7 @@ public class OptBoxService {
 		return dao.insertOptByRent(optCode, rentNo);
 	}
 	
-	public List<Integer> selectOptByRent(int rentNo) {
+	public List<String> selectOptByRent(int rentNo) {
 		return dao.selectOptByRent(rentNo);
 	}
 }

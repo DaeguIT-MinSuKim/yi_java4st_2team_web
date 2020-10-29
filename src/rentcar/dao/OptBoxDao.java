@@ -12,5 +12,5 @@ public interface OptBoxDao {
 	int deleteOptByRent(int rentNo);
 
 	// 대여Box에 opt 불러오기
-	List<Integer> selectOptByRent(int rentNo);
+	List<String> selectOptByRent(int rentNo);
 }

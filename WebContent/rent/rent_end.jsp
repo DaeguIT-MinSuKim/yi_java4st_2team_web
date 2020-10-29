@@ -18,6 +18,8 @@
 
 ${rent}
 
+${optList}
+
 <br>
 
 
@@ -76,8 +78,9 @@ ${rent}
 											추가 옵션
 										</div>
 										<div class="right">
-											<span></span>
-											<span></span>
+											<c:forEach var="opt" items="${optList}">
+												<span>${opt}</span>
+											</c:forEach>
 										</div>
 									</li>
 									<li>
@@ -85,7 +88,14 @@ ${rent}
 											할인/쿠폰
 										</div>
 										<div class="right">
-											
+											<c:choose>
+												<c:when test="${evtList==null}">
+													선택안함
+												</c:when>
+												<c:otherwise>
+													${evtList}
+												</c:otherwise>
+											</c:choose>
 										</div>
 									</li>
 									<li class="priceResult">

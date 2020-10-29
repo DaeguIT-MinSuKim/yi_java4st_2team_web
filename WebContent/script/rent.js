@@ -475,11 +475,9 @@ function btn_payBox_submit(){
 				var $get_maxDate = $("#get_maxDate").length ? $("#get_maxDate").text() : $(".calendar.next").val(); // 반납일
 				var $set_total = $("#set_total>span").attr("data-total");	// 총 결제금액
 				var $get_eventCode = $("#get_discount option:checked").attr("data-code");		// 할인/쿠폰 번호
-				
 				var optAll = "";
 				
 				$get_ins = $get_ins==0 ? $get_ins=null : $get_ins;
-				$get_eventCode = $get_eventCode==null ? $get_eventCode=0 : $get_eventCode;
 				
 				// 옵션 체크된 항목 번호 저장
 				for( var i=0; i < $("#get_option input").length; i++ ){
@@ -535,9 +533,11 @@ function btn_payBox_submit(){
 					dataType:"json",
 					success:function(data){
 						alert("예약이 완료되었습니다.");
+						
 						location.href="rentEnd.do" + // GET으로 다시 이동
-							"?id="		+ $("#get_loginUser").val() +
-							"&carNo="	+ $("#get_carNo").val();
+							"?id="			+ $("#get_loginUser").val() +
+							"&carNo="		+ $("#get_carNo").val() + 
+							"&eventCode="	+ $get_eventCode;
 					},
 					error:function(e){ // 에러날경우 에러메시지 보기
 						alert("예약을 실패했습니다. > ajax 에러");
