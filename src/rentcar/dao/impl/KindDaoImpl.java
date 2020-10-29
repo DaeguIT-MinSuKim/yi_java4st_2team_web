@@ -9,7 +9,9 @@ import java.util.List;
 
 import rentcar.dao.KindDao;
 import rentcar.dto.Kind;
+import rentcar.dto.Kind;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class KindDaoImpl implements KindDao {
 	private static final KindDaoImpl instance = new KindDaoImpl();
@@ -98,7 +100,7 @@ public class KindDaoImpl implements KindDao {
 	@Override
 	public int deleteKind(Kind kind) {
 		deleteKindByCar(kind);
-		//차종 삭제
+		// 차종 삭제
 		String sql = "DELETE FROM KIND WHERE KIND_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, kind.getCode());
@@ -107,8 +109,8 @@ public class KindDaoImpl implements KindDao {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	//차량과 연관된 차종 삭제
+
+	// 차량과 연관된 차종 삭제
 	private int deleteKindByCar(Kind kind) {
 		String sql = "UPDATE CAR SET KIND_CODE = NULL WHERE KIND_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -117,5 +119,85 @@ public class KindDaoImpl implements KindDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public int countKindByAll() {
+		String sql = "select count(*) from KIND";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Kind> pagingKindByAll(Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM KIND ORDER BY KIND_CODE) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					ArrayList<Kind> list = new ArrayList<Kind>();
+					do {
+						list.add(getKind(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	@Override
+	public int countSearchKindByAll(String condition, String keyword) {
+		String sql = "select count(*) from KIND ";
+		try {
+			if (keyword != null && !keyword.isEmpty()) {
+				sql += " WHERE KIND_NAME LIKE '%" + keyword.trim() + "%'";
+			}
+			try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Kind> searchKindList(String condition, String keyword, Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM KIND ";
+		if (keyword != null && !keyword.isEmpty()) {
+			sql += " WHERE KIND_NAME LIKE '%" + keyword.trim() + "%' ";
+		}
+		sql += "ORDER BY KIND_CODE) a) WHERE RN BETWEEN ? AND ?";
+		try {
+			System.out.println("sql > " + sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				try (ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+						ArrayList<Kind> list = new ArrayList<Kind>();
+						do {
+							list.add(getKind(rs));
+						} while (rs.next());
+						return list;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
 	}
 }
