@@ -134,6 +134,13 @@
 		<li><a href="adminLongRent.do">장기렌트 관리</a></li>
 		<li><a href="adminNotice.do">공지사항</a></li>
 		<li><a href="adminEvent.do">이벤트</a></li>
-		<li><a href="#">성과현황</a></li>
+		<li><a href="#">성과현황</a>
+			<ul>
+				<li><a href="#">회원</a></li>
+				<li><a href="#">대여</a></li>
+				<li><a href="longRentChart.do">장기렌트</a></li>
+				<li><a href="#">이벤트</a></li>
+			</ul>
+		</li>
 	</ul>
 </nav>

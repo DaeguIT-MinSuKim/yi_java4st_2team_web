@@ -1,4 +1,4 @@
-package rentcar.controller.handler.chart;
+package rentcar.controller.handler.chart.longrent;
 
 import java.io.IOException;
 
