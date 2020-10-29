@@ -1,12 +1,15 @@
 package rentcar.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dao.KindDao;
 import rentcar.dao.impl.KindDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Kind;
+import rentcar.dto.Kind;
+import rentcar.utils.Paging;
 import rentcar.dto.Kind;
 
 public class KindService {
@@ -37,5 +40,20 @@ public class KindService {
 
 	public int deleteKind(Kind k) {
 		return dao.deleteKind(k);
+	}
+	public int countKindByall() {
+		return dao.countKindByAll();
+	}
+	
+	public ArrayList<Kind> pagingEventByAll(Paging paging){
+		return dao.pagingKindByAll(paging);
+	}
+	
+	public int countSearchKindByAll(String condition, String keyword) {
+		return dao.countSearchKindByAll(condition, keyword);
+	}
+
+	public ArrayList<Kind> searchKindList(String condition, String keyword, Paging paging){
+		return dao.searchKindList(condition, keyword, paging);
 	}
 }
