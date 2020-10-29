@@ -477,7 +477,7 @@ function btn_payBox_submit(){
 				var $get_eventCode = $("#get_discount option:checked").attr("data-code");		// 할인/쿠폰 번호
 				var optAll = "";
 				
-				$get_ins = $get_ins==0 ? $get_ins=null : $get_ins;
+				$get_eventCode = $get_eventCode==null ? $get_eventCode=0 : $get_eventCode;
 				
 				// 옵션 체크된 항목 번호 저장
 				for( var i=0; i < $("#get_option input").length; i++ ){

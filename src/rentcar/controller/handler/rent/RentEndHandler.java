@@ -31,6 +31,7 @@ import rentcar.dto.Event;
 import rentcar.dto.EventBox;
 import rentcar.dto.Member;
 import rentcar.dto.Rent;
+import rentcar.service.EventService;
 import rentcar.service.OptBoxService;
 import rentcar.service.RentService;
 
@@ -38,7 +39,7 @@ public class RentEndHandler implements Command {
 
 	private RentService rentService = new RentService();
 	private OptBoxService optBoxService = new OptBoxService();
-//	private EventBoxService eventBoxService = new EventBoxService();
+	private EventService eventService = new EventService();
 	
 	/* 트랜잭션 */
 	private Connection con = JndiDS.getConnection();
@@ -47,7 +48,6 @@ public class RentEndHandler implements Command {
 	private EventBoxDaoImpl eventBoxDao = EventBoxDaoImpl.getInstance();
 	
 	
-
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -63,7 +63,7 @@ public class RentEndHandler implements Command {
 			       }
 			}).create();
 			Rent rent = gson.fromJson(new InputStreamReader(request.getInputStream(), "UTF-8"), Rent.class);
-			System.out.println("RentDetail >>>>>>>>>" + rent);
+//			System.out.println("RentDetail >>>>>>>>>" + rent);
 
 			
 			/*
@@ -111,7 +111,8 @@ public class RentEndHandler implements Command {
 				// 3. 예약한 회원의 할인/쿠폰(EVENT_BOX) UPDATE
 				Member userId = rent.getId();
 				Event eventCode = rent.getEventCode();
-				if(eventCode.getEventCode().equals("0")) {	// 쿠폰 사용 안했다면
+				String eventCodeStr = "" + eventCode.getEventCode();
+				if(eventCodeStr.equals('0')) {	// 쿠폰 사용 안했다면
 					System.out.println("쿠폰 선택 안함");
 				}else { // 사용 했다면
 					System.out.println("쿠폰 선택함");
@@ -141,20 +142,21 @@ public class RentEndHandler implements Command {
 			int rentNo = rent.getRentNo();
 			List<String> optList = optBoxService.selectOptByRent(rentNo);
 			
-			System.out.println("eventCode num>>>>" + eventCode);
+//			System.out.println("eventCode num>>>>" + eventCode);
 			
 			//할인/쿠폰
 			if( eventCode.equals("0") ) {
 				System.out.println("쿠폰 사용안함");
 			}else {
 				System.out.println("쿠폰 사용함");
-				EventBox evtList = eventBoxDao.selectEventBoxFindCodeId(eventCode, id);
+				Event evtList = eventService.getEvent(eventCode);
+				
 				request.setAttribute("evtList", evtList);
-				System.out.println("evtList >>>>>>>>" + evtList);
+//				System.out.println("evtList >>>>>>>>" + evtList);
 			}
 			
-			System.out.println("optList>>>>>" + optList);
-			System.out.println("rent >>>>>>>>" + rent);
+//			System.out.println("optList>>>>>" + optList);
+//			System.out.println("rent >>>>>>>>" + rent);
 			
 			request.setAttribute("optList", optList);
 			request.setAttribute("rent", rent);

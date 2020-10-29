@@ -15,15 +15,6 @@
 	</div>
 </section>
 <!-- //상단배경 -->
-
-${rent}
-
-${optList}
-
-<br>
-
-
-
 <section class="con_wrap box">
 
 	<div class="contents_box out padLeft0">
@@ -78,9 +69,14 @@ ${optList}
 											추가 옵션
 										</div>
 										<div class="right">
-											<c:forEach var="opt" items="${optList}">
-												<span>${opt}</span>
-											</c:forEach>
+											<p>
+												<c:forEach var="opt" items="${optList}">
+													<span>${opt}</span>
+												</c:forEach>
+												<c:if test="${empty optList}">
+													선택안함
+												</c:if>
+											</p>
 										</div>
 									</li>
 									<li>
@@ -88,14 +84,16 @@ ${optList}
 											할인/쿠폰
 										</div>
 										<div class="right">
-											<c:choose>
-												<c:when test="${evtList==null}">
-													선택안함
-												</c:when>
-												<c:otherwise>
-													${evtList}
-												</c:otherwise>
-											</c:choose>
+											<p>
+												<c:choose>
+													<c:when test="${evtList==null}">
+														선택안함
+													</c:when>
+													<c:otherwise>
+														${evtList}
+													</c:otherwise>
+												</c:choose>
+											</p>
 										</div>
 									</li>
 									<li class="priceResult">
@@ -103,7 +101,9 @@ ${optList}
 											총 결제 금액
 										</div>
 										<div class="right">
-											 <fmt:formatNumber value="${rent.getFare()}" pattern="#,###,###" /> 원
+											 <p>
+												 <fmt:formatNumber value="${rent.getFare()}" pattern="#,###,###" /> 원
+											 </p>
 										</div>
 									</li>
 								</ul>

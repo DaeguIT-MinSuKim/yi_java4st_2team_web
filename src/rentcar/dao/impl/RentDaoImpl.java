@@ -158,6 +158,8 @@ public class RentDaoImpl implements RentDao {
 		String sql = "INSERT INTO RENT(ID, CAR_NO, INS_CODE, RENT_DATE, RETURN_DATE, IS_RENT, RENT_FARE, RENT_REMARK) values(?, ?, ?, to_date(?,'YYYY-MM-DD HH24:MI:SS'), to_date(?,'YYYY-MM-DD HH24:MI:SS'), ?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			
+			int insCode = rent.getInsCode().getCode();
+			
 			pstmt.setString(1, rent.getId().getId());
 			pstmt.setString(2, rent.getCarNo().getNo());
 			pstmt.setInt(3, rent.getInsCode().getCode());
