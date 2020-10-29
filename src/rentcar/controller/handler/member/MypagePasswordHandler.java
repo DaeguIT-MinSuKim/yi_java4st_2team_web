@@ -1,6 +1,7 @@
 package rentcar.controller.handler.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,9 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import rentcar.controller.Command;
+import rentcar.dto.Event;
 import rentcar.dto.Member;
+import rentcar.service.EventService;
 
 public class MypagePasswordHandler implements Command {
+	private EventService eventService = new EventService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -33,6 +37,11 @@ public class MypagePasswordHandler implements Command {
 
 			if (loginUser.getPwd().equals(pwd)) {
 				request.setAttribute("loginUser", loginUser);
+				
+				// 보유중인 쿠폰
+				ArrayList<Event> memberCoupon = eventService.selectEventBoxFindMemberCoupon(loginUser.getId());
+				request.setAttribute("memberCoupon", memberCoupon);
+				
 				return "member/mypage.jsp";
 				//return "mypage/modify.jsp";
 			} else {

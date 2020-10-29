@@ -13,9 +13,13 @@
 		<div class="event_content">
 			<form action="eventWrite.do" method="post" class="event_write" enctype="multipart/form-data">
 				<div>
-					<label><input type="checkbox" name="isEvent" checked> 사용</label>
 					<input type="text" name="title" placeholder="제목을 입력해주세요" id="title">
 					<input type="text" name="sale" placeholder="할인금액(Ex.1000)" id="sale" class="mt5">
+					<div class="date_box">
+						<input type="text" name="startDate" class="form-control calendar start" readonly placeholder="이벤트 시작일 선택">
+						<span>~</span>
+						<input type="text" name="endDate" class="form-control calendar end" readonly placeholder="이벤트 종료일 선택">
+					</div>
 					<div class="file_wrap">
 						<p>리스트 이미지</p><input type="file" name="uploadfile01" class="list_file">
 						<p>상세페이지 이미지</p><input type="file" name="uploadfile02" class="view_file">
@@ -44,6 +48,14 @@
 			if ($(".event_write #sale").val() == ""){
 				alert("할인금액을 입력해주세요.")
 				$(".event_write #sale").focus()
+				return false;
+			}
+			if ($(".event_write .start").val() == ""){
+				alert("이벤트 시작일을 선택해주세요.")
+				return false;
+			}
+			if ($(".event_write .end").val() == ""){
+				alert("이벤트 종료일을 선택해주세요.")
 				return false;
 			}
 			if ($(".event_write .list_file").val() == ""){

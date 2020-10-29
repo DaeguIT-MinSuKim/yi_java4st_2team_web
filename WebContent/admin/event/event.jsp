@@ -20,6 +20,7 @@ $(function(){
 			<select name="condition">
 				<option value="event_code">코드</option>
 				<option value="name">제목</option>
+				<option value="is_event">진행 여부</option>
 			</select> 
 			<input type="text" name="keyword" title="검색어 입력">
 			<input type="submit" value="검색">
@@ -31,12 +32,14 @@ $(function(){
 			<colgroup>
 				<col width="8%">
 				<col width="">
+				<col width="20%">
 				<col width="13%">
 				<col width="10%">
 			</colgroup>
 			<tr>
 				<th>코드</th>
 				<th>제목</th>
+				<th>기간</th>
 				<th>금액</th>
 				<th>진행 여부</th>
 			</tr>
@@ -44,6 +47,9 @@ $(function(){
 			<tr class="board">
 				<td>${event.eventCode}</td>
 				<td class="tl"><a href="eventView.do?code=${event.eventCode}">${event.name}</a></td>
+				<td>
+					<fmt:formatDate value="${event.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event.endDate}" pattern="yyyy-MM-dd"/>
+				</td>
 				<td><fmt:formatNumber value="${event.sale}"/>원</td>
 				<td>
 					<c:choose>
@@ -96,6 +102,24 @@ $(function(){
 	</div>
 </div>
 
+
+<script>
+	function event_is_event(){
+		$(".divSearch").append('<p class="progress_txt">[<span>진행 예정</span>] [<span>진행 중</span>] [<span>진행 완료</span>]로 검색해주세요.</p>')		
+	}
+	$(".divSearch select").change(function(){
+		if ($(this).val() == "is_event"){
+			event_is_event()
+		} else {
+			$(".divSearch p:last").remove()
+		}
+	})
+	
+	$(document).on("click", ".progress_txt span", function(){
+		$(".divSearch input[name=keyword]").val($(this).text())
+	})
+</script>
+
 <c:if test="${method eq 'post'}">
 	<input type="hidden" name="post_condition" value="${condition}">
 	<input type="hidden" name="post_keyword" value="${keyword}">
@@ -105,6 +129,10 @@ $(function(){
 			$(".divSearch select").val($("input[name=post_condition]").val())
 			$(".divSearch input[name=keyword]").val($("input[name=post_keyword]").val())
 			
+			if ($(".divSearch select").val() == "is_event"){
+				event_is_event()
+			}
+			
 			$(".board_list_page a").click(function(){
 				var href = $(this).attr("href");
 				var hrefArray = href.split('=');
@@ -113,10 +141,10 @@ $(function(){
 				$(".divSearch form").submit();
 				return false;
 			})
-			
 		})
 	</script>
 </c:if>
+
 
 
 

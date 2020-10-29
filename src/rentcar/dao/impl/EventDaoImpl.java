@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import rentcar.dao.EventDao;
 import rentcar.dto.Event;
-import rentcar.dto.EventBox;
 import rentcar.exception.CustomSQLException;
 import rentcar.utils.Paging;
 
@@ -17,6 +19,7 @@ public class EventDaoImpl implements EventDao {
 	private static final EventDaoImpl instance = new EventDaoImpl();
 
 	private Connection con;
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 	public EventDaoImpl() {
 	}
@@ -31,7 +34,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventByAll() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -49,7 +52,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventIng() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE is_event = 'y' ORDER BY TO_NUMBER(EVENT_CODE) DESC";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT WHERE is_event = 'y' ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -67,7 +70,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventEnd() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE is_event = 'n' ORDER BY TO_NUMBER(EVENT_CODE) DESC";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT WHERE is_event = 'n' AND END_DATE < SYSDATE ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -91,6 +94,8 @@ public class EventDaoImpl implements EventDao {
 		event.setSale(rs.getInt("SALE"));
 		event.setThumImage(rs.getString("THUM_IMAGE"));
 		event.setViewImage(rs.getString("VIEW_IMAGE"));
+		event.setStartDate(rs.getTimestamp("START_DATE"));
+		event.setEndDate(rs.getTimestamp("END_DATE"));
 		event.setIsEvent(rs.getString("IS_EVENT"));
 		
 		return event;
@@ -98,7 +103,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public Event selectEventByCode(String code) {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT WHERE EVENT_CODE = ?";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT WHERE EVENT_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, code);
 			
@@ -115,13 +120,15 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public int insertEvent(Event event) {
-		String sql = "INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT) VALUES(?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES(?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, event.getName());
 			pstmt.setInt(2, event.getSale());
 			pstmt.setString(3, event.getThumImage());
 			pstmt.setString(4, event.getViewImage());
-			pstmt.setString(5, event.getIsEvent());
+			pstmt.setTimestamp(5, new Timestamp(event.getStartDate().getTime()));
+			pstmt.setTimestamp(6, new Timestamp(event.getEndDate().getTime()));
+			pstmt.setString(7, event.getIsEvent());
 			
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -131,14 +138,16 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public int updateEvent(Event event) {
-		String sql = "UPDATE EVENT SET NAME = ?, SALE = ?, THUM_IMAGE = ?, VIEW_IMAGE = ?, IS_EVENT = ? WHERE EVENT_CODE = ?";
+		String sql = "UPDATE EVENT SET NAME = ?, SALE = ?, THUM_IMAGE = ?, VIEW_IMAGE = ?, START_DATE = ?, END_DATE = ?, IS_EVENT = ? WHERE EVENT_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, event.getName());
 			pstmt.setInt(2, event.getSale());
 			pstmt.setString(3, event.getThumImage());
 			pstmt.setString(4, event.getViewImage());
-			pstmt.setString(5, event.getIsEvent());
-			pstmt.setString(6, event.getEventCode());
+			pstmt.setTimestamp(5, new Timestamp(event.getStartDate().getTime()));
+			pstmt.setTimestamp(6, new Timestamp(event.getEndDate().getTime()));
+			pstmt.setString(7, event.getIsEvent());
+			pstmt.setString(8, event.getEventCode());
 			
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -229,10 +238,20 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public List<Event> searchEventList(String condition, String keyword, Paging paging) {
-		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN ? AND ? ORDER BY rn";
+		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM EVENT ORDER BY EVENT_CODE desc) a ) WHERE rn BETWEEN ? AND ? ";
 		try {
 			if (keyword != null && !keyword.isEmpty()) {
-				sql += " AND " + condition.trim() + " LIKE '%" + keyword.trim() + "%' ";
+				if (condition.equals("is_event")) {
+					if (keyword.equals("진행 예정")) {
+						sql += " AND " + condition.trim() + " = 'n' AND START_DATE > SYSDATE ";
+					} else if (keyword.equals("진행 중")) {
+						sql += " AND " + condition.trim() + " = 'y' ";
+					} else if (keyword.equals("진행 완료")) {
+						sql += " AND " + condition.trim() + " = 'n' AND END_DATE < SYSDATE ";
+					}
+				} else {
+					sql += " AND " + condition.trim() + " LIKE '%" + keyword.trim() + "%' ";
+				}
 			}
 			sql += "ORDER BY EVENT_CODE DESC";
 			try (PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -261,7 +280,17 @@ public class EventDaoImpl implements EventDao {
 		String sql = "select count(*) from EVENT";
 		try {
 			if (keyword != null && !keyword.isEmpty()) {
-				sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+				if (condition.equals("is_event")) {
+					if (keyword.equals("진행 예정")) {
+						sql += " WHERE " + condition.trim() + " = 'n' AND START_DATE > SYSDATE ";
+					} else if (keyword.equals("진행 중")) {
+						sql += " WHERE " + condition.trim() + " = 'y' ";
+					} else if (keyword.equals("진행 완료")) {
+						sql += " WHERE " + condition.trim() + " = 'n' AND END_DATE < SYSDATE ";
+					}
+				} else {					
+					sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+				}
 			}
 			try(PreparedStatement pstmt = con.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery()){

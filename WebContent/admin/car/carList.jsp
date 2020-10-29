@@ -42,6 +42,7 @@
 			if( res != "" ){
 				document.frm.submit();
 			}
+			alert("값을 기입하여주세요");
 		})
 	});
 </script>
@@ -78,7 +79,7 @@
 		</div>
 		
 		<!-- 차량 목록 -->
-		<table border=1 class="carTable">
+		<table class="carTable table_style1">
 			<tr>
 				<th>차량 번호</th>
 				<th>차량 이름</th>
@@ -104,7 +105,7 @@
 					<td>${car.remark}</td>
 					<td>${car.is_rent}</td>
 					<td>${car.counting}</td>
-					<td>${car.image}</td>
+					<td><img src="upload/${car.image}" width="100" height="50"></td>
 					<td><a href="carUpdate.do?carNo=${car.no}"><input
 							type="button" value="수정" class="update"></a></td>
 					<td><c:choose>

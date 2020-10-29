@@ -26,9 +26,13 @@
 	<div class="admin_page">
 		<form action="carUpdate.do" method="post"
 			enctype="multipart/form-data">
-			<table border=1>
+			<table class="table_style1">
+				<colgroup>
+					<col width="200px">
+					<col width="">
+				</colgroup>
 				<tr>
-					<td>차량번호</td>
+					<th>차량번호</th>
 					<td><input type="hidden" value="${car.no }" name="carNo">${car.no }</td>
 				</tr>
 				<tr>
@@ -65,7 +69,7 @@
 				</tr>
 				<tr>
 					<th>현 이미지</th>
-					<td><img src="upload/${car.image}" width="200px" height="200px"></td>
+					<td><img src="upload/${car.image}"></td>
 				</tr>
 				<tr>
 					<th>바꿀 이미지</th>	

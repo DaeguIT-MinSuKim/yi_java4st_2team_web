@@ -33,6 +33,18 @@ $(function(){
 		showButtonPanel: true, // 오늘 날짜선택
 		minDate: 0, // 오늘 날짜부터 선택 가능
 	});
+
+	$('.calendar.start, .calendar.end').datepicker({
+//		showOn: 'text',
+//		buttonImage: '../images/common/icon_date.png', //이미지 url
+//		imgW:'35',
+//		imgH:'35',
+		buttonImageOnly: true,
+		buttonText: "달력",
+		changeMonth: true,
+		changeYear: true,
+		showButtonPanel: true, // 오늘 날짜선택
+	});
 	
 	//날짜 선택시 전날선택 안되게 막기
 	$('.calendar.prev').datepicker("option", "maxDate", $(".calendar.next").val());
@@ -53,6 +65,16 @@ $(function(){
 			$(".payBox .text").hide();
 		}
     });
+
+	$('.calendar.start').datepicker("option", "maxDate", $(".calendar.end").val());
+	$('.calendar.start').datepicker("option", "onClose", function ( selectedDate ) {
+        $(".calendar.end").datepicker("option", "minDate", selectedDate );
+    });
+	$(".calendar.end").datepicker("option", "onClose", function ( selectedDate ) {
+		$('.calendar.start').datepicker("option", "maxDate", selectedDate );
+    });
+	
+	
 	
 	// 단기렌트 상세에서 반납일 인풋만 있을 경우
 	if( $(".calendar.next").length > 0 && $(".calendar.prev").length == 0 ){
