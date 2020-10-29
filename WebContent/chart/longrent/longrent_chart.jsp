@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-  <%@ include file="/admin/include/header.jsp"%>
+	pageEncoding="UTF-8"%>
+<%@ include file="/admin/include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,12 +37,19 @@ $(function(){
 		// 옵션객체 준비
 		var options = {
 			title : '장기렌트 월별 문의 건수 ',
+			height : 500,
+			width : '100%',
 			hAxis : {
 				title : '월 단위',
 				titleTextStyle : {
 					color : 'black'
 				}
-			}
+			},
+			series:{
+				0:{
+					 color: '#6085AC'
+				}
+			}	
 		};
 		
 		// 차트를 그릴 영역인 div 객체를 가져옴
@@ -53,6 +60,7 @@ $(function(){
 		chart.draw(dataTable, options);
 	}; // drawColumnChart1()의 끝
 
+	
 	// 버튼 동작
 	$(document).ready(function() {
 		$('button').on('click', function() {
@@ -71,8 +79,10 @@ $(function(){
 <body>
 	<div id="adimn_content">
 		<div class="admin_page">
-		<!-- <button type="button" id="btn">버튼</button> -->
-		<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
+			<!-- <button type="button" id="btn">버튼</button> -->
+			<button type="button" id="line_chart"
+				onclick="location.href='longRentLineChart.do'">라인차트 보기</button>
+			<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
 		</div>
 	</div>
 </body>
