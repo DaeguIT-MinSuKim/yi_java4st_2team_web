@@ -118,7 +118,9 @@ $(function(){
 	<script>
 		$(document).ready(function(){
 			$(".divSearch select").val($("input[name=post_condition]").val())
-			$(".divSearch input[name=keyword]").val($("input[name=post_keyword]").val())
+			if ($("input[name=post_condition]").val() != "rep_yn"){
+				$(".divSearch input[name=keyword]").val($("input[name=post_keyword]").val())
+			}
 			
 			$(".board_list_page a").click(function(){
 				var href = $(this).attr("href");
