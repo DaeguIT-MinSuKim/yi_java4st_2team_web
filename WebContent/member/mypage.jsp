@@ -257,10 +257,12 @@ $(function() {
 								<th>제목</th>
 								<th>금액</th>
 							</tr>
+							<c:forEach items="${memberCoupon}" var="coupon">
 							<tr>
-								<td class="tl">10월 이벤트</td>
-								<td>1000원</td>
+								<td class="tl">${coupon.name}</td>
+								<td><fmt:formatNumber value="${coupon.sale}"/>원</td>
 							</tr>
+							</c:forEach>
 						</table>
 					</div>
 				</div>
