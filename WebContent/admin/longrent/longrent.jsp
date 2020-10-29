@@ -78,7 +78,7 @@ $(function(){
 			
 		
 		<div class="board_list_page clear">
-			<a href="adminLongRent?nowPage=1" class="first arrow"><span class="text_hidden">처음</span></a>
+			<a href="adminLongRent.do?nowPage=1" class="first arrow"><span class="text_hidden">처음</span></a>
 			<c:if test="${paging.nowPage != 1}">
 				<a href="adminLongRent.do?nowPage=${paging.nowPage-1}" class="prev arrow"><span class="text_hidden">이전</span></a>
 			</c:if>
