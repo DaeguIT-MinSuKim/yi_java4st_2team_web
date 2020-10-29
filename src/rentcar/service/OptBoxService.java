@@ -1,10 +1,10 @@
 package rentcar.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import rentcar.dao.OptBoxDao;
 import rentcar.dao.impl.OptBoxDaoImpl;
-import rentcar.dao.impl.OptDaoImpl;
 import rentcar.ds.JndiDS;
 
 public class OptBoxService {
@@ -22,4 +22,7 @@ public class OptBoxService {
 		return dao.insertOptByRent(optCode, rentNo);
 	}
 	
+	public List<Integer> selectOptByRent(int rentNo) {
+		return dao.selectOptByRent(rentNo);
+	}
 }

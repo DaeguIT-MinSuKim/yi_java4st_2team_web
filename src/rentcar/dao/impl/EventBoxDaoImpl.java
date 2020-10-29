@@ -116,16 +116,17 @@ public class EventBoxDaoImpl implements EventBoxDao {
 		return null;
 	}
 	
-	/*
 	@Override
-	public EventBox updateEventBoxEndIsEventFromMember(EventBox eventBox) {
-		String sql = "UPDATE EVENT_BOX SET IS_EVENT = 'y' WHERE EVENT_CODE = ?";
+	public int updateEventBoxEndIsEventFromMember(EventBox eventBox) {
+		String sql = "UPDATE EVENT_BOX SET IS_EVENT = 'y' WHERE EVENT_CODE = ? AND ID = ?";
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
-			pstmt.setString(1, eventBox.getEventCode());
+			
+			pstmt.setString(1, eventBox.getEventCode().getEventCode());
+			pstmt.setString(2, eventBox.getId().getId());
 			
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}
-	}*/
+	}
 }

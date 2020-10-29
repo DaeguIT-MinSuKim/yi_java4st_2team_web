@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 
@@ -13,6 +15,12 @@
 	</div>
 </section>
 <!-- //상단배경 -->
+
+${rent}
+
+<br>
+
+
 
 <section class="con_wrap box">
 
@@ -29,7 +37,7 @@
 					<ul class="carList_common">
 						<li>
 							<div class="left imgBox insertBg">
-								<div class="img"><img src="./images/rentcar/small/morning.png" alt="morning"></div>
+								<div class="img"><img src="./images/rentcar/${rent.getCarNo().getKind().getCode()}/${rent.getCarNo().getImage()}" alt="${rent.getCarNo().getName()}"></div>
 							</div>
 							<div class="right textBox">
 								<ul class="text">
@@ -38,7 +46,7 @@
 											차량 이름
 										</div>
 										<div class="right">
-											모닝
+											${rent.getCarNo().getName()}
 										</div>
 									</li>
 									<li>
@@ -46,7 +54,13 @@
 											렌트 기간
 										</div>
 										<div class="right">
-											<p><span>10/9</span> 10:00 ~ <span>10/10</span> 10:00 (24시간)</p>
+											<p>
+												<span class="c_blue">${fn:split(rent.getRent_date(),'T')[0]}</span>
+												<span>${fn:split(rent.getRent_date(),'T')[1]}</span>
+												~
+												<span class="c_blue">${fn:split(rent.getReturn_date(),'T')[0]}</span>
+												<span>${fn:split(rent.getReturn_date(),'T')[1]}</span>
+											</p>
 										</div>
 									</li>
 									<li>
@@ -54,7 +68,7 @@
 											보험
 										</div>
 										<div class="right">
-											<p>일반자차</p>
+											<p>${rent.getInsCode().getName()}</p>
 										</div>
 									</li>
 									<li>
@@ -62,8 +76,8 @@
 											추가 옵션
 										</div>
 										<div class="right">
-											<span>후방카메라</span>
-											<span>블루투스</span>
+											<span></span>
+											<span></span>
 										</div>
 									</li>
 									<li>
@@ -71,7 +85,7 @@
 											할인/쿠폰
 										</div>
 										<div class="right">
-											없음
+											
 										</div>
 									</li>
 									<li class="priceResult">
@@ -79,7 +93,7 @@
 											총 결제 금액
 										</div>
 										<div class="right">
-											50,000원
+											 <fmt:formatNumber value="${rent.getFare()}" pattern="#,###,###" /> 원
 										</div>
 									</li>
 								</ul>

@@ -478,14 +478,20 @@ function btn_payBox_submit(){
 				
 				var optAll = "";
 				
+				$get_ins = $get_ins==0 ? $get_ins=null : $get_ins;
+				$get_eventCode = $get_eventCode==null ? $get_eventCode=0 : $get_eventCode;
 				
 				// 옵션 체크된 항목 번호 저장
 				for( var i=0; i < $("#get_option input").length; i++ ){
 					if( $("#get_option input").eq(i).prop("checked") ){
-						optAll += String($("#get_option input").eq(i).val()) + ",";
+						optAll += String($("#get_option input").eq(i).val());
 					};
 				};
-				
+
+				if( optAll == "" ){
+					optAll = 0;
+				}
+
 				// UTC 국제표준시로 변경 => (JSP localDateTime 변수에 넣으려면 이렇게 해야함)
 				$get_minDate = parseInt(
 						Date.UTC(
@@ -528,10 +534,13 @@ function btn_payBox_submit(){
 					data:JSON.stringify(params),
 					dataType:"json",
 					success:function(data){
-						location.href="rentEnd.do"; // GET으로 다시 이동
+						alert("예약이 완료되었습니다.");
+						location.href="rentEnd.do" + // GET으로 다시 이동
+							"?id="		+ $("#get_loginUser").val() +
+							"&carNo="	+ $("#get_carNo").val();
 					},
 					error:function(e){ // 에러날경우 에러메시지 보기
-						alert("AJAX 에러");
+						alert("예약을 실패했습니다. > ajax 에러");
 						console.log(e.responseText);
 					}
 				});
