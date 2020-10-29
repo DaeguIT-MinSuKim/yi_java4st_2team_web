@@ -15,7 +15,11 @@
 				<c:forEach items="${eventList}" var="event">
 					<li><a href="eventView.do?code=${event.eventCode}">
 						<img src="upload/${event.thumImage}">
-						<p>${event.name}</p>
+						<p>${event.name}
+							<span class="date">
+								<fmt:formatDate value="${event.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event.endDate}" pattern="yyyy-MM-dd"/>
+							</span>
+						</p>
 					</a></li>
 				</c:forEach>
 			</ul>

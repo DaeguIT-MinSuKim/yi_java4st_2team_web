@@ -2,6 +2,8 @@
 .event_list li a {display:block; width:100%; height:100%;}
 .event_list li img {width:100%;}
 .event_list li p {width:100%; box-sizing:border-box; padding:10px 15px;}
+.event_list li p span {display:block; margin-top:5px; font-size:0.9em;}
+.event_list li p span:before {content:'\f017'; font-weight:400; font-family:'Font Awesome 5 Free'; margin-right:8px;}
 
 .event_img {text-align:center; cursor:pointer;}
 .event_img img {width:96%; max-width:800px;}
@@ -21,6 +23,9 @@
 	.file_wrap p {font-size:13px; width:120px;}
 	.file_wrap input[type="file"] {width:calc(100% - 120px)}
 }
+
+.date_box .calendar {width:calc(50% - 10px) !important; height:40px !important; line-height:40px !important; padding:0 !important; float:left; margin-top:5px;}
+.date_box span {width:20px; text-align:center; float:left; line-height:40px;}
 
 .event_no_list {text-align:center; width:100%; line-height:150px; display:none;}
 

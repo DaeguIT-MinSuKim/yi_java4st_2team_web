@@ -31,12 +31,14 @@ $(function(){
 			<colgroup>
 				<col width="8%">
 				<col width="">
+				<col width="20%">
 				<col width="13%">
 				<col width="10%">
 			</colgroup>
 			<tr>
 				<th>코드</th>
 				<th>제목</th>
+				<th>기간</th>
 				<th>금액</th>
 				<th>진행 여부</th>
 			</tr>
@@ -44,6 +46,9 @@ $(function(){
 			<tr class="board">
 				<td>${event.eventCode}</td>
 				<td class="tl"><a href="eventView.do?code=${event.eventCode}">${event.name}</a></td>
+				<td>
+					<fmt:formatDate value="${event.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event.endDate}" pattern="yyyy-MM-dd"/>
+				</td>
 				<td><fmt:formatNumber value="${event.sale}"/>원</td>
 				<td>
 					<c:choose>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ include file="/admin/include/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +38,9 @@ $(function(){
 		var options = {
 			title : '장기렌트 월별 문의 건수 ',
 			hAxis : {
-				title : '월',
+				title : '월 단위',
 				titleTextStyle : {
-					color : 'red'
+					color : 'black'
 				}
 			}
 		};
@@ -68,8 +69,11 @@ $(function(){
 </script>
 </head>
 <body>
-	<button type="button" id="btn">버튼</button>
-	<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
-	${jsonArray}
+	<div id="adimn_content">
+		<div class="admin_page">
+		<!-- <button type="button" id="btn">버튼</button> -->
+		<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
+		</div>
+	</div>
 </body>
 </html>

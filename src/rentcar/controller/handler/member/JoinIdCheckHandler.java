@@ -17,8 +17,9 @@ public class JoinIdCheckHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("GET");
+			System.out.println("GET JoinIdCheckHandler");
 
 			String id = request.getParameter("id").trim();
 			System.out.println("id > " + id);
@@ -32,7 +33,7 @@ public class JoinIdCheckHandler implements Command {
 			return "member/joinIdCheck.jsp";
 
 		} else {
-			System.out.println("POST");
+			System.out.println("POST JoinIdCheckHandler");
 
 			String id = request.getParameter("id").trim();
 			System.out.println("id > " + id);

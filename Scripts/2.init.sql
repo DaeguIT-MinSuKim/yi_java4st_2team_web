@@ -397,7 +397,9 @@ CREATE TABLE EVENT (
 	sale INTEGER, /* 이벤트할인율 */
 	thum_image VARCHAR2(50), /* 썸네일이미지 */
 	view_image VARCHAR2(50), /* 뷰이미지 */
-	is_event CHAR(1) /* 사용영부 */
+	start_date DATE, -- 시작일
+	end_date DATE, -- 종료일
+	is_event CHAR(1) /* 사용여부 */
 );
 
 COMMENT ON TABLE EVENT IS '이벤트';
@@ -412,7 +414,7 @@ COMMENT ON COLUMN EVENT.thum_image IS '썸네일이미지';
 
 COMMENT ON COLUMN EVENT.view_image IS '뷰이미지';
 
-COMMENT ON COLUMN EVENT.is_event IS '사용영부';
+COMMENT ON COLUMN EVENT.is_event IS '사용여부';
 
 CREATE UNIQUE INDEX PK_EVENT
 	ON EVENT (

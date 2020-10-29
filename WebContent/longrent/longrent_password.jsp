@@ -18,7 +18,8 @@
 				<i class="fas fa-unlock-alt"></i>
 				<p>이 글은 비밀글입니다.<br>비밀번호를 입력해 주세요.</p>
 				<input type="password" placeholder="비밀번호" name="pwdCh" id="pwdCh">
-				<a class="btn_small btn_case2 mt30 board_password_btn">확인</a>
+				<!-- <a class="btn_small btn_case2 mt30 board_password_btn">확인</a> -->
+				<input type="submit" class="btn_small btn_case2 mt30 board_password_btn" value="확인">
 				<br>
 				${message }
 			</form>

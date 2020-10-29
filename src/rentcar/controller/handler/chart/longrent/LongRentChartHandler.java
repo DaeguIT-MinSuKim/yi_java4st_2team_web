@@ -1,4 +1,4 @@
-package rentcar.controller.handler.chart;
+package rentcar.controller.handler.chart.longrent;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class LongRentChartHandler implements Command {
 		
 		
 		
-		return "/chart/longrent_chart.jsp";
+		return "/chart/longrent/longrent_chart.jsp";
 		
 		
 	}

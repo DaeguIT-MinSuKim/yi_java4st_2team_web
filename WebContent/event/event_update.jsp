@@ -15,14 +15,13 @@
 			<form action="eventUpdate.do" method="post" class="event_update" enctype="multipart/form-data">
 				<div>
 					<input type="hidden" name="code" value="${event.eventCode}">
-					<c:if test="${event.isEvent eq 'y'}">
-						<label><input type="checkbox" name="isEvent" checked> 사용</label>
-					</c:if>
-					<c:if test="${event.isEvent eq 'n'}">
-						<label><input type="checkbox" name="isEvent"> 사용</label>
-					</c:if>
 					<input type="text" name="title" placeholder="제목을 입력해주세요" id="title" value="${event.name}">
 					<input type="text" name="sale" placeholder="할인" id="sale" class="mt5" value="${event.sale}">
+					<div class="date_box">
+						<input type="text" name="startDate" class="form-control calendar start" readonly placeholder="이벤트 시작일 선택" value="<fmt:formatDate value="${event.startDate}" pattern="yyyy-MM-dd"/>">
+						<span>~</span>
+						<input type="text" name="endDate" class="form-control calendar end" readonly placeholder="이벤트 종료일 선택" value="<fmt:formatDate value="${event.endDate}" pattern="yyyy-MM-dd"/>">
+					</div>
 					<div class="file_wrap">
 						<p>리스트 이미지</p><input type="file" name="uploadfile01" class="list_file">
 						<p>상세페이지 이미지</p><input type="file" name="uploadfile02" class="view_file">

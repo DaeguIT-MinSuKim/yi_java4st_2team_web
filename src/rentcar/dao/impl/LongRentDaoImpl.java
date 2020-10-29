@@ -50,7 +50,7 @@ public class LongRentDaoImpl implements LongRentDao {
 		
 		try {
 			con = JndiDS.getConnection();
-			sql="SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM')";
+			sql="SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM') ORDER BY WRITE_month";
 //			sql="SELECT  no, name FROM LONGRENT";
 			pstmt = con.prepareStatement(sql);
 			rs= pstmt.executeQuery();

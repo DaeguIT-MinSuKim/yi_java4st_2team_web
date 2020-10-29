@@ -2,6 +2,7 @@ package rentcar.controller.handler.event;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
@@ -29,6 +30,7 @@ public class EventUpdateHandler implements Command {
 			Event event = service.getEvent(code);
 			
 			request.setAttribute("event", event);
+			System.out.println("수정 : "+ event);
 			
 			return "/event/event_update.jsp";
 		} else {
@@ -53,16 +55,18 @@ public class EventUpdateHandler implements Command {
 						);
 				Enumeration files = multi.getFileNames();
 
+				Date now = new Date();
+				
 				String code = multi.getParameter("code");
 				String name = multi.getParameter("title");
 				int sale = Integer.parseInt(multi.getParameter("sale"));
 				String thumImage = multi.getFilesystemName("uploadfile01");
 				String viewImage = multi.getFilesystemName("uploadfile02");
-				String isEventArr[] = multi.getParameterValues("isEvent");
-				String isEvent;
-				if (isEventArr == null) {
-					isEvent = "n";
-				} else {
+				Date startDate = java.sql.Date.valueOf(multi.getParameter("startDate"));
+				Date endDate = java.sql.Date.valueOf(multi.getParameter("endDate"));
+				String isEvent = "n";
+				
+				if (startDate.getTime() <= now.getTime()) {
 					isEvent = "y";
 				}
 				
@@ -70,6 +74,8 @@ public class EventUpdateHandler implements Command {
 				Event event = service.getEvent(code);
 				event.setName(name);
 				event.setSale(sale);
+				event.setStartDate(startDate);
+				event.setEndDate(endDate);
 				if (thumImage != null) {					
 					event.setThumImage(thumImage);
 				}

@@ -20,7 +20,7 @@ public class AdminEventHandler implements Command {
 			throws ServletException, IOException {
 		String nowPage = request.getParameter("nowPage"); // 현재 페이지
 		System.out.println("nowPage : "+ nowPage);
-		String cntPerPage = "1"; // 페이지당 몇 개의 글을 보일지 저장
+		String cntPerPage = "15"; // 페이지당 몇 개의 글을 보일지 저장
 		
 		String condition = request.getParameter("condition");
 		String keyword = request.getParameter("keyword");
