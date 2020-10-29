@@ -106,7 +106,7 @@ SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE ASC;
 
 
 
--- 제약조건 추가 
+-- 제약조건 추가--------------------------------------------------------------------------------------- 
 
 ALTER TABLE LONGRENT MODIFY (WRITE_DATE DEFAULT SYSDATE);
 ALTER TABLE LONGRENT MODIFY (REP_YN DEFAULT 1);
@@ -115,7 +115,7 @@ ALTER TABLE NOTICE MODIFY (IS_TOP DEFAULT 1);
 
 
 
----페이징
+---페이징-------------------------------------------------------------------------------------------------
 
 SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM longrent ORDER BY no DESC) a) WHERE RN BETWEEN 1 AND 5 ORDER BY RN;
 select count(*) from longrent;
@@ -127,9 +127,31 @@ SELECT * FROM longrent ORDER BY WRITE_DATE desc;
 
 SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE asc) a) WHERE RN BETWEEN 1 AND 2 ORDER BY RN;
 
+SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN 1 AND 100 ORDER BY RN;
+SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN 1 AND 100 AND name LIKE '%동%' ORDER BY RN;
+
+
+
+SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN ? AND ?ORDER BY RN
+
+SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN 1 AND 100 and name like '%창동%' ORDER BY RN;
+SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN 1 AND 6 and REP_YN like '%1%' ORDER BY RN ;
+SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent WHERE NAME like '%동%' ORDER BY WRITE_DATE DESC) a ) WHERE rn BETWEEN 1 AND 2 ORDER BY RN;
+SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_DATE DESC) a ) WHERE rn BETWEEN 1 AND 5 ORDER BY rn;
+
+SELECT rownum rn, write_date, name FROM LONGRENT ORDER BY name ASC;
 
 
 SELECT * FROM LONGRENT WHERE NAME LIKE '%김%' ORDER BY WRITE_DATE DESC;
+
+SELECT * FROM notice;
+SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE DESC;
+
+SELECT * FROM notice WHERE title LIKE '%공지%' ORDER BY is_top, WRITE_DATE desc;
+
+SELECT * FROM (SELECT rownum Rn, a.* FROM (SELECT * FROM notice WHERE title LIKE '%공지%' ORDER BY is_top, WRITE_DATE desc ) a) WHERE rn BETWEEN 1 AND 5 ORDER BY rn;
+SELECT * FROM (SELECT rownum Rn, a.* FROM (SELECT * FROM notice  ORDER BY is_top, WRITE_DATE desc ) a) WHERE rn BETWEEN 1 AND 10 ORDER BY rn;
+
 
 
 --------------------------차트실험-------------------------------------------------------------------------------
@@ -155,5 +177,9 @@ SELECT  extract(MONTH FROM write_date ) AS WRITE_MONTH
 FROM longrent;
 
 SELECT * FROM longrent;
+SELECT TO_CHAR(WRITE_DATE, 'MM') AS WRITE_MONTH, COUNT(*) AS MON_COUNT FROM LONGRENT GROUP BY TO_CHAR(WRITE_DATE, 'MM') ORDER BY WRITE_month;
+
+
+
 
 

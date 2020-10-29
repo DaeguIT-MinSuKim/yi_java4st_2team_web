@@ -24,7 +24,9 @@ public class BrandWriteHandler implements Command {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			return null;
+			System.out.println("GET");
+			
+			return "admin/brand/brandWrite.jsp";
 		} else {
 			System.out.println("POST");
 			response.setContentType("text/html; charsert=UTF8");
@@ -43,21 +45,21 @@ public class BrandWriteHandler implements Command {
 						new DefaultFileRenamePolicy());
 				Enumeration files = multi.getFileNames();
 
-				int code = Integer.parseInt(multi.getParameter("brandCode"));
-				String name = multi.getParameter("brandName");
-				String image = multi.getFilesystemName("uploadfile");
+				String name = multi.getParameter("name");
+				String image = multi.getFilesystemName("image");
 
 				Brand b = new Brand();
-				b.setCode(code);
 				b.setName(name);
 				b.setImage(image);
 
 				int res = service.insertBrand(b);
 				request.setAttribute("res", res);
+				
 			} catch (Exception e) {
 				System.out.println("예외 발생 : " + e);
 			}
-			return "brandList.do";
+			response.sendRedirect("brandList.do");
+			return null;
 		}
 	}
 }

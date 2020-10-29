@@ -2,12 +2,14 @@ package rentcar.service;
 
 import java.sql.Connection;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dao.CarDao;
 import rentcar.dao.impl.CarDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Car;
+import rentcar.utils.Paging;
 
 public class CarService {
 	private static Connection con;
@@ -79,6 +81,22 @@ public class CarService {
 	// 차량 대여 횟수 순위
 	public List<Car> selectCarByRentCount(){
 		return dao.selectCarByRentCount();
+	}
+	
+	public int countCarByall() {
+		return dao.countCarByAll();
+	}
+	
+	public ArrayList<Car> pagingEventByAll(Paging paging){
+		return dao.pagingCarByAll(paging);
+	}
+	
+	public int countSearchCarByAll(String condition, String keyword) {
+		return dao.countSearchCarByAll(condition, keyword);
+	}
+
+	public ArrayList<Car> searchCarList(String condition, String keyword, Paging paging){
+		return dao.searchCarList(condition, keyword, paging);
 	}
 	
 }

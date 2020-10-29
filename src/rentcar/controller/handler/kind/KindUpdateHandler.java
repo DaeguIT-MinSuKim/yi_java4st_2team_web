@@ -27,15 +27,17 @@ public class KindUpdateHandler implements Command {
 
 			return "admin/kind/kindUpdate.jsp";
 		} else {
-			Kind k = new Kind();
-			k.setCode((int) request.getAttribute("kindCode"));
-			k.setName((String) request.getAttribute("kindName"));
-			k.setFare((int) request.getAttribute("kindFare"));
+			System.out.println("POST");
+			
+			int code = Integer.parseInt(request.getParameter("code"));
+			String name = request.getParameter("name");
+			int fare = Integer.parseInt(request.getParameter("fare"));
+			
+			Kind k = new Kind(code, name, fare);
+			service.updateKind(k);
 
-			int res = service.updateKind(k);
-			request.setAttribute("res", res);
-
-			return "kindList.do";
+			response.sendRedirect("kindList.do");
+			return null;
 		}
 	}
 }

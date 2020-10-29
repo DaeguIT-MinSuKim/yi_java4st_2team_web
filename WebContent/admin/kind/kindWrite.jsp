@@ -19,25 +19,23 @@
 	});
 	</script>
 <div id="adimn_content">
-	<h2>차량분류 수정</h2>
+	<h2>차량분류 추가</h2>
 	<div class="admin_page">
-		<form action="kindUpdate.do" method="post">
+		<form action="kindWrite.do" method="post">
 			<table border=1>
 				<tr>
-					<input type="hidden" value="${kind.code}" name="code">
 					<td>이 &nbsp; 름</td>
-					<td><input type="text" id="name" name="name" value="${kind.name}"></td>
+					<td><input type="text" id="name" name="name"></td>
 				</tr>
 				<tr>
 					<td>금 &nbsp; 액</td>
-					<td><input type="text" id="fare" name="fare" value="${kind.fare}"></td>
+					<td><input type="text" id="fare" name="fare"></td>
 				</tr>
 			</table>
-				<ul class="button_style3 mt50">
-					<li><input type="submit" value="수정"
-						class="btn_small btn_case2" id="add"></li>
-					<li><a href="kindList.do" class="btn_small btn_case4">취소</a></li>
-				</ul>
+			<ul class="button_style3 mt50">
+				<li><input type="submit" value="확인" class="btn_small btn_case2" id="add"></li>
+				<li><a href="kindList.do" class="btn_small btn_case4">취소</a></li>
+			</ul>
 		</form>
 	</div>
 </div>

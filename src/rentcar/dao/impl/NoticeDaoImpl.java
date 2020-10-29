@@ -35,7 +35,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public ArrayList<Notice> selectNoticeList() {
-		String sql = "SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE asc";
+		String sql = "SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE desc";
 		try(PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if(rs.next()) {
@@ -135,7 +135,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
 			@Override
 			public ArrayList<Notice> pagingNoticeByAll(Paging paging) {
-				String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE asc) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+				String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE desc) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
 				try (PreparedStatement pstmt = con.prepareStatement(sql)){
 					pstmt.setInt(1, paging.getStart());
 					pstmt.setInt(2, paging.getEnd());
@@ -162,10 +162,10 @@ public class NoticeDaoImpl implements NoticeDao {
 			 String sql = "SELECT * FROM NOTICE";
 			 try {
 				 if(keyword != null && !keyword.isEmpty()) {
-					 sql += " where " + condition.trim() + " like '%"+keyword.trim()+"%' ORDER BY IS_TOP, WRITE_DATE asc";
+					 sql += " where " + condition.trim() + " like '%"+keyword.trim()+"%' ORDER BY IS_TOP, WRITE_DATE desc";
 				 }else {
 					 //모든 레코드 검색
-					 sql += " ORDER BY IS_TOP, WRITE_DATE asc";
+					 sql += " ORDER BY IS_TOP, WRITE_DATE desc";
 				 }
 				 try(PreparedStatement pstmt = con.prepareStatement(sql);
 						 ResultSet rs = pstmt.executeQuery()){
@@ -182,4 +182,58 @@ public class NoticeDaoImpl implements NoticeDao {
 			 }
 		 return null;
 		 }
+		 
+		 
+		 
+		 //검색 + 페이징 구현 
+		 @Override
+		 public ArrayList<Notice> selectPagingSearchNotice(String condition, String keyword, Paging paging){
+			 String sql = "SELECT * FROM (SELECT rownum Rn, a.* FROM (SELECT * FROM notice";
+			 try {
+				 if(keyword != null && !keyword.isEmpty()) {
+					 sql += " where " + condition.trim() + " like '%"+keyword.trim()+"%' ORDER BY is_top, WRITE_DATE desc ) a) WHERE rn BETWEEN ? AND ? ORDER BY rn";
+				 }else {
+					 //모든 레코드 검색
+					 sql += " ORDER BY is_top, WRITE_DATE desc ) a) WHERE rn BETWEEN ? AND ? ORDER BY rn";
+				 }
+				 try(PreparedStatement pstmt = con.prepareStatement(sql)){
+						 pstmt.setInt(1, paging.getStart());
+						 pstmt.setInt(2, paging.getEnd());
+					 try(ResultSet rs = pstmt.executeQuery()){
+						 if(rs.next()) {
+							 ArrayList<Notice> list = new ArrayList<Notice>();
+							 do {
+								 list.add(getNotice(rs));
+							 }while(rs.next());
+							 return list;
+						 }
+						}
+					 }
+			 }catch(Exception e) {
+				 throw new CustomSQLException(e);
+			 }
+		 return null;
+		 }
+		 
+		 @Override
+			public int countSearchNoticeByAll(String condition, String keyword) {
+				String sql = "select count(*) from Notice";
+				try {
+					if (keyword != null && !keyword.isEmpty()) {
+						sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+					}
+					try(PreparedStatement pstmt = con.prepareStatement(sql);
+							ResultSet rs = pstmt.executeQuery()){
+						if (rs.next()) {
+							return rs.getInt(1);
+						}
+					}
+				} catch (SQLException e) {
+					throw new CustomSQLException(e);
+				}
+				return 0;
+			}
+		 
+		 
+		 
 }

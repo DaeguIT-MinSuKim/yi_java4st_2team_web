@@ -73,11 +73,10 @@ public class BrandDaoImpl implements BrandDao {
 
 	@Override
 	public int insertBrand(Brand brand) {
-		String sql = "INSERT INTO BRAND VALUES (?, ?, ?)";
+		String sql = "INSERT INTO BRAND(BRAND_NAME, BRAND_IMAGE) VALUES (?, ?)";
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
-			pstmt.setInt(1, brand.getCode());
-			pstmt.setString(2, brand.getName());
-			pstmt.setString(3, brand.getImage());
+			pstmt.setString(1, brand.getName());
+			pstmt.setString(2, brand.getImage());
 			
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {

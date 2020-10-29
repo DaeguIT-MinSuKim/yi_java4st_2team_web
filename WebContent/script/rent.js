@@ -11,6 +11,7 @@ $(function(){
 	
 	rent_form_goDtl(); // 단기렌트 - 차량 상세로 submit (차량리스트 호출 시 동시 실행함)
 //	numberWithCommas(); // 3자리 단위 콤마 찍기  (특정 부분만 사용)
+	btn_payBox_submit(); // 단기렌트 최종 예약하기
 	
 	main_carRent() // 메인 - 자동차 렌트
 });
@@ -260,7 +261,7 @@ function rentDetail_priceChange(){
 		// 값 넣을 변수
 		var $set_ins = $("#set_insurance");
 		var $set_opt = $("#set_option");
-		var $set_dis = $("#set_discount>span");
+		var $set_dis = $("#set_discount");
 		var $set_day = $("#set_day>span");
 		var $set_total = $("#set_total>span");
 	
@@ -275,8 +276,10 @@ function rentDetail_priceChange(){
 		// 보험 (라디오버튼)
 		$get_ins.find("input").on("click", function(){
 			var val_name = $get_ins.find("input:checked").next("span").text();
+			var val_price = $get_ins.find("input:checked").attr("data-insprice");
 			
 			$set_ins.text(val_name);
+			$(".set_insurance").text(val_price);
 			calculator();
 			
 			val_name = null;
@@ -310,6 +313,7 @@ function rentDetail_priceChange(){
 			get_name = get_name=="" ? get_name="선택안함" : get_name;
 			$set_opt.text(get_name); // 조합된 옵션명 화면에 뿌림
 			$el_id_optResultPrice.val(get_price); // 총금액 값 input에 넣음
+			$(".set_option").text(get_price);
 	
 			calculator();
 			
@@ -321,10 +325,11 @@ function rentDetail_priceChange(){
 		
 		// 할인/쿠폰 (셀렉박스)
 		$get_dis.find("select").change(function(){
-			$set_dis.text($(this).val());
+			$set_dis.text($(this).find("option:selected").text());
+			$(".set_discount").text($(this).find("option:selected").val());
 			calculator();
 		});
-	
+		
 		
 		
 		// 총 렌트대여날짜 계산하기 (반납일 - 대여일)
@@ -347,6 +352,7 @@ function rentDetail_priceChange(){
 				result_day = result_day==0 ? result_day=1 : result_day; // 차이일수가 0도 1로 계산.
 			}
 			$set_day.text(result_day);
+			$(".set_day").text(result_day);
 		}
 		
 		// 총 금액 계산
@@ -360,13 +366,14 @@ function rentDetail_priceChange(){
 			optPay = !isNaN(optPay) ? optPay : optPay=0;
 			disPay = !isNaN(disPay) ? disPay : disPay=0;
 			
-			// 렌트 총 날짜 * 금액 계산			
+			// 렌트 총 날짜 * 금액 계산
 			calculator_date();
 			var carPay = parseInt($get_carFare.val()) * parseInt($set_day.text());
 			var total = insPay + optPay + disPay + carPay; // 총금액
 			
+			$set_total.attr("data-total", total); // 결제금액 DB로 가져갈때를 위해 삽입
 			$set_total.text(numberWithCommas(total)); // 총 결제 금액 화면에 뿌림 
-			
+
 			insPay = null;
 			optPay = null;
 			disPay = null;
@@ -374,7 +381,6 @@ function rentDetail_priceChange(){
 			total = null;
 		} 
 		calculator();
-	
 	}
 }
 
@@ -454,3 +460,95 @@ function main_carRent(){
 		};
 	});
 };
+
+//단기렌트 최종 예약하기
+function btn_payBox_submit(){
+	
+	$("#btn_payBox_submit").on("click", function(){
+		if(validator()){
+			if( confirm("정말 예약하시겠습니까? 확인 누르기전 결제정보를 한번 더 확인해주세요.") ){
+				// 렌트 INSERT용 정보
+				var $get_loginUser = $("#get_loginUser").val();				// 예약자 아이디
+				var $get_carNo = $("#get_carNo").val();						// 차량번호
+				var $get_ins = $("#get_insurance input:checked").val();		// 보험번호
+				var $get_minDate = $("#get_minDate").text();				// 대여일
+				var $get_maxDate = $("#get_maxDate").length ? $("#get_maxDate").text() : $(".calendar.next").val(); // 반납일
+				var $set_total = $("#set_total>span").attr("data-total");	// 총 결제금액
+				var $get_eventCode = $("#get_discount option:checked").attr("data-code");		// 할인/쿠폰 번호
+				
+				var optAll = "";
+				
+				
+				// 옵션 체크된 항목 번호 저장
+				for( var i=0; i < $("#get_option input").length; i++ ){
+					if( $("#get_option input").eq(i).prop("checked") ){
+						optAll += String($("#get_option input").eq(i).val()) + ",";
+					};
+				};
+				
+				// UTC 국제표준시로 변경 => (JSP localDateTime 변수에 넣으려면 이렇게 해야함)
+				$get_minDate = parseInt(
+						Date.UTC(
+							$get_minDate.split("-")[0],
+							$get_minDate.split("-")[1],
+							$get_minDate.split("-")[2]
+						)
+				);
+				$get_maxDate = parseInt(
+						Date.UTC(
+							$get_maxDate.split("-")[0],
+							$get_maxDate.split("-")[1],
+							$get_maxDate.split("-")[2]
+						)
+				);
+				
+				var params = {
+					id : {
+						id:$get_loginUser
+					},
+					carNo:{
+						no:$get_carNo
+					},
+					insCode:{
+						code:$get_ins
+					},
+					rent_date:$get_minDate,
+					return_date:$get_maxDate,
+					is_rent:'y',
+					fare:$set_total,
+					optAll:optAll,
+					eventCode: {
+						eventCode:$get_eventCode
+					}
+				};
+				
+				$.ajax({
+					type:"POST",
+					url:"rentEnd.do",
+					data:JSON.stringify(params),
+					dataType:"json",
+					success:function(data){
+						location.href="rentEnd.do"; // GET으로 다시 이동
+					},
+					error:function(e){ // 에러날경우 에러메시지 보기
+						alert("AJAX 에러");
+						console.log(e.responseText);
+					}
+				});
+			} // confirm true
+		}
+		
+		// 예약하기 누를 시 필수항목 체크
+		function validator(){
+			if( $(".calendar.next").val()=="" ){
+				alert("반납일을 선택해주세요.");
+				return false;
+			}
+			return true;
+		}
+	});
+	
+}
+
+
+

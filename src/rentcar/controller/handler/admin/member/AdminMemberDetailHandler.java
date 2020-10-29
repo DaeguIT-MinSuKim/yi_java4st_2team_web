@@ -26,7 +26,7 @@ public class AdminMemberDetailHandler implements Command {
 
 			request.setAttribute("selectMember", selectMember);
 			System.out.println(selectMember);
-
+			
 			return "admin/member/memberDetail.jsp";
 
 		} else {

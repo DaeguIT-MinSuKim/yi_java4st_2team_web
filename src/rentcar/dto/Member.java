@@ -65,6 +65,11 @@ public class Member {
 		this.lock_counting = lock_counting;
 	}
 
+	public Member(String id, String is_black) {
+		this.id = id;
+		this.is_black = is_black;
+	}
+
 	public Member(String id) {
 		this.id = id;
 	}

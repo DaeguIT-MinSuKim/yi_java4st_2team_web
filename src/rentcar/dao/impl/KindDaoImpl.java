@@ -70,11 +70,10 @@ public class KindDaoImpl implements KindDao {
 
 	@Override
 	public int insertKind(Kind kind) {
-		String sql = "INSERT INTO KIND VALUES (?, ?, ?)";
+		String sql = "INSERT INTO KIND(KIND_NAME, KIND_FARE) VALUES (?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setInt(1, kind.getCode());
-			pstmt.setString(2, kind.getName());
-			pstmt.setInt(3, kind.getFare());
+			pstmt.setString(1, kind.getName());
+			pstmt.setInt(2, kind.getFare());
 
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {

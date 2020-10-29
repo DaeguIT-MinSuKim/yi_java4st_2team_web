@@ -11,11 +11,12 @@
 		<meta charset="UTF-8">
 		<title>고객 목록</title>
 		<script>
-			$(function(){
-				if( $(".board").length == 0 ){ // 글이 없는 경우
+			$(function() {
+				if ($(".board").length == 0) { // 글이 없는 경우
 					$(".no_board").show();
 					$(".board").hide();
 				}
+				
 			});
 		</script>
 	</head>
@@ -24,28 +25,50 @@
 		<div id="adimn_content">
 		<h2>고객 목록</h2>
 		<div class="admin_page">
-			<p>※ 고객님의 상세 정보는 아이디를 클릭하세요.</p>
+		<p>※ 고객님의 상세 정보는 아이디를 클릭하세요.</p>
+			<div class="divSearch">
+				<form name="frmSearch" action="adminMemberList.do" method="post">
+					<select name="condition">
+						<option value="name">이름</option>
+						<option value="id">아이디</option>
+					</select> 
+					<input type="text" name="keyword" title="검색어 입력">
+					<input type="submit" value="검색">
+					<a href="adminMemberList.do" type="button" class="btn btn_case2">목록보기</a>
+				</form>
+			</div>
+			
 			<table class="table_style1">
 				<!-- 글 있는 경우 -->
 				<colgroup>
-					<%-- <col width="10%">
+					<col width="5%">
+					<col width="10%">
+					<col width="5%">
 					<col width="10%">
 					<col width="10%">
 					<col width="10%">
-					<col width="10%"> --%>
+					<col width="10%">
 				</colgroup>
 				
 				<tr>
+					<th>블랙</th>
 					<th>아이디</th>
 					<th>이름</th>
 					<th>전화번호</th>
 					<th>면허종류</th>
-					<th>면허번호</th>		
+					<th>면허번호</th>
+					<th>최근접속</th>
 				</tr>
 
 				<c:forEach items="${memberPaging}" var="member">
 
 				<tr class="board">
+					<td>
+						<c:choose>
+							<c:when test="${member.is_black == 'Y'}">✔</c:when>
+							<c:when test="${member.is_black == 'N'}"></c:when>
+						</c:choose>
+					</td>
 					<td><a href="adminMemberDetail.do?id=${member.id}">${member.id}</a></td>
 					<td>${member.name}</td>
 					<td>${member.tel}</td>
@@ -58,12 +81,13 @@
 						</c:choose>
 					</td>
 					<td>${member.li_number}</td>
+					<td>${member.date}</td>
 				</tr>
 				</c:forEach>
 				
 				<!-- 글 없는 경우 -->
 				<tr class="no_board">
-					<td colspan="4">고객 목록이 없습니다.</td>
+					<td colspan="7">고객 목록이 없습니다.</td>
 				</tr>
 			</table>
 			

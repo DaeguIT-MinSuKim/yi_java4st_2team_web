@@ -18,67 +18,66 @@
 		$("#opt3, #opt4, #opt5").hide();
 		$el_id_inputSearch.hide();
 
-		// 1 셀렉박스 value 값 체크하기
+		// 셀렉박스 value 값 체크하기
 		$("#opt").change(function() {
 			var optChk = $("#opt option:selected").val();
 
 			$("#opt3, #opt4, #opt5").hide();
 			$el_id_inputSearch.hide();
 
-			if (optChk == 1 || optChk == 2) {
+			if (optChk == "CAR_NO" || optChk == "CAR_NAME") {
 				$el_id_inputSearch.show();
-			} else {
-				$("#opt" + optChk).show();
+			} else if (optChk == "KIND_NAME") {
+				$("#opt3").show();
+			} else if (optChk == "BRAND_NAME"){
+				$("#opt4").show();
+			} else if (optChk == "IS_RENTCAR"){
+				$("#opt5").show();
 			}
 		});
 
-		// 2 각 value에 맞는 상황 뽑아내기
+		// 검색버튼 클릭후 체크
 		$(".search").click(function() {
 			var res = $("#opt option:selected").val();
-			var query;
-
-			if (res == 0) {
-				alert("검색옵션을 선택해주세요")
-				return null;
-			} else if (res == 1 || res == 2) {
-				query = $el_id_inputSearch.val();
-			} else {
-				query = $("#opt" + res).val();
+			if( res != "" ){
+				document.frm.submit();
 			}
-
-			// 3 submit 하기
-			location.href = "carSearch.do?res=" + res + "&query=" + query;
 		})
 	});
 </script>
+
+		<!-- 차량 검색 -->
 <div id="adimn_content">
 	<h2>차량 목록</h2>
 	<div class="admin_page">
 		<div class="search_car">
 			<a href="carWrite.do">차량추가</a>
-			<form name="frm" method="get" action=""></form>
+			<form name="frm" method="post" action="carList.do">
 			<select name="opt" id="opt">
 				<option value="">선택하세요</option>
-				<option value="1">차량번호</option>
-				<option value="2">차량이름</option>
-				<option value="3">종류별</option>
-				<option value="4">브랜드별</option>
-				<option value="5">대여유무</option>
-			</select> <select id="opt3">
+				<option value="CAR_NO"">차량번호</option>
+				<option value="CAR_NAME">차량이름</option>
+				<option value="KIND_NAME">종류별</option>
+				<option value="BRAND_NAME">브랜드별</option>
+				<option value="IS_RENTCAR">대여유무</option>
+			</select> <select id="opt3" name="opt3">
 				<c:forEach items="${kindList }" var="kind">
 					<option value="${kind.name}">${kind.name}</option>
 				</c:forEach>
-			</select> <select id="opt4">
+			</select> <select id="opt4" name="opt4">
 				<c:forEach items="${brandList}" var="brand">
 					<option value="${brand.name}">${brand.name}</option>
 				</c:forEach>
-			</select> <select id="opt5">
+			</select> <select id="opt5" name="opt5">
 				<option value="Y">반납완료</option>
 				<option value="N">대여중</option>
-			</select> <input type="text" id="inputSearch" placeholder="검색란">
+			</select> <input type="text" name="inputSearch" id="inputSearch" placeholder="검색란">
 
 			<button class="search">검색</button>
+			</form>
 		</div>
+		
+		<!-- 차량 목록 -->
 		<table border=1 class="carTable">
 			<tr>
 				<th>차량 번호</th>
@@ -120,6 +119,36 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<div class="board_list_page clear">
+			<a href="carList.do?nowPage=1" class="first arrow"><span class="text_hidden">처음</span></a>
+			<c:if test="${paging.nowPage != 1}">
+				<a href="carList.do?nowPage=${paging.nowPage-1}" class="prev arrow"><span class="text_hidden">이전</span></a>
+			</c:if>
+			<c:if test="${paging.nowPage == 1}">
+				<a href="carList.do?nowPage=${paging.nowPage}" class="prev arrow"><span class="text_hidden">이전</span></a>
+			</c:if>
+			<ul>
+				<c:forEach begin="${paging.startPage}" end="${paging.endPage }"
+					var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<li class="active"><a>${p}</a></li>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<li><a href="carList.do?nowPage=${p}">${p}</a></li>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+			</ul>
+			
+			<c:if test="${paging.nowPage != paging.lastPage}">
+				<a href="carList.do?nowPage=${paging.nowPage+1}" class="next arrow"><span class="text_hidden">다음</span></a>
+			</c:if>
+			<c:if test="${paging.nowPage == paging.lastPage}">
+				<a href="carList.do?nowPage=${paging.nowPage}" class="next arrow"><span class="text_hidden">다음</span></a>
+			</c:if>
+			<a href="carList.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
+		</div>
 	</div>
 </div>
 

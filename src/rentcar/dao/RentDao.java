@@ -1,10 +1,7 @@
 package rentcar.dao;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import rentcar.dto.LongRent;
 import rentcar.dto.Rent;
 import rentcar.utils.Paging;
 
@@ -28,4 +25,7 @@ public interface RentDao {
 	int countRentByAll();
 	// 페이징용 카운팅2
 	List<Rent> pagingRentByAll(Paging paging);
+	
+	// 최근 insert된 No 가져오기
+	Rent selectRecentByNo();
 }

@@ -15,6 +15,8 @@ $(function(){
 })
 </script>
 
+${rentList[0]}
+
 <div id="adimn_content">
 	<h2>단기렌트</h2>
 	<div class="admin_page">

@@ -20,49 +20,45 @@ public interface LongRentDao {
 
 	// 글쓰기
 	int insertLongRent(LongRent longrent);
-
 	int updateLongRent(LongRent longrent);
 
-	
-
-	// 게시글 보기 비밀번호 
+	// 게시글 보기 비밀번호
 	LongRent checkPassword(int no, String pwd);
-	
-	
-	
-	//게시판 페이징 
-//	int totalRecord(int no);
-//
-//	public String pageNumber(int tpage, String name);
-//
-//	ArrayList<LongRent> listLongRent(int tpage, int no);
 
+	// 게시판 페이징
 	int countLongRentByAll();
+
+	ArrayList<LongRent> pagingLongRentByAll(Paging paging);
+
 	
-	ArrayList<LongRent>pagingLongRentByAll(Paging paging);
+
+
+	// 검색
+	List<LongRent> selectSearch(String condition, String keyword);
+
+	// 검색 후 페이징
+	List<LongRent> selectSearchPaging(String condition, String keyword, Paging paging);
+
+	int countSearchLongRentByAll(String condition, String keyword);
+
 	
-	
-	//관리자
+	// 관리자
 	ArrayList<LongRent> adminList();
-	
-	
-	//게시글 삭제
 	int deleteLongRent(int no);
 	
-	//관리자 댓글 남기기 버튼 
+	
+	// 관리자 댓글 남기기 버튼
 	int adminUpdateLongRent(String rep, int no);
 
-	//관리자 댓글 삭제 버튼
+	// 관리자 댓글 삭제 버튼
 	int adminReplyDeleteLongRent(int no);
 
-	//검색
-	List<LongRent> selectSearch(String condition, String keyword) ;
-
 	
-	//차트용
+
+	// 차트용
 	JSONArray getCountLongRent();
 
 	ArrayList<LongRent> selectLongRentChartList();
-	
-	
+
+
 }

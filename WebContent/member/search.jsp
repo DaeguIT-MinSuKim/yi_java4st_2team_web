@@ -10,7 +10,7 @@
 		<h3>아이디/비밀번호 찾기</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 아이디/비밀번호 찾기</div>
 
-<form method="get">
+	<form method="get">
 		<div class="login_box">
 			<div class="col-sm-6">
 				<a class="btn login" href="searchId.do">아이디 찾기</a>
@@ -19,7 +19,7 @@
 				<a class="btn login" href="searchPwd.do">비밀번호 찾기</a>
 			</div>
 		</div>
-</form>
+	</form>
 
 	</div>
 

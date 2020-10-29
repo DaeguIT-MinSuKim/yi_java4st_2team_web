@@ -12,8 +12,10 @@ import java.util.List;
 import rentcar.dao.CarDao;
 import rentcar.dto.Brand;
 import rentcar.dto.Car;
+import rentcar.dto.Event;
 import rentcar.dto.Kind;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class CarDaoImpl implements CarDao {
 	private static final CarDaoImpl instance = new CarDaoImpl();
@@ -212,12 +214,11 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public Car selectRentByNo(LocalDateTime rentDate, LocalDateTime returnDate, String no) {
-		String sql = "SELECT * " + 
-				"  FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE" + 
-				" WHERE CAR_NO = ? AND CAR_NO IN (SELECT DISTINCT CAR_NO " + 
-				"  FROM rent r " + 
-				" WHERE (TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RENT_DATE) < TO_DATE(?,'YYYYMMDDHH24')) " + 
-				"	OR (TO_DATE(RETURN_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
+		String sql = "SELECT * "
+				+ "  FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE"
+				+ " WHERE CAR_NO = ? AND CAR_NO IN (SELECT DISTINCT CAR_NO " + "  FROM rent r "
+				+ " WHERE (TO_DATE(RENT_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RENT_DATE) < TO_DATE(?,'YYYYMMDDHH24')) "
+				+ "	OR (TO_DATE(RETURN_DATE) > TO_DATE(?,'YYYYMMDDHH24') AND TO_DATE(RETURN_DATE) < TO_DATE(?,'YYYYMMDDHH24')))";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, no);
 			pstmt.setString(2, rentDate.format(formatter));
@@ -317,16 +318,97 @@ public class CarDaoImpl implements CarDao {
 		}
 	}
 
+	// 페이징
+	@Override
+	public int countCarByAll() {
+		String sql = "select count(*) from CAR";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Car> pagingCarByAll(Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE ORDER BY c.KIND_CODE) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					ArrayList<Car> list = new ArrayList<Car>();
+					do {
+						list.add(getCar(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	// 관리자 차량 - 검색
+	@Override
+	public int countSearchCarByAll(String condition, String keyword) {
+		String sql = "select count(*) from CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE";
+		try {
+			if (keyword != null && !keyword.isEmpty()) {
+				sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+			}
+			try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Car> searchCarList(String condition, String keyword, Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM CAR c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE ";
+		if (keyword != null && !keyword.isEmpty()) {
+			sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%' ";
+		}
+		sql += "ORDER BY c.KIND_CODE) a) WHERE RN BETWEEN ? AND ?";
+		try {
+			System.out.println("sql > " + sql);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				try (ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+						ArrayList<Car> list = new ArrayList<Car>();
+						do {
+							list.add(getCar(rs));
+						} while (rs.next());
+						return list;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
 	@Override
 	public List<Car> selectCarByRentCount() {
 		String sql = "SELECT * FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE ORDER BY CAR_COUNT DESC";
-		try (PreparedStatement pstmt = con.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery()){
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				List<Car> list = new ArrayList<Car>();
 				do {
 					list.add(getCar(rs));
-				} while(rs.next());
+				} while (rs.next());
 				return list;
 			}
 		} catch (SQLException e) {

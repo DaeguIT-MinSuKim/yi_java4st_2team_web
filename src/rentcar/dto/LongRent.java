@@ -15,17 +15,36 @@ public class LongRent {
 	private String pwd;
 	private String options;
 	private String repContent; //답변 내용
-	private int write_month;
+	private String writeMonth;
 	private int totalCount;
 	
 	public LongRent() {
 	}
 	
 
-	public LongRent(int write_month, int totalCount) {
-		this.write_month = write_month;
+
+	
+
+
+	public LongRent(int no, String title, String contents, int repYn, Date writeDate, String rentTerm, String name,
+			String tel, String pwd, String options, String repContent, String writeMonth, int totalCount) {
+		this.no = no;
+		this.title = title;
+		this.contents = contents;
+		this.repYn = repYn;
+		this.writeDate = writeDate;
+		this.rentTerm = rentTerm;
+		this.name = name;
+		this.tel = tel;
+		this.pwd = pwd;
+		this.options = options;
+		this.repContent = repContent;
+		this.writeMonth = writeMonth;
 		this.totalCount = totalCount;
 	}
+
+
+
 
 
 
@@ -46,13 +65,14 @@ public class LongRent {
 
 	
 
-	public int getWrite_month() {
-		return write_month;
+
+	public String getWrite_month() {
+		return writeMonth;
 	}
 
 
-	public void setWrite_month(int write_month) {
-		this.write_month = write_month;
+	public void setWriteMonth(String writeMonth) {
+		this.writeMonth = writeMonth;
 	}
 
 
@@ -183,8 +203,8 @@ public class LongRent {
 	@Override
 	public String toString() {
 		return String.format(
-				"LongRent [no=%s, title=%s, contents=%s, repYn=%s, writeDate=%s, rentTerm=%s, name=%s, tel=%s, pwd=%s, options=%s, repContent=%s]",
-				no, title, contents, repYn, writeDate, rentTerm, name, tel, pwd, options, repContent);
+				"LongRent [no=%s, title=%s, contents=%s, repYn=%s, writeDate=%s, rentTerm=%s, name=%s, tel=%s, pwd=%s, options=%s, repContent=%s, writeMonth=%s, writeDate=%s]",
+				no, title, contents, repYn, writeDate, rentTerm, name, tel, pwd, options, repContent, writeMonth, writeDate );
 	}
 
 

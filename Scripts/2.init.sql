@@ -122,7 +122,7 @@ COMMENT ON COLUMN MEMBER.name IS '이름';
 
 COMMENT ON COLUMN MEMBER.tel IS '연락처';
 
-COMMENT ON COLUMN MEMBER.license IS '면허번호';
+COMMENT ON COLUMN MEMBER.li_number IS '면허번호';
 
 COMMENT ON COLUMN MEMBER.email IS '이메일';
 
@@ -225,7 +225,7 @@ ALTER TABLE RENT
 
 /* 보험 */
 CREATE TABLE INSURANCE (
-	ins_code INTEGER NOT NULL, /* 보험코드 */
+	ins_code INTEGER, /* 보험코드 */
 	ins_name VARCHAR2(50), /* 보험이름 */
 	ins_fare INTEGER /* 보험금액 */
 );
