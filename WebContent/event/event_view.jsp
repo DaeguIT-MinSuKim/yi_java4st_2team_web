@@ -14,6 +14,9 @@
 		<div class="longrent_content">
 			<div class="board_view">
 				<p class="tit">${event.name}</p>
+				<p class="date">
+					<fmt:formatDate value="${event.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${event.endDate}" pattern="yyyy-MM-dd"/>
+				</p>
 				<div class="content">
 					<div class="event_img"><img src="upload/${event.viewImage}"></div>
 				</div>

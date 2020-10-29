@@ -2,6 +2,8 @@ package rentcar.controller.handler.event;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
@@ -60,18 +62,17 @@ public class EventWriteHandler implements Command {
 					System.out.println(ori_file_name);
 				}*/
 				
-				System.out.println("dsfasfdsza"+ uploadFilePath);
+				Date now = new Date();
 				
 				String name = multi.getParameter("title");
 				int sale = Integer.parseInt(multi.getParameter("sale"));
 				String thumImage = multi.getFilesystemName("uploadfile01");
 				String viewImage = multi.getFilesystemName("uploadfile02");
-				String isEventArr[] = multi.getParameterValues("isEvent");
-				String isEvent;
+				Date startDate = java.sql.Date.valueOf(multi.getParameter("startDate"));
+				Date endDate = java.sql.Date.valueOf(multi.getParameter("endDate"));
+				String isEvent = "n";
 				
-				if (isEventArr == null) {
-					isEvent = "n";
-				} else {
+				if (startDate.getTime() <= now.getTime()) {
 					isEvent = "y";
 				}
 				
@@ -80,6 +81,8 @@ public class EventWriteHandler implements Command {
 				event.setSale(sale);
 				event.setThumImage(thumImage);
 				event.setViewImage(viewImage);
+				event.setStartDate(startDate);
+				event.setEndDate(endDate);
 				event.setIsEvent(isEvent);
 				
 				System.out.println(event);
