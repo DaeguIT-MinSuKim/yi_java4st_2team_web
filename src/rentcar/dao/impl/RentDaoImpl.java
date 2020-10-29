@@ -282,7 +282,7 @@ public class RentDaoImpl implements RentDao {
 	
 	@Override
 	public Rent selectRecentByNo() {
-		String sql = "SELECT MAX(RENT_NO) AS RENT_NO FROM rent WHERE RENT_DATE = (SELECT MAX(RENT_DATE) FROM RENT)";
+		String sql = "SELECT MAX(TO_NUMBER(RENT_NO)) AS RENT_NO FROM RENT";
 		try(PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()){
@@ -294,4 +294,23 @@ public class RentDaoImpl implements RentDao {
 		return null;
 	}
 
+	@Override
+	public Rent selectRecentByRent(String id, String carNo) {
+		String sql = "SELECT * FROM( SELECT * FROM Rent r LEFT OUTER JOIN MEMBER m ON r.ID = m.ID JOIN INSURANCE i ON r.INS_CODE = i.INS_CODE " + 
+				"JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE " + 
+				"WHERE M.ID = ? AND c.CAR_NO = ? ORDER BY TO_NUMBER(RENT_NO) DESC) WHERE ROWNUM = 1";
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+				pstmt.setString(1, id);
+				pstmt.setString(2, carNo);
+				ResultSet rs = pstmt.executeQuery();
+			if (rs.next()){
+				return getRent(rs);
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	
 }

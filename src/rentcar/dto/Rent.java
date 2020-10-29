@@ -3,18 +3,17 @@ package rentcar.dto;
 import java.time.LocalDateTime;
 
 public class Rent {
-	private int rentNo; // 대여번호
-	private Member id; // 아이디
-	private Car carNo; // 차량번호
-	private Ins insCode; // 보험코드
-	private LocalDateTime rent_date; // 대여일자
-	private LocalDateTime return_date; // 반납일자
-	private String is_rent; // 반납여부
+	private int rentNo;					 // 대여번호
+	private Member id; 					 // 아이디
+	private Car carNo; 					 // 차량번호
+	private Ins insCode; 				 // 보험코드
+	private LocalDateTime rent_date;	 // 대여일자
+	private LocalDateTime return_date; 	 // 반납일자
+	private String is_rent;				 // 반납여부
 	private long fare;
 	private String remark;
 	private String optAll;
 	private Event eventCode;
-	
 	
 	public Rent() {
 		super();

@@ -19,4 +19,7 @@ public interface EventBoxDao {
 	
 	// 이벤트 종료 - 보관함에 사용여부 y
 	int updateEventBoxEndIsEvent(String eventCode);
+
+	// 렌트 '예약하기' 에서 쿠폰 사용할 경우 사용여부 y
+	int updateEventBoxEndIsEventFromMember(EventBox eventBox);
 }

@@ -14,7 +14,7 @@
 	</welcome-file-list>
 
 	<!-- .JSP 파일로 직접 접근 막음 -->
-<!-- 	<security-constraint>
+ 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>PreventViewingJSPs</web-resource-name>
 			<description>don't join</description>
@@ -25,6 +25,6 @@
 		<auth-constraint>
 			<role-name></role-name>
 		</auth-constraint>
-	</security-constraint> -->
+	</security-constraint>
 	<!-- // .JSP 파일로 직접 접근 막음 -->
 </web-app>

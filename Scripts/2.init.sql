@@ -487,7 +487,7 @@ ALTER TABLE EVENT_BOX
 
 /* 옵션 보관함 */
 CREATE TABLE OPT_BOX (
-	opt_box INTEGER NOT NULL, /* 옵션보관함번호 */
+	opt_box INTEGER NOT null, /* 옵션보관함번호 */
 	opt_code INTEGER, /* 옵션코드 */
 	rent_no VARCHAR2(20), /* 대여번호 */
 	is_opt CHAR(1) /* 사용여부 */
