@@ -29,7 +29,7 @@ public class LongRentChartHandler implements Command {
 		
 		
 		
-		return "/chart/longrent_chart.jsp";
+		return "/chart/longrent/longrent_chart.jsp";
 		
 		
 	}
