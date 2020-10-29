@@ -16,7 +16,7 @@
 
   	var options = {
             backgroundColor:'#FFFFFF', //배경색
-            title: '장기렌트 월별 문의 건수', // 타이틀
+            title: '장기렌트 시간별 문의 건수', // 타이틀
             pointSize:14,
             titleTextStyle: { 
                 color: 'black' // 타이틀 색
@@ -72,7 +72,8 @@
 <body>
 	<div id="adimn_content">
 		<div class="admin_page">
-			<button type="button" id="line_chart" onclick="location.href='longRentChart.do'">월별 막대차트 보기</button>
+			<button type="button" id="line_chart"
+				onclick="location.href='longRentChart.do'">월별 막대차트 보기</button>
 			<button type="button" id="line_chart" onclick="location.href='longRentHourChart.do'">시간별 막대차트 보기</button>
 			<div id="chart_div" style="width: 900px; height: 500px;"></div>
 		</div>

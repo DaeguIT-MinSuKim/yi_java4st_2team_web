@@ -156,15 +156,15 @@ VALUES(LONGRENT_NO_SEQ.NEXTVAL,'K3TheNew 1년 장기렌트 문의드립니다.',
 INSERT INTO LONGRENT( TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('외제차 문의, 답변 빨리 주세요.','뚜껑열린 외제차를 렌트하고싶습니다. 연락주세요..................!!',DEFAULT, SYSDATE,'100일', '곽수정','010-1234-3333','3333','옵션없음');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES('레이 3년 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-08-20 09:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김동자','010-1234-2222','1111','후방카메라');
+VALUES('레이 3년 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 2, to_date('2020-08-20 09:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김동자','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('그렌저 5년 장기렌트 문의드립니다.',' 렌트 문의드립니다. 5년정도 생각하고있습니다. 견적 부탁드립니다.', 1, to_date('2020-11-01 10:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','최동자','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES('BMW 1달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 1달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-02-20 11:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','문중희','010-1234-2222','1111','후방카메라');
+VALUES('BMW 1달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 1달정도 생각하고있습니다. 견적 부탁드립니다. ', 2, to_date('2020-02-20 11:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','문중희','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('벤츠 3달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 3달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-05-20 12:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','박민수','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES('용달차 5달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-02-20 12:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김대훈','010-1234-2222','1111','후방카메라');
+VALUES('용달차 5달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 2, to_date('2020-02-20 12:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김대훈','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('버스 5달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 5달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-03-20 20:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','이지수','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)

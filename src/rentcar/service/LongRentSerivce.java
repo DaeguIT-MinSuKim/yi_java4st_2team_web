@@ -82,6 +82,10 @@ public class LongRentSerivce {
 		return dao.getCountLongRent();
 	}
 	
+	public JSONArray getCountTimeLongRent() {
+		return dao.getCountTimeLongRent();
+	}
+	
 	public ArrayList<LongRent> selectLongRentChartList() {
 		return dao.selectLongRentChartList();
 	}

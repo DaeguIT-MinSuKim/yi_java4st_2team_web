@@ -36,11 +36,11 @@ $(function(){
 		
 		// 옵션객체 준비
 		var options = {
-			title : '장기렌트 월별 문의 건수 ',
+			title : '장기렌트 시간별 문의 건수 ',
 			height : 500,
 			width : '100%',
 			hAxis : {
-				title : '월 단위',
+				title : '시간 단위',
 				titleTextStyle : {
 					color : 'black'
 				}
@@ -80,9 +80,10 @@ $(function(){
 	<div id="adimn_content">
 		<div class="admin_page">
 			<!-- <button type="button" id="btn">버튼</button> -->
-			<button type="button" id="line_chart"
+				<button type="button" id="line_chart"
 				onclick="location.href='longRentLineChart.do'">월별 라인차트 보기</button>
-			<button type="button" id="line_chart" onclick="location.href='longRentHourChart.do'">시간별 막대차트 보기</button>
+			<button type="button" id="line_chart"
+				onclick="location.href='longRentHourLineChart.do'">시간별 라인차트 보기</button>
 			<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
 		</div>
 	</div>
