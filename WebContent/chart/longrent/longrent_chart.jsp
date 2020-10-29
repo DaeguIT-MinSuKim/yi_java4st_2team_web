@@ -79,6 +79,15 @@ $(function(){
 <body>
 	<div id="adimn_content">
 		<div class="admin_page">
+			
+			<%@ include file="/admin/include/tab_common.jsp"%>
+			<script>
+				$(function(){
+					$(".chart_tab>a").eq(3).addClass("active");
+				});
+			</script>
+			
+		
 			<!-- <button type="button" id="btn">버튼</button> -->
 			<button type="button" id="line_chart"
 				onclick="location.href='longRentLineChart.do'">월별 라인차트 보기</button>

@@ -254,14 +254,14 @@ ALTER TABLE INSURANCE
 CREATE TABLE LONGRENT (
 	no VARCHAR2(20) NOT NULL, /* 번호 */
 	title VARCHAR2(50), /* 제목 */
-	contents VARCHAR2(2000), /* 내용 */
+	contents VARCHAR2(4000), /* 내용 */
 	rep_yn CHAR(1) DEFAULT 1, /* 답변여부 */
 	write_date DATE DEFAULT SYSDATE, /* 날짜 */
 	rent_term VARCHAR2(50), /* 대여 */
 	name VARCHAR2(50), /* 이름 */
 	tel VARCHAR2(20), /* 연락처 */
 	pwd VARCHAR2(50), /* 비밀번호 */
-	rep_content CLOB, /* 답변내용 */
+	rep_content VARCHAR2(4000), /* 답변내용 */
 	options VARCHAR2(500) /* 옵션목록 */
 );
 

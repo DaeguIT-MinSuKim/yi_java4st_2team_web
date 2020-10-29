@@ -29,7 +29,8 @@ $(document).ready(function() {
 	form_delete();
 	admin_logoHover(); // 헤더 로고 (동자승이 눈깜빡이는거 ~)
 	
-	
+	// 모든 페이지의 textarea
+	textarea_textcounting();
 });
 
 // 헤더 로고 (동자승이 눈깜빡이는거 ~)
@@ -139,12 +140,7 @@ function writeCheck() {
 		alert("제목을 입력해주세요.");
 		return false;
 	}
-	// if(document.frm.contents.value.length == 0) {
-	// alert("문의 내용을 입력해주세요.");
-	// return false;
-	// }
-
-	if (CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
+	if(document.frm.contents.value.length == 0) {
 		alert("문의 내용을 입력해주세요.");
 		return false;
 	}
@@ -205,7 +201,7 @@ function admin_writeCheck(){
 		alert("제목을 입력해주세요.");
 		return false;
 	}
-	if (CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
+	if (document.frm.contents.value.length == 0) {
 		alert("문의 내용을 입력해주세요.");
 		return false;
 	}
@@ -221,5 +217,25 @@ function admin_gnb_height(){
 		if( left_gnb.outerHeight() < right_content.outerHeight() ){
 			left_gnb.height(right_content.outerHeight() + $("#adimn_content>h2").outerHeight());
 		}
+	}
+}
+
+function textarea_textcounting(){
+	if( $('textarea').length > 0 ){
+		var html_wrapper = '<div id="textareaBox"></div>';
+		var html_countingBox = '<span id="countingBox">(0 / 최대 1200자)</span>';
+		
+		$('textarea').wrap(html_wrapper);
+		$('#textareaBox').append(html_countingBox);
+		$('textarea').keyup(function (e){
+		    var content = $(this).val();
+		    $('#countingBox').html("("+content.length+" / 최대 1200자)");    //글자수 실시간 카운팅
+		
+		    if (content.length > 1200){
+		        alert("최대 1200자까지 입력 가능합니다.");
+		        $(this).val(content.substring(0, 1200));
+		        $('#countingBox').html("(200 / 최대 1200자)");
+		    }
+		});
 	}
 }
