@@ -42,3 +42,5 @@
 .event_popup ul li a.btn1 {color:#0d6ffc;}
 .event_popup ul li a.btn2 {background:#0d6ffc; color:#fff;}
 .event_popup ul.btn_one li {float:none; width:100%;}
+
+.progress_txt span {cursor:pointer;}
