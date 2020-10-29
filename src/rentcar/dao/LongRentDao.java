@@ -57,8 +57,11 @@ public interface LongRentDao {
 
 	// 차트용
 	JSONArray getCountLongRent();
+	JSONArray getCountTimeLongRent();
 
 	ArrayList<LongRent> selectLongRentChartList();
+
+
 
 
 }

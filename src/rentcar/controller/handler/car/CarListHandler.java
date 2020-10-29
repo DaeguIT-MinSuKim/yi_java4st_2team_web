@@ -64,12 +64,9 @@ public class CarListHandler implements Command {
 			}else {
 				keyword = request.getParameter("inputSearch");
 			}
-			System.out.println("condition > " + condition);
-			System.out.println("keyword > " + keyword);
 			total = service.countSearchCarByAll(condition, keyword);
 			paging = new Paging(Integer.parseInt(nowPage), total, Integer.parseInt(cntPerPage));
 			carList = (ArrayList<Car>) service.searchCarList(condition, keyword, paging);
-			System.out.println(carList);
 		}
 
 		System.out.println("현재 페이지 ===>" + nowPage);

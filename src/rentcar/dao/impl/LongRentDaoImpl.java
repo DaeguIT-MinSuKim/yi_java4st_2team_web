@@ -69,6 +69,41 @@ public class LongRentDaoImpl implements LongRentDao {
 		}
 		return jsonArray;
 	}
+	//차트용
+	@Override
+	public JSONArray getCountTimeLongRent() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		JSONArray jsonArray = new JSONArray();
+		
+		JSONArray colNameArray = new JSONArray(); //컬 타이틀 설정
+		colNameArray.put("시간");
+		colNameArray.put("건수");
+		jsonArray.put(colNameArray);
+		
+		try {
+			con = JndiDS.getConnection();
+			sql="SELECT to_char(WRITE_DATE, 'hh24') AS WRITE_hour, COUNT(*) AS HOUR_count FROM longrent GROUP BY TO_CHAR(WRITE_DATE, 'hh24') ORDER BY WRITE_hour asc";
+//			sql="SELECT  no, name FROM LONGRENT";
+			pstmt = con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				JSONArray rowArray = new JSONArray();
+//				rowArray.put(rs.getString("NAME"));
+//				rowArray.put(rs.getInt("no"));
+				rowArray.put(rs.getString("WRITE_HOUR"));
+				rowArray.put(rs.getInt("HOUR_COUNT"));
+				
+				jsonArray.put(rowArray);
+			}//while
+		}catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
 		
 	
 	@Override
