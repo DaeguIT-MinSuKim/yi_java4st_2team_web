@@ -29,7 +29,7 @@
 				placeholder="검색란">
 			<button class="search">검색</button>
 		</form>
-		<table border=1>
+		<table class="table_style1">
 			<tr>
 				<th>브랜드명</th>
 				<th>이미지</th>

@@ -79,7 +79,7 @@
 		</div>
 		
 		<!-- 차량 목록 -->
-		<table border=1 class="carTable">
+		<table class="carTable table_style1">
 			<tr>
 				<th>차량 번호</th>
 				<th>차량 이름</th>

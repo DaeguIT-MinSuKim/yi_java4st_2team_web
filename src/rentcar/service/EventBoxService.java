@@ -23,4 +23,8 @@ public class EventBoxService {
 		return dao.selectEventBoxFindCodeId(eventCode, id);
 	}
 	
+	public int updateEventBoxEndIsEventFromMember(EventBox eventBox) {
+		return dao.updateEventBoxEndIsEventFromMember(eventBox);
+	}
+	
 }

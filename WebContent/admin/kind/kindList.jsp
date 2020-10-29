@@ -29,7 +29,7 @@
 			placeholder="검색란">
 		<button class="search">검색</button>
 	</form>
-		<table border=1>
+		<table class="table_style1">
 			<tr>
 				<th>분류명</th>
 				<th>분류금액</th>

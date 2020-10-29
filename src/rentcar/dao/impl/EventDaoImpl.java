@@ -70,7 +70,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventEnd() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT WHERE is_event = 'n' AND START_DATE < SYSDATE ORDER BY TO_NUMBER(EVENT_CODE) DESC";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT WHERE is_event = 'n' AND END_DATE < SYSDATE ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -238,10 +238,20 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public List<Event> searchEventList(String condition, String keyword, Paging paging) {
-		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM longrent ORDER BY WRITE_date desc) a ) WHERE rn BETWEEN ? AND ? ORDER BY rn";
+		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM EVENT ORDER BY EVENT_CODE desc) a ) WHERE rn BETWEEN ? AND ? ";
 		try {
 			if (keyword != null && !keyword.isEmpty()) {
-				sql += " AND " + condition.trim() + " LIKE '%" + keyword.trim() + "%' ";
+				if (condition.equals("is_event")) {
+					if (keyword.equals("진행 예정")) {
+						sql += " AND " + condition.trim() + " = 'n' AND START_DATE > SYSDATE ";
+					} else if (keyword.equals("진행 중")) {
+						sql += " AND " + condition.trim() + " = 'y' ";
+					} else if (keyword.equals("진행 완료")) {
+						sql += " AND " + condition.trim() + " = 'n' AND END_DATE < SYSDATE ";
+					}
+				} else {
+					sql += " AND " + condition.trim() + " LIKE '%" + keyword.trim() + "%' ";
+				}
 			}
 			sql += "ORDER BY EVENT_CODE DESC";
 			try (PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -270,7 +280,17 @@ public class EventDaoImpl implements EventDao {
 		String sql = "select count(*) from EVENT";
 		try {
 			if (keyword != null && !keyword.isEmpty()) {
-				sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+				if (condition.equals("is_event")) {
+					if (keyword.equals("진행 예정")) {
+						sql += " WHERE " + condition.trim() + " = 'n' AND START_DATE > SYSDATE ";
+					} else if (keyword.equals("진행 중")) {
+						sql += " WHERE " + condition.trim() + " = 'y' ";
+					} else if (keyword.equals("진행 완료")) {
+						sql += " WHERE " + condition.trim() + " = 'n' AND END_DATE < SYSDATE ";
+					}
+				} else {					
+					sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+				}
 			}
 			try(PreparedStatement pstmt = con.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery()){
