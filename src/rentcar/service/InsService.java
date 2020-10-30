@@ -1,11 +1,13 @@
 package rentcar.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dao.impl.InsDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Ins;
+import rentcar.utils.Paging;
 
 public class InsService {
 	private InsDaoImpl dao = InsDaoImpl.getInstance();
@@ -36,8 +38,28 @@ public class InsService {
 	}
 	
 	//Ins 삭제하기
-	public int deleteIns(Ins ins) {
-		return dao.deleteIns(ins);
+	public int deleteIns(int code) {
+		return dao.deleteIns(code);
 	}
+	
+	
+	//검색 + 페이징
+	public List<Ins> selectSearhPaging(String condition, String keyword, Paging paging){
+		return dao.selectSearhPaging(condition, keyword, paging);
+	}
+	
+	public int countSearchInsByAll(String condition, String keyword) {
+		return dao.countSearchInsByAll(condition, keyword);
+	}
+	
+	//페이징
+	public ArrayList<Ins> pagingInsByAll(Paging paging){
+		return dao.pagingInsByAll(paging);
+	}
+
+	public int countInsByAll() {
+		return dao.countInsByAll();
+	}
+	
 
 }

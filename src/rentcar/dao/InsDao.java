@@ -1,8 +1,10 @@
 package rentcar.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dto.Ins;
+import rentcar.utils.Paging;
 
 public interface InsDao {
 	
@@ -19,5 +21,17 @@ public interface InsDao {
 	int updateIns(Ins ins);
 	
 	//Ins 삭제하기
-	int deleteIns(Ins ins);
+	int deleteIns(int code);
+	
+	//검색+페이징
+	List<Ins> selectSearhPaging(String condition, String keyword, Paging paging);
+	
+	int countSearchInsByAll(String condition, String keyword);
+
+	//페이징
+	ArrayList<Ins> pagingInsByAll(Paging paging);
+
+	int countInsByAll();
+
+	
 }

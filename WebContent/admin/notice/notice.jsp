@@ -25,6 +25,7 @@ $(function(){
 					<input type="text" name="keyword" title="검색어 입력"> 
 					<input type="hidden" name="no" value="${Notice.no }"> 
 					<input type="submit" value="검색">
+					<a href="adminNotice.do" type="button" class="btn btn_case2">목록보기</a>
 				</form>
 			</div>
 			

@@ -209,6 +209,23 @@ function admin_writeCheck(){
 	return true;
 }
 
+// 어드민 - 보험 수정
+function admin_ins_writeCheck(){
+	if(document.frmmm.code.value.length == 0) {
+		alert("보험 코드를 입력해주세요.");
+		return false;
+	}
+	if (document.frmmm.name.value.length == 0) {
+		alert("보험 이름을 입력해주세요.");
+		return false;
+	}
+	if (document.frmmm.fare.value.length == 0) {
+		alert("보험 금액 입력해주세요.");
+		return false;
+	}
+	return true;
+}
+
 // gnb 부족한 높이 채움
 function admin_gnb_height(){
 	var left_gnb = $("#admin_gnb");

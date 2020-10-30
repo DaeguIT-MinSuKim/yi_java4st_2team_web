@@ -24,11 +24,19 @@ public class JoinIdCheckHandler implements Command {
 			String id = request.getParameter("id").trim();
 			System.out.println("id > " + id);
 
-			Member message = service.selectMemberByUserId(new Member(id));
-			System.out.println("message > " + message);
+			Member getId = service.selectMemberByUserId(id);
+			System.out.println("getId > " + getId);
 
-			request.setAttribute("id", id);
-			request.setAttribute("message", message);
+			if (getId == null) {
+				request.setAttribute("id", id);
+				request.setAttribute("getId", getId);
+				return "member/member_id_check.jsp";
+			} 
+			
+			if (getId.getId().equals(id)) {
+				request.setAttribute("id", id);
+				request.setAttribute("getId", getId);
+			}
 
 			return "member/member_id_check.jsp";
 
@@ -38,11 +46,19 @@ public class JoinIdCheckHandler implements Command {
 			String id = request.getParameter("id").trim();
 			System.out.println("id > " + id);
 			
-			Member message = service.selectMemberByUserId(new Member(id));
-			System.out.println("message > " + message.getId());
+			Member getId = service.selectMemberByUserId(id);
+			System.out.println("getId > " + getId);
 			
-			request.setAttribute("id", id);
-			request.setAttribute("message", message.getId());
+			if (getId == null) {
+				request.setAttribute("id", id);
+				request.setAttribute("getId", getId);
+				return "member/member_id_check.jsp";
+			} 
+			
+			if (getId.getId().equals(id)) {
+				request.setAttribute("id", id);
+				request.setAttribute("getId", getId);
+			}
 
 			return "member/member_id_check.jsp";
 		}

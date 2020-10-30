@@ -22,7 +22,7 @@ public class AdminMemberDetailHandler implements Command {
 			System.out.println("GET AdminMemberDetailHandler");
 
 			String id = request.getParameter("id").trim();
-			Member selectMember = service.selectMemberByUserId(new Member(id));
+			Member selectMember = service.selectMemberByUserId(id);
 
 			request.setAttribute("selectMember", selectMember);
 			System.out.println(selectMember);

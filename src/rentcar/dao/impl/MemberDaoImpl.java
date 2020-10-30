@@ -53,7 +53,7 @@ public class MemberDaoImpl implements MemberDao {
 			sql="SELECT is_Black,count(*) " + 
 					"FROM MEMBER " + 
 					"GROUP BY IS_BLACK " + 
-					"HAVING IS_black in('y', 'N') ORDER BY IS_BLACK asc";
+					"HAVING IS_black in('Y', 'N') ORDER BY IS_BLACK asc";
 			pstmt = con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
 			
@@ -110,10 +110,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Member selectMemberByUserId(Member member) {
+	public Member selectMemberByUserId(String id) {
 		String sql = "SELECT * FROM MEMBER WHERE id = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
-			pstmt.setString(1, member.getId());
+			pstmt.setString(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					return getMemberList(rs);

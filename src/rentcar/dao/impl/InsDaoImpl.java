@@ -9,7 +9,9 @@ import java.util.List;
 
 import rentcar.dao.InsDao;
 import rentcar.dto.Ins;
+import rentcar.dto.LongRent;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class InsDaoImpl implements InsDao {
 	private static final InsDaoImpl instance = new InsDaoImpl();
@@ -97,13 +99,100 @@ public class InsDaoImpl implements InsDao {
 	}
 
 	@Override
-	public int deleteIns(Ins ins) {
+	public int deleteIns(int code) {
 		String sql = "DELETE FROM INSURANCE WHERE INS_CODE = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setInt(1, ins.getCode());
+			pstmt.setInt(1, code);
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	
+	//검색 + 페이징
+	@Override
+	public List<Ins> selectSearhPaging(String condition, String keyword, Paging paging){
+		String sql = "SELECT * FROM (SELECT rownum Rn, a.* FROM (SELECT * FROM INSURANCE";
+		try {
+			if(keyword != null && !keyword.isEmpty()) {
+				sql += " where " + condition.trim() +" like '%"+keyword.trim()+"%' ORDER BY INS_CODE) A) WHERE rn BETWEEN ? AND ? ORDER BY rn"; 
+			}else {
+				sql += " ORDER BY INS_CODE) a) WHERE rn BETWEEN ? AND ? ORDER BY rn";
+			}
+			
+			try (PreparedStatement pstmt = con.prepareStatement(sql)){
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+				
+			try(ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+				ArrayList<Ins> list = new ArrayList<>();
+				do {
+					list.add(getIns(rs));
+				} while (rs.next());
+				return list;
+				}
+			}
+		}
+	} catch(Exception e) {
+		throw new CustomSQLException(e);
+	}
+	return null;
+}
+	
+	@Override
+	public int countSearchInsByAll(String condition, String keyword) {
+		String sql = "select count(*) from INsurance";
+		try {
+			if (keyword != null && !keyword.isEmpty()) {
+				sql += " WHERE " + condition.trim() + " LIKE '%" + keyword.trim() + "%'";
+			}
+			try(PreparedStatement pstmt = con.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+	
+	//페이징
+	@Override
+	public ArrayList<Ins> pagingInsByAll(Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM insurance ORDER BY INS_CODE) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					ArrayList<Ins> list = new ArrayList<Ins>();
+					do {
+						list.add(getIns(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	@Override
+	public int countInsByAll() {
+		String sql = "select count(*) from insurance ";
+		try(PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
 	}
 }

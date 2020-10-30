@@ -105,7 +105,7 @@
 	html,body {font-family:"GmarketSans", sans-serif; font-weight:500; width:100%; position:static;}
 	.mobile {display:none !important;}
 	.affix {top:0;}
-	h3 {font-family:; font-size:24px; color:#000; padding-bottom:15px; line-height:1; margin:0; border-bottom:1px solid #e0e0e0; margin-bottom:40px; }
+	h3 {font-size:24px; color:#000; padding-bottom:15px; line-height:1; margin:0; border-bottom:1px solid #e0e0e0; margin-bottom:40px; }
 
 	/*헤더*/
 	header {z-index:999; position:absolute; width:100%; top:0;}
