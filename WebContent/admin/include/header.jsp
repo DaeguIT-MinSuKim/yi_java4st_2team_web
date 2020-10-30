@@ -122,7 +122,7 @@
 		<li><a href="#">대여관리</a>
 			<ul>
 				<li><a href="#">보험</a></li>
-				<li><a href="#">옵션</a></li>
+				<li><a href="adminOptList.do">옵션</a></li>
 			</ul>
 		</li>
 		<li><a href="#">고객관리</a>

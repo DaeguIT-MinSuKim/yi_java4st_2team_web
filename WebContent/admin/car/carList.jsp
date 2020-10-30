@@ -52,30 +52,32 @@
 	<h2>차량 목록</h2>
 	<div class="admin_page">
 		<div class="search_car">
-			<a href="carWrite.do">차량추가</a>
-			<form name="frm" method="post" action="carList.do">
-			<select name="opt" id="opt">
-				<option value="">선택하세요</option>
-				<option value="CAR_NO"">차량번호</option>
-				<option value="CAR_NAME">차량이름</option>
-				<option value="KIND_NAME">종류별</option>
-				<option value="BRAND_NAME">브랜드별</option>
-				<option value="IS_RENTCAR">대여유무</option>
-			</select> <select id="opt3" name="opt3">
-				<c:forEach items="${kindList }" var="kind">
-					<option value="${kind.name}">${kind.name}</option>
-				</c:forEach>
-			</select> <select id="opt4" name="opt4">
-				<c:forEach items="${brandList}" var="brand">
-					<option value="${brand.name}">${brand.name}</option>
-				</c:forEach>
-			</select> <select id="opt5" name="opt5">
-				<option value="Y">반납완료</option>
-				<option value="N">대여중</option>
-			</select> <input type="text" name="inputSearch" id="inputSearch" placeholder="검색란">
-
-			<button class="search">검색</button>
-			</form>
+			<a href="carWrite.do" class="btn btn-primary c_fff">차량추가</a>
+			<div class="divSearch">
+				<form name="frm" method="post" action="carList.do">
+					<select name="opt" id="opt">
+						<option value="">선택하세요</option>
+						<option value="CAR_NO"">차량번호</option>
+						<option value="CAR_NAME">차량이름</option>
+						<option value="KIND_NAME">종류별</option>
+						<option value="BRAND_NAME">브랜드별</option>
+						<option value="IS_RENTCAR">대여유무</option>
+					</select> <select id="opt3" name="opt3">
+						<c:forEach items="${kindList }" var="kind">
+							<option value="${kind.name}">${kind.name}</option>
+						</c:forEach>
+					</select> <select id="opt4" name="opt4">
+						<c:forEach items="${brandList}" var="brand">
+							<option value="${brand.name}">${brand.name}</option>
+						</c:forEach>
+					</select> <select id="opt5" name="opt5">
+						<option value="Y">반납완료</option>
+						<option value="N">대여중</option>
+					</select> <input type="text" name="inputSearch" id="inputSearch" placeholder="검색란">
+		
+					<button class="search">검색</button>
+				</form>
+			</div>
 		</div>
 		
 		<!-- 차량 목록 -->
@@ -107,11 +109,12 @@
 					<td>${car.counting}</td>
 					<td><img src="upload/${car.image}" width="100" height="50"></td>
 					<td><a href="carUpdate.do?carNo=${car.no}"><input
-							type="button" value="수정" class="update"></a></td>
+							type="button" value="수정" class="update btn-success"></a></td>
 					<td><c:choose>
 							<c:when test="${car.is_rent != 'N'}">
-								<a href="carDelete.do?carNo=${car.no}"><input type="button"
-									value="삭제" class="delete"></a>
+								<a href="carDelete.do?carNo=${car.no}">
+									<input type="button" value="삭제" class="delete btn_case5">
+								</a>
 							</c:when>
 							<c:when test="${car.is_rent == 'N'}">
 								<input type="button" value="대여중">

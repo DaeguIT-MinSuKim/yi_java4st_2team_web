@@ -22,7 +22,7 @@ public class AdminMemberListHandler implements Command {
 			throws ServletException, IOException {
 
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("GET AdminMemberListHandler");
+			System.out.println("GET AdminOptHandler");
 
 			String nowPage = request.getParameter("nowPage"); // 현재 페이지
 			String cntPerPage = "12"; // 페이지당 몇 개의 글을 보일지 저장
@@ -47,7 +47,7 @@ public class AdminMemberListHandler implements Command {
 			return "/admin/member/memberList.jsp";
 
 		} else {
-			System.out.println("POST AdminMemberListHandler");
+			System.out.println("POST AdminOptHandler");
 
 			String condition = request.getParameter("condition");
 			String keyword = request.getParameter("keyword");
