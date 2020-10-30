@@ -16,7 +16,7 @@ public interface MemberDao {
 	ArrayList<Member> selectMemberBlackList();
 
 	// 회원 정보 - 마이페이지
-	Member selectMemberByUserId(Member member);
+	Member selectMemberByUserId(String id);
 
 	// 회원 가입
 	int insertMember(Member member);

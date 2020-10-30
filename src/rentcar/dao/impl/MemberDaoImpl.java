@@ -110,10 +110,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Member selectMemberByUserId(Member member) {
+	public Member selectMemberByUserId(String id) {
 		String sql = "SELECT * FROM MEMBER WHERE id = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
-			pstmt.setString(1, member.getId());
+			pstmt.setString(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					return getMemberList(rs);

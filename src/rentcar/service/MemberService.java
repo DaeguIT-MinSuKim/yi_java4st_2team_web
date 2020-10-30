@@ -31,8 +31,8 @@ public class MemberService {
 		return dao.selectMemberBlackList();
 	}
 
-	public Member selectMemberByUserId(Member member) {
-		return dao.selectMemberByUserId(member);
+	public Member selectMemberByUserId(String id) {
+		return dao.selectMemberByUserId(id);
 	}
 
 	public int insertMember(Member member) {

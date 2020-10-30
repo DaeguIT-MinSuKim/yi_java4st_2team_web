@@ -34,7 +34,7 @@ public class LoginHandler implements Command {
 			String pwd = request.getParameter("passwd").trim();
 			System.out.println("id > " + id + ", pwd > " + pwd);
 
-			Member getId = service.selectMemberByUserId(new Member(id));
+			Member getId = service.selectMemberByUserId((id));
 			System.out.println("getId > " + getId);
 
 			int lock = service2.loginLockStatus(new Member(id));
