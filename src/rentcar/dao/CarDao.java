@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import rentcar.dto.Car;
 import rentcar.utils.Paging;
 
@@ -55,4 +57,9 @@ public interface CarDao {
 	// 관리자 차량 - 검색
 	int countSearchCarByAll(String condition, String keyword);
 	ArrayList<Car> searchCarList(String condition, String keyword, Paging paging);
+	
+	// 차트용
+	JSONArray getCountCarByKind();
+	
+	JSONArray getCountCarByBrand();
 }

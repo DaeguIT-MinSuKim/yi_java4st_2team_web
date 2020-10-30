@@ -9,10 +9,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
+import com.google.gson.JsonArray;
+
 import rentcar.dao.CarDao;
 import rentcar.dto.Brand;
 import rentcar.dto.Car;
-import rentcar.dto.Event;
 import rentcar.dto.Kind;
 import rentcar.exception.CustomSQLException;
 import rentcar.utils.Paging;
@@ -416,4 +419,57 @@ public class CarDaoImpl implements CarDao {
 		}
 		return null;
 	}
+
+	@Override
+	public JSONArray getCountCarByKind() {
+		JSONArray jsonArray = new JSONArray();
+
+		JSONArray colNameArray = new JSONArray();
+		colNameArray.put("차종 이름");
+		colNameArray.put("차종 수");
+		jsonArray.put(colNameArray);
+
+		String sql = "SELECT k.kind_name, count(CAR_NO) FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE GROUP BY k.KIND_NAME ORDER BY k.KIND_NAME";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				while (rs.next()) {
+					JSONArray rowArray = new JSONArray();
+					rowArray.put(rs.getString("KIND_NAME"));
+					rowArray.put(rs.getString("COUNT(CAR_NO)"));
+
+					jsonArray.put(rowArray);
+				}
+			}
+		} catch (Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+
+	@Override
+	public JSONArray getCountCarByBrand() {
+		JSONArray jsonArray = new JSONArray();
+
+		JSONArray colNameArray = new JSONArray();
+		colNameArray.put("차종 이름");
+		colNameArray.put("차종 수");
+		jsonArray.put(colNameArray);
+
+		String sql = "SELECT b.BRAND_NAME, count(CAR_NO) FROM car c LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE GROUP BY b.BRAND_NAME ORDER BY b.BRAND_NAME";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				while (rs.next()) {
+					JSONArray rowArray = new JSONArray();
+					rowArray.put(rs.getString("BRAND_NAME"));
+					rowArray.put(rs.getString("COUNT(CAR_NO)"));
+
+					jsonArray.put(rowArray);
+				}
+			}
+		} catch (Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+
 }

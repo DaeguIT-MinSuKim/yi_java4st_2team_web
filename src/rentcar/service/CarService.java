@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import rentcar.dao.CarDao;
 import rentcar.dao.impl.CarDaoImpl;
 import rentcar.ds.JndiDS;
@@ -68,7 +70,7 @@ public class CarService {
 		System.out.println("service carNo > " + car.getNo());
 		return dao.deleteCar(car);
 	}
-	
+
 	// 선택한 차량 대여중인지 검색하기
 	public Car selectRentByNo(LocalDateTime rentDate, LocalDateTime returnDate, String no) {
 		return dao.selectRentByNo(rentDate, returnDate, no);
@@ -77,26 +79,35 @@ public class CarService {
 	public boolean isCar(String no) {
 		return dao.isCar(no);
 	}
-	
+
 	// 차량 대여 횟수 순위
-	public List<Car> selectCarByRentCount(){
+	public List<Car> selectCarByRentCount() {
 		return dao.selectCarByRentCount();
 	}
-	
+
 	public int countCarByall() {
 		return dao.countCarByAll();
 	}
-	
-	public ArrayList<Car> pagingEventByAll(Paging paging){
+
+	public ArrayList<Car> pagingEventByAll(Paging paging) {
 		return dao.pagingCarByAll(paging);
 	}
-	
+
 	public int countSearchCarByAll(String condition, String keyword) {
 		return dao.countSearchCarByAll(condition, keyword);
 	}
 
-	public ArrayList<Car> searchCarList(String condition, String keyword, Paging paging){
+	public ArrayList<Car> searchCarList(String condition, String keyword, Paging paging) {
 		return dao.searchCarList(condition, keyword, paging);
 	}
-	
+
+	// 차트용
+	public JSONArray getCountCarByKind() {
+		return dao.getCountCarByKind();
+	};
+
+	public JSONArray getCountCarByBrand() {
+		return dao.getCountCarByBrand();
+	}
+
 }
