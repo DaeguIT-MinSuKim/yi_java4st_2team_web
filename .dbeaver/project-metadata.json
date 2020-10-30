@@ -1,1 +1,1 @@
-{"resources":{"Scripts/testLSE.sql":{"sql-editor-data-source-id":"oracle_thin-1753a762b7d-40d4e8eef52682d7","default-datasource":"oracle_thin-1753a762b7d-40d4e8eef52682d7","default-schema":"RENTCAR"}}}
+{"resources":{"Scripts/testLSE.sql":{"default-schema":"RENTCAR","sql-editor-data-source-id":"oracle_thin-1753a762b7d-40d4e8eef52682d7","default-datasource":"oracle_thin-1753a762b7d-40d4e8eef52682d7"}}}

@@ -121,7 +121,7 @@
 		</li>
 		<li><a href="#">대여관리</a>
 			<ul>
-				<li><a href="#">보험</a></li>
+				<li><a href="adminInsList.do">보험</a></li>
 				<li><a href="#">옵션</a></li>
 			</ul>
 		</li>

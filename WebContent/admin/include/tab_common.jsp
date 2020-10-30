@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <div class="chart_tab">
-	<a href="javascript:;">회원</a>
+	<a href="memberBlackChart.do">회원</a>
 	<a href="javascript:;">대여</a>
 	<a href="javascript:;">차량</a>
 	<a href="longRentChart.do">장기렌트</a>

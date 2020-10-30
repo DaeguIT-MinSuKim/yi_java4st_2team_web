@@ -36,11 +36,15 @@ $(function(){
 		
 		// 옵션객체 준비
 		var options = {
-			title : '블랙리스트 수 ',
+			title : '블랙리스트 비율 ',
 			height : 500,
 			width : '100%',
-			 pieSliceText:'label',
-             legend:'none',
+             hAxis : {
+               title : '블랙리스트',
+               titleTextStyle : {
+               color : 'black'
+                 }
+              }
 		};
 		
 		// 차트를 그릴 영역인 div 객체를 가져옴

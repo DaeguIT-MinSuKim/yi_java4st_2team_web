@@ -53,7 +53,7 @@ public class MemberDaoImpl implements MemberDao {
 			sql="SELECT is_Black,count(*) " + 
 					"FROM MEMBER " + 
 					"GROUP BY IS_BLACK " + 
-					"HAVING IS_black in('y', 'N') ORDER BY IS_BLACK asc";
+					"HAVING IS_black in('Y', 'N') ORDER BY IS_BLACK asc";
 			pstmt = con.prepareStatement(sql);
 			rs= pstmt.executeQuery();
 			
