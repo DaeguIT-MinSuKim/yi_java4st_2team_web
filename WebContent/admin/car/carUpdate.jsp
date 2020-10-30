@@ -24,18 +24,17 @@
 <div id="adimn_content">
 	<h2>차량 수정</h2>
 	<div class="admin_page">
-		<form action="carUpdate.do" method="post"
-			enctype="multipart/form-data">
+		<form action="carUpdate.do" method="post" enctype="multipart/form-data">
 			<table class="table_style1">
 				<colgroup>
-					<col width="200px">
-					<col width="">
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
 				</colgroup>
 				<tr>
 					<th>차량번호</th>
 					<td><input type="hidden" value="${car.no }" name="carNo">${car.no }</td>
-				</tr>
-				<tr>
 					<th><label for="carName">차량이름</label></th>
 					<td><input type="text" name="carName" id="carName" value="${car.name}"></td>
 				</tr>
@@ -46,8 +45,6 @@
 								<option value="${kind.code}">${kind.name}</option>
 							</c:forEach>
 					</select></td>
-				</tr>
-				<tr>
 					<th>브랜드명</th>
 					<td><select id="brandList" name="brand">
 							<c:forEach items="${brandList}" var="brand">
@@ -57,24 +54,19 @@
 				</tr>
 				<tr>
 					<th>비고사항</th>
-					<td><textarea cols="15" rows="11" id="remark" name="remark">${car.remark}</textarea></td>
+					<td colspan="3"><textarea cols="15" rows="11" id="remark" name="remark">${car.remark}</textarea></td>
 				</tr>
 				<tr>
 					<th>반납 여부</th>
 					<td>${car.is_rent}</td>
-				</tr>
-				<tr>
 					<th>대여 횟수</th>
 					<td>${car.counting}</td>
 				</tr>
 				<tr>
 					<th>현 이미지</th>
 					<td><img src="upload/${car.image}"></td>
-				</tr>
-				<tr>
 					<th>바꿀 이미지</th>	
-					<td><input type="file" name="image" class="list_file"
-						id="image"></td>
+					<td><input type="file" name="image" class="list_file" id="image"></td>
 				</tr>
 			</table>
 			<ul class="button_style3 mt50">

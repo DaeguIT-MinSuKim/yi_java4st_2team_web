@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dao.OptDao;
+import rentcar.dto.LongRent;
 import rentcar.dto.Opt;
 import rentcar.exception.CustomSQLException;
+import rentcar.utils.Paging;
 
 public class OptDaoImpl implements OptDao {
 	private static final OptDaoImpl instance = new OptDaoImpl();
@@ -105,5 +107,68 @@ public class OptDaoImpl implements OptDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	@Override
+	public ArrayList<Opt> pagingOptByAll(Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM OPTIONS ORDER BY NAME ASC) a) WHERE RN BETWEEN ? AND ? ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					ArrayList<Opt> list = new ArrayList<Opt>();
+					do {
+						list.add(getOpt(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	@Override
+	public int countOptByAll() {
+		String sql = "SELECT COUNT(*) FROM OPTIONS";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); 
+				ResultSet rs = pstmt.executeQuery()) {
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+	}
+	
+	
+	@Override
+	public List<Opt> selectSearchPagingOpt(String condition, String keyword, Paging paging) {
+		String sql = "SELECT * FROM (SELECT rownum RN,a.* FROM (SELECT * FROM OPTIONS";
+		try {
+			if(keyword != null && !keyword.isEmpty()) {
+				sql += " where " + condition.trim()+ " like '%"+keyword.trim()+"%' ORDER BY OPT_CODE desc) a) where rn between ? and ? order by rn ";
+			} else { //모든 레코드 검색 
+				sql += " ORDER BY OPT_CODE DESC) a ) WHERE rn BETWEEN ? AND ? ORDER BY rn";
+			}
+
+			try (PreparedStatement pstmt = con.prepareStatement(sql)){
+				pstmt.setInt(1, paging.getStart());
+				pstmt.setInt(2, paging.getEnd());
+					
+				try(ResultSet rs = pstmt.executeQuery()) {
+					if (rs.next()) {
+					ArrayList<Opt> list = new ArrayList<>();
+					do {
+						list.add(getOpt(rs));
+					} while (rs.next());
+					return list;
+					}
+				}
+			}
+		} catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
 	}
 }

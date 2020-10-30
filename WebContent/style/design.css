@@ -56,6 +56,11 @@ footer .bootstrap-select.btn-group .dropdown-toggle .filter-option {padding:0; o
 #textareaBox textarea {padding-bottom:50px !important; height:400px;}
 #countingBox {position:absolute; color:#999; right:20px; bottom:20px; background:#fff;}
 
+textarea {width:100%; resize:none; border:1px solid #ddd; padding:10px;}
+
+
+
+
 @media screen and (max-width:992px){
 	
 }

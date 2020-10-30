@@ -7,8 +7,9 @@
 
 .divSearch>form {display:flex; width:20%; min-width:400px; margin-bottom:10px;}
 .divSearch>form * {height:30px !important; border-radius:0 !important}
-.divSearch>form select { width:100px;}
-.divSearch>form input[type='submit']{ width:120px; line-height:2.3; }
+.divSearch>form select { width:150px;}
+.divSearch>form .search,
+.divSearch>form input[type='submit']{ width:120px; line-height:2.3; border:0;}
 .divSearch>form input[type='text'] {width:220px; border-left:0; border-right:0}
 
 @media screen and (max-width:767px){
@@ -96,7 +97,7 @@
 .btn_case2 {background:#555; border-color:#555; color:#fff !important;}
 .btn_case3 {background:#fff; color:#4a80e5;}
 .btn_case4 {background:#fff; border-color:#555; color:#555;}
-.btn_case5 {background:#DB9A96; border-color:#DB9A96; color:#fff !important;}
+.btn_case5 {background:#DB9A96 !important; border-color:#DB9A96; color:#fff !important;}
 
 .btn_case1:hover {background:#1355d0; text-decoration:none;}
 .btn_case2:hover {background:#111; border-color:#111; text-decoration:none;}
