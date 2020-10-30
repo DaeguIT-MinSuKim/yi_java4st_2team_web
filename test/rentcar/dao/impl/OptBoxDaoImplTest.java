@@ -36,12 +36,12 @@ public class OptBoxDaoImplTest {
 		Assert.assertEquals(1, res);
 	}
 
-	@Test
+/*	@Test
 	public void test03SelectOptByRent() {
-//		System.out.println("testSelectOptByRent");
-//		List<Integer> list = dao.selectOptByRent(3);
-//		Assert.assertNotNull(list);
-//		System.out.println(list);
-	}
+		System.out.println("testSelectOptByRent");
+		List<Integer> list = dao.selectOptByRent(3);
+		Assert.assertNotNull(list);
+		System.out.println(list);
+	}*/
 
 }
