@@ -30,21 +30,21 @@ public class JoinIdCheckHandler implements Command {
 			request.setAttribute("id", id);
 			request.setAttribute("message", message);
 
-			return "member/joinIdCheck.jsp";
+			return "member/member_id_check.jsp";
 
 		} else {
 			System.out.println("POST JoinIdCheckHandler");
 
 			String id = request.getParameter("id").trim();
 			System.out.println("id > " + id);
-
+			
 			Member message = service.selectMemberByUserId(new Member(id));
-			System.out.println("message > " + message);
-
+			System.out.println("message > " + message.getId());
+			
 			request.setAttribute("id", id);
-			request.setAttribute("message", message);
+			request.setAttribute("message", message.getId());
 
-			return "member/joinIdCheck.jsp";
+			return "member/member_id_check.jsp";
 		}
 
 	}

@@ -55,9 +55,17 @@
 						<div class="form-group" id="get_insurance">
 							<label class="col-sm-2">보험</label>
 							<div class="col-sm-10">
-								<label><input type="radio" name="insurance" value="0" data-insPrice="0" checked><span>선택안함</span></label>
 								<c:forEach var="ins" items="${insList}">
-									<label><input type="radio" name="insurance" value="${ins.getCode()}" data-insPrice="${ins.getFare() }"><span>${ins.getName()}</span></label>
+									<c:choose>
+										<c:when test="${ins.code=='0'}">
+											<label><input type="radio" name="insurance" value="${ins.getCode()}" data-insPrice="${ins.getFare() }" checked><span>${ins.getName()}</span></label>		
+										</c:when>
+										<c:otherwise>
+											<label><input type="radio" name="insurance" value="${ins.getCode()}" data-insPrice="${ins.getFare() }"><span>${ins.getName()}</span></label>
+										</c:otherwise>
+									</c:choose>
+									
+									
 								</c:forEach>
 							</div>
 						</div>

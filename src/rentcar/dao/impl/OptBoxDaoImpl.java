@@ -53,15 +53,16 @@ public class OptBoxDaoImpl implements OptBoxDao {
 	}
 
 	@Override
-	public List<Integer> selectOptByRent(int rentNo) {
-		String sql = "SELECT OPT_CODE FROM OPT_BOX WHERE RENT_NO = ?";
+	public List<String> selectOptByRent(int rentNo) {
+		String sql = "SELECT O.NAME FROM OPT_BOX B, OPTIONS O " + 
+				" WHERE B.OPT_CODE = O.OPT_CODE AND RENT_NO = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, rentNo);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					List<Integer> list = new ArrayList<>();
+					List<String> list = new ArrayList<>();
 					do {
-						list.add(rs.getInt("OPT_CODE"));
+						list.add(rs.getString("NAME"));
 					} while (rs.next());
 					return list;
 				}

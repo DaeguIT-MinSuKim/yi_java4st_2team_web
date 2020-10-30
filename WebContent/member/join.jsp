@@ -16,33 +16,13 @@
 	}
 </script>
 
-<!-- <script>
- function id_chk_bb() {
-	document.frmName.id_chk.value="";
-} 
+<script language='javascript'>
+	function idcheck() {
 
-function Member_ID_CHK() {
-	if (document.formm.id.value == "") {
-		alert('아이디를 입력하여 주십시오.');
-		document.formm.id.focus();
-		return;
-	}
-	var url = "joinIdCheck.do?id="
-		+ document.formm.id.value;
-	window.open(url, "_blank_1",
-		"toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=350, height=200");
-}
-
- function Member_ID_CHK() {
-
-	 	function Member_YorN() {
-
-		var NUMBER = "1234567890"; 
-		var SPECIAL = "-_"; 
-		var SPECIAL = ""; 
-		var SALPHA = "abcdefghijklmnopqrstuvwxyz"; 
-		var ALPHA = SALPHA+NUMBER+SPECIAL; 
-		var ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+SALPHA+NUMBER+SPECIAL; 
+		// 아이디 조합 체크
+		var NUMBER = "1234567890";
+		var SALPHA = "abcdefghijklmnopqrstuvwxyz";
+		var ALPHA = SALPHA + NUMBER;
  
 		if (!document.getElementsByName("member_id")[0].value) {
 			alert("아이디를 입력하세요");
@@ -50,26 +30,50 @@ function Member_ID_CHK() {
 			return;
 		}
 		
-		if (!TypeCheck(document.getElementsByName("member_id")[0].value, ALPHA)) { 
-			window.alert("아이디는 영문소문자, 숫자, -, _를 조합으로 사용할 수 있습니다"); 
-			document.getElementsByName("member_id")[0].focus(); 
-			return; 
-		} 
-
-		if (document.getElementsByName("member_id")[0].value.length<6 || document.getElementsByName("member_id")[0].value.length>20) {
-			window.alert("아이디는 영문소문자, 숫자, -, _를 조합으로 6자~20자이하입니다");
-			document.frmName.member_id.focus();
+		if (document.getElementsByName("member_id")[0].value.length < 6
+				|| document.getElementsByName("member_id")[0].value.length > 20) {
+			window.alert("아이디는 영문 소문자와 숫자 조합으로 6자 ~ 20자 이하입니다");
+			document.getElementsByName("member_id")[0].focus();
 			return;
 		}
+		
+		if (!TypeCheck(document.getElementsByName("member_id")[0].value, ALPHA)) {
+			window.alert("아이디는 영문 소문자와 숫자 조합으로 사용할 수 있습니다");
+			document.getElementsByName("member_id")[0].focus();
+			return;
+		}
+		
+		if (!TypeCheck(document.getElementsByName("member_id")[0].value, NUMBER) == false) {
+			window.alert("아이디는 숫자만으로 사용할 수 없습니다");
+			document.getElementsByName("member_id")[0].focus();
+			return;
+		}
+		
+		if (!TypeCheck(document.getElementsByName("member_id")[0].value, SALPHA) == false) {
+			window.alert("아이디는 영문만으로 사용할 수 없습니다");
+			document.getElementsByName("member_id")[0].focus();
+			return;
+		}
+			
+		var url = "joinIdCheck.do?id="
+				+ document.getElementsByName("member_id")[0].value
+			window.open(url, "_blank_1",
+				"toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=350, height=200");
+			
+	}
 
-		createXMLHttpRequest();
+</script>
+
+<script>
+		
+/* 		createXMLHttpRequest();
 		var url = "joinIdCheck.do?member_id="+document.frmName.member_id.value;
 		window.alert(url);
 		xmlHttp.open("GET", url, true);
 		xmlHttp.onreadystatechange = callback_AA;
-		xmlHttp.send(null);
+		xmlHttp.send(null); */
 
-	function callback_AA() {
+	/* function callback_AA() {
 		if(xmlHttp.readyState == 4) {
 			if(xmlHttp.status == 200) {
 				var id_status = xmlHttp.responseXML.getElementsByTagName("id_status")[0].firstChild.data;
@@ -86,23 +90,20 @@ function Member_ID_CHK() {
 				//document.aaa.price.value = price;
 				//document.aaa.mileage.value = mileage;
 				//document.aaa.unit_cost.value = unit_cost;
+				}
+				
 			}
-		}
-	}
+			
+		} */
 
-	Member_YorN();
-} 
-
-function id_chk_bb() {
+/* function id_chk_bb() {
 	document.frmName.id_chk.value="";
-} 
-</script> -->
+}  */
+</script>
 
 <script>
 	$(function() {
 		$("#join").on("click",function() {
-
-			form1 = document.frmName;
 	
 			// 비밀번호 조합 체크
 			var regMust1 = /[a-zA-Z0-9_]/;
@@ -223,48 +224,55 @@ function id_chk_bb() {
 			}
 	
 		});
-		form1.submit();
+		
 	});
 </script>
 
 <script>
-$(function() {
-	var date = new Date();
-	var year = date.getFullYear();
-	var selectValue = document.getElementById("birthYear");
-	var optionIndex = 0;
-	for(var i = year-60; i <= year; i++) {
-		selectValue.add(new Option(i, i), optionIndex++);                        
-	}
-	
-	var selectValue = document.getElementById("birthMonth"); 
-	var optionIndex = 0;
-	for(var i = 1; i<13; i++) {
-		selectValue.add(new Option(i, i), optionIndex++);
-	}
-	
-	var selectValue = document.getElementById("birthDay");
-	var optionIndex = 0;
-	for(var i = 1; i<32; i++) {
-		selectValue.add(new Option(i, i), optionIndex++);
-	}
-});
+	/* 생년월일 */
+	$(function() {
+		var date = new Date();
+		var year = date.getFullYear();
+		var selectValue = document.getElementById("birthYear");
+		var optionIndex = 0;
+		for(var i = year-60; i <= year; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);                        
+		}
+		
+		var selectValue = document.getElementById("birthMonth"); 
+		var optionIndex = 0;
+		for(var i = 1; i<13; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);
+		}
+		
+		var selectValue = document.getElementById("birthDay");
+		var optionIndex = 0;
+		for(var i = 1; i<32; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);
+		}
+		
+	});
 </script>
 
 <script>
+	/* 이메일 주소 */
 	$(function() {
 		$("#domain").change(function() {
 			$("#email2").val($("#domain").val());
 		});
+		
 	});
 	
+	/* 면허 종류 */
 	$(document).ready(function() {
 	    $('input[type="checkbox"][name="li_class"]').click(function(){
 	        if ($(this).prop('checked')) {
 	            $('input[type="checkbox"][name="li_class"]').prop('checked', false);
 	            $(this).prop('checked', true);
 	        }
+	        
 	    });
+	    
 	});
 </script>
 
@@ -336,9 +344,9 @@ $(function() {
 								name="member_id" id="member_id" onKeyUP="id_chk_bb();">
 							<input type="hidden" name="id_chk">
 						</div>
-						<div class="col-xs-4">
-							<a class="btn btn-normal" id="id_chk"
-								onClick="Member_ID_CHK(); return false;">중복확인</a>
+						<div class="col-xs-3">
+							<a href="javascript:;" class="btn btn-normal" id="id_chk"
+							onclick="idcheck(); return false;">중복 체크</a>
 						</div>
 						<p>영문 소문자, 숫자를 혼합하여 6 ~ 20자까지 입력 가능합니다.</p>
 					</div>
