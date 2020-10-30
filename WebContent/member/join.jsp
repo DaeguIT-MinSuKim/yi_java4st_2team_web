@@ -16,7 +16,7 @@
 	}
 </script>
 
-<script language='javascript'>
+<script>
 	function idcheck() {
 
 		// 아이디 조합 체크
@@ -54,51 +54,27 @@
 			document.getElementsByName("member_id")[0].focus();
 			return;
 		}
+		
+		var popupWidth = 480;
+		var popupHeight = 250;
+		
+		var left = (screen.availWidth - popupWidth) / 2;
+			if (window.screenLeft < 0) {
+				left += window.screen.width * -1;
+			} else if (window.screenLeft > window.screen.width) {
+				left += window.screen.width;
+			}
 			
+		var top = (screen.availHeight - popupHeight) / 2 - 10;
+		
+		var options = "resizable=no,left=" + left + ",top=" + top +" width=" + popupWidth+ ",height=" + popupHeight +",menubar=no, status=no, toolbar=no, location=no, scrollbars=yes";
+		
 		var url = "joinIdCheck.do?id="
-				+ document.getElementsByName("member_id")[0].value
-			window.open(url, "_blank_1",
-				"toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=350, height=200");
+			+ document.getElementsByName("member_id")[0].value
+		window.open(url, "_blank_1", options);
 			
 	}
 
-</script>
-
-<script>
-		
-/* 		createXMLHttpRequest();
-		var url = "joinIdCheck.do?member_id="+document.frmName.member_id.value;
-		window.alert(url);
-		xmlHttp.open("GET", url, true);
-		xmlHttp.onreadystatechange = callback_AA;
-		xmlHttp.send(null); */
-
-	/* function callback_AA() {
-		if(xmlHttp.readyState == 4) {
-			if(xmlHttp.status == 200) {
-				var id_status = xmlHttp.responseXML.getElementsByTagName("id_status")[0].firstChild.data;
-
-				if(id_status=="N") {
-					window.alert("사용 불가능한 아이디 입니다.");
-					document.frmName.id_chk.value="N";
-				}else{
-					window.alert("사용 가능한 아이디 입니다.");
-					document.frmName.id_chk.value="Y";
-				}
-
-				//window.alert(aa);
-				//document.aaa.price.value = price;
-				//document.aaa.mileage.value = mileage;
-				//document.aaa.unit_cost.value = unit_cost;
-				}
-				
-			}
-			
-		} */
-
-/* function id_chk_bb() {
-	document.frmName.id_chk.value="";
-}  */
 </script>
 
 <script>
@@ -115,84 +91,152 @@
 			var ALPHA = SALPHA + NUMBER;
 	
 			if (!document.getElementsByName("member_id")[0].value) {
-				window.alert("아이디를 입력하세요");
+				window.alert("아이디를 입력하세요.");
 				document.getElementsByName("member_id")[0].focus();
 				return;
-			} else if (document.getElementsByName("member_id")[0].value.length < 6
+			}
+			
+			if (document.getElementsByName("member_id")[0].value.length < 6
 					|| document.getElementsByName("member_id")[0].value.length > 20) {
-				window.alert("아이디는 영문 소문자와 숫자 조합으로 6자 ~ 20자 이하입니다");
+				window.alert("아이디는 영문 소문자와 숫자 조합으로 6자 ~ 20자 이하입니다.");
 				document.getElementsByName("member_id")[0].focus();
 				return;
-			} else if (!TypeCheck(document.getElementsByName("member_id")[0].value, ALPHA)) {
-				window.alert("아이디는 영문 소문자와 숫자 조합으로 사용할 수 있습니다");
+			}
+			
+			if (!TypeCheck(document.getElementsByName("member_id")[0].value, ALPHA)) {
+				window.alert("아이디는 영문 소문자와 숫자 조합으로 사용할 수 있습니다.");
 				document.getElementsByName("member_id")[0].focus();
 				return;
-			} else if (!TypeCheck(document.getElementsByName("member_id")[0].value, NUMBER) == false) {
-				window.alert("아이디는 숫자만으로 사용할 수 없습니다");
+			}
+			
+			if (!TypeCheck(document.getElementsByName("member_id")[0].value, NUMBER) == false) {
+				window.alert("아이디는 숫자만으로 사용할 수 없습니다.");
 				document.getElementsByName("member_id")[0].focus();
 				return;
-			} else if (!TypeCheck(document.getElementsByName("member_id")[0].value, SALPHA) == false) {
-				window.alert("아이디는 영문만으로 사용할 수 없습니다");
+			}
+			
+			if (!TypeCheck(document.getElementsByName("member_id")[0].value, SALPHA) == false) {
+				window.alert("아이디는 영문만으로 사용할 수 없습니다.");
 				document.getElementsByName("member_id")[0].focus();
 				return;
-			} /* else if (!document.getElementsByName("id_chk")[0].value) {
-					window.alert("아이디 중복검사를 해주세요");
-					return;
-				} else if (document.getElementsByName("id_chk")[0].value == "N") {
-					window.alert("이미 사용중인 아이디입니다");
-					return;
-				} */else if (!document.getElementsByName("passwd")[0].value) {
-				window.alert("비밀번호를 입력하세요");
+			}
+			
+			if (document.getElementsByName("member_id")[0].value != 
+					document.getElementsByName("hidden_id")[0].value) {
+				window.alert("아이디 중복검사를 해주세요.");
+				return;
+			}
+
+			if (!document.getElementsByName("passwd")[0].value) {
+				window.alert("비밀번호를 입력하세요.");
 				document.getElementsByName("passwd")[0].focus();
 				return;
-			} else if (document.getElementsByName("passwd")[0].value.length < 6
+			}
+			
+			if (document.getElementsByName("passwd")[0].value.length < 6
 					|| document.getElementsByName("passwd")[0].value.length > 20) {
-				window.alert("비밀번호는 6자이상 20자이하입니다");
+				window.alert("비밀번호는 6자이상 20자이하입니다.");
 				document.getElementsByName("passwd")[0].focus();
 				return;
-			} else if (!regMust1.test(document.getElementsByName("passwd")[0].value)
+			}
+			
+			if (!regMust1.test(document.getElementsByName("passwd")[0].value)
 					|| !regMust2.test(document.getElementsByName("passwd")[0].value)) {
-				window.alert("특수문자를 하나 이상 입력하세요");
+				window.alert("특수문자를 하나 이상 입력하세요.");
 				document.getElementsByName("passwd")[0].focus();
 				return;
-			} else if (!document.getElementsByName("passwd1")[0].value) {
-				window.alert("비밀번호를 한번 더 입력하세요");
+			}
+			
+			if (!document.getElementsByName("passwd1")[0].value) {
+				window.alert("비밀번호를 한번 더 입력하세요.");
 				document.getElementsByName("passwd1")[0].focus();
 				return;
-			} else if (document.getElementsByName("passwd")[0].value != document.getElementsByName("passwd1")[0].value) {
-				window.alert("비밀번호가 일치하지 않습니다");
+			}
+			
+			if (document.getElementsByName("passwd")[0].value != document.getElementsByName("passwd1")[0].value) {
+				window.alert("비밀번호가 일치하지 않습니다.");
 				document.getElementsByName("passwd1")[0].focus();
 				return;
-			} /* else if (!document.getElementsByName("license")[0].value) {
-				window.alert("운전면허번호를 입력하세요");
-				document.getElementsByName("license")[0].focus();
+			}
+			
+			if (!document.getElementsByName("gender")[0].value) {
+				window.alert("성별을 선택하세요.");
+				document.getElementsByName("gender")[0].focus();
 				return;
-			}  */else if (!document.getElementsByName("member_name")[0].value) {
+			}
+			
+			if (!document.getElementsByName("birthYear")[0].selected == false) {
+				window.alert("생년월일을 입력하세요.");
+				document.getElementsByName("birthYear")[0].focus();
+				return;
+			}
+			
+			if (!document.getElementsByName("birthMonth")[0].selected == false
+					&& !document.getElementsByName("birthDay")[0].selected == false) {
+				window.alert("생년월일을 끝까지 입력하세요.");
+				document.getElementsByName("birthYear")[0].focus();
+				return;
+			}
+			
+			if (!document.getElementsByName("member_name")[0].value) {
 				window.alert("이름을 입력하세요");
 				document.getElementsByName("member_name")[0].focus();
 				return;
-			} else if (!document.getElementsByName("cel2")[0].value) {
+			}
+			
+			if (!document.getElementsByName("cel2")[0].value) {
 				alert("휴대전화번호를 입력하세요");
 				document.getElementsByName("cel2")[0].focus();
 				return;
-			} else if (!document.getElementsByName("cel3")[0].value) {
+			}
+			
+			if (!document.getElementsByName("cel3")[0].value) {
 				alert("휴대전화번호를 끝까지 입력하세요.");
 				document.getElementsByName("cel3")[0].focus();
 				return;
-			} else if (!document.getElementsByName("email1")[0].value) {
-				window.alert("이메일을 입력하세요");
+			}
+			
+			if (document.getElementsByName("li_class")[0].checked == false) {
+				alert("운전면허종류를 선택하세요.");
+				document.getElementsByName("li_class")[0].focus();
+				return;
+			}
+			
+			if (!document.getElementsByName("li_number1")[0].value) {
+				alert("운전면허번호를 입력하세요.");
+				document.getElementsByName("li_number1")[0].focus();
+				return;
+			}
+			
+			if (!document.getElementsByName("li_number1")[0].value
+					|| !document.getElementsByName("li_number2")[0].value
+					|| !document.getElementsByName("li_number3")[0].value
+					|| !document.getElementsByName("li_number4")[0].value) {
+				alert("운전면허번호를 끝까지 입력하세요.");
+				document.getElementsByName("li_number1")[0].focus();
+				return;
+			}
+			
+			if (!document.getElementsByName("email1")[0].value) {
+				window.alert("이메일을 입력하세요.");
 				document.getElementsByName("email1")[0].focus();
 				return;
-			} else if (!document.getElementsByName("email2")[0].value) {
-				window.alert("이메일 주소를 선택하세요");
+			}
+			
+			if (!document.getElementsByName("email2")[0].value) {
+				window.alert("이메일 주소를 선택하세요.");
 				document.getElementsByName("email2")[0].focus();
 				return;
-			} else if (!document.getElementsByName("zipcode")[0].value) {
-				window.alert("주소를 입력하세요");
+			}
+			
+			if (!document.getElementsByName("zipcode")[0].value) {
+				window.alert("주소를 입력하세요.");
 				document.getElementsByName("zipcode")[0].focus();
 				return;
-			} else if (!document.getElementsByName("addr2")[0].value) {
-				window.alert("상세주소를 입력하세요");
+			}
+			
+			if (!document.getElementsByName("addr2")[0].value) {
+				window.alert("상세주소를 입력하세요.");
 				document.getElementsByName("addr2")[0].focus();
 				return;
 			} else {
@@ -276,13 +320,27 @@
 	});
 </script>
 
-<script language='javascript'>
+<script>
 
 window.name ="Parent_window";
 
+var popupWidth = 500;
+var popupHeight = 550;
+
+var left = (screen.availWidth - popupWidth) / 2;
+	if (window.screenLeft < 0) {
+		left += window.screen.width * -1;
+	} else if (window.screenLeft > window.screen.width) {
+		left += window.screen.width;
+	}
+	
+var top = (screen.availHeight - popupHeight) / 2 - 10;
+
+var options = "resizable=no,left=" + left + ",top=" + top +" width=" + popupWidth+ ",height=" + popupHeight +",menubar=no, status=no, toolbar=no, location=no, scrollbars=yes";
+
 $(function() {
 	$("#popupChk").on("click",function() {
-		window.open('', 'popupChk', 'width=500, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+		window.open('', 'popupChk', options);
 		document.form_chk.target = "popupChk";
 		document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
 		document.form_chk.submit();
@@ -340,9 +398,9 @@ $(function() {
 					<label class="col-sm-2 control-label">아이디</label>
 					<div class="col-sm-10 divinner">
 						<div class="col-xs-8">
+							<input type="hidden" name="hidden_id" id="hidden_id">
 							<input type="text" class="form-control" maxlength="20"
 								name="member_id" id="member_id" onKeyUP="id_chk_bb();">
-							<input type="hidden" name="id_chk">
 						</div>
 						<div class="col-xs-3">
 							<a href="javascript:;" class="btn btn-normal" id="id_chk"
