@@ -22,7 +22,7 @@ $(function(){
 			var updateNotice = {
 				no : ${param.no},
 				title : $('#title').val(),
-				contents : CKEDITOR.instances.contents_ckeditor.getData(),
+				contents : $("textarea").val(),
 				isTop : chkYN
 			};
 
@@ -54,7 +54,7 @@ $(function(){
 					<input type="hidden" id="YN" name="YN"/>
 					<label><input type="checkbox" id="CHECK_YN" name="CHECK_YN"> <strong>공지</strong><br> <small>(체크하시면 공지로 상단에 등록됩니다.)</small>  </label>
 					<input type="text" class="mt5" name="title" value="${Notice.title }" id="title">
-					<textarea class="write_content mt5" name="contents" id="contents_ckeditor"></textarea>
+					<textarea class="write_content mt5" name="contents">${Notice.contents }</textarea>
 				</div>
 				
 	
