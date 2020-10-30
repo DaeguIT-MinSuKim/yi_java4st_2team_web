@@ -104,10 +104,14 @@ public class CarService {
 	// 차트용
 	public JSONArray getCountCarByKind() {
 		return dao.getCountCarByKind();
-	};
+	}
 
 	public JSONArray getCountCarByBrand() {
 		return dao.getCountCarByBrand();
+	}
+	
+	public JSONArray getCountKindByRent() {
+		return dao.getCountKindByRent();
 	}
 
 }

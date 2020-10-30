@@ -138,7 +138,7 @@
 			<ul>
 				<li><a href="#">회원</a></li>
 				<li><a href="#">대여</a></li>
-				<li><a href="#">차량</a></li>
+				<li><a href="carChart.do">차량</a></li>
 				<li><a href="longRentChart.do">장기렌트</a></li>
 				<li><a href="#">이벤트</a></li>
 			</ul>

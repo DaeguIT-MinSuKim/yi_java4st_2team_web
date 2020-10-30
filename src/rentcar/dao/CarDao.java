@@ -58,8 +58,11 @@ public interface CarDao {
 	int countSearchCarByAll(String condition, String keyword);
 	ArrayList<Car> searchCarList(String condition, String keyword, Paging paging);
 	
-	// 차트용
+	// 차트 - 차종별 차량수
 	JSONArray getCountCarByKind();
-	
+	// 차트 - 브랜드별 차량수	
 	JSONArray getCountCarByBrand();
+	// 차트 - 차종별 대여횟수
+	JSONArray getCountKindByRent();
+	
 }
