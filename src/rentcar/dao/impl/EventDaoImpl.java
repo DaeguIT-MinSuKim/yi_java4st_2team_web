@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import rentcar.dao.EventDao;
@@ -34,7 +33,8 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventByAll() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
+		// String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -94,8 +94,8 @@ public class EventDaoImpl implements EventDao {
 		event.setSale(rs.getInt("SALE"));
 		event.setThumImage(rs.getString("THUM_IMAGE"));
 		event.setViewImage(rs.getString("VIEW_IMAGE"));
-		event.setStartDate(rs.getTimestamp("START_DATE"));
-		event.setEndDate(rs.getTimestamp("END_DATE"));
+		// event.setStartDate(rs.getTimestamp("START_DATE"));
+		// event.setEndDate(rs.getTimestamp("END_DATE"));
 		event.setIsEvent(rs.getString("IS_EVENT"));
 		
 		return event;
