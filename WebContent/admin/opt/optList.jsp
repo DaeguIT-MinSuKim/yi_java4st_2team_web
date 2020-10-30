@@ -13,6 +13,25 @@
 			$(".no_board").show();
 			$(".board").hide();
 		}
+		
+
+		function admin_frm_adminOptUpdate(){
+			if( $("form[name=admin_frm_adminOptUpdate]").length > 0 ){
+				if( frm_adminOptUpdate.optName.value.length == 0 ){
+					alert("옵션이름을 적어주세요");
+					return false;
+				}
+				if( frm_adminOptUpdate.optFare.value.length == 0 ){
+					alert("옵션비용을 적어주세요");
+					return false;
+				}
+				return true;
+			}
+		}
+		
+		if( admin_frm_adminOptUpdate() ){
+			
+		}
 	});
 </script>
 	
@@ -55,7 +74,7 @@
 						<td>${opt.name}</td>
 						<td>${opt.fare}</td>
 						<td>
-							<a href="optUpdate.do?code=${opt.code}" ><input type="button" value="수정" class="update btn-success"></a>
+							<a href="adminOptUpdate.do?code=${opt.code}" ><input type="button" value="수정" class="update btn-success"></a>
 						</td>
 						<td>
 							<a href="carDelete.do?code="${opt.code}">
