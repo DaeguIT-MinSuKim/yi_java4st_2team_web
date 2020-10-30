@@ -11,23 +11,20 @@ import org.json.JSONArray;
 import rentcar.controller.Command;
 import rentcar.service.CarService;
 
-public class CarChartHandler implements Command {
+public class RentChartHandler implements Command {
 	private CarService service = new CarService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		JSONArray carByBrand = service.getCountCarByBrand();
+		JSONArray kindByRent = service.getCountKindByRent();
 		
-		JSONArray carByKind = service.getCountCarByKind();
+		JSONArray brandByRent = service.getCountBrandByRent();
+
+		request.setAttribute("kindByRent", kindByRent);
+		request.setAttribute("brandByRent", brandByRent);
 		
-		JSONArray carByRent = service.getCountCarByRent();
-		
-		request.setAttribute("carByBrand",carByBrand);
-		request.setAttribute("carByKind",carByKind);
-		request.setAttribute("carByRent", carByRent);
-		
-	return "/chart/carChart.jsp";
+	return "/chart/rentChart.jsp";
 	}
 }

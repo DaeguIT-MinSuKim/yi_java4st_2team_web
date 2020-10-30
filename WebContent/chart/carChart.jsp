@@ -12,7 +12,6 @@
 <title>Insert title here</title>
 <script>
 $(function(){
-
 	//구글 시각화 API를 로딩하는 메소드
 	google.charts.load('current', {
 		packages : [ 'corechart' ]
@@ -26,8 +25,6 @@ $(function(){
 	 google.charts.setOnLoadCallback(function(){
 	 setInterval(columnChart1(),30000);
 	 }); */
-	 
-	 
 	 	
 	// 묶은 세로 막대형 차트 1
 	function drawChart() {
@@ -35,75 +32,62 @@ $(function(){
 		// 옵션객체 준비
 		var kindOptions = {
 			title : '차종별 차량수',
-			height : 500,
+			height : '100%',
 			width : '100%',
+			pieHole: 0.4,
 			hAxis : {
 				title : '차종 목록',
 				titleTextStyle : {
 					color : 'black'
 				}
-			},
-			series:{
-				0:{
-					 color: '#6085AC'
-				}
-			}	
+			}
 		};
-		
-		var kindRentOptions = {
-				title : '차종별 대여횟수',
-				height : 500,
-				width : '100%',
-				hAxis : {
-					title : '차',
-					titleTextStyle : {
-						color : 'black'
-					}
-				},
-				series:{
-					0:{
-						 color: '#6085AC'
-					}
-				}	
-			};
 		
 		var brandOptions = {
 			title : '브랜드별 차량수',
-			height : 500,
+			height : '100%',
 			width : '100%',
+			pieHole: 0.4,
 			hAxis : {
 				title : '브랜드 목록',
 				titleTextStyle : {
 					color : 'black'
 				}
-			},
-			series:{
-				0:{
-					 color: '#6085AC'
-				}
-			}	
+			}
 		};
 		
+		var carByRentOptions = {
+				title : '차량 대여여부',
+				height : '100%',
+				width : '100%',
+				pieHole: 0.4,
+				hAxis : {
+					title : '차량',
+					titleTextStyle : {
+						color : 'black'
+					}
+				}	
+			};
+		
 		// 실 데이터를 가진 데이터테이블 객체를 반환하는 메소드
-		var brandTable = google.visualization.arrayToDataTable(${carByBrand});
 		var kindTable = google.visualization.arrayToDataTable(${carByKind});
-		var kindByRentTable = google.visualization.arrayToDataTable(${kindByRent});
+		var brandTable = google.visualization.arrayToDataTable(${carByBrand});
+		var carByRentTable = google.visualization.arrayToDataTable(${carByRent});
 		
 		// 차트를 그릴 영역인 div 객체를 가져옴
 		// 인자로 전달한 div 객체의 영역에 컬럼차트를 그릴수 있는 차트객체를 반환
 		// 차트객체에 데이터테이블과 옵션 객체를 인자로 전달하여 차트 그리는 메소드
-		var objDiv = document.getElementById('column_chart_kind');
-		var chart = new google.visualization.ColumnChart(objDiv);
+		var objDiv = document.getElementById('chart_kind');
+		var chart = new google.visualization.PieChart(objDiv);
 		chart.draw(kindTable, kindOptions);
 
-		var objDiv = document.getElementById('column_chart_kind');
-		var chart = new google.visualization.ColumnChart(objDiv);
-		chart.draw(kindTable, kindOptions);
-
-		var objDiv = document.getElementById('column_chart_brand');
-		var chart = new google.visualization.ColumnChart(objDiv);
+		var objDiv = document.getElementById('chart_brand');
+		var chart = new google.visualization.PieChart(objDiv);
 		chart.draw(brandTable, brandOptions);
 		
+		var objDiv = document.getElementById('chart_carByRent');
+		var chart = new google.visualization.PieChart(objDiv);
+		chart.draw(carByRentTable, carByRentOptions);
 	};
 });	
 </script>
@@ -118,9 +102,14 @@ $(function(){
 					$(".chart_tab>a").eq(2).addClass("active");
 				});
 			</script>
-
-			<div id="column_chart_kind" style="width: 900px; height: 500px;"></div>
-			<div id="column_chart_brand" style="width: 900px; height: 500px;"></div>
+			
+			<table>
+			<tr>
+			<td><div id="chart_kind" style="width: 470px; height: 400px;"></div></td>
+			<td><div id="chart_brand" style="width: 470px; height: 400px;"></div></td>
+			<td><div id="chart_carByRent" style="width: 470px; height: 400px;"></div></td>
+			</tr>
+			</table>
 		</div>
 	</div>
 </body>

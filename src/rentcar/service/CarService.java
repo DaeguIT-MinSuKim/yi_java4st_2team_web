@@ -114,4 +114,11 @@ public class CarService {
 		return dao.getCountKindByRent();
 	}
 
+	public JSONArray getCountBrandByRent() {
+		return dao.getCountBrandByRent();
+	}
+	
+	public JSONArray getCountCarByRent() {
+		return dao.getCountCarByRent();
+	}
 }
