@@ -122,7 +122,7 @@
 		<li><a href="#">대여관리</a>
 			<ul>
 				<li><a href="#">보험</a></li>
-				<li><a href="#">옵션</a></li>
+				<li><a href="adminOptList.do">옵션</a></li>
 			</ul>
 		</li>
 		<li><a href="#">고객관리</a>
@@ -136,9 +136,9 @@
 		<li><a href="adminEvent.do">이벤트</a></li>
 		<li><a href="#">성과현황</a>
 			<ul>
-				<li><a href="#">회원</a></li>
-				<li><a href="#">대여</a></li>
-				<li><a href="#">차량</a></li>
+				<li><a href="memberBlackChart.do">회원</a></li>
+				<li><a href="rentChart.do">대여</a></li>
+				<li><a href="carChart.do">차량</a></li>
 				<li><a href="longRentChart.do">장기렌트</a></li>
 				<li><a href="#">이벤트</a></li>
 			</ul>

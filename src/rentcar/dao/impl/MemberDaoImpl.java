@@ -8,7 +8,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.json.JSONArray;
+
 import rentcar.dao.MemberDao;
+import rentcar.ds.JndiDS;
 import rentcar.dto.Member;
 import rentcar.exception.CustomSQLException;
 import rentcar.utils.Paging;
@@ -30,6 +33,43 @@ public class MemberDaoImpl implements MemberDao {
 		this.con = con;
 	}
 
+	
+	//차트용
+	@Override
+	public JSONArray getCountBlackList() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		JSONArray jsonArray = new JSONArray();
+		
+		JSONArray colNameArray = new JSONArray(); //컬 타이틀 설정
+		colNameArray.put("블랙리스트 여부");
+		colNameArray.put("인원 수");
+		jsonArray.put(colNameArray);
+		
+		try {
+			con = JndiDS.getConnection();
+			sql="SELECT is_Black,count(*) " + 
+					"FROM MEMBER " + 
+					"GROUP BY IS_BLACK " + 
+					"HAVING IS_black in('y', 'N') ORDER BY IS_BLACK asc";
+			pstmt = con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				JSONArray rowArray = new JSONArray();
+				rowArray.put(rs.getString("IS_BLACK"));
+				rowArray.put(rs.getInt("COUNT(*)"));
+				
+				jsonArray.put(rowArray);
+			}//while
+		}catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+	
 	@Override
 	public ArrayList<Member> selectMemberByAll() {
 		String sql = "SELECT * FROM MEMBER ORDER BY NAME ASC";

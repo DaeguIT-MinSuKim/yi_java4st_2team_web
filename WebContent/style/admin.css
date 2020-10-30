@@ -28,3 +28,8 @@
 .chart_tab a:hover,
 .chart_tab a.active {background:#044fa2; color:#fff;}
 .chart_tab a:last-child {border-right:1px solid #ddd;}
+
+.search_car {position:relative;}
+.search_car .btn-primary {position:absolute; right:0; top:0; width:140px;}
+
+.table_style1 select {width:100%; height:40px; border:1px solid #ddd; padding:10px; border-radius:5px; cursor:pointer;}

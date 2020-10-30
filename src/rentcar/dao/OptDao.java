@@ -1,8 +1,10 @@
 package rentcar.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dto.Opt;
+import rentcar.utils.Paging;
 
 public interface OptDao {
 	
@@ -20,4 +22,10 @@ public interface OptDao {
 	
 	//Opt 삭제하기
 	int deleteOpt(Opt opt);
+
+	ArrayList<Opt> pagingOptByAll(Paging paging);
+
+	int countOptByAll();
+
+	List<Opt> selectSearchPagingOpt(String condition, String keyword, Paging paging);
 }

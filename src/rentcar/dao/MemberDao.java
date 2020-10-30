@@ -2,6 +2,8 @@ package rentcar.dao;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+
 import rentcar.dto.Member;
 import rentcar.utils.Paging;
 
@@ -38,4 +40,8 @@ public interface MemberDao {
 	
 	// 검색
 	ArrayList<Member> selectSearchMember(String condition, String keyword);
+
+	// 차트 
+	JSONArray getCountBlackList();
+
 }

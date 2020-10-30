@@ -1,12 +1,14 @@
 package rentcar.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import rentcar.dao.OptDao;
 import rentcar.dao.impl.OptDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Opt;
+import rentcar.utils.Paging;
 
 public class OptService {
 	private static Connection con;
@@ -41,5 +43,19 @@ public class OptService {
 	//Opt 삭제하기
 	public int deleteOpt(Opt opt) {
 		return dao.deleteOpt(opt);
+	}
+
+	
+	public ArrayList<Opt> pagingOptByAll(Paging paging) {
+		return dao.pagingOptByAll(paging);
+	}
+	
+	public int countOptByAll() {
+		return dao.countOptByAll();
+	}
+	
+	
+	public List<Opt> selectSearchPagingOpt(String condition, String keyword, Paging paging) {
+		return dao.selectSearchPagingOpt(condition, keyword, paging);
 	}
 }

@@ -34,7 +34,7 @@ $(function() {
 	             tel: $("#tel").val(),
 	             pwd: $("#pwd").val(),
 	             title: $("#title").val(),
-	             contents: $("#contents_ckeditor").val(),
+	             contents: $("textarea").val(),
 	             options: chkStr
 	       };
 	
@@ -77,7 +77,9 @@ $(function() {
 					<input type="text" class="mt5" name="title" id="title" value="${LongRent.title }">
 					<input type="button" value="희망차종, 희망계약기간 등 자유롭게 문의 사항 작성해주시면, 빠른 답변 및 연락 드리겠습니다. " onclick="">
 					<%-- <input type="text" name="contents" class="write_content mt5" id="contents" value="${LongRent.contents}"> --%>
-					<textarea class="write_content mt5" name="contents" id="contents_ckeditor"></textarea>
+					<textarea class="write_content mt5" name="contents">${LongRent.contents }</textarea>
+					
+					
 					
 					<div class="option_check" id="options">
 						<label><input type="checkbox" name="chBoxName" value="후방 카메라" class="checkSelect"> 후방 카메라</label>

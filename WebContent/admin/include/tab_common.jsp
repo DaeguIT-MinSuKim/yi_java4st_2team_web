@@ -3,8 +3,8 @@
 
 <div class="chart_tab">
 	<a href="javascript:;">회원</a>
-	<a href="javascript:;">대여</a>
-	<a href="javascript:;">차량</a>
+	<a href="rentChart.do">대여</a>
+	<a href="carChart.do">차량</a>
 	<a href="longRentChart.do">장기렌트</a>
 	<a href="javascript:;">이벤트</a>
 </div>

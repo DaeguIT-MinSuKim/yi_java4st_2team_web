@@ -3,10 +3,13 @@ package rentcar.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+
 import rentcar.dao.MemberDao;
 import rentcar.dao.impl.MemberDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Member;
+import rentcar.dto.Opt;
 import rentcar.utils.Paging;
 
 public class MemberService {
@@ -71,4 +74,8 @@ public class MemberService {
 		return dao.selectSearchMember(condition, keyword);
 	}
 
+	//차트
+	public JSONArray getCountBlackList() {
+		return dao.getCountBlackList();
+	}
 }
