@@ -25,4 +25,5 @@ public class OptBoxService {
 	public List<String> selectOptByRent(int rentNo) {
 		return dao.selectOptByRent(rentNo);
 	}
+	
 }

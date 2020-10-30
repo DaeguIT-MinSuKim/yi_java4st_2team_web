@@ -52,7 +52,13 @@
 	<h2>차량 추가</h2>
 	<div class="admin_page">
 		<form action="carWrite.do" method="post" enctype="multipart/form-data">
-			<table border=1>
+			<table class="table_style1">
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
 				<tr>
 					<th>차량번호</th>
 					<td style="display : flex;">
@@ -60,8 +66,6 @@
 						<input type="button" value="중복확인" id="chkNo" style="width : 100px">
 						<input type="hidden" value="N" id="chkForm">
 					</td>
-				</tr>
-				<tr>
 					<th>차량이름</th>
 					<td><input type="text" id="carName" name="carName"></td>
 				</tr>
@@ -72,8 +76,6 @@
 								<option value="${kind.code}">${kind.name}</option>
 							</c:forEach>
 					</select></td>
-				</tr>
-				<tr>
 					<th>브랜드명</th>
 					<td><select id="brandList" name="brand">
 							<c:forEach items="${brandList}" var="brand">
@@ -83,11 +85,11 @@
 				</tr>
 				<tr>
 					<th>비고사항</th>
-					<td><textarea cols="15" rows="11" id="remark" name="remark"></textarea></td>
+					<td colspan="3"><textarea cols="15" rows="11" id="remark" name="remark"></textarea></td>
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td><input type="file" name="image" id="image" class="list_file"></td>
+					<td colspan="3"><input type="file" name="image" id="image" class="list_file"></td>
 				</tr>
 			</table>
 			<ul class="button_style3 mt50">

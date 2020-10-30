@@ -16,7 +16,6 @@
 </section>
 <!-- //상단배경 -->
 <section class="con_wrap box">
-
 	<div class="contents_box out padLeft0">
 		<div class="contents">
 			<h3>단기렌트 차량예약</h3>
@@ -90,7 +89,7 @@
 														선택안함
 													</c:when>
 													<c:otherwise>
-														${evtList}
+														${evtList.getName()}
 													</c:otherwise>
 												</c:choose>
 											</p>
@@ -112,7 +111,9 @@
 					</ul>
 				</div>
 				
-				<a href="javascript:;" role="button" class="btn btn-primary">내 렌터카 예약현황 보기</a>
+				<a href="renting.do" role="button" class="btn btn-primary">내 렌터카 예약현황 보기</a>
+				
+				<div class="h50"></div>
 			</div>
 		</div>
 	</div>

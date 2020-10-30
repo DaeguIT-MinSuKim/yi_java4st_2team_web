@@ -5,14 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ColumnChart1</title>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
+<title>Insert title here</title>
 <script>
 $(function(){
-
 	//구글 시각화 API를 로딩하는 메소드
 	google.charts.load('current', {
 		packages : [ 'corechart' ]
@@ -26,53 +25,73 @@ $(function(){
 	 google.charts.setOnLoadCallback(function(){
 	 setInterval(columnChart1(),30000);
 	 }); */
-	 
-	 
 	 	
 	// 묶은 세로 막대형 차트 1
 	function drawChart() {
-		// 실 데이터를 가진 데이터테이블 객체를 반환하는 메소드
-		var dataTable = google.visualization.arrayToDataTable(${jsonArray});
 		
 		// 옵션객체 준비
-		var options = {
-			title : '블랙리스트 비율 ',
-			height : 500,
-			width : '100%',
-			pieHole: 0.4,
-             hAxis : {
-               title : '블랙리스트',
-               titleTextStyle : {
-               color : 'black'
-                 }
-              }
-		};
+		var kindByRentOptions = {
+				title : '차종별 대여횟수',
+				height : '100%',
+				width : '100%',
+				pieHole: 0.4,
+				hAxis : {
+					title : '차종',
+					titleTextStyle : {
+						color : 'black'
+					}
+				}	
+			};
+		
+		var brandByRentOptions = {
+				title : '브랜드별 대여횟수',
+				height : '100%',
+				width : '100%',
+				pieHole: 0.4,
+				hAxis : {
+					title : '브랜드',
+					titleTextStyle : {
+						color : 'black'
+					}
+				}	
+			};
+		
+		// 실 데이터를 가진 데이터테이블 객체를 반환하는 메소드
+		var kindByRentTable = google.visualization.arrayToDataTable(${kindByRent});
+		
+		var brandByRentTable = google.visualization.arrayToDataTable(${brandByRent});
 		
 		// 차트를 그릴 영역인 div 객체를 가져옴
-		var objDiv = document.getElementById('myChart');
 		// 인자로 전달한 div 객체의 영역에 컬럼차트를 그릴수 있는 차트객체를 반환
-		var chart = new google.visualization.PieChart(objDiv);
 		// 차트객체에 데이터테이블과 옵션 객체를 인자로 전달하여 차트 그리는 메소드
-		chart.draw(dataTable, options);
-	}; // drawColumnChart1()의 끝
+		var objDiv = document.getElementById('chart_kindByRent');
+		var chart = new google.visualization.PieChart(objDiv);
+		chart.draw(kindByRentTable, kindByRentOptions);
 
-	
+		var objDiv = document.getElementById('chart_brandByRent');
+		var chart = new google.visualization.PieChart(objDiv);
+		chart.draw(brandByRentTable, brandByRentOptions);
+	};
 });	
 </script>
 </head>
 <body>
 	<div id="adimn_content">
 		<div class="admin_page">
-			
+
 			<%@ include file="/admin/include/tab_common.jsp"%>
 			<script>
-				$(function(){
-					$(".chart_tab>a").eq(0).addClass("active");
+				$(function() {
+					$(".chart_tab>a").eq(1).addClass("active");
 				});
 			</script>
 			
-			<div id="myChart" style="width: 900px; height: 500px;"></div>
-			<button type="button" id="line_chart" onclick="location.href='#'">차트 보기</button>
+			<table>
+			<tr>
+			<td><div id="chart_kindByRent" style="width: 500px; height: 400px;"></div></td>
+			<td><div id="chart_brandByRent" style="width: 500px; height: 400px;"></div></td>
+			</tr>
+			</table>
 		</div>
 	</div>
 </body>

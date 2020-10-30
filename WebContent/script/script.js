@@ -31,6 +31,9 @@ $(document).ready(function() {
 	
 	// 모든 페이지의 textarea
 	textarea_textcounting();
+	
+	// 관리자 단기렌트 관리 -> 렌트 삭제
+	admin_rent_delete();
 });
 
 // 헤더 로고 (동자승이 눈깜빡이는거 ~)
@@ -253,6 +256,24 @@ function textarea_textcounting(){
 		        $(this).val(content.substring(0, 1200));
 		        $('#countingBox').html("(200 / 최대 1200자)");
 		    }
+		});
+	}
+}
+
+function admin_rent_delete(){
+	if( $(".btn_rentDelete").length ){
+		$(".btn_rentDelete").on("click", function(){
+			if( confirm("이 렌트예약을 삭제하시겠습니까?") ){
+				var rentNo = $(this).attr("data-rentNo");
+				$.ajax({
+					url:"adminRentDelete.do?rentNo="+rentNo,
+					type:"get",
+					success:function(){
+						alert("삭제가 완료되었습니다");
+						location.href="adminRent.do";
+					}
+				});
+			}
 		});
 	}
 }

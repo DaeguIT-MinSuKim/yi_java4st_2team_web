@@ -7,12 +7,14 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import org.json.JSONArray;
 
 import rentcar.dao.CarDao;
 import rentcar.dto.Brand;
 import rentcar.dto.Car;
-import rentcar.dto.Event;
 import rentcar.dto.Kind;
 import rentcar.exception.CustomSQLException;
 import rentcar.utils.Paging;
@@ -415,5 +417,136 @@ public class CarDaoImpl implements CarDao {
 			throw new RuntimeException(e);
 		}
 		return null;
+	}
+
+	@Override
+	public JSONArray getCountCarByKind() {
+		JSONArray jsonArray = new JSONArray();
+		JSONArray colNameArray = new JSONArray();
+		
+		colNameArray.put("차종 이름");
+		colNameArray.put("차량 수");
+		
+		jsonArray.put(colNameArray);
+
+		String sql = "SELECT k.kind_name, count(CAR_NO) FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE GROUP BY k.KIND_NAME ORDER BY k.KIND_NAME";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				 do{
+					JSONArray rowArray = new JSONArray();
+					rowArray.put(rs.getString("KIND_NAME"));
+					rowArray.put(rs.getInt("COUNT(CAR_NO)"));
+
+					jsonArray.put(rowArray);
+				}while(rs.next());
+			}
+		} catch (Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+
+	@Override
+	public JSONArray getCountCarByBrand() {
+		JSONArray jsonArray = new JSONArray();
+
+		JSONArray colNameArray = new JSONArray();
+		colNameArray.put("브랜드 이름");
+		colNameArray.put("차량 수");
+		jsonArray.put(colNameArray);
+
+		String sql = "SELECT b.BRAND_NAME, count(CAR_NO) FROM car c LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE GROUP BY b.BRAND_NAME ORDER BY b.BRAND_NAME";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				do{
+					JSONArray rowArray = new JSONArray();
+					rowArray.put(rs.getString("BRAND_NAME"));
+					rowArray.put(rs.getInt("COUNT(CAR_NO)"));
+
+					jsonArray.put(rowArray);
+				}while(rs.next());
+			}
+		} catch (Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+
+	@Override
+	public JSONArray getCountKindByRent() {
+		JSONArray jsonArray = new JSONArray();
+
+		JSONArray colNameArray = new JSONArray();
+		colNameArray.put("차종 이름");
+		colNameArray.put("차량 수");
+		jsonArray.put(colNameArray);
+
+		String sql = "SELECT k.kind_name, SUM(CAR_COUNT) FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE GROUP BY k.KIND_NAME ORDER BY k.KIND_NAME";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				do{
+					JSONArray rowArray = new JSONArray();
+					rowArray.put(rs.getString("KIND_NAME"));
+					rowArray.put(rs.getInt("SUM(CAR_COUNT)"));
+
+					jsonArray.put(rowArray);
+				}while(rs.next());
+			}
+		} catch (Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+
+	@Override
+	public JSONArray getCountBrandByRent() {
+		JSONArray jsonArray = new JSONArray();
+
+		JSONArray colNameArray = new JSONArray();
+		colNameArray.put("브랜드 이름");
+		colNameArray.put("차량 수");
+		jsonArray.put(colNameArray);
+
+		String sql = "SELECT b.BRAND_NAME, SUM(CAR_COUNT) FROM car c LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE LEFT OUTER JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE GROUP BY b.BRAND_NAME ORDER BY b.BRAND_NAME";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				do{
+					JSONArray rowArray = new JSONArray();
+					rowArray.put(rs.getString("BRAND_NAME"));
+					rowArray.put(rs.getInt("SUM(CAR_COUNT)"));
+
+					jsonArray.put(rowArray);
+				}while(rs.next());
+			}
+		} catch (Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
+	}
+
+	@Override
+	public JSONArray getCountCarByRent() {
+		JSONArray jsonArray = new JSONArray();
+
+		JSONArray colNameArray = new JSONArray();
+		colNameArray.put("반납 비율");
+		colNameArray.put("대여가능유무");
+		jsonArray.put(colNameArray);
+
+		String sql = "SELECT IS_RENTCAR, COUNT(CAR_NO) FROM CAR GROUP BY IS_RENTCAR";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				do{
+					JSONArray rowArray = new JSONArray();
+					rowArray.put(rs.getString("IS_RENTCAR"));
+					rowArray.put(rs.getInt("COUNT(CAR_NO)"));
+
+					jsonArray.put(rowArray);
+				}while(rs.next());
+			}
+		} catch (Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
 	}
 }
