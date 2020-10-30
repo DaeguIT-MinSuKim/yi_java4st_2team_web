@@ -31,4 +31,7 @@ public interface RentDao {
 	
 	// 가장 최근에  예약완료한 정보 (예약완료에 뿌릴 정보)
 	Rent selectRecentByRent(String id, String carNo);
+	
+	// 한 회원의 모든 렌트 현황 가져오기
+	List<Rent> selectRentById(String id);
 }

@@ -136,6 +136,30 @@ public class RentDaoImpl implements RentDao {
 	}
 	
 	@Override
+	public List<Rent> selectRentById(String id) {
+		String sql = "SELECT * FROM Rent r LEFT OUTER JOIN MEMBER m ON r.ID = m.ID JOIN INSURANCE i ON r.INS_CODE = i.INS_CODE"
+				+ " JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE"
+				+ " WHERE r.ID = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, id);
+			
+			try (ResultSet rs = pstmt.executeQuery()) {
+			
+				if (rs.next()) {
+					ArrayList<Rent> list = new ArrayList<Rent>();
+					do {
+						list.add(getRent(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+	
+	@Override
 	public Rent selectRentByDate(String id) {
 		String sql = "SELECT min(return_date) AS RETURN_DATE FROM RENT WHERE CAR_NO = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {

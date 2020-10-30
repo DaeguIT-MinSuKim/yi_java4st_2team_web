@@ -49,5 +49,7 @@ public class RentService {
 		return dao.selectRecentByRent(id, carNo);
 	}
 	
-	
+	public List<Rent> selectRentById(String id){
+		return dao.selectRentById(id);
+	}
 }
