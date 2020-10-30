@@ -15,8 +15,6 @@ $(function(){
 })
 </script>
 
-${rentList[0]}
-
 <div id="adimn_content">
 	<h2>단기렌트</h2>
 	<div class="admin_page">
@@ -38,11 +36,11 @@ ${rentList[0]}
 		<table class="table_style1">
 			<!-- 글 있는 경우 -->
 			<colgroup>
-				<col width="10%">
+				<!-- <col width="10%">
 				<col width="">
 				<col width="12%">
 				<col width="16%">
-				<col width="10%">
+				<col width="10%"> -->
 			</colgroup>
 			<tr>
 				<th>예약번호</th>
@@ -54,7 +52,7 @@ ${rentList[0]}
 				<th>반납일</th>
 				<th>반납유무</th>
 				<th>총결제금액</th>
-				<th>비고</th>
+				<th></th>
 			</tr>
 			<c:forEach items="${rentList}" var="rent">
 				<tr class="board">
@@ -67,7 +65,10 @@ ${rentList[0]}
 					<td>${fn:split(rent.return_date,'T')[0]}</td>
 					<td>${rent.is_rent }</td>
 					<td>${rent.fare }</td>
-					<td>${rent.remark }</td>
+					<td>
+						<a href="adminRentDetail.do?rentNo=${rent.rentNo}" class="btn c_fff btn-primary">상세보기</a>
+						<a href="javascript:;" data-rentNo="${rent.rentNo}" class="btn btn_case5 btn_rentDelete">삭제</a>
+					</td>
 				</tr>
 			</c:forEach> 
 			<!-- 글 없는 경우 -->

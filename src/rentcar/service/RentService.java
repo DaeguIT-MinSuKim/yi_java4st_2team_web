@@ -41,7 +41,7 @@ public class RentService {
 		return dao.pagingRentByAll(paging);
 	}
 	
-	public Rent selectRecentByNo(){
+	public int selectRecentByNo(){
 		return dao.selectRecentByNo();
 	}
 	
@@ -51,5 +51,13 @@ public class RentService {
 	
 	public List<Rent> selectRentById(String id){
 		return dao.selectRentById(id);
+	}
+	
+	public Rent selectRentByNo(int res){
+		return dao.selectRentByNo(res);
+	}
+	
+	public int deleteRent(int rentNo){
+		return dao.deleteRent(rentNo);
 	}
 }

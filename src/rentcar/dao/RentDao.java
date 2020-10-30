@@ -15,7 +15,7 @@ public interface RentDao {
 	//대여정보 수정하기
 	int updateRent(Rent rent);
 	//대여정보 삭제하기
-	int deleteRent(Rent rent);
+	int deleteRent(int rentNo);
 	// 한 차량에 대한 대여가능일 불러오기
 	Rent selectRentByDate(String id);
 	// 관리자 단기렌트 검색
@@ -27,7 +27,7 @@ public interface RentDao {
 	List<Rent> pagingRentByAll(Paging paging);
 	
 	// 최근 insert된 No 가져오기
-	Rent selectRecentByNo();
+	int selectRecentByNo();
 	
 	// 가장 최근에  예약완료한 정보 (예약완료에 뿌릴 정보)
 	Rent selectRecentByRent(String id, String carNo);

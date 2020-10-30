@@ -220,12 +220,11 @@ public class RentDaoImpl implements RentDao {
 	}
 
 	@Override
-	public int deleteRent(Rent rent) {
+	public int deleteRent(int rentNo) {
 		String sql = "DELETE FROM RENT WHERE RENT_NO = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setInt(1, rent.getRentNo());
+			pstmt.setInt(1, rentNo);
 			return pstmt.executeUpdate();
-
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -307,17 +306,13 @@ public class RentDaoImpl implements RentDao {
 	
 	
 	@Override
-	public Rent selectRecentByNo() {
+	public int selectRecentByNo() {
 		String sql = "SELECT MAX(TO_NUMBER(RENT_NO)) AS RENT_NO FROM RENT";
-		try(PreparedStatement pstmt = con.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery()){
-			if (rs.next()){
-				return getRentNo(rs);
-			}
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}
-		return null;
 	}
 
 	@Override

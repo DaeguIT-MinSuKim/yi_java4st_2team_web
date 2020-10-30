@@ -62,9 +62,9 @@
 											<div class="right">
 												<p>
 													<span class="c_blue">${fn:split(rentList.rent_date,'T')[0]}</span>
-													<span>${fn:split(rentList.return_date,'T')[1]}</span>
+													<span>${fn:split(rentList.rent_date,'T')[1]}</span>
 													~
-													<span class="c_blue">${fn:split(rentList.rent_date,'T')[0]}</span>
+													<span class="c_blue">${fn:split(rentList.return_date,'T')[0]}</span>
 													<span>${fn:split(rentList.return_date,'T')[1]}</span>
 												</p>
 											</div>

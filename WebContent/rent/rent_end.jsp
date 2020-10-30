@@ -111,7 +111,9 @@
 					</ul>
 				</div>
 				
-				<a href="javascript:;" role="button" class="btn btn-primary">내 렌터카 예약현황 보기</a>
+				<a href="renting.do" role="button" class="btn btn-primary">내 렌터카 예약현황 보기</a>
+				
+				<div class="h50"></div>
 			</div>
 		</div>
 	</div>

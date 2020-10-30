@@ -89,21 +89,22 @@ public class RentEndHandler implements Command {
 				int rentInsert = rentDao.insertRent(rent);
 				
 				if( rentInsert==1 ) { // INSERT 성공하면
-					Rent rentNo = rentDao.selectRecentByNo(); // 1번에서 삽입한 RENT_NO 가져옴
+					int rentNo = rentDao.selectRecentByNo(); // 1번에서 삽입한 RENT_NO 가져옴
 					
 					
 					// 2. 옵션(OPT_BOX) 체크한 종류별로 각각 INSERT
 					String optAll = rent.getOptAll();
+					System.out.println("optAll>>>" + optAll);
 					if( optAll.equals("0")) { // 옵션 선택 안했다면
 						System.out.println("옵션 선택 안함");
 					}else { // 선택 했다면
 						System.out.println("옵션 선택함");
-
+						
 						List<String> optStr = new ArrayList<>();
 						for(int i=0; i < optAll.length(); i++) {
 							optStr.add(optAll.substring(i, i+1));
-//							System.out.println(optStr.get(i));
-							optBoxDao.insertOptByRent(Integer.parseInt(optStr.get(i)), rentNo.getRentNo());
+							System.out.println(optStr.get(i));
+							optBoxDao.insertOptByRent(Integer.parseInt(optStr.get(i)), rentNo);
 						}
 					}
 				}

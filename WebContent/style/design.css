@@ -29,6 +29,7 @@ footer .bootstrap-select.btn-group .dropdown-toggle .filter-option {padding:0; o
 .c_red {color:red !important}
 .c_gray {color:#666}
 .c_blue {color:#0d6ffc !important;}
+.c_fff {color:#fff !important}
 
 /* 팝업창 공용 소스 */
 .popup_common {display:none; position:fixed; z-index:1000; top:0; left:0; width:100%; height:100%; background:none; padding:15px;}
