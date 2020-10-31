@@ -14,6 +14,7 @@ $(function(){
 	btn_payBox_submit(); // 단기렌트 최종 예약하기
 	
 	main_carRent() // 메인 - 자동차 렌트
+	memberRent_delete(); // 렌트 리스트 - 렌트 예약 취소
 });
 
 //3자리 단위 콤마 찍기
@@ -559,5 +560,22 @@ function btn_payBox_submit(){
 	
 }
 
+function memberRent_delete(){
+	if( $(".btn_memberRentDelete").length ){
+		$(".btn_memberRentDelete").on("click", function(){
+			if( confirm("이 렌트예약을 취소하시겠습니까?") ){
+				var rentNo = $(this).attr("data-rentNo");
+				$.ajax({
+					url:"rentDelete.do?rentNo="+rentNo,
+					type:"get",
+					success:function(){
+						alert("삭제가 완료되었습니다");
+						location.href="renting.do";
+					}
+				});
+			}
+		});
+	}
+}
 
 

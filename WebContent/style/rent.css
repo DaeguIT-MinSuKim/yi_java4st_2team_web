@@ -121,7 +121,7 @@ select.hours {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:point
 .carList_common>li>div.left {width:30%; vertical-align:middle;}
 .carList_common>li>div.right {width:70%;}
 .carList_common .left .img {height:150px; background-size:contain !important}
-.carList_common .right.textBox {padding-left:25px;}
+.carList_common .right.textBox {padding-left:25px;  position:relative;}
 .carList_common .right.textBox .text {display:table-cell;}
 .carList_common .right.textBox .text li {display:flex; padding:5px 0;}
 .carList_common .right.textBox .text li .left {width:130px; text-align:left;}
@@ -130,7 +130,9 @@ select.hours {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:point
 
 .rent_list .title {font-size:24px;}
 
+.coupon_subText {font-size:12px; margin-top:5px;}
 
+.btn-warning {position:absolute; right:0; bottom:0;}
 
 @media screen and (max-width:1200px){
 	.fixOn {position:fixed; top:20px; max-width:397px;

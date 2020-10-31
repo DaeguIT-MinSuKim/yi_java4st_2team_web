@@ -16,6 +16,7 @@ $(function(){
 	<div class="admin_page">
 	
 		<div class="divSearch">
+				<a href="adminInsAdd.do" class="btn_small btn-primary c_fff btn_add_right">보험 추가</a>
 				<form name="frmSearch" action="#" method="post">
 					<select name="condition" id="selectBox">
 						<option value="INS_CODE">보험 코드</option>
@@ -50,10 +51,10 @@ $(function(){
 					<td class="tl" id="title">${Ins.name }</td>
 					<td id="fare">${Ins.fare }</td>
 					<td><a href="adminInsUpdate.do?code=${Ins.code}">
-						<input type="button" value="수정" class="update">
+						<input type="button" value="수정" class="update btn-success">
 						</a></td>
 					<td><a href="adminInsDelete.do?code=${Ins.code }">
-						<input type="button" value="삭제" class="delete"></a></td>
+						<input type="button" value="삭제" class="delete btn_case5"></a></td>
 				</tr>
 			</c:forEach>
 			
@@ -63,7 +64,7 @@ $(function(){
 			</tr>
 		</table>
 		
-			<a href="adminInsAdd.do" class="btn_small btn_case2 floatR mt10">보험 추가</a>
+	
 			
 		
 		<div class="board_list_page clear">

@@ -60,4 +60,5 @@ public class RentService {
 	public int deleteRent(int rentNo){
 		return dao.deleteRent(rentNo);
 	}
+	
 }

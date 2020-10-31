@@ -9,7 +9,7 @@
 .divSearch>form * {height:30px !important; border-radius:0 !important}
 .divSearch>form select { width:150px;}
 .divSearch>form .search,
-.divSearch>form input[type='submit']{ width:120px; line-height:2.3; border:0;}
+.divSearch>form input[type='submit']{ width:120px; line-height:2.3; border:0; min-width:120px; cursor:pointer;}
 .divSearch>form input[type='text'] {width:220px; border-left:0; border-right:0}
 
 @media screen and (max-width:767px){

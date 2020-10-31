@@ -6,37 +6,18 @@
 <%@ include file="/admin/include/header.jsp"%>
 
 <meta charset="UTF-8">
-<title>고객 목록</title>
+<title>옵션 목록</title>
 <script>
 	$(function() {
 		if ($(".board").length == 0) { // 글이 없는 경우
 			$(".no_board").show();
 			$(".board").hide();
 		}
-		
-
-		function admin_frm_adminOptUpdate(){
-			if( $("form[name=admin_frm_adminOptUpdate]").length > 0 ){
-				if( frm_adminOptUpdate.optName.value.length == 0 ){
-					alert("옵션이름을 적어주세요");
-					return false;
-				}
-				if( frm_adminOptUpdate.optFare.value.length == 0 ){
-					alert("옵션비용을 적어주세요");
-					return false;
-				}
-				return true;
-			}
-		}
-		
-		if( admin_frm_adminOptUpdate() ){
-			
-		}
 	});
 </script>
 	
 	<div id="adimn_content">
-		<h2>고객 목록</h2>
+		<h2>옵션 목록</h2>
 		<div class="admin_page">
 			<div class="divSearch">
 				<form name="frmSearch" action="adminOptList.do" method="post">
@@ -49,6 +30,7 @@
 					<input type="hidden" value="${paging.nowPage}" name="nowPage">
 					<a href="adminOptList.do" type="button" class="btn btn_case2">목록보기</a>
 				</form>
+				<a href="adminOptWrite.do" class="btn btn-primary c_fff btn_add_right">옵션추가</a>
 			</div>
 			
 			<table class="table_style1">
@@ -77,7 +59,7 @@
 							<a href="adminOptUpdate.do?code=${opt.code}" ><input type="button" value="수정" class="update btn-success"></a>
 						</td>
 						<td>
-							<a href="carDelete.do?code="${opt.code}">
+							<a href="adminOptDelete.do?code=${opt.code}">
 								<input type="button" value="삭제" class="delete btn_case5">
 							</a>
 						</td>

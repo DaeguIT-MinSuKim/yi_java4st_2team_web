@@ -88,6 +88,7 @@
 											</div>
 										</li>
 									</ul>
+									<a href="javascript:;" data-rentNo="${rentList.rentNo }" class="btn btn-warning c_fff btn_memberRentDelete">렌트예약 취소하기</a>
 								</div>
 							</li>
 							</c:forEach>

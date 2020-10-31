@@ -23,12 +23,16 @@
 <div id="adimn_content">
 	<h2>브랜드 목록</h2>
 	<div class="admin_page">
-		<a href="brandWrite.do">브랜드 추가</a>
-		<form name="frm" method="post" action="brandList.do">
-			<input type="text" name="inputSearch" id="inputSearch"
-				placeholder="검색란">
-			<button class="search">검색</button>
-		</form>
+		<div class="search_car">
+			<a href="brandWrite.do" class="btn btn-primary c_fff">브랜드 추가</a>
+			<div class="divSearch">
+				<form name="frm" method="post" action="brandList.do">
+					<input type="text" name="inputSearch" id="inputSearch"
+						placeholder="검색란" style="border-left:1px solid #ddd">
+					<button class="search">검색</button>
+				</form>
+			</div>
+		</div>
 		<table class="table_style1">
 			<tr>
 				<th>브랜드명</th>
@@ -37,13 +41,17 @@
 				<th>브랜드 삭제</th>
 			</tr>
 			<c:forEach items="${brandList }" var="brand">
+				<colgroup>
+					<col style="width:40%">
+					<col style="width:40%">
+					<col style="width:10%">
+					<col style="width:10%">
+				</colgroup>
 				<tr>
 					<td>${brand.name}</td>
 					<td><img src="upload/${brand.image }" width="50" height="50"></td>
-					<td><a href="brandUpdate.do?brandCode=${brand.code}"><input
-							type="button" value="수정" class="update"></a></td>
-					<td><a href="brandDelete.do?brandCode=${brand.code}"><input
-							type="button" value="삭제" class="delete"></a></td>
+					<td><a href="brandUpdate.do?brandCode=${brand.code}"><input type="button" value="수정" class="update btn-success"></a></td>
+					<td><a href="brandDelete.do?brandCode=${brand.code}"><input type="button" value="삭제" class="delete btn_case5"></a></td>
 				</tr>
 			</c:forEach>
 		</table>
