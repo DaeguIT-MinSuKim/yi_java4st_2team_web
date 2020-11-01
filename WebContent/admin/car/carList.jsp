@@ -29,9 +29,9 @@
 				$el_id_inputSearch.show();
 			} else if (optChk == "KIND_NAME") {
 				$("#opt3").show();
-			} else if (optChk == "BRAND_NAME"){
+			} else if (optChk == "BRAND_NAME") {
 				$("#opt4").show();
-			} else if (optChk == "IS_RENTCAR"){
+			} else if (optChk == "IS_RENTCAR") {
 				$("#opt5").show();
 			}
 		});
@@ -39,15 +39,17 @@
 		// 검색버튼 클릭후 체크
 		$(".search").click(function() {
 			var res = $("#opt option:selected").val();
-			if( res != "" ){
+			if (res != "") {
 				document.frm.submit();
+			} else {
+				alert("값을 기입하여주세요");
+				location.href = "carList.do";
 			}
-			alert("값을 기입하여주세요");
 		})
 	});
 </script>
 
-		<!-- 차량 검색 -->
+<!-- 차량 검색 -->
 <div id="adimn_content">
 	<h2>차량 목록</h2>
 	<div class="admin_page">
@@ -73,13 +75,14 @@
 					</select> <select id="opt5" name="opt5">
 						<option value="Y">반납완료</option>
 						<option value="N">대여중</option>
-					</select> <input type="text" name="inputSearch" id="inputSearch" placeholder="검색란">
-		
+					</select> <input type="text" name="inputSearch" id="inputSearch"
+						placeholder="검색란">
+
 					<button class="search">검색</button>
 				</form>
 			</div>
 		</div>
-		
+
 		<!-- 차량 목록 -->
 		<table class="carTable table_style1">
 			<tr>
@@ -112,8 +115,8 @@
 							type="button" value="수정" class="update btn-success"></a></td>
 					<td><c:choose>
 							<c:when test="${car.is_rent != 'N'}">
-								<a href="carDelete.do?carNo=${car.no}">
-									<input type="button" value="삭제" class="delete btn_case5">
+								<a href="carDelete.do?carNo=${car.no}"> <input type="button"
+									value="삭제" class="delete btn_case5">
 								</a>
 							</c:when>
 							<c:when test="${car.is_rent == 'N'}">
@@ -124,12 +127,15 @@
 			</c:forEach>
 		</table>
 		<div class="board_list_page clear">
-			<a href="carList.do?nowPage=1" class="first arrow"><span class="text_hidden">처음</span></a>
+			<a href="carList.do?nowPage=1" class="first arrow"><span
+				class="text_hidden">처음</span></a>
 			<c:if test="${paging.nowPage != 1}">
-				<a href="carList.do?nowPage=${paging.nowPage-1}" class="prev arrow"><span class="text_hidden">이전</span></a>
+				<a href="carList.do?nowPage=${paging.nowPage-1}" class="prev arrow"><span
+					class="text_hidden">이전</span></a>
 			</c:if>
 			<c:if test="${paging.nowPage == 1}">
-				<a href="carList.do?nowPage=${paging.nowPage}" class="prev arrow"><span class="text_hidden">이전</span></a>
+				<a href="carList.do?nowPage=${paging.nowPage}" class="prev arrow"><span
+					class="text_hidden">이전</span></a>
 			</c:if>
 			<ul>
 				<c:forEach begin="${paging.startPage}" end="${paging.endPage }"
@@ -144,14 +150,17 @@
 					</c:choose>
 				</c:forEach>
 			</ul>
-			
+
 			<c:if test="${paging.nowPage != paging.lastPage}">
-				<a href="carList.do?nowPage=${paging.nowPage+1}" class="next arrow"><span class="text_hidden">다음</span></a>
+				<a href="carList.do?nowPage=${paging.nowPage+1}" class="next arrow"><span
+					class="text_hidden">다음</span></a>
 			</c:if>
 			<c:if test="${paging.nowPage == paging.lastPage}">
-				<a href="carList.do?nowPage=${paging.nowPage}" class="next arrow"><span class="text_hidden">다음</span></a>
+				<a href="carList.do?nowPage=${paging.nowPage}" class="next arrow"><span
+					class="text_hidden">다음</span></a>
 			</c:if>
-			<a href="carList.do?nowPage=${paging.lastPage}" class="end arrow"><span class="text_hidden">마지막</span></a>
+			<a href="carList.do?nowPage=${paging.lastPage}" class="end arrow"><span
+				class="text_hidden">마지막</span></a>
 		</div>
 	</div>
 </div>

@@ -14,8 +14,7 @@
 		$(".search").click(function() {
 			if ($("#inputSearch").val().trim() == "") {
 				alert("값을 기입하여주세요");
-				$("#inputSearch").focus();
-				return false;
+				location.href = "kindList.do";
 			}
 		});
 	});

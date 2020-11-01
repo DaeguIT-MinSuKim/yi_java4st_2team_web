@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import rentcar.dao.RentDao;
 import rentcar.dto.Brand;
 import rentcar.dto.Car;
@@ -330,6 +332,29 @@ public class RentDaoImpl implements RentDao {
 		} catch (SQLException e) {
 			throw new CustomSQLException(e);
 		}
+		return null;
+	}
+
+	@Override
+	public JSONArray getCountMemberByAge() {
+		String sql = "SELECT * FROM Rent r LEFT OUTER JOIN MEMBER m ON r.ID = m.ID JOIN INSURANCE i ON r.INS_CODE = i.INS_CODE"
+				+ " JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE ORDER BY RENT_NO DESC";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				List<Rent> list = new ArrayList<Rent>();
+				do {
+					list.add(getRent(rs));
+				} while (rs.next());
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
+
+	@Override
+	public JSONArray getCountCarByMonthly() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

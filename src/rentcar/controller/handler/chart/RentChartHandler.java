@@ -10,17 +10,19 @@ import org.json.JSONArray;
 
 import rentcar.controller.Command;
 import rentcar.service.CarService;
+import rentcar.service.RentService;
 
 public class RentChartHandler implements Command {
-	private CarService service = new CarService();
+	private RentService rentService = new RentService();
+	private CarService carService = new CarService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		JSONArray kindByRent = service.getCountKindByRent();
+		JSONArray kindByRent = carService.getCountKindByRent();
 		
-		JSONArray brandByRent = service.getCountBrandByRent();
+		JSONArray brandByRent = carService.getCountBrandByRent();
 
 		request.setAttribute("kindByRent", kindByRent);
 		request.setAttribute("brandByRent", brandByRent);

@@ -2,6 +2,8 @@ package rentcar.dao;
 
 import java.util.List;
 
+import org.json.JSONArray;
+
 import rentcar.dto.Rent;
 import rentcar.utils.Paging;
 
@@ -34,4 +36,10 @@ public interface RentDao {
 	
 	// 한 회원의 모든 렌트 현황 가져오기
 	List<Rent> selectRentById(String id);
+	
+	// 차트 - 회원 나이별 단기렌트비율
+	JSONArray getCountMemberByAge();
+	
+	// 차트 - 월별 차량대여현황 1~12월
+	JSONArray getCountCarByMonthly();
 }
