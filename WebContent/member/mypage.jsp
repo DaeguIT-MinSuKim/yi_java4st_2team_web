@@ -7,27 +7,54 @@
 <%@ include file="/include/sub_member.jsp"%>
 
 <script>
-$(function() {
-	var date = new Date();
-	var year = date.getFullYear();
-	var selectValue = document.getElementById("birthYear");
-	var optionIndex = 0;
-	for(var i = year-60; i <= year; i++) {
-		selectValue.add(new Option(i, i), optionIndex++);                        
-	}
+	$(function() {
+		var date = new Date();
+		var year = date.getFullYear();
+		var selectValue = document.getElementById("birthYear");
+		var optionIndex = 0;
+		for(var i = year-60; i <= year; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);                        
+		}
+		
+		var selectValue = document.getElementById("birthMonth"); 
+		var optionIndex = 0;
+		for(var i = 1; i<13; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);
+		}
+		
+		var selectValue = document.getElementById("birthDay");
+		var optionIndex = 0;
+		for(var i = 1; i<32; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);
+		}
+	});
+</script>
+
+<script>
+	/* 이메일 주소 자동 기입 */
+	$(function() {
+		$("#domain").change(function() {
+			$("#email2").val($("#domain").val());
+		});
+		
+	});
 	
-	var selectValue = document.getElementById("birthMonth"); 
-	var optionIndex = 0;
-	for(var i = 1; i<13; i++) {
-		selectValue.add(new Option(i, i), optionIndex++);
-	}
+	/* 면허 종류 하나만 선택 */
+	$(function() {
+	    $('input[type="checkbox"][name="li_class"]').click(function(){
+	        if ($(this).prop('checked')) {
+	            $('input[type="checkbox"][name="li_class"]').prop('checked', false);
+	            $(this).prop('checked', true);
+	        }
+	        
+	    });
+	    
+	});
 	
-	var selectValue = document.getElementById("birthDay");
-	var optionIndex = 0;
-	for(var i = 1; i<32; i++) {
-		selectValue.add(new Option(i, i), optionIndex++);
-	}
-});
+	/* 면허 종류 값 받아서 자동 선택 */
+	$(function() {
+	 	$("input:checkbox[name='li_class']:checkbox[value='${loginUser.li_class}']").prop('checked', true);
+	});
 </script>
 
 <!-- 컨텐츠 -->
@@ -131,35 +158,37 @@ $(function() {
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-2 control-label">운전면호종류</label>
+					<label class="col-sm-2 control-label">운전면허종류</label>
 					<div class="col-sm-10 divinner">
-						<div class="col-xs-3">
-							<input type="checkbox" name="li_class" id="li_class" value="Class2A" >
-							<span>  2종 보통</span>
-						</div>
-						<div class="col-xs-3">
-							<input type="checkbox" name="li_class" id="li_class" value="Class2M">
-							<span>  2종 수동</span>
-						</div>
-						<div class="col-xs-3">
-							<input type="checkbox" name="li_class" id="li_class" value="Class1A">
-							<span>  1종 보통</span>
-						</div>
-						<div class="col-xs-3">
-							<input type="checkbox" name="li_class" id="li_class" value="Class1B">
-							<span>  1종 대형</span>
-						</div>
+						
+							<div class="col-xs-3">
+								<input type="checkbox" name="li_class" id="li_class" value="Class2A" >
+								<span>  2종 보통</span>
+							</div>
+							<div class="col-xs-3">
+								<input type="checkbox" name="li_class" id="li_class" value="Class2M">
+								<span>  2종 수동</span>
+							</div>
+							<div class="col-xs-3">
+								<input type="checkbox" name="li_class" id="li_class" value="Class1A">
+								<span>  1종 보통</span>
+							</div>
+							<div class="col-xs-3">
+								<input type="checkbox" name="li_class" id="li_class" value="Class1B">
+								<span>  1종 대형</span>
+							</div>
+						
 					</div>
 					<p></p>
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-2 control-label">운전면호번호</label>
+					<label class="col-sm-2 control-label">운전면허번호</label>
 					<div class="col-sm-10 divinner">
 						<div class="col-xs-3">
 							<select name="li_number1" id="li_number1"
 								class="selectpicker show-tick form-control">
-								<option value="" selected="selected">선택</option>
+								<option value="${fn:substring(loginUser.li_number, 0, 2)}" selected="selected">${fn:substring(loginUser.li_number, 0, 2)}</option>
 								<option value="11">11(서울)</option>
 								<option value="12">12(부산)</option>
 								<option value="13">13(경기)</option>
@@ -182,15 +211,15 @@ $(function() {
 						</div>
 						<div class="col-xs-2">
 							<input type="text" class="form-control onlyNumber" maxlength="2"
-								name="li_number2" id="li_number2" style="ime-mode: disabled;">
+								name="li_number2" id="li_number2" style="ime-mode: disabled;" value="${fn:substring(loginUser.li_number, 3, 5)}">
 						</div>
 						<div class="col-xs-3">
 							<input type="text" class="form-control onlyNumber" maxlength="6"
-								name="li_number3" id="li_number3" style="ime-mode: disabled;">
+								name="li_number3" id="li_number3" style="ime-mode: disabled;" value="${fn:substring(loginUser.li_number, 6, 12)}">
 						</div>
 						<div class="col-xs-2">
 							<input type="text" class="form-control onlyNumber" maxlength="2"
-								name="li_number4" id="li_number4" style="ime-mode: disabled;">
+								name="li_number4" id="li_number4" style="ime-mode: disabled;" value="${fn:substring(loginUser.li_number, 13, 15)}">
 						</div>
 						<p></p>
 					</div>
@@ -201,16 +230,16 @@ $(function() {
 					<div class="col-sm-10 divinner">
 						<div class="col-xs-3">
 							<input type="text" class="form-control" maxlength="40"
-								name="email1" id="email1">
+								name="email1" id="email1" value="${fn:substringBefore(loginUser.email, '@')}">
 						</div>
 						<div class="col-xs-4">
 							<input type="text" class="form-control" maxlength="40"
-								name="email2" id="email2">
+								name="email2" id="email2" value="@${fn:substringAfter(loginUser.email, '@')}">
 						</div>
 						<div class="col-xs-4">
 							<select name="email2" class="selectpicker show-tick form-control"
 								id="domain">
-								<option value="" selected="selected">선택하기</option>
+								<option value="@${fn:substringAfter(loginUser.email, '@')}" selected="selected">@${fn:substringAfter(loginUser.email, '@')}</option>
 								<option value="@naver.com">@naver.com</option>
 								<option value="@daum.net">@daum.net</option>
 								<option value="@nate.com">@nate.com</option>
@@ -226,8 +255,9 @@ $(function() {
 					<label class="col-sm-2 control-label">주소</label>
 					<div class="col-sm-10 divinner addr">
 						<div class="col-xs-7">
-							<label for="sel1">우편번호</label> <input type="text"
-								class="form-control" readonly name="zipcode" id="zipcode">
+							<label for="sel1">우편번호</label>
+							<input type="text" class="form-control" readonly name="zipcode" id="zipcode"
+								value="${fn:substring(loginUser.address, 0, 5)}">
 						</div>
 						<div class="col-xs-5">
 							<a href="javascript:;" class="btn btn-normal"
@@ -235,7 +265,8 @@ $(function() {
 						</div>
 						<div class="col-xs-12">
 							<label for="sel1">주소</label> <input type="text"
-								class="form-control" maxlength="100" id="addr1" name="addr1" value="<?=inputTextPrint($row['addr1'])>">
+								class="form-control" maxlength="100" id="addr1" name="addr1"
+									value="${fn:substring(loginUser.address, 6, 50)}">
 						</div>
 						<div class="col-xs-12">
 							<label for="sel1">상세주소</label> <input type="text"

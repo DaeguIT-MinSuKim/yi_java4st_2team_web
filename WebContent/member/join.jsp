@@ -299,7 +299,7 @@
 </script>
 
 <script>
-	/* 이메일 주소 */
+	/* 이메일 주소 자동 기입 */
 	$(function() {
 		$("#domain").change(function() {
 			$("#email2").val($("#domain").val());
@@ -307,7 +307,7 @@
 		
 	});
 	
-	/* 면허 종류 */
+	/* 면허 종류 하나만 선택 */
 	$(document).ready(function() {
 	    $('input[type="checkbox"][name="li_class"]').click(function(){
 	        if ($(this).prop('checked')) {
@@ -511,7 +511,7 @@ $(function() {
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-2 control-label">운전면호종류</label>
+					<label class="col-sm-2 control-label">운전면허종류</label>
 					<div class="col-sm-10 divinner">
 						<div class="col-xs-3">
 							<input type="checkbox" name="li_class" id="li_class" value="Class2A"><span>  2종 보통</span>
@@ -530,7 +530,7 @@ $(function() {
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-2 control-label">운전면호번호</label>
+					<label class="col-sm-2 control-label">운전면허번호</label>
 					<div class="col-sm-10 divinner">
 						<div class="col-xs-3">
 							<select name="li_number1" id="li_number1"
