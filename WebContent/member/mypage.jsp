@@ -31,7 +31,7 @@
 </script>
 
 <script>
-	/* 이메일 주소 자동 기입  */
+	/* 이메일 주소 자동 기입 */
 	$(function() {
 		$("#domain").change(function() {
 			$("#email2").val($("#domain").val());
