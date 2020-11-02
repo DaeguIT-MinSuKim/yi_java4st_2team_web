@@ -25,7 +25,7 @@ public class MypageHandler implements Command {
 			System.out.println("loginUser > " + loginUser);
 
 			if (loginUser != null) {
-				return "member/mypage_password.jsp";
+				return "member/mypage.jsp";
 			} else {
 				response.sendRedirect("login.do");
 			}

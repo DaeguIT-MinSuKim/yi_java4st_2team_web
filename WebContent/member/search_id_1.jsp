@@ -3,7 +3,7 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 
-<script language='javascript'>
+<script>
 //본인인증 START
 window.name ="Parent_window";
 

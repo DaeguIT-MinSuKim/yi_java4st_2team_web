@@ -18,7 +18,7 @@ SELECT *
 
 SELECT *
   FROM MEMBER
- WHERE id = 'dong6';
+ WHERE id = 'dong';
 
 /* 페이징 - 회원 리스트 수 */
 SELECT COUNT(*) FROM MEMBER;
