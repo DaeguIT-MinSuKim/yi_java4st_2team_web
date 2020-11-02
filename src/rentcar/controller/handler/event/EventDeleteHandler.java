@@ -20,9 +20,10 @@ public class EventDeleteHandler implements Command {
 			throws ServletException, IOException {
 		String code = request.getParameter("code");
 		
-		Event event = service.getEvent(code);
+		//Event event = service.getEvent(code);
+		//int res = transactionService.deleteEventAndEventBox(event);
 		
-		int res = transactionService.deleteEventAndEventBox(event);
+		int res = service.deleteEvent(code);
 		response.getWriter().print(res);
 		
 		response.sendRedirect("event.do");

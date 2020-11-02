@@ -153,6 +153,7 @@
 <script>
 	var swiper = new Swiper('.visu_slide', {
 		effect: 'fade',
+		loop: true,
 		autoplay: {
 			delay: 8000,
 			disableOnInteraction: false,

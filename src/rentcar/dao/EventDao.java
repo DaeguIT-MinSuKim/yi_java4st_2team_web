@@ -3,8 +3,9 @@ package rentcar.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import rentcar.dto.Event;
-import rentcar.dto.EventBox;
 import rentcar.utils.Paging;
 
 public interface EventDao {
@@ -39,4 +40,7 @@ public interface EventDao {
 	// 관리자 이벤트 - 검색
 	int countSearchEventByAll(String condition, String keyword);
 	List<Event> searchEventList(String condition, String keyword, Paging paging);
+	
+	// 차트용
+	JSONArray getCountEvent();
 }

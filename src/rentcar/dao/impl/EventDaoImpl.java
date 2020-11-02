@@ -9,7 +9,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import rentcar.dao.EventDao;
+import rentcar.ds.JndiDS;
 import rentcar.dto.Event;
 import rentcar.exception.CustomSQLException;
 import rentcar.utils.Paging;
@@ -33,8 +36,8 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventByAll() {
-		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
-		// String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
+		// String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
+		String sql = "SELECT EVENT_CODE, NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT FROM EVENT ORDER BY TO_NUMBER(EVENT_CODE) DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
 			if (rs.next()) {
@@ -94,8 +97,8 @@ public class EventDaoImpl implements EventDao {
 		event.setSale(rs.getInt("SALE"));
 		event.setThumImage(rs.getString("THUM_IMAGE"));
 		event.setViewImage(rs.getString("VIEW_IMAGE"));
-		// event.setStartDate(rs.getTimestamp("START_DATE"));
-		// event.setEndDate(rs.getTimestamp("END_DATE"));
+		event.setStartDate(rs.getTimestamp("START_DATE"));
+		event.setEndDate(rs.getTimestamp("END_DATE"));
 		event.setIsEvent(rs.getString("IS_EVENT"));
 		
 		return event;
@@ -302,5 +305,37 @@ public class EventDaoImpl implements EventDao {
 			throw new CustomSQLException(e);
 		}
 		return 0;
+	}
+	
+	@Override
+	public JSONArray getCountEvent() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		JSONArray jsonArray = new JSONArray();
+		
+		JSONArray colNameArray = new JSONArray(); //컬 타이틀 설정
+		colNameArray.put("해당 이벤트");
+		colNameArray.put("이벤트별 건수");
+		jsonArray.put(colNameArray);
+		
+		try {
+			con = JndiDS.getConnection();
+			sql="SELECT TO_CHAR(e.EVENT_CODE) AS EVENT_NUM, COUNT(*) AS EVENT_COUNT FROM EVENT e JOIN EVENT_BOX eb ON eb.EVENT_CODE = e.EVENT_CODE GROUP BY TO_CHAR(e.EVENT_CODE) ORDER BY EVENT_NUM";
+			pstmt = con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				JSONArray rowArray = new JSONArray();
+				rowArray.put(rs.getString("EVENT_NUM"));
+				rowArray.put(rs.getInt("EVENT_COUNT"));
+				
+				jsonArray.put(rowArray);
+			}//while
+		}catch(Exception e) {
+			throw new CustomSQLException(e);
+		}
+		return jsonArray;
 	}
 }
