@@ -18,7 +18,7 @@
 	<div class="admin_page">
 		<form action="brandUpdate.do" method="post"
 			enctype="multipart/form-data">
-			<table border=1>
+			<table class="table_style1">
 				<tr>
 					<input type="hidden" value="${brand.code}" name="code">
 					<td>이 름</td>
@@ -26,7 +26,7 @@
 				</tr>
 				<tr>
 					<td>현 이미지</td>
-					<td><img src="upload/${brand.image }" width="200" height="200"></td>
+					<td><img src="images/brand/${brand.image }" width="200" height="200"></td>
 				</tr>
 				<tr>
 					<td>바꿀 이미지</td>

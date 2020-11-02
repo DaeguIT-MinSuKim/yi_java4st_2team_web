@@ -21,7 +21,7 @@ public class AdminNoticeWriteHandler implements Command {
 			throws ServletException, IOException {
 		if (request.getMethod().equalsIgnoreCase("get")) {
 			System.out.println("공지사항 목록에서 글쓰기 ");
-			return "admin/notice/notice_write.jsp";
+			return "admin/notice/notice_add.jsp";
 		} else {
 			System.out.println("공지사항 POST!!!!!!!!!!");
 			

@@ -46,7 +46,7 @@ $(function(){
 			</table>
 			<ul class="button_style3 mt50">
 				<li><a href="javascript:;" class="btn_small btn_case2" id="update">수정</a></li>
-				<li><a href="optList.do" class="btn_small btn_case4" id="cancel">취소</a></li>
+				<li><a href="adminOptList.do" class="btn_small btn_case4" id="cancel">취소</a></li>
 			</ul>
 		</form> 
 	</div>
