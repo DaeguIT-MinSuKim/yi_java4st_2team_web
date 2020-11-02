@@ -1,22 +1,23 @@
 package rentcar.dto;
 
 public class Admin {
-	// 관리자 dto
-	private String id;		// 아이디
-	private String pwd;		// 비밀번호
-	
-	//	생성자
-	public Admin() {		
+
+	private String id; // 아이디
+	private String pwd; // 비밀번호
+
+	public Admin() {
 		super();
 	}
 
+	public Admin(String id) {
+		this.id = id;
+	}
+
 	public Admin(String id, String pwd) {
-		super();
 		this.id = id;
 		this.pwd = pwd;
 	}
 
-	//	getter & setter & toString
 	public String getId() {
 		return id;
 	}

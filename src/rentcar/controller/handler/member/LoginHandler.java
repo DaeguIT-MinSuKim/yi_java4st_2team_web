@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import rentcar.controller.Command;
+import rentcar.dto.Admin;
 import rentcar.dto.Member;
+import rentcar.service.AdminService;
 import rentcar.service.LoginFailService;
 import rentcar.service.MemberService;
 
@@ -16,6 +18,7 @@ public class LoginHandler implements Command {
 
 	private MemberService service = new MemberService();
 	private LoginFailService service2 = new LoginFailService();
+	private AdminService serviceAdmin = new AdminService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -36,9 +39,16 @@ public class LoginHandler implements Command {
 
 			Member getId = service.selectMemberByUserId((id));
 			System.out.println("getId > " + getId);
-
+			
 			int lock = service2.loginLockStatus(id);
 			System.out.println("lock > " + lock);
+			
+			Admin admin = serviceAdmin.selectAdminById(id);
+			System.out.println("admin > " + admin);
+			
+			if (admin.getId().equals(id)) {
+				return "admin.do";
+			}
 
 			if (getId == null) {
 
