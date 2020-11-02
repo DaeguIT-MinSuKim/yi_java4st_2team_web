@@ -46,10 +46,6 @@ public class LoginHandler implements Command {
 			Admin admin = serviceAdmin.selectAdminById(id);
 			System.out.println("admin > " + admin);
 			
-			if (admin.getId().equals(id)) {
-				return "admin.do";
-			}
-
 			if (getId == null) {
 
 			} else if (lock == 0) {
@@ -77,10 +73,17 @@ public class LoginHandler implements Command {
 				request.setAttribute("message", "로그인을 1분간 할 수 없습니다.");
 				return "member/login.jsp";
 			}
+			
+			if (admin.getId().equals(id)) {
+				return "admin.do";
+			}
+			
 			request.setAttribute("message", "존재하지 않는 아이디입니다.");
 			return "member/login.jsp";
+						
 		}
 
 	}
+
 
 }
