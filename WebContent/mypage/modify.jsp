@@ -7,6 +7,30 @@
 <%@ include file="/include/sub_member.jsp"%>
 
 <script>
+	function changePass() {
+		
+		var popupWidth = 480;
+		var popupHeight = 350;
+		
+		var left = (screen.availWidth - popupWidth) / 2;
+			if (window.screenLeft < 0) {
+				left += window.screen.width * -1;
+			} else if (window.screenLeft > window.screen.width) {
+				left += window.screen.width;
+			}
+			
+		var top = (screen.availHeight - popupHeight) / 2 - 10;
+		
+		var options = "resizable=no,left=" + left + ",top=" + top +" width=" + popupWidth+ ",height=" + popupHeight +",menubar=no, status=no, toolbar=no, location=no, scrollbars=yes";
+		
+		var url = "changePassword.do"
+		window.open(url, "_blank_1", options);
+			
+	}
+
+</script>
+
+<script>
 	/* 생년월일 */
 	$(function() {
 		var date = new Date();
@@ -125,22 +149,17 @@
 					</div>
 				</div>
 
-				<!-- <div class="form-group">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-10 divinner">
-						<input type="password" class="form-control" maxlength="20" name="new_passwd" id="new_passwd">
-						<p>특수문자를 하나 이상 포함하여 6 ~ 20자로 입력하십시오.</p>
+						<div class="col-xs-3">
+							<a href="javascript:;" class="btn btn-normal" id="changePass"
+							onclick="changePass(); return false;">비밀번호 변경하기</a>
+						</div><div style="margin-top: 20px; font-style: italic; text-align: center;"><h4>${message}</h4></div>
+						<p></p>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<label class="col-sm-2 control-label">새 비밀번호</label>
-					<div class="col-sm-10 divinner">
-						<input type="password" class="form-control" maxlength="20" name="new_passwd2" id="new_passwd2">
-						<p>비밀번호를 동일하게 다시 한 번 입력하십시오.</p>
-					</div>
-				</div> -->
-				
+								
 				<div class="form-group">
 					<label class="col-sm-2 control-label">성별</label>
 					<div class="col-sm-10 divinner">

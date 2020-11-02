@@ -12,6 +12,10 @@ DELETE FROM EVENT;
 DELETE FROM EVENT_BOX;
 DELETE FROM NOTICE;
 
+-- 관리자
+INSERT INTO ADMIN(ID, PWD)
+VALUES ('admin', '1234');
+
 -- 회원
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
 VALUES ('dong', '1234', 'M', '1998-11-6', '동자승', '010-1234-1234', 'Class1A', '12-12-123456-12', 'aa@aa.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
@@ -123,7 +127,7 @@ SELECT * FROM BRAND;
 
 -- 렌트 예약시 옵션박스에 저장
 
--- 차량 ------------------------------------------
+-- 차량
 -- 차량 (소형)
 INSERT INTO CAR VALUES ('11하1234', '모닝', 1, 1, '', 'Y', 0, 'morning.png');
 INSERT INTO CAR VALUES ('11하5678', '모닝AllNew', 1, 1, '', 'Y', 0, 'morningAllNew.png');
@@ -178,7 +182,7 @@ UPDATE CAR SET CAR_COUNT = 4 WHERE KIND_CODE = 4;
 UPDATE CAR SET CAR_COUNT = 5 WHERE KIND_CODE = 5;
 
 UPDATE CAR SET IS_RENTCAR = 'N' WHERE KIND_CODE = 5;
---// 차량 ------------------------------------------
+-- 차량
 
 -- 보험
 INSERT INTO INSURANCE VALUES (0, '선택안함', 0);
@@ -196,9 +200,6 @@ INSERT INTO OPTIONS VALUES (5, '하이패스', 5000);
 SELECT * FROM OPTIONS;
 
 --장기렌트
-
-
-
 INSERT INTO LONGRENT( TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('외제차 문의, 답변 빨리 주세요.','뚜껑열린 외제차를 렌트하고싶습니다. 연락주세요..................!!',DEFAULT, SYSDATE,'100일', '곽수정','010-1234-3333','3333','옵션없음');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
@@ -277,11 +278,9 @@ INSERT INTO NOTICE VALUES(7,'대여 자격 기준이 어떻게 되나요? ','동
 운전면허경력증명서와 재취득하신 면허증을 지참하시면 차량대여 가능합니다.'
 ,SYSDATE, 0);
 
-
 INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) VALUES('중요한 공지사항입니다.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 확인용입니다. ',sysdate, 1);
 
 SELECT * FROM notice;
-
 
 -- 이벤트
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES('10월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', '2020-10-01', '2020-10-30', 'y');
@@ -298,8 +297,6 @@ INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong1');
 INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong1');
 SELECT * FROM EVENT_BOX;
 
-
 -- 옵션
 INSERT INTO OPT_BOX(OPT_CODE, RENT_NO) VALUES (1, 1);
 SELECT * FROM OPT_BOX;
-

@@ -37,6 +37,10 @@ public class MemberService {
 	public int insertMember(Member member) {
 		return dao.insertMember(member);
 	}
+	
+	public int changePass(String id, String pwd) {
+		return dao.changePass(id, pwd);
+	}
 
 	public int updateMember(Member member) {
 		return dao.updateMember(member);

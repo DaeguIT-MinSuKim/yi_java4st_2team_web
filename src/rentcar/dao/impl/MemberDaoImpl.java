@@ -321,4 +321,19 @@ public class MemberDaoImpl implements MemberDao {
 		return 0;
 	}
 
+	@Override
+	public int changePass(String id, String pwd) {
+		String sql = "UPDATE MEMBER\r\n"
+				+ "      SET PWD = ?\r\n"
+				+ "    WHERE ID = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, pwd);
+			pstmt.setString(2, id);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
 }

@@ -31,6 +31,10 @@ UPDATE MEMBER
    		EMAIL = ?,
    		ADDRESS = ?
   WHERE ID = ?;
+ 
+UPDATE MEMBER
+   SET PWD = '1234'
+  WHERE ID = 'dong';
 
 /* 페이징 - 회원 리스트 수 */
 SELECT COUNT(*) FROM MEMBER;
