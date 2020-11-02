@@ -327,7 +327,7 @@ function rentDetail_priceChange(){
 		// 할인/쿠폰 (셀렉박스)
 		$get_dis.find("select").change(function(){
 			$set_dis.text($(this).find("option:selected").text());
-			$(".set_discount").text($(this).find("option:selected").val());
+			$(".set_discount").text("-" + $(this).find("option:selected").val());
 			calculator();
 		});
 		
@@ -370,7 +370,7 @@ function rentDetail_priceChange(){
 			// 렌트 총 날짜 * 금액 계산
 			calculator_date();
 			var carPay = parseInt($get_carFare.val()) * parseInt($set_day.text());
-			var total = insPay + optPay + disPay + carPay; // 총금액
+			var total = (insPay + optPay + carPay) - disPay ; // 총금액
 			
 			$set_total.attr("data-total", total); // 결제금액 DB로 가져갈때를 위해 삽입
 			$set_total.text(numberWithCommas(total)); // 총 결제 금액 화면에 뿌림 

@@ -29,16 +29,16 @@ public class BrandWriteHandler implements Command {
 			return "admin/brand/brandWrite.jsp";
 		} else {
 			System.out.println("POST");
-			response.setContentType("text/html; charsert=UTF8");
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 
-			String savePath = "upload";
+			String savePath = "images/brand";
 			int uploadFileSizeLimit = 5 * 1024 * 1024;
 			String enctype = "UTF-8";
 
 			ServletContext context = request.getServletContext(); // 컨트롤러 인터페이스를 상속받아 처리하는 경우 request 사용
 			String uploadFilePath = context.getRealPath(savePath);
-
+			
 			try {
 				System.out.println(request);
 				MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, enctype,

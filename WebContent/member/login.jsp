@@ -58,7 +58,7 @@ window.onload = function(){ document.usrlog.member_id.focus(); }
 					<div style="font-style: italic;">${message}</div>
 					<div style="font-style: italic;">${message2}</div>
 					<div>
-						<a class="btn btn-normal login" href="#void" onclick="frm_mm_chk(); return false;">로그인</a>
+						<a class="btn btn-normal login" href="javascript:;" onclick="frm_mm_chk(); return false;">로그인</a>
 					</div>
 				</div>
             </form>

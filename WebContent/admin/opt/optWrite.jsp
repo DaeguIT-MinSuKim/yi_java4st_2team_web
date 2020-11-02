@@ -7,25 +7,25 @@
 <script type="text/javascript">
 	$(function() {
 		$('#add').on("click", function() {
-			if ($('#optCode').val() == "") {
+			
+			if ( $('#optCode').val() == "") {
 				alert("옵션코드를 기입해주세요");
-				$("#carNo").focus()
+				$("#optCode").focus();
 				return false;
 			}
 			if ($('#optName').val() == "") {
-				alert("옵션이름을 기입해주세요")
-				$("#carNo").focus()
+				alert("옵션이름을 기입해주세요");
+				$("#optName").focus()
 				return false;
 			}
 			if ($('#optFare').val() == "") {
-				alert("옵션비용을 기입해주세요")
-				$("#carNo").focus()
+				alert("옵션비용을 기입해주세요");
+				$("#optFare").focus()
 				return false;
 			}
 			
 			$("#frm_adminOptWrite").submit();
 		});
-		
 	});
 </script>
 

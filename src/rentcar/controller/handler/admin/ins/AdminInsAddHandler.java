@@ -32,5 +32,5 @@ public class AdminInsAddHandler implements Command {
 			return null;
 			
 		}
-}
+	}	
 }

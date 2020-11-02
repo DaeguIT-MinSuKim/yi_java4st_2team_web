@@ -49,6 +49,8 @@
 	});
 </script>
 
+
+
 <!-- 차량 검색 -->
 <div id="adimn_content">
 	<h2>차량 목록</h2>
@@ -75,14 +77,13 @@
 					</select> <select id="opt5" name="opt5">
 						<option value="Y">반납완료</option>
 						<option value="N">대여중</option>
-					</select> <input type="text" name="inputSearch" id="inputSearch"
-						placeholder="검색란">
+					</select> <input type="text" name="inputSearch" id="inputSearch" placeholder="검색란">
 
 					<button class="search">검색</button>
 				</form>
 			</div>
 		</div>
-
+		
 		<!-- 차량 목록 -->
 		<table class="carTable table_style1">
 			<tr>
@@ -110,13 +111,12 @@
 					<td>${car.remark}</td>
 					<td>${car.is_rent}</td>
 					<td>${car.counting}</td>
-					<td><img src="upload/${car.image}" width="100" height="50"></td>
+					<td><img src="images/rentcar/${car.getKind().getCode()}/${car.image}" width="100" height="50"></td>
 					<td><a href="carUpdate.do?carNo=${car.no}"><input
 							type="button" value="수정" class="update btn-success"></a></td>
 					<td><c:choose>
 							<c:when test="${car.is_rent != 'N'}">
-								<a href="carDelete.do?carNo=${car.no}"> <input type="button"
-									value="삭제" class="delete btn_case5">
+								<a href="carDelete.do?carNo=${car.no}"> <input type="button" value="삭제" class="delete btn_case5">
 								</a>
 							</c:when>
 							<c:when test="${car.is_rent == 'N'}">
