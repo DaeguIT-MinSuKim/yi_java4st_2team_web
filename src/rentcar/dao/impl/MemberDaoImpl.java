@@ -150,18 +150,22 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int updateMember(Member member) {
-		String sql = "UPDATE MEMBER SET PWD=?, NAME=?, TEL=?, LICENSE=?, ADDRESS=? WHERE ID=?";
+		String sql = "UPDATE MEMBER\r\n"
+				+ "      SET GENDER = ?,\r\n"
+				+ "   		 BIRTH = ?,\r\n"
+				+ "   		 LI_CLASS = ?,\r\n"
+				+ "   		 LI_NUMBER = ?,\r\n"
+				+ "   		 EMAIL = ?,\r\n"
+				+ "   		 ADDRESS = ?\r\n"
+				+ "    WHERE ID = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
-			pstmt.setString(1, member.getPwd());
-			pstmt.setString(2, member.getGender());
-			pstmt.setTimestamp(3, new Timestamp(member.getBirth().getTime()));
-			pstmt.setString(4, member.getName());
-			pstmt.setString(5, member.getTel());
-			pstmt.setString(6, member.getLi_class());
-			pstmt.setString(7, member.getLi_number());
-			pstmt.setString(8, member.getEmail());
-			pstmt.setString(9, member.getAddress());
-			pstmt.setString(10, member.getId());
+			pstmt.setString(1, member.getGender());
+			pstmt.setTimestamp(2, new Timestamp(member.getBirth().getTime()));
+			pstmt.setString(3, member.getLi_class());
+			pstmt.setString(4, member.getLi_number());
+			pstmt.setString(5, member.getEmail());
+			pstmt.setString(6, member.getAddress());
+			pstmt.setString(7, member.getId());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -309,6 +313,12 @@ public class MemberDaoImpl implements MemberDao {
 			throw new CustomSQLException(e);
 		}
 		return null;
+	}
+
+	@Override
+	public int leaveMember(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

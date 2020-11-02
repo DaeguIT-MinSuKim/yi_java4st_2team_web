@@ -37,7 +37,7 @@ public class LoginHandler implements Command {
 			Member getId = service.selectMemberByUserId((id));
 			System.out.println("getId > " + getId);
 
-			int lock = service2.loginLockStatus(new Member(id));
+			int lock = service2.loginLockStatus(id);
 			System.out.println("lock > " + lock);
 
 			if (getId == null) {
@@ -46,17 +46,17 @@ public class LoginHandler implements Command {
 				if (getId.getPwd().equals(pwd)) {
 					session.removeAttribute(id);
 					session.setAttribute("loginUser", getId);
-					int loginFail = service2.loginFailCount(new Member(id));
+					int loginFail = service2.loginFailCount(id);
 					System.out.println("loginFail > " + loginFail);
-					int resetLFC = service2.resetLoginFailCount(new Member(id));
+					int resetLFC = service2.resetLoginFailCount(id);
 					System.out.println("resetLFC > " + resetLFC);
-					int resetLLC = service2.resetLockCount(new Member(id));
+					int resetLLC = service2.resetLockCount(id);
 					System.out.println("resetLLC > " + resetLLC);
 					return "index.do";
 				} else {
-					int loginFail = service2.loginFailCount(new Member(id));
+					int loginFail = service2.loginFailCount(id);
 					System.out.println("loginFail > " + loginFail);
-					int loginLock = service2.loginLock(new Member(id));
+					int loginLock = service2.loginLock(id);
 					System.out.println("loginLock > " + loginLock);
 					request.setAttribute("message", "비밀번호가 틀렸습니다.");
 					request.setAttribute("message2", "다시 확인해주세요.");

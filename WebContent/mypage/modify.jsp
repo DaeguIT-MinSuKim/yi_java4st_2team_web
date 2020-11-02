@@ -2,14 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-<%@ include file="/include/header.jsp"%>
 
+<%@ include file="/include/header.jsp"%>
 <%@ include file="/include/sub_member.jsp"%>
 
 <script>
+	/* 생년월일 */
 	$(function() {
 		var date = new Date();
 		var year = date.getFullYear();
+		
 		var selectValue = document.getElementById("birthYear");
 		var optionIndex = 0;
 		for(var i = year-60; i <= year; i++) {
@@ -27,6 +29,7 @@
 		for(var i = 1; i<32; i++) {
 			selectValue.add(new Option(i, i), optionIndex++);
 		}
+		
 	});
 </script>
 
@@ -57,14 +60,61 @@
 	});
 </script>
 
+<script>
+	$(function() {
+		$("#modify").on("click", function(e) {
+			
+			e.preventDefault();
+			
+			if (document.getElementsByName("li_class")[0].checked == false
+					&& document.getElementsByName("li_class")[1].checked == false
+					&& document.getElementsByName("li_class")[2].checked == false
+					&& document.getElementsByName("li_class")[3].checked == false) {
+				alert("운전면허종류를 선택하세요.");
+				document.getElementsByName("li_class")[0].focus();
+				return;
+			}
+			
+			if (modify()) {
+				var modifyMember = {
+					id: ${param.id},
+					gender : $('#gender').val(),
+  					birth : ($('#birthYear').val() + "-" + $('#birthMonth').val() + "-" + $('#birthDay').val()),
+					li_class : $('#li_class').val(),
+					li_number : ($('#li_number1').val() + "-" + $('#li_number2').val() + "-" +$('#li_number3').val() + "-" +$('#li_number4').val()),
+					email : ($('#email1').val() + $('#email2').val()),
+					address : ($('#zipcode').val() + " " + $('#addr1').val() + " " + $('#addr2').val())
+				};
+				
+				$.ajax({
+					type : "post",
+					url : "modify.do"
+					cache : false,
+					data : JSON.stringify(modifyMember),
+					complete : function(data) {
+						alert("수정 되었습니다.");
+						window.location.href = "joinEnd.do";
+					}
+				
+				});
+				
+			}
+	
+		});
+		
+	});
+</script>
+
 <!-- 컨텐츠 -->
 <div class="contents_box padLeft0">
 	<div class="contents">
 		<h3>개인정보 수정</h3>
 		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 마이페이지<span>></span> 개인정보 수정</div>
         <div class=" logincontainer-fluid_box page_mypage">
-        	<form class="form-horizontal" role="form" name="frmName" method="post" action="mypage.do" onsubmit="return false;" enctype="multipart/form-data">	
+        	<form class="form-horizontal" role="form" name="frmName" method="post"
+        		action="modify.do">	
 				<div class="join">
+				
 					<div class="form-group">
 					<label class="col-sm-2 control-label">아이디</label>
 					<div class="col-sm-10 divinner">
@@ -75,7 +125,7 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-10 divinner">
 						<input type="password" class="form-control" maxlength="20" name="new_passwd" id="new_passwd">
@@ -89,7 +139,7 @@
 						<input type="password" class="form-control" maxlength="20" name="new_passwd2" id="new_passwd2">
 						<p>비밀번호를 동일하게 다시 한 번 입력하십시오.</p>
 					</div>
-				</div>
+				</div> -->
 				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">성별</label>
@@ -298,13 +348,13 @@
 					</div>
 				</div>
 	
-	
 				<div class="h30"></div>
 				<!-- 버튼 -->
 				<div class="btn_box">
 					<ul>
-						<li><a class="btn btn-blue submit" id="mypage_modify" type="button">수정하기</a></li>
-						<li><a class="btn btn-gray" href="">회원탈퇴</a></li>
+						<li><a class="btn btn-blue submit" id="modify" type="button">수정하기</a></li>
+						<li><input class="btn btn-blue submit" id="modify" type="submit" value="수정하기"></li>
+						<li><a class="btn btn-gray" href="leave.do">회원탈퇴</a></li>
 					</ul>
 				</div>
 			</form>

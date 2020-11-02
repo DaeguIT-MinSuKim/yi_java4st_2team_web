@@ -10,34 +10,28 @@ import javax.servlet.http.HttpSession;
 import rentcar.controller.Command;
 import rentcar.dto.Member;
 
-public class MypageHandler implements Command {
+public class LeaveHandler implements Command {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("GET MypageHandler");
-
+			System.out.println("GET LeaveHandler");
+			
 			HttpSession session = request.getSession();
 
 			Member loginUser = (Member) session.getAttribute("loginUser");
 			System.out.println("loginUser > " + loginUser);
 
-			if (loginUser != null) {
-				return "mypage/mypage.jsp";
-			} else {
-				response.sendRedirect("login.do");
-			}
-			return null;
-
+			return "mypage/member_end.jsp";
+			
 		} else {
-			System.out.println("POST MypageHandler");
-
+			System.out.println("POST LeaveHandler");
+			
 			return null;
-
 		}
-
+		
 	}
 
 }

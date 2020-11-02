@@ -20,6 +20,16 @@ SELECT *
   FROM MEMBER
  WHERE id = 'dong';
 
+/* 회원 개인 정보 수정 */
+UPDATE MEMBER
+   SET GENDER = ?,
+   		BIRTH = ?,
+   		LI_CLASS = ?,
+   		LI_NUMBER = ?,
+   		EMAIL = ?,
+   		ADDRESS = ?
+  WHERE ID = ?;
+
 /* 페이징 - 회원 리스트 수 */
 SELECT COUNT(*) FROM MEMBER;
 
@@ -103,8 +113,6 @@ SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIO
 
 /* 블랙 리스트 추출 */
 SELECT * FROM MEMBER WHERE IS_BLACK = 'Y' ORDER BY NAME ASC;
-
-
 
 SELECT BIRTH
   FROM MEMBER

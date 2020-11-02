@@ -24,7 +24,7 @@ public class MypagePasswordHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET MypagePasswordHandler");
 
-			return "member/mypage_password.jsp";
+			return "mypage/mypage_password.jsp";
 			
 		} else {
 			System.out.println("POST MypagePasswordHandler");
@@ -52,7 +52,7 @@ public class MypagePasswordHandler implements Command {
 			}
 			request.setAttribute("loginUser", loginUser);
 
-			return "member/mypage_password.jsp";
+			return "mypage/mypage_password.jsp";
 			
 		}
 
