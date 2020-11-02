@@ -44,7 +44,7 @@
 			}
 		</script>
 		
-		<script language='javascript'>
+		<script>
 			function idcheck() {
 		
 				// 아이디 조합 체크
