@@ -13,7 +13,18 @@ public class AgreeHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "member/agree.jsp";
+		
+		if (request.getMethod().equalsIgnoreCase("GET")) {
+			System.out.println("GET AgreeHandler");
+
+			return "member/agree.jsp";
+
+		} else {
+			System.out.println("POST AgreeHandler");
+
+			return null;
+		}
+
 	}
 
 }
