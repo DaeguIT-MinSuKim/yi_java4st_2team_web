@@ -16,7 +16,7 @@ public class LogoutHandler implements Command {
 			throws ServletException, IOException {
 
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("GET");
+			System.out.println("GET LogoutHandler");
 
 			HttpSession session = request.getSession(false);
 
@@ -27,7 +27,7 @@ public class LogoutHandler implements Command {
 			return "index.do";
 
 		} else {
-			System.out.println("POST");
+			System.out.println("POST LogoutHandler");
 
 			return null;
 		}

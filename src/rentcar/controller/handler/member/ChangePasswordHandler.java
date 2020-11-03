@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.Remove;
+
 import rentcar.controller.Command;
 import rentcar.dto.Member;
 import rentcar.service.MemberService;
@@ -61,8 +63,10 @@ public class ChangePasswordHandler implements Command {
 				if (newPwd1.equals(newPwd2)) {
 					int changePass = service.changePass(loginUser.getId(), newPwd2);
 					request.setAttribute("message", "비밀번호가 변경되었습니다.");
+					request.removeAttribute("loginUser");
 					response.getWriter().print(changePass);
-					return "mypage/change_password.jsp";
+					// return "mypagePassword.do";
+					return "mypage/mypage_password.jsp";
 				} else {
 					request.setAttribute("message", "변경할 비밀번호가 일치하지 않습니다.");
 					return "mypage/change_password.jsp";
