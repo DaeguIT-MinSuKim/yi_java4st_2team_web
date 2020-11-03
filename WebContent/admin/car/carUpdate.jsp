@@ -9,7 +9,7 @@
 		$('#kindList').val(kindCode);
 		
 		var brandCode = ${car.brand.code};
-		$('#brandList').val(brandCode);\
+		$('#brandList').val(brandCode);
 		
 		$("#kindList").change(function(){
 			document.cookie="kindNum="+ $("#kindList").val();
