@@ -13,10 +13,10 @@
 	<form method="get">
 		<div class="login_box">
 			<div class="col-sm-6">
-				<a class="btn login" href="searchId.do">아이디 찾기</a>
+				<a class="btn login" href="searchId.do"><i class="fas fa-unlock"></i><br>아이디 찾기</a>
 			</div>
 			<div class="col-sm-6">
-				<a class="btn login" href="searchPwd.do">비밀번호 찾기</a>
+				<a class="btn login" href="searchPwd.do"><i class="fas fa-unlock-alt"></i><br>비밀번호 찾기</a>
 			</div>
 		</div>
 	</form>

@@ -65,7 +65,7 @@ SELECT * FROM car;
 -- 렌트
 INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong', '11하1234', 1, '2017-11-17', '2017-11-20', 'n', 65000, '반납X');
 INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong1', '11하1234', 1, '2018-11-13', '2018-11-14', 'y', 65000, '');
-INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong2', '11하1234', 1, '2019-11-13', '2019-11-14', 'y', 65000, '');\
+INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong2', '11하1234', 1, '2019-11-13', '2019-11-14', 'y', 65000, '');
 INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'kim', '11하5678', 4, '2020-11-13', '2020-11-14', 'y', 65000, '');
 SELECT * FROM RENT;
 
@@ -242,9 +242,9 @@ INSERT INTO NOTICE VALUES(7,'대여 자격 기준이 어떻게 되나요? ','동
 운전면허경력증명서와 재취득하신 면허증을 지참하시면 차량대여 가능합니다.'
 ,SYSDATE, 0);
 
-INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) VALUES('중요한 공지사항입니다.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 확인용입니다. ',sysdate, 1);
-
 SELECT * FROM notice;
+--INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE ,IS_TOP ) VALUES('중요한 공지사항입니다.','동자승 렌터카를 이용해주시는 고객여러분께 감사 드립니다. 확인용입니다. ',sysdate, 1);
+
 
 -- 이벤트
 INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES('10월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', '2020-10-01', '2020-10-30', 'n');
@@ -306,3 +306,4 @@ BEGIN
 	EXIT WHEN NUM > 20;
 	END LOOP;
 END;
+
