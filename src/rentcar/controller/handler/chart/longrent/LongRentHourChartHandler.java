@@ -20,7 +20,7 @@ public class LongRentHourChartHandler implements Command {
 			throws ServletException, IOException {
 		
 		JSONArray jsonArray = service.getCountTimeLongRent();
-		System.out.println("jsonArray >>> " + jsonArray);
+		//System.out.println("jsonArray >>> " + jsonArray);
 
 		request.setAttribute("jsonArray",jsonArray);
 		//		List<LongRent> chartList = service.selectLongRentChartList();
