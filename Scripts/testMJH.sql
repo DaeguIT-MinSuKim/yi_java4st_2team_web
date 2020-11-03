@@ -18,7 +18,7 @@ SELECT *
 
 SELECT *
   FROM MEMBER
- WHERE id = 'dong1';
+ WHERE id = 'dong20';
 
 SELECT * FROM ADMIN WHERE ID = ?;
 

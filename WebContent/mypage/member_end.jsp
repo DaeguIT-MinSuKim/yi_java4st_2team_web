@@ -138,7 +138,6 @@
 			<div class="btn_box">
 				<ul>
 					<li><a class="btn btn-black" type="submit" id="leave">탈퇴완료</a></li>
-					<!-- <li><a id="leave" class="btn btn-black" type="submit" href="javascript:;" onClick="outFrmChk();">탈퇴완료</a></li> -->
 					<li><a class="btn btn-gray" href="index.do">탈퇴취소</a></li>
 				</ul>
 			</div>
