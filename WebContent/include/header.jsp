@@ -114,19 +114,18 @@
 						<c:when test="${empty sessionScope.loginUser}">
 							<li><a class="login" href="login.do"><span>로그인</span></a></li>
 							<li><a class="join" href="joinAgree.do">회원가입</a></li>
-							<li><a class="admin" href="adminRent.do">관리자</a></li>
+							<!-- <li><a class="admin" href="adminRent.do">관리자</a></li> -->
 						</c:when>
 						<c:otherwise>
 							<li>${sessionScope.loginUser.name}(${sessionScope.loginUser.id})님</li>
 	      					<li><a class="logout" style="cursor:pointer;" id="logout"><span>로그아웃</span></a></li>
-							<li><a class="mypage" href="mypage.do">마이페이지</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
 			</div>
 
 			<a class="gnbView mobile" href="javascript:;" title="전체메뉴보기"></a>
-		</div>
+		</div><!-- //wrap -->
 	</div>
 
 		<nav class="pc box">
@@ -146,38 +145,25 @@
 					<li class="mobile" data-device="mobile">
 						<a href="javascript:;">회원관리</a>
 						<ul>
-						<c:choose>
-							<c:when test="${empty sessionScope.loginUser}">
-								<li><a href="login.do">로그인</a></li>
-								<li><a href="joinAgree.do">회원가입</a></li>
-								<li><a href="search.do">아이디/비밀번호찾기</a></li>
-							</c:when>
-								
-							<c:otherwise>
-								<li><a class="logout" id="logout" href="logout.do">로그아웃</a></li>
-							</c:otherwise>
-						</c:choose>
-							<li><a href="mypage.do">마이페이지</a></li>
-							<li><a href="mypage.do">렌트중인차량</a></li>
+							<c:choose>
+								<c:when test="${empty sessionScope.loginUser}">
+									<li><a href="login.do">로그인</a></li>
+									<li><a href="joinAgree.do">회원가입</a></li>
+									<li><a href="search.do">아이디/비밀번호찾기</a></li>
+								</c:when>
+									
+								<c:otherwise>
+									<li><a class="logout" id="logout" href="logout.do">로그아웃</a></li>
+									<li><a href="mypage.do">마이페이지</a></li>
+								</c:otherwise>
+							</c:choose>
 							<li><a href="agree.do">이용약관</a></li>
 							<li><a href="privacy.do">개인정보취급방침</a></li>
 						</ul>
 					</li>
-<!-- 로그인 후 
-					<li <?=$bMenu_200?> class="mobile" data-device="mobile">
-						<a href="./mypage/modify.jsp">마이페이지</a>
-						<ul>
-							<li><a href="./mypage/modify_before.jsp">개인정보수정</a></li>
-							<li><a href="agree.do">이용약관</a></li>
-							<li><a href="privacy.do">개인정보취급방침</a></li>
-							<li><a href="./mypage/member_end.jsp">회원탈퇴</a></li>
-						</ul>
-					</li>
--->
 				</ul>
 			</div>
-		<!-- //wrap -->
-	</nav><!-- //nav -->
+		</nav><!-- //nav -->
 
 	<div class="gnbCover mobile"></div>
 	<nav class="mobile box">

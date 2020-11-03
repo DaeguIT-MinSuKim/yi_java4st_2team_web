@@ -42,7 +42,8 @@ i.msg {display:inline-block; width:40px; height:40px; background:url(../images/c
 .btn_box li {display:inline-block;}
 /* 회원-아이디/비번찾기 */
 .search .login_box {width:100%;}
-.search .login_box .login {padding:80px 30px 70px 30px; background:#0093ff url(../images/member/search.png) 50% 30% no-repeat; border-radius:10px;}
+.search .login_box .login {padding:50px 30px 120px 30px; background:#0093ff; border-radius:10px;  line-height:0.8;}
+.search .login_box .login i {font-size:40px; margin-bottom:15px;}
 .search .login_box .col-sm-6 {padding-left:60px !important; padding-right:60px !important; margin-bottom:40px;}
 /* 아이디찾기-1 */
 .search_id .id_wrap {width:100%; border:1px solid #cfcfcf; border-radius:10px; padding:50px 10px; text-align:center; margin-bottom:20px;}
@@ -61,7 +62,7 @@ i.msg {display:inline-block; width:40px; height:40px; background:url(../images/c
 .login_box .form-group>* {margin-bottom:15px; padding:0;}
 .login_box .form-group>*:last-child {margin:0;}
 .login_box .form-group .input-lg {padding:6px 16px; height:50px;}
-.login_box .login {width:100%; color:#fff !important; background-color:#0093ff; line-height:1; border:none; font-size:18px; height:60px; line-height: 60px;}
+.login_box .login {width:100%; color:#fff !important; background-color:#0093ff; border:none; font-size:18px; height:60px; line-height:60px;}
 .login_box .login:hover {background-color:#333;}
 .login_box .info {margin-top:20px; text-align:left; font-size:12px !important; padding:0;}
 .login_box .info>* {padding-top:20px; padding-left:0; margin:0;}

@@ -1,308 +1,384 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <%@ include file="/include/header.jsp"%>
-<!-- // header -->
+<%@ include file="/include/sub_member.jsp"%>
 
 <script>
-function emailChkYorN() {
-	document.frmName.emailChk.value="";
-}
-
-function createQueryingChk() {
-
-	var form1 = document.frmName;
-
-	if(!form1.email.value){
-		alert("이메일을 입력하세요");
-		form1.email.focus();
-		return;
+	function changePass() {
+		
+		var popupWidth = 480;
+		var popupHeight = 350;
+		
+		var left = (screen.availWidth - popupWidth) / 2;
+			if (window.screenLeft < 0) {
+				left += window.screen.width * -1;
+			} else if (window.screenLeft > window.screen.width) {
+				left += window.screen.width;
+			}
+			
+		var top = (screen.availHeight - popupHeight) / 2 - 10;
+		
+		var options = "resizable=no,left=" + left + ",top=" + top +" width=" + popupWidth+ ",height=" + popupHeight +",menubar=no, status=no, toolbar=no, location=no, scrollbars=yes";
+		
+		var url = "changePassword.do"
+		window.open(url, "_blank_1", options);
+			
 	}
-	var EMAIL = form1.email.value;
-	if (EMAIL) {
-		if ((EMAIL.indexOf('@') < 0 )||(EMAIL.indexOf('.') < 0 )) {
-			window.alert('이메일을 정확하게 입력하세요');
-			form1.email.focus();
-			return;
-		}
-	}
-	validate_EmailDupl();
-}
+
 </script>
-<script src="/js/email_dupl.js"></script>
-
 
 <script>
-function frmChk(){
+	/* 생년월일 */
+	$(function() {
+		var date = new Date();
+		var year = date.getFullYear();
+		
+		var selectValue = document.getElementById("birthYear");
+		var optionIndex = 0;
+		for(var i = year-60; i <= year; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);                        
+		}
+		
+		var selectValue = document.getElementById("birthMonth"); 
+		var optionIndex = 0;
+		for(var i = 1; i<13; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);
+		}
+		
+		var selectValue = document.getElementById("birthDay");
+		var optionIndex = 0;
+		for(var i = 1; i<32; i++) {
+			selectValue.add(new Option(i, i), optionIndex++);
+		}
+		
+	});
+</script>
 
-	form1=document.frmName;
-	var NUM=0;
-
-	//비밀번호 특수문자 체크
-	var regMust1 = /[a-zA-Z0-9_]/;
-	var regMust2 = /[^a-zA-Z0-9_]/;
+<script>
+	/* 이메일 주소 자동 기입 */
+	$(function() {
+		$("#domain").change(function() {
+			$("#email2").val($("#domain").val());
+		});
+		
+	});
 	
-	if(!document.getElementsByName("old_passwd")[0].value){
-		window.alert("비밀번호를 입력하세요.");
-		document.getElementsByName("old_passwd")[0].focus();
-		return;
-	}
-	if (document.getElementsByName("passwd")[0].value) {
-		if(!document.getElementsByName("passwd")[0].value){
-			window.alert("비밀번호를 입력하세요.");
-			document.getElementsByName("passwd")[0].focus();
-			return;
-		}
-		if(document.getElementsByName("passwd")[0].value.length<6 || document.getElementsByName("passwd")[0].value.length>20){
-			window.alert("비밀번호는 6자이상 20자 이하입니다.");
-			document.getElementsByName("passwd")[0].focus();
-			return;
-		}
-		if(!regMust1.test(document.getElementsByName("passwd")[0].value) || !regMust2.test(document.getElementsByName("passwd")[0].value)) {
-			window.alert("특수문자를 하나 이상 입력하세요");
-			document.getElementsByName("passwd")[0].focus();
-			return;
-		}
-		if(!document.getElementsByName("passwd1")[0].value){
-			window.alert("비밀번호를 한번 더 입력하세요.");
-			document.getElementsByName("passwd1")[0].focus();
-			return;
-		}
-		if(document.getElementsByName("passwd")[0].value != document.getElementsByName("passwd1")[0].value){
-			window.alert("비밀번호가 일치하지 않습니다.");
-			document.getElementsByName("passwd1")[0].focus();
-			return;
-		}
-	}
-
-/*
-	if(!document.getElementsByName("birthday")[0].value){
-		window.alert("생년월일을 선택하세요");
-		document.getElementsByName("birthday")[0].focus();
-		return;
-	}
-*/
-	if(!document.getElementsByName("zipcode")[0].value){
-		window.alert("주소를 입력하세요");
-		document.getElementsByName("zipcode")[0].focus();
-		return;
-	}
-	if(!document.getElementsByName("addr1")[0].value){
-		window.alert("주소를 입력하세요");
-		document.getElementsByName("addr1")[0].focus();
-		return;
-	}
-	if(!document.getElementsByName("cel1")[0].value || !document.getElementsByName("cel2")[0].value || !document.getElementsByName("cel3")[0].value){
-		alert("휴대전화번호를 입력하세요");
-		document.getElementsByName("cel1")[0].focus();
-		return;
-	}
-	if(!document.getElementsByName("email")[0].value){
-		window.alert("이메일을 입력하세요");
-		document.getElementsByName("email")[0].focus();
-		return;
-	}
-	var EMAIL = document.getElementsByName("email")[0].value;
-	if (EMAIL) {
-		if ((EMAIL.indexOf('@') < 0 )||(EMAIL.indexOf('.') < 0 )) {
-			window.alert('이메일을 정확하게 입력하세요');
-			document.getElementsByName("email")[0].focus();
-			return;
-		}
-	}
-	if(!document.getElementsByName("emailChk")[0].value) {
-		window.alert("이메일 중복검사를 해주세요");
-		return;
-	}
-	if(document.getElementsByName("emailChk")[0].value=="N") {
-		window.alert("이미 사용중인 이메일입니다.");
-		return;
-	}
-
-	form1.submit();
-}
+	/* 면허 종류 하나만 선택 */
+	$(function() {
+	    $('input[type="checkbox"][name="li_class"]').click(function(){
+	        if ($(this).prop('checked')) {
+	            $('input[type="checkbox"][name="li_class"]').prop('checked', false);
+	            $(this).prop('checked', true);
+	        }
+	        
+	    });
+	    
+	});
+	
+	/* 면허 종류 값 받아서 자동 선택 */
+	$(function() {
+	 	$("input:checkbox[name='li_class']:checkbox[value='${loginUser.li_class}']").prop('checked', true);
+	});
 </script>
 
-
-
-
-<?include "../include/sub_mypage.php";?>
-
+<script>
+	$(function() {
+		$("#modify").on("click", function(e) {
+			
+			e.preventDefault();
+			
+			if (document.getElementsByName("li_class")[0].checked == false
+					&& document.getElementsByName("li_class")[1].checked == false
+					&& document.getElementsByName("li_class")[2].checked == false
+					&& document.getElementsByName("li_class")[3].checked == false) {
+				alert("운전면허종류를 선택하세요.");
+				document.getElementsByName("li_class")[0].focus();
+				return;
+			}
+			
+			if (modify()) {
+				var modifyMember = {
+					id: ${param.id},
+					gender : $('#gender').val(),
+  					birth : ($('#birthYear').val() + "-" + $('#birthMonth').val() + "-" + $('#birthDay').val()),
+					li_class : $('#li_class').val(),
+					li_number : ($('#li_number1').val() + "-" + $('#li_number2').val() + "-" +$('#li_number3').val() + "-" +$('#li_number4').val()),
+					email : ($('#email1').val() + $('#email2').val()),
+					address : ($('#zipcode').val() + " " + $('#addr1').val() + " " + $('#addr2').val())
+				};
+				
+				$.ajax({
+					type : "post",
+					url : "modify.do"
+					cache : false,
+					data : JSON.stringify(modifyMember),
+					complete : function(data) {
+						alert("수정 되었습니다.");
+						window.location.href = "joinEnd.do";
+					}
+				
+				});
+				
+			}
+	
+		});
+		
+	});
+</script>
 
 <!-- 컨텐츠 -->
-<div class="contents_box">
+<div class="contents_box padLeft0">
 	<div class="contents">
-		<h3>개인정보수정</h3>
-		<div class="location pc">HOME <span>></span> 회원정보 <span>></span> 개인정보수정</div>
+		<h3>개인정보 수정</h3>
+		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 마이페이지<span>></span> 개인정보 수정</div>
+        <div class=" logincontainer-fluid_box page_mypage">
+        	<form class="form-horizontal" role="form" name="frmName" method="post"
+        		action="modify.do">	
+				<div class="join">
+				
+					<div class="form-group">
+					<label class="col-sm-2 control-label">아이디</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-8">
+							<input type="text" class="form-control" maxlength="20" name="member_id" id="member_id" value="${loginUser.id}" readonly>
+						</div>
+						<p></p>
+					</div>
+				</div>
 
+				<div class="form-group">
+					<label class="col-sm-2 control-label">비밀번호</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<a href="javascript:;" class="btn btn-normal" id="changePass"
+							onclick="changePass(); return false;">비밀번호 변경하기</a>
+						</div><div style="margin-top: 20px; font-style: italic; text-align: center;"><h4>${message}</h4></div>
+						<p></p>
+					</div>
+				</div>
+								
+				<div class="form-group">
+					<label class="col-sm-2 control-label">성별</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-2">
+							<select name="gender" id="gender" class="selectpicker show-tick form-control">
+								<option value="${loginUser.gender}" selected="selected">${loginUser.gender}</option>
+								<option value="M">남성</option>
+								<option value="F">여성</option>
+							</select>
+						</div>
+						<p></p>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">생년월일</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<select name="birthYear" id="birthYear" class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected" >${fn:substring(loginUser.birth, 0, 4)}</option>
+							</select>
+						</div>
+						<div class="col-xs-2">
+							<select name="birthMonth" id="birthMonth" class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected">${fn:substring(loginUser.birth, 5, 7)}</option>
+							</select>
+							
+						</div>
+						<div class="col-xs-2">
+							<select name="birthDay" id="birthDay" class="selectpicker show-tick form-control" dir="rtl">
+								<option selected="selected">${fn:substring(loginUser.birth, 8, 10)}</option>
+							</select>
+						</div>
+						<p></p>
+					</div>
+				</div>
 
-<form class="form-horizontal" role="form" name="frmName" method="post" action="<?=$HTTP_HOST_RE?><?=$homeDir?>/mypage/process_mypage.php" onsubmit="return false;" enctype="multipart/form-data">
-<input type="hidden" name="mode" value="modifyEnd">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">이름</label>
+					<div class="col-sm-10 divinner addr">
+						<div class="col-xs-5">
+							<input type="text" class="form-control" maxlength="10" name="member_name" id="member_name" value="${loginUser.name}" readonly>
+						</div>
+						<p></p>
+					</div>
+				</div>
 
-		<div class="join">
-			<div class="msg_box pc">
-				<i class="msg"></i>
-				<p>다음 항목들은 회원 관리 및 서비스 제공을 위해 활용됩니다.<br>설명에 따라 내용을 정확하게 입력하여 주십시오.</p>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">휴대전화</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="4"
+								name="cel1" id="cel1" style="ime-mode: disabled;" value="${fn:substring(loginUser.tel, 0, 3)}" readonly>
+						</div>
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="4"
+								name="cel2" id="cel2" style="ime-mode: disabled;" value="${fn:substring(loginUser.tel, 4, 8)}" readonly>
+						</div>
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="4"
+								name="cel3" id="cel3" style="ime-mode: disabled;" value="${fn:substring(loginUser.tel, 9, 13)}" readonly>
+						</div>
+						<p></p>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">운전면허종류</label>
+					<div class="col-sm-10 divinner">
+						
+							<div class="col-xs-3">
+								<input type="checkbox" name="li_class" id="li_class" value="Class2A" >
+								<span>  2종 보통</span>
+							</div>
+							<div class="col-xs-3">
+								<input type="checkbox" name="li_class" id="li_class" value="Class2M">
+								<span>  2종 수동</span>
+							</div>
+							<div class="col-xs-3">
+								<input type="checkbox" name="li_class" id="li_class" value="Class1A">
+								<span>  1종 보통</span>
+							</div>
+							<div class="col-xs-3">
+								<input type="checkbox" name="li_class" id="li_class" value="Class1B">
+								<span>  1종 대형</span>
+							</div>
+						
+					</div>
+					<p></p>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">운전면허번호</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<select name="li_number1" id="li_number1"
+								class="selectpicker show-tick form-control">
+								<option value="${fn:substring(loginUser.li_number, 0, 2)}" selected="selected">${fn:substring(loginUser.li_number, 0, 2)}</option>
+								<option value="11">11(서울)</option>
+								<option value="12">12(부산)</option>
+								<option value="13">13(경기)</option>
+								<option value="14">14(강원)</option>
+								<option value="15">15(충북)</option>
+								<option value="16">16(충남)</option>
+								<option value="17">17(전북)</option>
+								<option value="18">18(전남)</option>
+								<option value="19">19(경북)</option>
+								<option value="20">20(경남)</option>
+								<option value="21">21(제주)</option>
+								<option value="22">22(대구)</option>
+								<option value="23">23(인천)</option>
+								<option value="24">24(광주)</option>
+								<option value="25">25(대전)</option>
+								<option value="26">26(울산)</option>
+								<option value="28">28(경기북부)</option>
+								<option value="28">28(경기남부)</option>
+							</select>
+						</div>
+						<div class="col-xs-2">
+							<input type="text" class="form-control onlyNumber" maxlength="2"
+								name="li_number2" id="li_number2" style="ime-mode: disabled;" value="${fn:substring(loginUser.li_number, 3, 5)}">
+						</div>
+						<div class="col-xs-3">
+							<input type="text" class="form-control onlyNumber" maxlength="6"
+								name="li_number3" id="li_number3" style="ime-mode: disabled;" value="${fn:substring(loginUser.li_number, 6, 12)}">
+						</div>
+						<div class="col-xs-2">
+							<input type="text" class="form-control onlyNumber" maxlength="2"
+								name="li_number4" id="li_number4" style="ime-mode: disabled;" value="${fn:substring(loginUser.li_number, 13, 15)}">
+						</div>
+						<p></p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">이메일</label>
+					<div class="col-sm-10 divinner">
+						<div class="col-xs-3">
+							<input type="text" class="form-control" maxlength="40"
+								name="email1" id="email1" value="${fn:substringBefore(loginUser.email, '@')}">
+						</div>
+						<div class="col-xs-4">
+							<input type="text" class="form-control" maxlength="40"
+								name="email2" id="email2" value="@${fn:substringAfter(loginUser.email, '@')}">
+						</div>
+						<div class="col-xs-4">
+							<select name="email2" class="selectpicker show-tick form-control"
+								id="domain">
+								<option value="@${fn:substringAfter(loginUser.email, '@')}" selected="selected">@${fn:substringAfter(loginUser.email, '@')}</option>
+								<option value="@naver.com">@naver.com</option>
+								<option value="@daum.net">@daum.net</option>
+								<option value="@nate.com">@nate.com</option>
+								<option value="@gmail.com">@gmail.com</option>
+								<option value="">직접입력</option>
+							</select>
+						</div>
+						<p></p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">주소</label>
+					<div class="col-sm-10 divinner addr">
+						<div class="col-xs-7">
+							<label for="sel1">우편번호</label>
+							<input type="text" class="form-control" readonly name="zipcode" id="zipcode"
+								value="${fn:substring(loginUser.address, 0, 5)}">
+						</div>
+						<div class="col-xs-5">
+							<a href="javascript:;" class="btn btn-normal"
+								onclick="execDaumPostcode();">우편번호찾기</a>
+						</div>
+						<div class="col-xs-12">
+							<label for="sel1">주소</label> <input type="text"
+								class="form-control" maxlength="100" id="addr1" name="addr1"
+									value="${fn:substring(loginUser.address, 6, 50)}">
+						</div>
+						<div class="col-xs-12">
+							<label for="sel1">상세주소</label> <input type="text"
+								class="form-control" maxlength="100" id="addr2" name="addr2">
+						</div>
+						<p></p>
+					</div>
+				</div>
+	
+					<div class="h30"></div>
+					<div class="mypage_coupon">
+						<p>보유중인 쿠폰</p>
+						<table class="table_style1">
+							<colgroup>
+								<col width="">
+								<col widht="15%">
+							</colgroup>
+							<tr>
+								<th>제목</th>
+								<th>금액</th>
+							</tr>
+							<c:forEach items="${memberCoupon}" var="coupon">
+							<tr>
+								<td class="tl">${coupon.name}</td>
+								<td><fmt:formatNumber value="${coupon.sale}"/>원</td>
+							</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+	
 				<div class="h30"></div>
-			</div>
-
-		
-			<div class="title">필수정보 <span>(회원가입 필수 입력 항목입니다.)</span></div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">아이디</label>
-				<div class="col-sm-10 divinner">
-					<div class="col-xs-5">
-						<input type="text" class="form-control" maxlength="20" name="member_id" disabled value="<?=$_SESSION["session_usr_id"]?>">
-					</div>
+				<!-- 버튼 -->
+				<div class="btn_box">
+					<ul>
+						<li><a class="btn btn-blue submit" id="modify" type="button">수정하기</a></li>
+						<li><input class="btn btn-blue submit" id="modify" type="submit" value="수정하기"></li>
+						<li><a class="btn btn-gray" href="leave.do">회원탈퇴</a></li>
+					</ul>
 				</div>
-			</div>
-
-		   
-			<div class="form-group">
-				<label class="col-sm-2 control-label">비밀번호</label>
-				<div class="col-sm-10">
-					<input type="password" class="form-control" maxlength="20" name="old_passwd">
-					<p>개인정보를 수정하실 경우 입력하십시오.</p>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">새 비밀번호</label>
-				<div class="col-sm-10">
-					<input type="password" class="form-control" maxlength="20" name="passwd">
-					<p>비밀번호 변경시 입력하십시오. 특수문자를 하나 이상 포함하여 6~20자로 입력하십시오.</p>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">새 비밀번호 확인</label>
-				<div class="col-sm-10">
-					<input type="password" class="form-control" maxlength="20" name="passwd1">
-					<p>비밀번호를 동일하게 다시 한 번 입력하십시오.</p>
-				</div>
-			</div>
-
-			
-			<div class="form-group cal_Box">
-				<label class="col-sm-2 control-label">이름(성별)</label>
-				<div class="col-sm-10">
-					<div class="col-xs-5">
-						<input type="text" class="form-control" maxlength="10" name="member_name" disabled value="<?=inputTextPrint($row["member_name"])?> (<?=sexFnc($row["sex"])?>)">
-					</div>
-				</div>
-			</div>
-			
-			
-			<div class="form-group cal_Box years">
-			<label class="col-sm-2 control-label">생년월일</label>
-				<div class="col-sm-10 divinner">
-					<div class="col-xs-4" style="width:35%;">
-						<input type="text" class="form-control" disabled name="birthday" readonly value="<?=getMemberBrithday($row["birthday"],"A")?>">
-					</div>
-				</div>
-			</div>
-
-
-			<div class="form-group">
-				<label class="col-sm-2 control-label">주소</label>
-				<div class="col-sm-10 col-sm-10 divinner addr">
-					<div class="col-xs-7">
-						<label for="sel1">우편번호</label>
-						<input type="text" class="form-control" readonly name="zipcode" value="<?=$row["zipcode"]?>">
-					</div>
-					<div class="col-xs-5">
-						<a href="#void" class="btn btn-normal" onclick="memberZip('zipcode','addr1',0); return false;">우편번호찾기</a>
-					</div>
-					<div class="col-xs-12">
-						<label for="sel1">주소</label>
-						<input type="text" class="form-control" maxlength="100" name="addr1" value="<?=inputTextPrint($row["addr1"])?>">
-					</div>
-					<div class="col-xs-12">
-						<label for="sel1">상세주소</label>
-						<input type="text" class="form-control" maxlength="100" name="addr2" value="<?=inputTextPrint($row["addr2"])?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="col-sm-2 control-label">휴대전화</label>
-				<div class="col-sm-10 divinner">
-					<div class="col-xs-3">
-						<!-- <select name="cel1" class="selectpicker show-tick form-control">
-							<option value="010" <? if ($cel[0]=="010") {echo "selected";} ?>>010</option>
-							<option value="011" <? if ($cel[0]=="011") {echo "selected";} ?>>011</option>
-							<option value="016" <? if ($cel[0]=="016") {echo "selected";} ?>>016</option>
-							<option value="017" <? if ($cel[0]=="017") {echo "selected";} ?>>017</option>
-							<option value="018" <? if ($cel[0]=="018") {echo "selected";} ?>>018</option>
-							<option value="019" <? if ($cel[0]=="019") {echo "selected";} ?>>019</option>
-						</select> -->
-					</div>			
-					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel2" placeholder="" style="ime-mode:disabled;" value="<?=$cel[1]?>">
-					</div>
-					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="cel3" placeholder="" style="ime-mode:disabled;" value="<?=$cel[2]?>">
-					</div>
-					<div>
-						<!-- <label class="before height_align"><input type="checkbox" name="sms_accept" value="Y" class="checkbox_normal" <?if($row["sms_accept"]=="Y") { echo " checked"; }?> /> 문자 수신 동의</label> -->
-					</div>
-					<p>
-						공지사항 및 개인별 통지 메시지를 받기 위하여 가능한 수신 동의를 하여 주십시오.<br>
-						문자 수신 동의 여부는 회원 가입신청 후 '마이페이지> 개인정보수정' 메뉴에서 자유롭게 변경이 가능합니다
-					</p>
-				</div>
-			</div>
-
-			<div class="form-group cal_Box">
-				<label class="col-sm-2 control-label">이메일</label>
-				<div class="col-sm-10 divinner">
-					<div class="col-xs-8">
-						<input type="text" class="form-control" maxlength="40" name="email" onKeyUp="emailChkYorN();" value="<?=$row["email"]?>">
-					</div>
-					<div class="col-xs-2">
-						<input type="hidden" name="emailChk" value="Y" />
-						<a href="#void" class="btn btn-normal" onclick="createQueryingChk(); return false;">중복확인</a>
-					</div>
-					<div>
-						<!-- <label class="before height_align"><input type="checkbox" name="email_accept" value="Y" class="checkbox_normal" <?if($row["email_accept"]=="Y") { echo " checked"; }?> /> 메일 수신 동의</label> -->
-					</div>
-					<p>
-						이메일 주소는 아이디/비밀번호 찾기에 이용됩니다.<br>
-						공지사항, 개인별 통지 및 안내 사항을 받기 위하여 가능한 수신 동의를 하여 주십시오.<br>
-						메일 수신 동의 여부는 회원 가입신청 후 '마이페이지> 개인정보수정' 메뉴에서 자유롭게 변경이 가능합니다
-					</p>
-				</div>
-			</div>
-
-			<div class="h30"></div>
-			<div class="title">선택정보 <span>(회원가입 선택 입력 항목입니다.)</span></div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">유선전화</label>
-				<div class="col-sm-10 divinner">
-					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="tel1" placeholder="" style="ime-mode:disabled;" value="<?=$tel[0]?>">
-					</div>			
-					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="tel2" placeholder="" style="ime-mode:disabled;" value="<?=$tel[1]?>">
-					</div>
-					<div class="col-xs-3">
-						<input type="text" class="form-control onlyNumber" maxlength="4" name="tel3" placeholder="" style="ime-mode:disabled;" value="<?=$tel[2]?>">
-					</div>
-				</div>
-			</div>
+			</form>
 		</div>
-
-		<div class="h30"></div>
-		<!-- 버튼 -->
-		<div class="btn_box">
-			<ul>
-				<li><a class="btn btn-blue" href="#void" onclick="frmChk(); return false;">수정하기</a></li>
-				<li><a class="btn btn-gray" href="./member_end.php">회원탈퇴</a></li>
-			</ul>
-		</div>
-</form>
-
 	</div>
-
 </div><!-- //컨텐츠 -->
 
 <%@ include file="/include/footer.jsp"%>

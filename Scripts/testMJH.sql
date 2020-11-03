@@ -18,7 +18,23 @@ SELECT *
 
 SELECT *
   FROM MEMBER
- WHERE id = 'dong6';
+ WHERE id = 'dong';
+
+SELECT * FROM ADMIN WHERE ID = ?;
+
+/* 회원 개인 정보 수정 */
+UPDATE MEMBER
+   SET GENDER = ?,
+   		BIRTH = ?,
+   		LI_CLASS = ?,
+   		LI_NUMBER = ?,
+   		EMAIL = ?,
+   		ADDRESS = ?
+  WHERE ID = ?;
+ 
+UPDATE MEMBER
+   SET PWD = '1234'
+  WHERE ID = 'dong';
 
 /* 페이징 - 회원 리스트 수 */
 SELECT COUNT(*) FROM MEMBER;
@@ -104,11 +120,12 @@ SELECT NO, TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIO
 /* 블랙 리스트 추출 */
 SELECT * FROM MEMBER WHERE IS_BLACK = 'Y' ORDER BY NAME ASC;
 
-
-
 SELECT BIRTH
   FROM MEMBER
  WHERE id = 'dong1';
+
+INSERT INTO ADMIN(ID, PWD)
+VALUES ('admin', '1234');
 
 /* 더미 회원 */
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)

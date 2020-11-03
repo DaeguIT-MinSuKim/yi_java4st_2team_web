@@ -80,10 +80,18 @@
 		</div>
 	</div>
 	<!-- //컨텐츠 -->
-	
 
-<div class="popup_toast btn-carmore">
-	<p>차량검색 성공 !!</p>
-</div>
-	
+
+	<div class="popup_toast">
+		<div class="success-checkmark">
+			<div class="check-icon">
+				<span class="icon-line line-tip"></span> <span
+					class="icon-line line-long"></span>
+				<div class="icon-circle"></div>
+				<div class="icon-fix"></div>
+			</div>
+		</div>
+		<p>차량검색 성공 !!</p>
+	</div>
+
 	<%@ include file="/include/footer.jsp"%>

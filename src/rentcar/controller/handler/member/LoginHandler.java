@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import rentcar.controller.Command;
+import rentcar.dto.Admin;
 import rentcar.dto.Member;
+import rentcar.service.AdminService;
 import rentcar.service.LoginFailService;
 import rentcar.service.MemberService;
 
@@ -16,6 +18,7 @@ public class LoginHandler implements Command {
 
 	private MemberService service = new MemberService();
 	private LoginFailService service2 = new LoginFailService();
+	private AdminService serviceAdmin = new AdminService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -36,27 +39,30 @@ public class LoginHandler implements Command {
 
 			Member getId = service.selectMemberByUserId((id));
 			System.out.println("getId > " + getId);
-
-			int lock = service2.loginLockStatus(new Member(id));
+			
+			int lock = service2.loginLockStatus(id);
 			System.out.println("lock > " + lock);
-
+			
+			Admin admin = serviceAdmin.selectAdminById(id);
+			System.out.println("admin > " + admin);
+			
 			if (getId == null) {
 
 			} else if (lock == 0) {
 				if (getId.getPwd().equals(pwd)) {
 					session.removeAttribute(id);
 					session.setAttribute("loginUser", getId);
-					int loginFail = service2.loginFailCount(new Member(id));
+					int loginFail = service2.loginFailCount(id);
 					System.out.println("loginFail > " + loginFail);
-					int resetLFC = service2.resetLoginFailCount(new Member(id));
+					int resetLFC = service2.resetLoginFailCount(id);
 					System.out.println("resetLFC > " + resetLFC);
-					int resetLLC = service2.resetLockCount(new Member(id));
+					int resetLLC = service2.resetLockCount(id);
 					System.out.println("resetLLC > " + resetLLC);
 					return "index.do";
 				} else {
-					int loginFail = service2.loginFailCount(new Member(id));
+					int loginFail = service2.loginFailCount(id);
 					System.out.println("loginFail > " + loginFail);
-					int loginLock = service2.loginLock(new Member(id));
+					int loginLock = service2.loginLock(id);
 					System.out.println("loginLock > " + loginLock);
 					request.setAttribute("message", "비밀번호가 틀렸습니다.");
 					request.setAttribute("message2", "다시 확인해주세요.");
@@ -67,10 +73,17 @@ public class LoginHandler implements Command {
 				request.setAttribute("message", "로그인을 1분간 할 수 없습니다.");
 				return "member/login.jsp";
 			}
+			
+			if (admin.getId().equals(id)) {
+				return "admin.do";
+			}
+			
 			request.setAttribute("message", "존재하지 않는 아이디입니다.");
 			return "member/login.jsp";
+						
 		}
 
 	}
+
 
 }

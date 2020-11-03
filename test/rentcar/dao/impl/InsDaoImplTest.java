@@ -59,9 +59,9 @@ public class InsDaoImplTest {
 
 	@Test
 	public void test05DeleteIns() {
-		System.out.println("testDeleteIns");
-		Ins ins = new Ins(6);
-		int res = dao.deleteIns(ins);
-		Assert.assertEquals(1, res);
+//		System.out.println("testDeleteIns");
+//		Ins ins = new Ins(6);
+//		int res = dao.deleteIns(ins);
+//		Assert.assertEquals(1, res);
 	}
 }

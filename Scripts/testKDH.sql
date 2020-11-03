@@ -11,6 +11,9 @@ SELECT * FROM BRAND;
 SELECT * FROM EVENT_BOX;
 SELECT * FROM OPT_BOX;
 --조회----------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT * FROM KIND
+ORDER BY KIND_CODE ;
+
 
 -- 한 회원에 대한 할인쿠폰 조회
 SELECT E.NAME, E.SALE
@@ -146,4 +149,4 @@ INSERT INTO OPT_BOX(OPT_CODE, RENT_NO) VALUES (1, 2);
 
 SELECT * FROM (SELECT rownum RN, a.* FROM (SELECT * FROM OPTIONS ORDER BY OPT_CODE DESC) a) WHERE RN BETWEEN 1 AND 10 ORDER BY RN;
 
-
+DELETE FROM OPTIONS WHERE OPT_CODE = 8;

@@ -7,8 +7,8 @@
 		driverClassName="oracle.jdbc.driver.OracleDriver"
 		url="jdbc:oracle:thin:@127.0.0.1:1521:orcl" 
 		username="rentcar"
-		password="rootroot" 
-		maxTotal="300" 
-		maxIdle="100" 
+		password="rootroot"  
+		maxTotal="-1" 
+		maxIdle="-1" 
 		maxWaitMillis="-1" />
 </Context>

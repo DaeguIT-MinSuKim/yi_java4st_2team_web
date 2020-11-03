@@ -14,6 +14,7 @@ $(function(){
 	btn_payBox_submit(); // 단기렌트 최종 예약하기
 	
 	main_carRent() // 메인 - 자동차 렌트
+	memberRent_delete(); // 렌트 리스트 - 렌트 예약 취소
 });
 
 //3자리 단위 콤마 찍기
@@ -326,7 +327,7 @@ function rentDetail_priceChange(){
 		// 할인/쿠폰 (셀렉박스)
 		$get_dis.find("select").change(function(){
 			$set_dis.text($(this).find("option:selected").text());
-			$(".set_discount").text($(this).find("option:selected").val());
+			$(".set_discount").text("-" + $(this).find("option:selected").val());
 			calculator();
 		});
 		
@@ -369,7 +370,7 @@ function rentDetail_priceChange(){
 			// 렌트 총 날짜 * 금액 계산
 			calculator_date();
 			var carPay = parseInt($get_carFare.val()) * parseInt($set_day.text());
-			var total = insPay + optPay + disPay + carPay; // 총금액
+			var total = (insPay + optPay + carPay) - disPay ; // 총금액
 			
 			$set_total.attr("data-total", total); // 결제금액 DB로 가져갈때를 위해 삽입
 			$set_total.text(numberWithCommas(total)); // 총 결제 금액 화면에 뿌림 
@@ -559,5 +560,22 @@ function btn_payBox_submit(){
 	
 }
 
+function memberRent_delete(){
+	if( $(".btn_memberRentDelete").length ){
+		$(".btn_memberRentDelete").on("click", function(){
+			if( confirm("이 렌트예약을 취소하시겠습니까?") ){
+				var rentNo = $(this).attr("data-rentNo");
+				$.ajax({
+					url:"rentDelete.do?rentNo="+rentNo,
+					type:"get",
+					success:function(){
+						alert("삭제가 완료되었습니다");
+						location.href="renting.do";
+					}
+				});
+			}
+		});
+	}
+}
 
 

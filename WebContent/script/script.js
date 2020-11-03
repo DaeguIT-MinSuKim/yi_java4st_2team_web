@@ -28,12 +28,10 @@ $(document).ready(function() {
 	// 관리자 차량관리목록
 	form_delete();
 	admin_logoHover(); // 헤더 로고 (동자승이 눈깜빡이는거 ~)
+	admin_rent_delete(); //관리자 단기렌트 관리 -> 렌트 삭제
 	
 	// 모든 페이지의 textarea
 	textarea_textcounting();
-	
-	// 관리자 단기렌트 관리 -> 렌트 삭제
-	admin_rent_delete();
 });
 
 // 헤더 로고 (동자승이 눈깜빡이는거 ~)

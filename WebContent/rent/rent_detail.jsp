@@ -95,7 +95,9 @@
 										</c:otherwise>
 									</c:choose>
 								</select>
+								<p class="coupon_subText">※ 사용한 쿠폰은 렌트예약 취소시 재사용할 수 없습니다.</p>
 							</div>
+							
 						</div>
 					</form>	
 					

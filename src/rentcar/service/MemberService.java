@@ -9,7 +9,6 @@ import rentcar.dao.MemberDao;
 import rentcar.dao.impl.MemberDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Member;
-import rentcar.dto.Opt;
 import rentcar.utils.Paging;
 
 public class MemberService {
@@ -37,6 +36,10 @@ public class MemberService {
 
 	public int insertMember(Member member) {
 		return dao.insertMember(member);
+	}
+	
+	public int changePass(String id, String pwd) {
+		return dao.changePass(id, pwd);
 	}
 
 	public int updateMember(Member member) {

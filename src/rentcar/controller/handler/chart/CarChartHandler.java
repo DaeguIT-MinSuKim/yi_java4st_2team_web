@@ -17,17 +17,23 @@ public class CarChartHandler implements Command {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		JSONArray carByBrand = service.getCountCarByBrand();
-		
+
 		JSONArray carByKind = service.getCountCarByKind();
-		
+
 		JSONArray carByRent = service.getCountCarByRent();
-		
-		request.setAttribute("carByBrand",carByBrand);
-		request.setAttribute("carByKind",carByKind);
+
+		JSONArray kindByRent = service.getCountKindByRent();
+
+		JSONArray brandByRent = service.getCountBrandByRent();
+
+		request.setAttribute("kindByRent", kindByRent);
+		request.setAttribute("brandByRent", brandByRent);
+		request.setAttribute("carByBrand", carByBrand);
+		request.setAttribute("carByKind", carByKind);
 		request.setAttribute("carByRent", carByRent);
-		
-	return "/chart/carChart.jsp";
+
+		return "/chart/carChart.jsp";
 	}
 }

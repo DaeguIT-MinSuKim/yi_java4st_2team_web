@@ -14,6 +14,7 @@ import rentcar.dto.Member;
 import rentcar.service.EventService;
 
 public class MypagePasswordHandler implements Command {
+	
 	private EventService eventService = new EventService();
 
 	@Override
@@ -21,9 +22,10 @@ public class MypagePasswordHandler implements Command {
 			throws ServletException, IOException {
 
 		if (request.getMethod().equalsIgnoreCase("GET")) {
+			System.out.println("GET MypagePasswordHandler");
 
-			return null;
-
+			return "mypage/mypage_password.jsp";
+			
 		} else {
 			System.out.println("POST MypagePasswordHandler");
 
@@ -42,17 +44,16 @@ public class MypagePasswordHandler implements Command {
 				ArrayList<Event> memberCoupon = eventService.selectEventBoxFindMemberCoupon(loginUser.getId());
 				request.setAttribute("memberCoupon", memberCoupon);
 				
-				return "member/mypage.jsp";
-				//return "mypage/modify.jsp";
+				return "mypage/modify.jsp";
+				
 			} else {
 				request.setAttribute("message", "비밀번호가 틀렸습니다.");
 				request.setAttribute("message2", "다시 확인해주세요.");
 			}
 			request.setAttribute("loginUser", loginUser);
 
-			return "member/mypage_password.jsp";
+			return "mypage/mypage_password.jsp";
 			
-
 		}
 
 	}

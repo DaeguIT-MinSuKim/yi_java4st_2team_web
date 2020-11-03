@@ -24,10 +24,16 @@ public interface MemberDao {
 	// 회원 수정
 	int updateMember(Member member);
 	
+	// 비밀번호 변경
+	int changePass(String id, String pwd);
+	
+	// 회원 탈퇴
+	int leaveMember(Member member);
+	
 	// 회원 블랙리스트 수정
 	int updateBlack(Member member);
 
-	// 회원 탈퇴
+	// 관리자 회원 탈퇴
 	int deleteMember(Member member);
 
 	// 페이징 - 회원 리스트

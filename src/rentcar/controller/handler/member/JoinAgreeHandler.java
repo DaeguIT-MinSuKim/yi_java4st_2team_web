@@ -14,15 +14,15 @@ public class JoinAgreeHandler implements Command {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (request.getMethod().equalsIgnoreCase("GET JoinAgreeHandler")) {
-			System.out.println("GET");
+		if (request.getMethod().equalsIgnoreCase("GET")) {
+			System.out.println("GET JoinAgreeHandler");
 
-			return null;
+			return "member/join_agree.jsp";
 
 		} else {
 			System.out.println("POST JoinAgreeHandler");
 
-			return "member/join_agree.jsp";
+			return null;
 		}
 
 	}

@@ -35,7 +35,7 @@ public class LoginFailDaoImplTest {
 	public void test06LoginLockStatus() {
 		System.out.printf("%s()%n", "test06LoginLockStatus");
 		Member loginFail = new Member("dong");
-		int res = LoginFailDaoImpl.getInstance().loginLockStatus(loginFail);
+		int res = LoginFailDaoImpl.getInstance().loginLockStatus("dong");
 		Assert.assertEquals(1, res);
 
 		System.out.printf("%s%n%n", loginFail);
@@ -45,7 +45,7 @@ public class LoginFailDaoImplTest {
 	public void test01LoginFailCount() {
 		System.out.printf("%s()%n", "test01LoginFailCount");
 		Member loginFail = new Member("dong");
-		int res = LoginFailDaoImpl.getInstance().loginFailCount(loginFail);
+		int res = LoginFailDaoImpl.getInstance().loginFailCount("dong");
 		Assert.assertEquals(1, res);
 
 		System.out.printf("%s%n%n", loginFail);
@@ -55,7 +55,7 @@ public class LoginFailDaoImplTest {
 	public void test02LoginFailCount() {
 		System.out.printf("%s()%n", "test02LoginFailCount");
 		Member loginFail = new Member("dong");
-		int res = LoginFailDaoImpl.getInstance().loginFailCount(loginFail);
+		int res = LoginFailDaoImpl.getInstance().loginFailCount("dong");
 		Assert.assertEquals(1, res);
 
 		System.out.printf("%s%n%n", loginFail);
@@ -65,7 +65,7 @@ public class LoginFailDaoImplTest {
 	public void test03LoginFailCount() {
 		System.out.printf("%s()%n", "test03LoginFailCount");
 		Member loginFail = new Member("dong");
-		int res = LoginFailDaoImpl.getInstance().loginFailCount(loginFail);
+		int res = LoginFailDaoImpl.getInstance().loginFailCount("dong");
 		Assert.assertEquals(1, res);
 
 		System.out.printf("%s%n%n", loginFail);
@@ -75,7 +75,7 @@ public class LoginFailDaoImplTest {
 	public void test04LoginFailCount() {
 		System.out.printf("%s()%n", "test04LoginFailCount");
 		Member loginFail = new Member("dong");
-		int res = LoginFailDaoImpl.getInstance().loginFailCount(loginFail);
+		int res = LoginFailDaoImpl.getInstance().loginFailCount("dong");
 		Assert.assertEquals(1, res);
 
 		System.out.printf("%s%n%n", loginFail);
@@ -85,7 +85,7 @@ public class LoginFailDaoImplTest {
 	public void test07ResetLoginFailCount() {
 		System.out.printf("%s()%n", "test07ResetLoginFailCount");
 		Member loginFail = new Member("dong");
-		int res = LoginFailDaoImpl.getInstance().resetLoginFailCount(loginFail);
+		int res = LoginFailDaoImpl.getInstance().resetLoginFailCount("dong");
 		Assert.assertEquals(1, res);
 
 		System.out.printf("%s%n%n", loginFail);
@@ -95,7 +95,7 @@ public class LoginFailDaoImplTest {
 	public void test05LoginLock() {
 		System.out.printf("%s()%n", "test05LoginLock");
 		Member loginFail = new Member("dong");
-		int res = LoginFailDaoImpl.getInstance().loginLock(loginFail);
+		int res = LoginFailDaoImpl.getInstance().loginLock("dong");
 		Assert.assertEquals(1, res);
 
 		System.out.printf("%s%n%n", loginFail);
@@ -105,7 +105,7 @@ public class LoginFailDaoImplTest {
 	public void test08ResetLockCount() {
 		System.out.printf("%s()%n", "test08ResetLockCount");
 		Member loginFail = new Member("dong");
-		int res = LoginFailDaoImpl.getInstance().resetLockCount(loginFail);
+		int res = LoginFailDaoImpl.getInstance().resetLockCount("dong");
 		Assert.assertEquals(1, res);
 
 		System.out.printf("%s%n%n", loginFail);

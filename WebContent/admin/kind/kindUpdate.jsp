@@ -22,7 +22,7 @@
 	<h2>차량분류 수정</h2>
 	<div class="admin_page">
 		<form action="kindUpdate.do" method="post">
-			<table border=1>
+			<table class="table_style1">
 				<tr>
 					<input type="hidden" value="${kind.code}" name="code">
 					<td>이 &nbsp; 름</td>

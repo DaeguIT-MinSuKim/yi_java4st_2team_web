@@ -31,7 +31,7 @@ $(function(){
 		
 		// 옵션객체 준비
 		var kindOptions = {
-			title : '차종별 차량수',
+			title : '차종별 차량비율',
 			height : '100%',
 			width : '100%',
 			pieHole: 0.4,
@@ -44,7 +44,7 @@ $(function(){
 		};
 		
 		var brandOptions = {
-			title : '브랜드별 차량수',
+			title : '브랜드별 차량비율',
 			height : '100%',
 			width : '100%',
 			pieHole: 0.4,
@@ -55,6 +55,32 @@ $(function(){
 				}
 			}
 		};
+		
+		var kindByRentOptions = {
+				title : '차종별 대여비율',
+				height : '100%',
+				width : '100%',
+				pieHole: 0.4,
+				hAxis : {
+					title : '차종',
+					titleTextStyle : {
+						color : 'black'
+					}
+				}	
+			};
+		
+		var brandByRentOptions = {
+				title : '브랜드별 대여비율',
+				height : '100%',
+				width : '100%',
+				pieHole: 0.4,
+				hAxis : {
+					title : '브랜드',
+					titleTextStyle : {
+						color : 'black'
+					}
+				}	
+			};
 		
 		var carByRentOptions = {
 				title : '차량 대여여부',
@@ -72,6 +98,8 @@ $(function(){
 		// 실 데이터를 가진 데이터테이블 객체를 반환하는 메소드
 		var kindTable = google.visualization.arrayToDataTable(${carByKind});
 		var brandTable = google.visualization.arrayToDataTable(${carByBrand});
+		var kindByRentTable = google.visualization.arrayToDataTable(${kindByRent});
+		var brandByRentTable = google.visualization.arrayToDataTable(${brandByRent});
 		var carByRentTable = google.visualization.arrayToDataTable(${carByRent});
 		
 		// 차트를 그릴 영역인 div 객체를 가져옴
@@ -84,6 +112,14 @@ $(function(){
 		var objDiv = document.getElementById('chart_brand');
 		var chart = new google.visualization.PieChart(objDiv);
 		chart.draw(brandTable, brandOptions);
+		
+		var objDiv = document.getElementById('chart_kindByRent');
+		var chart = new google.visualization.PieChart(objDiv);
+		chart.draw(kindByRentTable, kindByRentOptions);
+
+		var objDiv = document.getElementById('chart_brandByRent');
+		var chart = new google.visualization.PieChart(objDiv);
+		chart.draw(brandByRentTable, brandByRentOptions);
 		
 		var objDiv = document.getElementById('chart_carByRent');
 		var chart = new google.visualization.PieChart(objDiv);
@@ -102,13 +138,20 @@ $(function(){
 					$(".chart_tab>a").eq(2).addClass("active");
 				});
 			</script>
-			
+
 			<table>
-			<tr>
-			<td><div id="chart_kind" style="width: 470px; height: 400px;"></div></td>
-			<td><div id="chart_brand" style="width: 470px; height: 400px;"></div></td>
-			<td><div id="chart_carByRent" style="width: 470px; height: 400px;"></div></td>
-			</tr>
+				<tr>
+					<td><div id="chart_kind" style="width: 600px; height: 400px;"></div></td>
+					<td><div id="chart_brand" style="width: 600px; height: 400px;"></div></td>
+					<td><div id="chart_carByRent"
+							style="width: 600px; height: 400px;"></div></td>
+				</tr>
+				<tr>
+					<td><div id="chart_kindByRent"
+							style="width: 600px; height: 400px;"></div></td>
+					<td><div id="chart_brandByRent"
+							style="width: 600px; height: 400px;"></div></td>
+				</tr>
 			</table>
 		</div>
 	</div>

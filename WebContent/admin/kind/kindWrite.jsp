@@ -22,7 +22,7 @@
 	<h2>차량분류 추가</h2>
 	<div class="admin_page">
 		<form action="kindWrite.do" method="post">
-			<table border=1>
+			<table class="table_style1">
 				<tr>
 					<td>이 &nbsp; 름</td>
 					<td><input type="text" id="name" name="name"></td>

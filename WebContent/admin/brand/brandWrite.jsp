@@ -21,9 +21,8 @@
 <div id="adimn_content">
 	<h2>브랜드 추가</h2>
 	<div class="admin_page">
-		<form action="brandWrite.do" method="post"
-			enctype="multipart/form-data">
-			<table border=1>
+		<form action="brandWrite.do" method="post" enctype="multipart/form-data">
+			<table class="table_style1">
 				<tr>
 					<td>이 &nbsp; 름</td>
 					<td><input type="text" id="name" name="name"></td>
