@@ -4,7 +4,7 @@
 <%@ include file="/include/header.jsp"%>
 
 <!-- // header -->
-<script language="JavaScript">
+<script>
 <!--
 function enter_checklogin() {
 	if (event.keyCode == 13) {

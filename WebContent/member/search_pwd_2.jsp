@@ -3,7 +3,7 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 
-<script language="javascript">
+<script>
 function frmChk(){
 	form1=document.frmName;
 	var NUM=0;

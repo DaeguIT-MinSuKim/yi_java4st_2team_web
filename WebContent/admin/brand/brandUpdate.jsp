@@ -18,7 +18,7 @@
 	<div class="admin_page">
 		<form action="brandUpdate.do" method="post"
 			enctype="multipart/form-data">
-			<table border=1>
+			<table class="table_style1">
 				<tr>
 					<input type="hidden" value="${brand.code}" name="code">
 					<td>이 름</td>

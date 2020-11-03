@@ -10,8 +10,8 @@
 <!-- 컨텐츠 -->
 <div class="contents_box padLeft0">
 	<div class="contents">
-		<h3>렌트 중인 차량</h3>
-		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 렌트 중인 차량</div>
+		<h3>렌트중인 차량</h3>
+		<div class="location pc">HOME <span>></span> 회원관리 <span>></span> 마이페이지 <span>></span> 렌트중인 차량</div>
 
         <div class=" logincontainer-fluid_box page_mypage">
         
