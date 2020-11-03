@@ -6,5 +6,5 @@
 	<a href="rentChart.do">대여</a>
 	<a href="carChart.do">차량</a>
 	<a href="longRentChart.do">장기렌트</a>
-	<a href="javascript:;">이벤트</a>
+	<a href="eventChart.do">이벤트</a>
 </div>

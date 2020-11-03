@@ -7,7 +7,9 @@
 #admin_header ul li {float:left; font-size:14px; color:#fff; line-height:60px; margin:0 10px;}
 #admin_header ul li a {color:#fff;}
 
-#admin_gnb {float:left; width:240px; min-height:calc(100vh - 60px); background:#2d3e50;}
+.admin_contentWrap {width:100%; height:100%; overflow:hidden; position:relative;}
+
+#admin_gnb {position:absolute; left:0; top:0; width:240px; height:100%; min-height:calc(100vh - 60px); background:#2d3e50;}
 #admin_gnb > ul {border-bottom:1px solid rgba(255,255,255,0.2)}
 #admin_gnb > ul > li {width:100%; line-height:55px; border-bottom:1px solid rgba(0,0,0,0.4); border-top:1px solid rgba(255,255,255,0.2)}
 #admin_gnb > ul > li:first-child {border-top:0;}
@@ -16,11 +18,15 @@
 #admin_gnb > ul > li > ul > li {border-top:1px solid rgba(255,255,255,0.1); background:#212f3e;}
 #admin_gnb > ul > li > ul > li > a {display:block; width:100%; font-size:14px; color:#fff ;line-height:50px; box-sizing:border-box; padding:0 15px;}
 
-#adimn_content {float:left; width:calc(100% - 240px); min-height:calc(100vh - 60px)}
+#admin_gnb > ul > li:hover > a {color:#deeeff;}
+#admin_gnb > ul > li.on > a {background:#4e7094;}
+#admin_gnb > ul > li.on > ul {display:block;}
+
+#adimn_content {float:right; width:calc(100% - 240px); min-height:calc(100vh - 60px)}
 #adimn_content h2 {margin:0; widht:100%; background:#f4f4f4; font-size:22px; box-sizing:border-box; padding:16px 20px;}
 #adimn_content .admin_page {width:100%; box-sizing:border-box; padding:25px 20px; position:relative;}
 
-#admin_footer {width:100%; clear:both; padding:0;}
+#admin_footer {width:100%; clear:both; padding:0; margin-top:0;}
 #admin_footer p {margin:0; background:#222; text-align:center; font-size:12px; color:#fff; line-height:45px;}
 
 .chart_tab {display:flex; text-align:center; border-bottom:1px solid #333; margin-bottom:30px;}

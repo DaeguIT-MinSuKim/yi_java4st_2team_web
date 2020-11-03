@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import rentcar.dao.impl.EventDaoImpl;
 import rentcar.ds.JndiDS;
 import rentcar.dto.Event;
-import rentcar.dto.EventBox;
 import rentcar.utils.Paging;
 
 public class EventService {
@@ -63,6 +64,10 @@ public class EventService {
 	}
 	public int countSearchEventByall(String condition, String keyword) {
 		return dao.countSearchEventByAll(condition, keyword);
+	}
+	
+	public JSONArray getCountEvent() {
+		return dao.getCountEvent();
 	}
 
 

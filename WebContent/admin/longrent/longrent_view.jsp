@@ -34,6 +34,7 @@ $(function(){
 			
 		});
 		
+		$("#admin_gnb > ul > li:eq(4)").addClass("on")
 		
 		
 		

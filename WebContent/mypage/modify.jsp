@@ -350,16 +350,21 @@
 						<p>보유중인 쿠폰</p>
 						<table class="table_style1">
 							<colgroup>
-								<col width="">
-								<col widht="15%">
+								<col width="60%">
+								<col widht="30%">
+								<col widht="10%">
 							</colgroup>
 							<tr>
 								<th>제목</th>
+								<th>기간</th>
 								<th>금액</th>
 							</tr>
 							<c:forEach items="${memberCoupon}" var="coupon">
 							<tr>
 								<td class="tl">${coupon.name}</td>
+								<td>
+									<fmt:formatDate value="${coupon.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${coupon.endDate}" pattern="yyyy-MM-dd"/> 
+								</td>
 								<td><fmt:formatNumber value="${coupon.sale}"/>원</td>
 							</tr>
 							</c:forEach>

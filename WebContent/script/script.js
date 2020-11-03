@@ -178,6 +178,7 @@ function event_popup() {
 function admin_gnb() {
 	$("#admin_gnb > ul > li > a").click(function() {
 		if ($(this).parent("li").children().length == 2) {
+			$("#admin_gnb > ul > li > ul").not($(this).parent().children("ul")).stop().slideUp();
 			$(this).parent("li").children("ul").stop().slideToggle();
 			return false;
 		}

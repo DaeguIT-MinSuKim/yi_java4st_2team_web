@@ -16,6 +16,8 @@ $(function(){
 			frmSearch.keyword.value = 1;
 		}
 	})		
+	
+	$("#admin_gnb > ul > li:eq(4)").addClass("on")
 })
 </script>
 <div id="adimn_content">

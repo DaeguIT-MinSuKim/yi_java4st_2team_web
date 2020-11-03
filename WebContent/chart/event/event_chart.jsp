@@ -12,7 +12,6 @@
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 $(function(){
-	
 	$("#admin_gnb > ul > li:eq(7)").addClass("on");
 
 	//구글 시각화 API를 로딩하는 메소드
@@ -38,26 +37,42 @@ $(function(){
 		
 		// 옵션객체 준비
 		var options = {
-			title : '블랙리스트 비율 ',
+			title : '이벤트별 발급 건수 ',
 			height : 500,
 			width : '100%',
-			pieHole: 0.4,
-             hAxis : {
-               title : '블랙리스트',
-               titleTextStyle : {
-               color : 'black'
-                 }
-              }
+			hAxis : {
+				title : '이벤트 코드',
+				titleTextStyle : {
+					color : 'black'
+				}
+			},
+			series:{
+				0:{
+					 color: '#6085AC'
+				}
+			}	
 		};
 		
 		// 차트를 그릴 영역인 div 객체를 가져옴
-		var objDiv = document.getElementById('myChart');
+		var objDiv = document.getElementById('column_chart_div1');
 		// 인자로 전달한 div 객체의 영역에 컬럼차트를 그릴수 있는 차트객체를 반환
-		var chart = new google.visualization.PieChart(objDiv);
+		var chart = new google.visualization.ColumnChart(objDiv);
 		// 차트객체에 데이터테이블과 옵션 객체를 인자로 전달하여 차트 그리는 메소드
 		chart.draw(dataTable, options);
 	}; // drawColumnChart1()의 끝
 
+	
+	// 버튼 동작
+	$(document).ready(function() {
+		$('button').on('click', function() {
+			$.ajax({
+				url :'longRentChart.do',
+				success : function(result) {
+					columnChart1(result);
+				}
+			});
+		});
+	});
 	
 });	
 </script>
@@ -69,12 +84,11 @@ $(function(){
 			<%@ include file="/admin/include/tab_common.jsp"%>
 			<script>
 				$(function(){
-					$(".chart_tab>a").eq(0).addClass("active");
+					$(".chart_tab>a").eq(4).addClass("active");
 				});
 			</script>
 			
-			<div id="myChart" style="width: 900px; height: 500px;"></div>
-			<button type="button" id="line_chart" onclick="location.href='#'">차트 보기</button>
+			<div id="column_chart_div1" style="width: 900px; height: 500px;"></div>
 		</div>
 	</div>
 </body>

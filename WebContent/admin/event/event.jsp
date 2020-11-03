@@ -4,11 +4,12 @@
 <!-- // header -->
 <script>
 $(function(){
+	$("#admin_gnb > ul > li:eq(6)").addClass("on")
 	
-		if( $(".board").length == 0 ){ // 글이 없는 경우
-			$(".no_board").show();
-			$(".board").hide();
-		}
+	if( $(".board").length == 0 ){ // 글이 없는 경우
+		$(".no_board").show();
+		$(".board").hide();
+	}
 })
 </script>
 

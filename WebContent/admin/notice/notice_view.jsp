@@ -17,6 +17,8 @@ $(function(){
 			}
 			
 		});	
+		
+		$("#admin_gnb > ul > li:eq(5)").addClass("on")
 			
 });
 		

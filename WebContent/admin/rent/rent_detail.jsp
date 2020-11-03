@@ -4,6 +4,12 @@
 <%@ include file="/admin/include/header.jsp"%>
 <!-- // header -->
 
+<script>
+	$(function(){
+		$("#admin_gnb > ul > li:eq(0)").addClass("on")
+	})
+</script>
+
 <div id="adimn_content">
 	<h2>렌트 상세정보</h2>
 	<div class="admin_page">
