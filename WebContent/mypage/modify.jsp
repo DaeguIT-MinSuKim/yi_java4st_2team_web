@@ -346,8 +346,8 @@
 						<table class="table_style1">
 							<colgroup>
 								<col width="60%">
-								<col widht="30%">
-								<col widht="10%">
+								<col width="30%">
+								<col width="10%">
 							</colgroup>
 							<tr>
 								<th>제목</th>
@@ -372,7 +372,6 @@
 				<div class="btn_box">
 					<ul>
 						<li><a class="btn btn-blue" id="modify" type="submit">수정하기</a></li>
-						<li><input class="btn btn-blue submit" id="modify" type="submit" value="수정하기"></li>
 						<li><a class="btn btn-gray" href="leave.do">회원탈퇴</a></li>
 					</ul>
 				</div>
