@@ -34,10 +34,10 @@ public class BrandUpdateHandler implements Command {
 			return "admin/brand/brandUpdate.jsp";
 		} else {
 			System.out.println("POST");
-			response.setContentType("text/html; charsert=UTF8");
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 
-			String savePath = "upload";
+			String savePath = "images/brand";
 			int uploadFileSizeLimit = 5 * 1024 * 1024;
 			String enctype = "UTF-8";
 

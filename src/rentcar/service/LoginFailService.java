@@ -5,7 +5,6 @@ import java.sql.Connection;
 import rentcar.dao.LoginFailDao;
 import rentcar.dao.impl.LoginFailDaoImpl;
 import rentcar.ds.JndiDS;
-import rentcar.dto.Member;
 
 public class LoginFailService {
 
@@ -18,24 +17,24 @@ public class LoginFailService {
 		((LoginFailDaoImpl) dao).setCon(con);
 	}
 
-	public int loginLockStatus(Member member) {
-		return dao.loginLockStatus(member);
+	public int loginLockStatus(String id) {
+		return dao.loginLockStatus(id);
 	}
 
-	public int loginFailCount(Member member) {
-		return dao.loginFailCount(member);
+	public int loginFailCount(String id) {
+		return dao.loginFailCount(id);
 	}
 
-	public int resetLoginFailCount(Member member) {
-		return dao.resetLoginFailCount(member);
+	public int resetLoginFailCount(String id) {
+		return dao.resetLoginFailCount(id);
 	}
 
-	public int loginLock(Member member) {
-		return dao.loginLock(member);
+	public int loginLock(String id) {
+		return dao.loginLock(id);
 	}
 
-	public int resetLockCount(Member member) {
-		return dao.resetLockCount(member);
+	public int resetLockCount(String id) {
+		return dao.resetLockCount(id);
 	}
 
 }

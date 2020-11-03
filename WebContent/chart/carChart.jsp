@@ -126,7 +126,7 @@ $(function(){
 		chart.draw(carByRentTable, carByRentOptions);
 	};
 	
-	$("#admin_gnb > ul > li:eq(7) > a").addClass("on");
+	$("#admin_gnb > ul > li:eq(7)").addClass("on");
 });	
 </script>
 </head>

@@ -114,7 +114,7 @@
 						<c:when test="${empty sessionScope.loginUser}">
 							<li><a class="login" href="login.do"><span>로그인</span></a></li>
 							<li><a class="join" href="joinAgree.do">회원가입</a></li>
-							<li><a class="admin" href="adminRent.do">관리자</a></li>
+							<!-- <li><a class="admin" href="adminRent.do">관리자</a></li> -->
 						</c:when>
 						<c:otherwise>
 							<li>${sessionScope.loginUser.name}(${sessionScope.loginUser.id})님</li>

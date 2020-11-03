@@ -29,10 +29,18 @@ public class AdminOptWriteHandler implements Command {
 			
 			return "/admin/opt/optWrite.jsp";
 		}else {
-			
+
 			int optCode = Integer.parseInt(request.getParameter("optCode"));
 			String optName = request.getParameter("optName");
 			int optFare = Integer.parseInt(request.getParameter("optFare"));
+			
+			List<Opt> optList = service.selectOptByAll();
+			for( Opt opt : optList ) {
+				if( opt.getCode()==optCode ) {
+					response.getWriter().print("<script>alert('이미 존재하는 옵션코드입니다.'); location.href='adminOptWrite.do'</script>");
+					return null;
+				}
+			}
 			
 			int res = service.insertOpt(new Opt(optCode, optName, optFare));
 			

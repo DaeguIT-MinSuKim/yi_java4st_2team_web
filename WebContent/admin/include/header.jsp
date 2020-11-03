@@ -88,7 +88,7 @@
 	
 	$(function() {
 		$('#logout').on("click", function() {
-			if (confirm("${sessionScope.loginUser.name}님 로그아웃 하시겠습니까?") == true) {	// 확인
+			if (confirm("관리자님 로그아웃 하시겠습니까?") == true) {	// 확인
 				location.href="logout.do";
 		    } else {	// 취소
 		    	return;
@@ -104,7 +104,7 @@
 	<h1><a href="index.do" class="admin_logo"><img src="./images/common/logo_w.png" alt="동자승렌터카" title="동자승렌터카"></a></h1>
 	<ul>
 		<li>관리자님</li>
-		<li><a href="#">로그아웃</a></li>
+		<li><a class="logout" style="cursor:pointer;" id="logout"><span>로그아웃</span></a></li>
 		<li><a href="index.do">HOME</a>
 	</ul>
 </header><!-- // header -->

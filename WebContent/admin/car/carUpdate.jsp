@@ -9,16 +9,23 @@
 		$('#kindList').val(kindCode);
 		
 		var brandCode = ${car.brand.code};
-		$('#brandList').val(brandCode);
+		$('#brandList').val(brandCode);\
 		
-			$('#add').on("click", function() {
-				if ($('#carName').val() == "") {
-					alert("차량이름을 기입해주세요")
-					$('#carName').focus()
-					return false;
-				}
-			});
+		$("#kindList").change(function(){
+			document.cookie="kindNum="+ $("#kindList").val();
+		});
+		
+		$('#add').on("click", function() {
 			
+			if ( $('#carName').val() == "" ){
+				alert("차량이름을 기입해주세요");
+				$('#carName').focus();
+				return false;
+			}
+			
+			$("#form_carUpdate").submit();
+		});
+
 		$("#admin_gnb > ul > li:eq(1)").addClass("on")
 	});
 </script>
@@ -26,7 +33,7 @@
 <div id="adimn_content">
 	<h2>차량 수정</h2>
 	<div class="admin_page">
-		<form action="carUpdate.do" method="post" enctype="multipart/form-data">
+		<form action="carUpdate.do" method="post" id="form_carUpdate" enctype="multipart/form-data">
 			<table class="table_style1">
 				<colgroup>
 					<col width="10%">
@@ -42,17 +49,21 @@
 				</tr>
 				<tr>
 					<th>차량분류</th>
-					<td><select id="kindList" name="kind">
-							<c:forEach items="${kindList }" var="kind">
+					<td>
+						<select id="kindList" name="kind">
+							<c:forEach items="${kindList}" var="kind">
 								<option value="${kind.code}">${kind.name}</option>
 							</c:forEach>
-					</select></td>
+						</select>
+					</td>
 					<th>브랜드명</th>
-					<td><select id="brandList" name="brand">
+					<td>
+						<select id="brandList" name="brand">
 							<c:forEach items="${brandList}" var="brand">
 								<option value="${brand.code}">${brand.name}</option>
 							</c:forEach>
-					</select></td>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<th>비고사항</th>
@@ -66,13 +77,13 @@
 				</tr>
 				<tr>
 					<th>현 이미지</th>
-					<td><img src="upload/${car.image}"></td>
+					<td><img src="images/rentcar/${car.getKind().getCode()}/${car.image}"></td>
 					<th>바꿀 이미지</th>	
 					<td><input type="file" name="image" class="list_file" id="image"></td>
 				</tr>
 			</table>
 			<ul class="button_style3 mt50">
-				<li><input type="submit" value="수정" class="btn_small btn_case2" id="add"></li>
+				<li><input type="button" value="수정" class="btn_small btn_case2" id="add"></li>
 				<li><a href="carList.do" class="btn_small btn_case4" id="cancel">취소</a></li>
 			</ul>
 		</form>

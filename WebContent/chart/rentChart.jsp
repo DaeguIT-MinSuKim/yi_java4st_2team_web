@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 <script>
 $(function(){
-	$("#admin_gnb > ul > li:eq(7) > a").addClass("on");
+	$("#admin_gnb > ul > li:eq(7)").addClass("on");
 	
 	//구글 시각화 API를 로딩하는 메소드
 	google.charts.load('current', {
@@ -73,7 +73,6 @@ $(function(){
 		var chart = new google.visualization.ColumnChart(objDiv);
 		chart.draw(carByYearlyTable, carByYearlyOptions);
 		
-		console.log(${carByMonthly});
 	};
 });	
 </script>
@@ -85,7 +84,7 @@ $(function(){
         var chartData = '';
 
         //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
-        var chartDateformat 	= 'yyyy년MM월dd일';
+        var chartDateformat 	= 'yyyy년MM월';
         //라인차트의 라인 수
         var chartLineCount    = 10;
         //컨트롤러 바 차트의 라인 수
@@ -103,12 +102,17 @@ $(function(){
           //그래프에 표시할 데이터
           var dataRow = [];
 
-          for(var i = 0; i < ${carByMonthly}.length; i++){ //랜덤 데이터 생성
-            var man     = Math.floor(Math.random() * total) + 1;
-            var woman   = total - man;
+          for(var i=1; i < ${carByMonthly}.length; i++){ //랜덤 데이터 생성
+            var man     = ${carByMonthly}[i][1];
+            var woman   = ${carByMonthly}[i][2];
             var total   = man + woman;
-
-            dataRow = [new Date('2017', '09', i), man, woman , total];
+            console.log(man, woman, total);
+            
+            var year = ${carByMonthly}[i][0].substring(0,4);
+    		var month = ${carByMonthly}[i][0].substring(5,8);
+    		console.log(year, month);
+    		
+            dataRow = [new Date(year, month), man, woman , total];
             data.addRow(dataRow);
           }
 
@@ -119,6 +123,7 @@ $(function(){
               options     : {
                               isStacked   : 'percent',
                               focusTarget : 'category',
+                              title : '월별 대여횟수',
                               height		  : 400,
                               width			  : '100%',
                               legend		  : { position: "top", textStyle: {fontSize: 13}},
@@ -126,9 +131,7 @@ $(function(){
                               tooltip		  : {textStyle : {fontSize:12}, showColorCode : true,trigger: 'both'},
                               hAxis			  : {format: chartDateformat, gridlines:{count:chartLineCount,units: {
                                                                   years : {format: ['yyyy년']},
-                                                                  months: {format: ['MM월']},
-                                                                  days  : {format: ['dd일']},
-                                                                  hours : {format: ['HH시']}}
+                                                                  months: {format: ['MM월']}}
                                                                 },textStyle: {fontSize:12}},
                 vAxis			  : {minValue: 100,viewWindow:{min:0},gridlines:{count:-1},textStyle:{fontSize:12}},
                 animation		: {startup: true,duration: 1000,easing: 'in' },
@@ -157,9 +160,7 @@ $(function(){
                           hAxis: {'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize:12},
                             gridlines:{count:controlLineCount,units: {
                                   years : {format: ['yyyy년']},
-                                  months: {format: ['MM월']},
-                                  days  : {format: ['dd일']},
-                                  hours : {format: ['HH시']}}
+                                  months: {format: ['MM월']}}
                             }}
                         }
                   },

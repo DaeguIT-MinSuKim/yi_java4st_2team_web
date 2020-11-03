@@ -26,6 +26,10 @@
 				return false;
 			}
 		});
+		
+		$("#kindList").change(function(){
+			document.cookie="kindNum="+ $("#kindList").val();
+		});
 			
 		$('#chkNo').on("click", function() {
 			// location.href="carWrite.do?carNo=" + $('#carNo').val();

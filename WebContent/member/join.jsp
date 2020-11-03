@@ -196,7 +196,10 @@
 				return;
 			}
 			
-			if (document.getElementsByName("li_class")[0].checked == false) {
+			if (document.getElementsByName("li_class")[0].checked == false
+					&& document.getElementsByName("li_class")[1].checked == false
+					&& document.getElementsByName("li_class")[2].checked == false
+					&& document.getElementsByName("li_class")[3].checked == false) {
 				alert("운전면허종류를 선택하세요.");
 				document.getElementsByName("li_class")[0].focus();
 				return;
@@ -277,6 +280,7 @@
 	$(function() {
 		var date = new Date();
 		var year = date.getFullYear();
+		
 		var selectValue = document.getElementById("birthYear");
 		var optionIndex = 0;
 		for(var i = year-60; i <= year; i++) {

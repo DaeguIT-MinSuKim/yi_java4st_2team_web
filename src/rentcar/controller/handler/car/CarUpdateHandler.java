@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,55 +35,61 @@ public class CarUpdateHandler implements Command {
 			String no = request.getParameter("carNo");
 			Car car = service.carDetail(no);
 			request.setAttribute("car", car);
-
+			
 			List<Kind> kindList = kService.kindList();
 			request.setAttribute("kindList", kindList);
-
+			
 			List<Brand> brandList = bService.brandList();
 			request.setAttribute("brandList", brandList);
-
+			
 			return "admin/car/carUpdate.jsp";
 		} else {
 			System.out.println("POST");
 
-			response.setContentType("text/html; charsert=UTF8");
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-
-			String savePath = "upload";
-			int uploadFileSizeLimit = 5 * 1024 * 1024;
-			String enctype = "UTF-8";
-
-			ServletContext context = request.getServletContext(); // 컨트롤러 인터페이스를 상속받아 처리하는 경우 request 사용
-			String uploadFilePath = context.getRealPath(savePath);
-
-			try {
-				System.out.println("request > " + request);
-				MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileSizeLimit, enctype,
-						new DefaultFileRenamePolicy());
-				Enumeration files = multi.getFileNames();
-
-				String no = multi.getParameter("carNo");
-				String name = multi.getParameter("carName");
-				int kindNo = Integer.parseInt(multi.getParameter("kind"));
-				int brandNo = Integer.parseInt(multi.getParameter("brand"));
-				String remark = multi.getParameter("remark");
-				String image = multi.getFilesystemName("image");
-
-				Car c = service.carDetail(no);
-				c.setName(name);
-				c.setKind(new Kind(kindNo));
-				c.setBrand(new Brand(brandNo));
-				c.setRemark(remark);
-				if (image != null) {
-					c.setImage(image);
-				}
-
-				int res = service.updateCar(c);
-				request.setAttribute("res", res);
-				
-				response.sendRedirect("carList.do");
-			} catch (Exception e) {
-				System.out.println("예외 발생 : " + e);
+			int kindNum = 0;
+			
+			Cookie[] cookies = request.getCookies();  // 쿠키 조회하기
+			for(Cookie cookie:cookies){
+			    if( cookie.getName().equals("kindNum")) {
+			    	kindNum = Integer.parseInt(cookie.getValue());
+			    	
+			    	int uploadFileSizeLimit = 5 * 1024 * 1024;
+					String enctype = "UTF-8";
+					String savePath = "images/rentcar/" + kindNum;
+					
+					try {
+						MultipartRequest multi = new MultipartRequest(request, 
+								request.getServletContext().getRealPath(savePath),
+								uploadFileSizeLimit, enctype,
+								new DefaultFileRenamePolicy());
+						Enumeration files = multi.getFileNames();
+						
+						String no = multi.getParameter("carNo");
+						String name = multi.getParameter("carName");
+						int kindNo = Integer.parseInt(multi.getParameter("kind"));
+						int brandNo = Integer.parseInt(multi.getParameter("brand"));
+						String remark = multi.getParameter("remark");
+						String image = multi.getFilesystemName("image");
+						
+						Car c = service.carDetail(no);
+						c.setName(name);
+						c.setKind(new Kind(kindNo));
+						c.setBrand(new Brand(brandNo));
+						c.setRemark(remark);
+						if (image != null) {
+							c.setImage(image);
+						}
+						
+						int res = service.updateCar(c);
+						request.setAttribute("res", res);
+						
+						response.sendRedirect("carList.do");
+					} catch (Exception e) {
+						System.out.println("예외 발생 : " + e);
+					}
+			    }
 			}
 			return null;
 		}

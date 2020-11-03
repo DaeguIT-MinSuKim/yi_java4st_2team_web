@@ -8,7 +8,7 @@ public class Opt {
 	public Opt() {
 		super();
 	}
-
+	
 	public Opt(int code) {
 		super();
 		this.code = code;

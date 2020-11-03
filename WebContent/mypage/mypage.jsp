@@ -16,7 +16,7 @@
 				<a class="btn login" href="mypagePassword.do">개인정보 수정</a>
 			</div>
 			<div class="col-sm-6">
-				<a class="btn login" href="renting.do">렌트중인 차량</a>
+				<a class="btn login" href="renting.do" >렌트중인 차량</a>
 			</div>
 		</div>
 	</form>

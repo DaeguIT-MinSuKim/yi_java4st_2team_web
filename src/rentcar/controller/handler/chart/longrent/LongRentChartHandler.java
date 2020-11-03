@@ -20,7 +20,7 @@ public class LongRentChartHandler implements Command {
 			throws ServletException, IOException {
 		
 		JSONArray jsonArray = service.getCountLongRent();
-		System.out.println("jsonArray >>> " + jsonArray);
+	//	System.out.println("jsonArray >>> " + jsonArray);
 
 		request.setAttribute("jsonArray",jsonArray);
 		//		List<LongRent> chartList = service.selectLongRentChartList();

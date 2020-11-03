@@ -54,7 +54,7 @@ function outFrmChk(){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">아이디</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" value="" disabled>
+						<input type="text" class="form-control" value="${loginUser.id}" disabled>
 					</div>
 				</div>
 				
@@ -94,7 +94,7 @@ function outFrmChk(){
 		<div class="btn_box">
 			<ul>
 				<li><a class="btn btn-black" href="javascript:;" onClick="outFrmChk(); return false;">탈퇴완료</a></li>
-				<li><a class="btn btn-gray" href="./modify.php">탈퇴취소</a></li>
+				<li><a class="btn btn-gray" href="index.do">탈퇴취소</a></li>
 			</ul>
 		</div>
 </form>

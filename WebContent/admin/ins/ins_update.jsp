@@ -22,7 +22,7 @@ $(function(){
 				cache : false,
 				data : JSON.stringify(updateIns),
 				success : function(data) {
-					alert("보험을 정정했습니다.");
+					alert("보험을 수정했습니다.");
 					window.location.href = "adminInsList.do";
 				}
 
@@ -44,7 +44,7 @@ $(function(){
 			<table class="insTable table_style1">
 				<tr>	
 					<th>보험코드</th>
-					<td><input type="text" name="code" class="code" id="code" value="${param.code }"></td>
+					<td><input type="number" name="code" class="code" id="code" value="${param.code }"></td>
 				</tr>
 		
 				<tr>	
@@ -53,7 +53,7 @@ $(function(){
 				</tr>
 				<tr>	
 					<th>보험 가격</th>
-					<td> <input type="text" name="fare" class="fare" id="fare" value="${Ins.fare }"></td>
+					<td> <input type="number" name="fare" class="fare" id="fare" value="${Ins.fare }"></td>
 				</tr>
 			</table>
 			</form>

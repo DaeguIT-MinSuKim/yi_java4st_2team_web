@@ -39,7 +39,7 @@ public class JoinHandler implements Command {
 			System.out.println("joinMember > " + joinMember);
 
 			int res = service.insertMember(joinMember);
-			response.getWriter().print(res);;
+			response.getWriter().print(res);
 
 			return "member/join_end.jsp";
 		}

@@ -50,7 +50,7 @@
 				</colgroup>
 				<tr>
 					<td>${brand.name}</td>
-					<td><img src="upload/${brand.image }" width="50" height="50"></td>
+					<td><img src="images/brand/${brand.image }" width="50" height="50"></td>
 					<td><a href="brandUpdate.do?brandCode=${brand.code}"><input type="button" value="수정" class="update btn-success"></a></td>
 					<td><a href="brandDelete.do?brandCode=${brand.code}"><input type="button" value="삭제" class="delete btn_case5"></a></td>
 				</tr>

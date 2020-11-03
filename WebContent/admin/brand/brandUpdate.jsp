@@ -28,7 +28,7 @@
 				</tr>
 				<tr>
 					<td>현 이미지</td>
-					<td><img src="upload/${brand.image }" width="200" height="200"></td>
+					<td><img src="images/brand/${brand.image }" width="200" height="200"></td>
 				</tr>
 				<tr>
 					<td>바꿀 이미지</td>

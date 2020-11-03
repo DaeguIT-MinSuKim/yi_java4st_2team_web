@@ -46,7 +46,7 @@ $(function(){
 			<table class="insTable table_style1">
 				<tr>	
 					<th>보험코드</th>
-					<td><input type="text" name="code" class="code" id="code" value=""></td>
+					<td><input type="number" name="code" class="code" id="code" value=""></td>
 				</tr>
 		
 				<tr>	
@@ -55,7 +55,7 @@ $(function(){
 				</tr>
 				<tr>	
 					<th>보험 가격</th>
-					<td><input type="text" name="fare" class="fare" id="fare" value=""></td>
+					<td><input type="number" name="fare" class="fare" id="fare" value=""></td>
 				</tr>
 			</table>
 			
