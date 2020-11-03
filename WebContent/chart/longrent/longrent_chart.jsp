@@ -45,7 +45,7 @@ $(function(){
 			},
 			series:{
 				0:{
-					 color: '#6085AC'
+					 color: '#044FA2'
 				}
 			}	
 		};
@@ -88,10 +88,10 @@ $(function(){
 	            },
 	            series: { // 선색
 	                0: {
-	                    color: '#6085AC'
+	                    color: '#044FA2'
 	                },
 	                1: {
-	                    color: '#6085AC'
+	                    color: '#044FA2'
 	                }
 	            }
 		
