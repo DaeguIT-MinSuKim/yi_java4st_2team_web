@@ -8,7 +8,7 @@
 		url="jdbc:oracle:thin:@127.0.0.1:1521:orcl" 
 		username="rentcar"
 		password="rootroot"  
-		maxTotal="-1" 
-		maxIdle="-1" 
-		maxWaitMillis="-1" />
+		maxTotal="50000" 
+		maxIdle="50000" 
+		maxWaitMillis="50000" />
 </Context>
