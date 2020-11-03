@@ -22,7 +22,7 @@
 				<div class="content">
 					 ${Notice.contents }
 				</div>
-				<a href="noticeView.do?no=${Notice.no }" class="btn_small btn_case2 floatR mt10">목록</a>
+				<a href="notice.do" class="btn_small btn_case2 floatR mt10">목록</a>
 				<!-- <a href="noticeUpdate.do" class="btn_small btn_case2 floatR mt10 mr5">수정</a> -->
 			</div>
 		</div>

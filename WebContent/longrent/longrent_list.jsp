@@ -52,6 +52,7 @@ $(function(){
 					<input type="text" name="keyword" title="검색어 입력"> 
 					<input type="hidden" name="no" value="${LongRent.no }"> 
 					<input type="submit" value="검색">
+					<a href="longRent.do" type="button" class="btn btn_case2">목록보기</a>
 				</form>
 			</div>
 
