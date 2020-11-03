@@ -74,7 +74,6 @@ $(function(){
 			</script>
 			
 			<div id="myChart" style="width: 900px; height: 500px;"></div>
-			<button type="button" id="line_chart" onclick="location.href='#'">차트 보기</button>
 		</div>
 	</div>
 </body>
