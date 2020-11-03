@@ -138,7 +138,12 @@ $(function(){
 <body>
    <div id="adimn_content">
       <div class="admin_page">
-      	
+      		<%@ include file="/admin/include/tab_common.jsp"%>
+			<script>
+				$(function(){
+					$(".chart_tab>a").eq(3).addClass("active");
+				});
+			</script>
       <table>
 				<tr>
 					<td>
