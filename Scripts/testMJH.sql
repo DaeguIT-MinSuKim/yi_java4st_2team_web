@@ -18,7 +18,7 @@ SELECT *
 
 SELECT *
   FROM MEMBER
- WHERE id = 'dong';
+ WHERE id = 'dong1';
 
 SELECT * FROM ADMIN WHERE ID = ?;
 
@@ -30,6 +30,21 @@ UPDATE MEMBER
    		LI_NUMBER = ?,
    		EMAIL = ?,
    		ADDRESS = ?
+  WHERE ID = ?;
+ 
+/* 회원 탈퇴 */
+UPDATE MEMBER
+   SET PWD = ?,
+  		GENDER = ?,
+   		BIRTH = ?,
+   		NAME = ?,
+   		TEL = ?,
+   		LI_CLASS = ?,
+   		LI_NUMBER = ?,
+   		EMAIL = ?,
+   		ADDRESS = ?,
+   		REASON = ?,
+   		CONTENT = ?
   WHERE ID = ?;
  
 UPDATE MEMBER

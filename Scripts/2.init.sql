@@ -106,6 +106,8 @@ CREATE TABLE MEMBER (
 	address VARCHAR2(500), /* 주소 */
 	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
 	counting INTEGER, /* 회원대여횟수 */
+	reason VARCHAR2(500), /* 이유 */
+	content VARCHAR2(500), /* 내용 */
 	login_date DATE, /* 시각 */
 	try_counting INTEGER DEFAULT 0, /* 시도횟수 */
 	is_lock CHAR(1) DEFAULT 'N', /* 제한여부 */

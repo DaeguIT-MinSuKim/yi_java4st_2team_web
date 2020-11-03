@@ -93,7 +93,7 @@ $(function() {
 	
 				<ul class="button_style3 mt50">
 					<!-- <li><input type="submit" id="updateBtn" value="수정"></li> -->
-					<li><a href="javascript:;" class="btn_small btn_case1 c_fff" id="updateBtn">수정</a></li>
+					<li><a class="btn_small btn_case1 c_fff" id="updateBtn">수정</a></li>
 					<li><a href="longRent.do" class="btn_small btn_case2" >취소</a></li>
 				</ul>
 			</form>

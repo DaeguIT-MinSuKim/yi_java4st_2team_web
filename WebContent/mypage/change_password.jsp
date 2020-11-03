@@ -33,8 +33,15 @@
 			});
 		</script>
 		
-		<script>
-				function changePass() {
+		<script type="text/javascript">
+			function exit() {
+				self.close();
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(function changePass() {
+				
 					// 비밀번호 조합 체크
 					var regMust1 = /[a-zA-Z0-9_]/;
 					var regMust2 = /[^a-zA-Z0-9_]/;
@@ -45,7 +52,7 @@
 						return;
 					}
 					
-					if (document.getElementsByName("new_passwd1")[0].value.length < 6
+					/* if (document.getElementsByName("new_passwd1")[0].value.length < 6
 							|| document.getElementsByName("new_passwd1")[0].value.length > 20) {
 						window.alert("비밀번호는 6자이상 20자이하입니다.");
 						document.getElementsByName("new_passwd1")[0].focus();
@@ -57,7 +64,7 @@
 						window.alert("특수문자를 하나 이상 입력하세요.");
 						document.getElementsByName("new_passwd1")[0].focus();
 						return;
-					}
+					} */
 					
 					if (!document.getElementsByName("new_passwd2")[0].value) {
 						window.alert("변경할 비밀번호를 한번 더 입력하세요.");
@@ -70,8 +77,29 @@
 						document.getElementsByName("new_passwd2")[0].focus();
 						return;
 					}
-
-				}
+					
+					if (changePass()) {
+						var changePass = {
+							id : ${param.id},
+							address : $('#new_passwd2').val()
+						};
+						
+						$.ajax({
+							type : "post",
+							url : "modify.do"
+							cache : false,
+							data : JSON.stringify(changePass),
+							complete : function(data) {
+								alert("수정 되었습니다.");
+								window.location.href = "joinEnd.do";
+							}
+						
+						});
+						
+					}
+					//self.close();
+				
+			});
 		</script>
 	</head>
 	
@@ -109,8 +137,16 @@
 			<div class="btn_box">
 			<ul>
 				<li>
-					<input type="button" id="changePass"
-						class="btn btn-blue submit" onclick="changePass(); return false;" value="변경">
+					<input type="submit" id="changePass"
+						class="btn btn-blue" value="변경" onclick="changePass(); return false;">
+				</li>
+				<!-- <li>
+					<a type="button" id="changePass"
+						class="btn btn-blue" onclick="changePass(); return false;">변경</a>
+				</li> -->
+				<li>
+					<a type="submit" id="changePass"
+						class="btn btn-blue" onclick="exit(); return false;">닫기</a>
 				</li>
 			</ul>
 			</div>

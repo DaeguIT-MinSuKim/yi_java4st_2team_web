@@ -47,14 +47,22 @@ public class LoginHandler implements Command {
 			System.out.println("admin > " + admin);
 
 			if (getId == null) {
+				
 				if (admin == null) {
 					request.setAttribute("message", "존재하지 않는 아이디입니다.");
+					session.setAttribute("admin", admin);
 					return "member/login.jsp";
 				} else if (admin.getPwd().equals(pwd)) {
 					return "admin.do";
 				}
 
 			} else if (lock == 0) {
+				
+				if (getId.getPwd().equals("leave")) {
+					request.setAttribute("message", "탈퇴된 아이디 입니다.");
+					return "member/login.jsp";
+				}
+				
 				if (getId.getPwd().equals(pwd)) {
 					session.removeAttribute(id);
 					session.setAttribute("loginUser", getId);
