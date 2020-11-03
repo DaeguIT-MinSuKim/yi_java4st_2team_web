@@ -105,8 +105,10 @@ public class MemberDaoImpl implements MemberDao {
 		Integer try_counting = rs.getInt("TRY_COUNTING");
 		String is_lock = rs.getString("IS_LOCK");
 		Integer lock_counting = rs.getInt("LOCK_COUNTING");
+		String reason = rs.getString("REASON");
+		String content = rs.getString("CONTENT");
 		return new Member(id, pwd, gender, birth, name, tel, li_class, li_number, email, address, is_black, counting,
-				date, try_counting, is_lock, lock_counting);
+				date, try_counting, is_lock, lock_counting, reason, content);
 	}
 
 	@Override
@@ -317,8 +319,37 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int leaveMember(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "UPDATE MEMBER\r\n"
+				+ "   SET PWD = ?,\r\n"
+				+ "  		GENDER = ?,\r\n"
+				+ "   		BIRTH = ?,\r\n"
+				+ "   		NAME = ?,\r\n"
+				+ "   		TEL = ?,\r\n"
+				+ "   		LI_CLASS = ?,\r\n"
+				+ "   		LI_NUMBER = ?,\r\n"
+				+ "   		EMAIL = ?,\r\n"
+				+ "   		ADDRESS = ?,\r\n"
+				+ "   		REASON = ?,\r\n"
+				+ "   		CONTENT = ?\r\n"
+				+ "  WHERE ID = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, member.getPwd());
+			pstmt.setString(2, member.getGender());
+			pstmt.setTimestamp(3, new Timestamp(member.getBirth().getTime()));
+			pstmt.setString(4, member.getName());
+			pstmt.setString(5, member.getTel());
+			pstmt.setString(6, member.getLi_class());
+			pstmt.setString(7, member.getLi_number());
+			pstmt.setString(8, member.getEmail());
+			pstmt.setString(9, member.getAddress());
+			pstmt.setString(10, member.getReason());
+			pstmt.setString(11, member.getContent());
+			pstmt.setString(12, member.getId());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
 	@Override

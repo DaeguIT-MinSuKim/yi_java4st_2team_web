@@ -44,12 +44,14 @@
 				<!-- 글 있는 경우 -->
 				<colgroup>
 					<col width="5%">
-					<col width="10%">
+					<col width="8%">
 					<col width="5%">
 					<col width="10%">
+					<col width="8%">
+					<col width="8%">
 					<col width="10%">
 					<col width="10%">
-					<col width="10%">
+					<col width="20%">
 				</colgroup>
 				
 				<tr>
@@ -60,6 +62,8 @@
 					<th>면허종류</th>
 					<th>면허번호</th>
 					<th>최근접속</th>
+					<th>탈퇴사유</th>
+					<th>남기고 싶은 말</th>
 				</tr>
 
 				<c:forEach items="${blackPaging}" var="member">
@@ -80,10 +84,13 @@
 							<c:when test="${member.li_class == 'Class2M'}">2종 수동</c:when>
 							<c:when test="${member.li_class == 'Class1A'}">1종 보통</c:when>
 							<c:when test="${member.li_class == 'Class1B'}">1종 대형</c:when>
+							<c:when test="${member.li_class == '탈퇴'}">탈퇴</c:when>
 						</c:choose>
 					</td>
 					<td>${member.li_number}</td>
 					<td>${member.date}</td>
+					<td>${member.reason}</td>
+					<td>${member.content}</td>
 				</tr>
 				</c:forEach>
 				
