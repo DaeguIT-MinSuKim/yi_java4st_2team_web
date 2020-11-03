@@ -17,6 +17,12 @@ $(function(){
 		}
 	})		
 	
+	
+	
+	
+	
+	
+	
 	$("#admin_gnb > ul > li:eq(4)").addClass("on")
 })
 </script>
@@ -32,7 +38,7 @@ $(function(){
 						<option value="contents">내용</option>
 						<option value="rep_yn" id="repYn">답변여부X</option>
 					</select> 
-					<input type="text" name="keyword" title="검색어 입력" id="keyword" > 
+					<input type="text" name="keyword" placeholder="검색어 입력" id="keyword" > 
 					<input type="hidden" name="no" value="${LongRent.no }"> 
 					<input type="submit" value="검색" id="repX">
 					<a href="adminLongRent.do" type="button" class="btn btn_case2">목록보기</a>
