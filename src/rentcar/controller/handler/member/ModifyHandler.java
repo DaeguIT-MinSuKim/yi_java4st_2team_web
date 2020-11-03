@@ -26,7 +26,7 @@ public class ModifyHandler implements Command {
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("GET ModifyHandler");
 
-			return "modify/modify.jsp";
+			return "mypage/modify.jsp";
 
 		} else {
 			System.out.println("POST ModifyHandler");

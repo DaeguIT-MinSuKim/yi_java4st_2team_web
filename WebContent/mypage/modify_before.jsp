@@ -4,7 +4,7 @@
 <!-- // header -->
 
 
-<script language="javascript">
+<script>
 function enterCheckIdChk() {
 	if (event.keyCode == 13) {
 		frmChk();	
@@ -12,7 +12,7 @@ function enterCheckIdChk() {
 }
 </script>
 
-<script language="JavaScript">
+<script>
 function frmChk(){
 	form1=document.frmName;
 

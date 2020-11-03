@@ -79,6 +79,7 @@
 							<c:when test="${member.li_class == 'Class2M'}">2종 수동</c:when>
 							<c:when test="${member.li_class == 'Class1A'}">1종 보통</c:when>
 							<c:when test="${member.li_class == 'Class1B'}">1종 대형</c:when>
+							<c:when test="${member.li_class == '탈퇴'}">탈퇴</c:when>
 						</c:choose>
 					</td>
 					<td>${member.li_number}</td>

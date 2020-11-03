@@ -1,6 +1,5 @@
 package rentcar.dto;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Event {
@@ -28,7 +27,7 @@ public class Event {
 		this.viewImage = viewImage;
 		this.isEvent = isEvent;
 	}
-	
+
 	public Event(String name, int sale) {
 		this.name = name;
 		this.sale = sale;
