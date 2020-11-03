@@ -366,14 +366,39 @@ public class RentDaoImpl implements RentDao {
 		colNameArray.put("월별");
 		colNameArray.put("월별 대여횟수");
 		jsonArray.put(colNameArray);
-		String sql = "SELECT COUNT(*) AS COUNT, TO_CHAR(RENT_DATE, 'YYYY-MM') AS RENT_DATE FROM RENT " + 
-				"GROUP BY TO_CHAR(RENT_DATE, 'YYYY-MM') ORDER BY RENT_DATE";
+		String sql = "SELECT TO_CHAR(RENT_DATE, 'YYYY-MM') AS RENT_DATE, WM_CONCAT(GENDER) AS GENDER" + 
+				"	FROM MEMBER m JOIN RENT rent ON rent.ID = m.ID " + 
+				"	GROUP BY TO_CHAR(RENT_DATE, 'YYYY-MM') ORDER BY RENT_DATE";
 		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 			if (rs.next()) {
 				do {
+					String gender = rs.getString("GENDER");
+					int man = 0;
+					int woman = 0;
+					
+					if(gender.length() > 1) {
+						String[] array = gender.split(",");
+						for(int i=0; i<array.length; i++) {
+							if(array[i].equals("M")) {
+								man++;
+							}
+							if(array[i].equals("F")) {
+								woman++;
+							}
+						}
+					}else {
+						if(gender.equals("M")) {
+							man++;
+						}
+						if(gender.equals("F")) {
+							woman++;
+						}
+					}
+					
 					JSONArray rowArray = new JSONArray();
 					rowArray.put(rs.getString("RENT_DATE"));
-					rowArray.put(rs.getInt("COUNT"));
+					rowArray.put(man);
+					rowArray.put(woman);
 
 					jsonArray.put(rowArray);
 				} while (rs.next());
