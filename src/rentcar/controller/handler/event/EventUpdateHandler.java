@@ -66,7 +66,7 @@ public class EventUpdateHandler implements Command {
 				Date endDate = java.sql.Date.valueOf(multi.getParameter("endDate"));
 				String isEvent = "n";
 				
-				if (startDate.getTime() <= now.getTime()) {
+				if (startDate.getTime() <= now.getTime() && endDate.getTime() >= now.getTime()) {
 					isEvent = "y";
 				}
 				

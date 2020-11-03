@@ -125,6 +125,8 @@ $(function(){
 		var chart = new google.visualization.PieChart(objDiv);
 		chart.draw(carByRentTable, carByRentOptions);
 	};
+	
+	$("#admin_gnb > ul > li:eq(7) > a").addClass("on");
 });	
 </script>
 </head>

@@ -46,6 +46,8 @@
 				location.href = "carList.do";
 			}
 		})
+		
+		$("#admin_gnb > ul > li:eq(1)").addClass("on")
 	});
 </script>
 

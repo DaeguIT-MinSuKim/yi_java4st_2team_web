@@ -32,6 +32,8 @@
 				
 				});
 				
+				$("#admin_gnb > ul > li:eq(3)").addClass("on")
+				
 			});
 		</script>
 	</head>

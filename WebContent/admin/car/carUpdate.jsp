@@ -18,6 +18,8 @@
 					return false;
 				}
 			});
+			
+		$("#admin_gnb > ul > li:eq(1)").addClass("on")
 	});
 </script>
 

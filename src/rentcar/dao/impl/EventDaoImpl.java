@@ -208,7 +208,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ArrayList<Event> selectEventBoxFindMemberCoupon(String id) {
-		String sql = "SELECT E.EVENT_CODE, E.NAME, E.SALE " + 
+		String sql = "SELECT E.EVENT_CODE, E.NAME, E.SALE, E.START_DATE, E.END_DATE " + 
 					"FROM EVENT_BOX B, EVENT E " + 
 					"WHERE B.IS_EVENT = 'n' AND B.ID = ? AND B.EVENT_CODE = E.EVENT_CODE";
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -234,6 +234,8 @@ public class EventDaoImpl implements EventDao {
 		
 		event.setEventCode(rs.getString("EVENT_CODE"));
 		event.setName(rs.getString("NAME"));
+		event.setStartDate(rs.getTimestamp("START_DATE"));
+		event.setEndDate(rs.getTimestamp("END_DATE"));
 		event.setSale(rs.getInt("SALE"));
 		
 		return event;

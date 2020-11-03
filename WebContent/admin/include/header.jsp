@@ -109,6 +109,8 @@
 	</ul>
 </header><!-- // header -->
 
+<div class="admin_contentWrap">
+
 <nav id="admin_gnb">
 	<ul>
 		<li><a href="adminRent.do">단기렌트 관리</a></li>

@@ -26,6 +26,8 @@
 			$("#frm_adminOptWrite").submit();
 		});
 		
+		$("#admin_gnb > ul > li:eq(2)").addClass("on")
+		
 	});
 </script>
 

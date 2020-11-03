@@ -66,7 +66,11 @@
         var chart = new google.visualization.LineChart(domElem);
         chart.draw(data, options);
         
-	};        
+	};      
+
+	$(function(){
+		$("#admin_gnb > ul > li:eq(7) > a").addClass("on");
+	})
 </script>
 </head>
 <body>

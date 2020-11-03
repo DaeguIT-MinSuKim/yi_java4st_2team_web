@@ -12,6 +12,8 @@ $(function(){
 		$(".no_board").show();
 		$(".board").hide();
 	}
+	
+	$("#admin_gnb > ul > li:eq(0)").addClass("on")
 })
 </script>
 
