@@ -102,7 +102,7 @@ $(function(){
           //그래프에 표시할 데이터
           var dataRow = [];
 
-          for(var i=1; i < ${carByMonthly}.length; i++){ //랜덤 데이터 생성
+          for(var i=1; i < ${carByMonthly}.length; i++){
             var man     = ${carByMonthly}[i][1];
             var woman   = ${carByMonthly}[i][2];
             var total   = man + woman;
