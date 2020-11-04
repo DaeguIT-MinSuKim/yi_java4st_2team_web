@@ -34,7 +34,7 @@ $(function(){
 				</c:choose>
 				<p class="tit">${Notice.title }</p>
 				<p class="date">${Notice.writeDate }</p>
-				<div class="content" style="white-space:pre;">
+				<div class="content" style="white-space:pre-line;">
 					 <c:out value="${Notice.contents }"/>
 				</div>
 				<a href="adminNotice.do" class="btn_small btn_case2 floatR mt10 mr5">목록</a>
