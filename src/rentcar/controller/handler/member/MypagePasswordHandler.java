@@ -14,7 +14,7 @@ import rentcar.dto.Member;
 import rentcar.service.EventService;
 
 public class MypagePasswordHandler implements Command {
-	
+
 	private EventService eventService = new EventService();
 
 	@Override
@@ -25,7 +25,7 @@ public class MypagePasswordHandler implements Command {
 			System.out.println("GET MypagePasswordHandler");
 
 			return "mypage/mypage_password.jsp";
-			
+
 		} else {
 			System.out.println("POST MypagePasswordHandler");
 
@@ -39,13 +39,14 @@ public class MypagePasswordHandler implements Command {
 
 			if (loginUser.getPwd().equals(pwd)) {
 				request.setAttribute("loginUser", loginUser);
-				
+
 				// 보유중인 쿠폰
 				ArrayList<Event> memberCoupon = eventService.selectEventBoxFindMemberCoupon(loginUser.getId());
+				System.out.println("memberCoupon : " + memberCoupon);
 				request.setAttribute("memberCoupon", memberCoupon);
-				
+
 				return "mypage/modify.jsp";
-				
+
 			} else {
 				request.setAttribute("message", "비밀번호가 틀렸습니다.");
 				request.setAttribute("message2", "다시 확인해주세요.");
@@ -53,7 +54,7 @@ public class MypagePasswordHandler implements Command {
 			request.setAttribute("loginUser", loginUser);
 
 			return "mypage/mypage_password.jsp";
-			
+
 		}
 
 	}

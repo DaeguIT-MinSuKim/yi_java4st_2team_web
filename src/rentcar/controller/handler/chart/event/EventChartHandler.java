@@ -1,4 +1,4 @@
-package rentcar.controller.handler.chart.member;
+package rentcar.controller.handler.chart.event;
 
 import java.io.IOException;
 
@@ -7,31 +7,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import rentcar.controller.Command;
-import rentcar.service.LongRentSerivce;
-import rentcar.service.MemberService;
+import rentcar.service.EventService;
 
-public class MemberBlackChartHandler implements Command {
-	private MemberService service = new MemberService();
+public class EventChartHandler implements Command {
+	private EventService service = new EventService();
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		JSONArray jsonArray = service.getCountBlackList();
-//		System.out.println("jsonArray >>> " + jsonArray);
+		JSONArray jsonArray = service.getCountEvent();
+		System.out.println("jsonArray >>> " + jsonArray);
 
 		request.setAttribute("jsonArray",jsonArray);
 		//		List<LongRent> chartList = service.selectLongRentChartList();
 //		System.out.println("chartList >>> " + chartList);
 		
 		
-		
-		
-		return "/chart/member/member_black_chart.jsp";
-		
-		
+		return "/chart/event/event_chart.jsp";
 	}
+
 }

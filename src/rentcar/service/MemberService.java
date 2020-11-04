@@ -45,6 +45,10 @@ public class MemberService {
 	public int updateMember(Member member) {
 		return dao.updateMember(member);
 	}
+	
+	public int leaveMember(Member member) {
+		return dao.leaveMember(member);
+	}
 
 	public int updateBlack(Member member) {
 		return dao.updateBlack(member);

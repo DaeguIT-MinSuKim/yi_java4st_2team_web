@@ -50,6 +50,8 @@
 				}
 			});
 		});
+		
+		$("#admin_gnb > ul > li:eq(1)").addClass("on")
 	});
 </script>
 <div id="adimn_content">

@@ -12,6 +12,7 @@
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 $(function(){
+	$("#admin_gnb > ul > li:eq(7)").addClass("on");
 
    //구글 시각화 API를 로딩하는 메소드
    google.charts.load('current', {
@@ -137,7 +138,12 @@ $(function(){
 <body>
    <div id="adimn_content">
       <div class="admin_page">
-      	
+      		<%@ include file="/admin/include/tab_common.jsp"%>
+			<script>
+				$(function(){
+					$(".chart_tab>a").eq(3).addClass("active");
+				});
+			</script>
       <table>
 				<tr>
 					<td>

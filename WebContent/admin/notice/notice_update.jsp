@@ -42,6 +42,8 @@ $(function(){
 		
 	});
 	
+	$("#admin_gnb > ul > li:eq(5)").addClass("on")
+	
 });
 </script>
 
@@ -54,7 +56,7 @@ $(function(){
 					<input type="hidden" id="YN" name="YN"/>
 					<label><input type="checkbox" id="CHECK_YN" name="CHECK_YN"> <strong>공지</strong><br> <small>(체크하시면 공지로 상단에 등록됩니다.)</small>  </label>
 					<input type="text" class="mt5" name="title" value="${Notice.title }" id="title">
-					<textarea class="write_content mt5" name="contents">${Notice.contents }</textarea>
+					<textarea class="write_content mt5" wrap="hard" name="contents">${Notice.contents }</textarea>
 				</div>
 				
 	

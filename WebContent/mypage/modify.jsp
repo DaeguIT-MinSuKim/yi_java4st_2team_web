@@ -86,10 +86,8 @@
 
 <script>
 	$(function() {
-		$("#modify").on("click", function(e) {
-			
-			e.preventDefault();
-			
+		$("#modify").on("click", function() {
+
 			if (document.getElementsByName("li_class")[0].checked == false
 					&& document.getElementsByName("li_class")[1].checked == false
 					&& document.getElementsByName("li_class")[2].checked == false
@@ -99,9 +97,8 @@
 				return;
 			}
 			
-			if (modify()) {
 				var modifyMember = {
-					id: ${param.id},
+					id: $('#member_id').val(),
 					gender : $('#gender').val(),
   					birth : ($('#birthYear').val() + "-" + $('#birthMonth').val() + "-" + $('#birthDay').val()),
 					li_class : $('#li_class').val(),
@@ -112,18 +109,16 @@
 				
 				$.ajax({
 					type : "post",
-					url : "modify.do"
+					url : "modify.do",
 					cache : false,
 					data : JSON.stringify(modifyMember),
 					complete : function(data) {
 						alert("수정 되었습니다.");
-						window.location.href = "joinEnd.do";
+						window.location.href = "index.do";
 					}
 				
 				});
 				
-			}
-	
 		});
 		
 	});
@@ -350,16 +345,21 @@
 						<p>보유중인 쿠폰</p>
 						<table class="table_style1">
 							<colgroup>
-								<col width="">
-								<col widht="15%">
+								<col width="60%">
+								<col width="30%">
+								<col width="10%">
 							</colgroup>
 							<tr>
 								<th>제목</th>
+								<th>기간</th>
 								<th>금액</th>
 							</tr>
 							<c:forEach items="${memberCoupon}" var="coupon">
 							<tr>
 								<td class="tl">${coupon.name}</td>
+								<td>
+									<fmt:formatDate value="${coupon.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${coupon.endDate}" pattern="yyyy-MM-dd"/> 
+								</td>
 								<td><fmt:formatNumber value="${coupon.sale}"/>원</td>
 							</tr>
 							</c:forEach>
@@ -371,8 +371,7 @@
 				<!-- 버튼 -->
 				<div class="btn_box">
 					<ul>
-						<li><a class="btn btn-blue submit" id="modify" type="button">수정하기</a></li>
-						<li><input class="btn btn-blue submit" id="modify" type="submit" value="수정하기"></li>
+						<li><a class="btn btn-blue" id="modify" type="submit">수정하기</a></li>
 						<li><a class="btn btn-gray" href="leave.do">회원탈퇴</a></li>
 					</ul>
 				</div>

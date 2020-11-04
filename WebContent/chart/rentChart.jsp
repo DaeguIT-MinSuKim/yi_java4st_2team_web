@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 <script>
 $(function(){
+	$("#admin_gnb > ul > li:eq(7)").addClass("on");
+	
 	//구글 시각화 API를 로딩하는 메소드
 	google.charts.load('current', {
 		packages : [ 'corechart' ]

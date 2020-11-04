@@ -33,6 +33,8 @@ $(function(){
 		
 	});
 	
+	$("#admin_gnb > ul > li:eq(2)").addClass("on")
+	
 });
 </script>
 

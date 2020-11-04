@@ -17,6 +17,8 @@ $(function(){
 			}
 			
 		});	
+		
+		$("#admin_gnb > ul > li:eq(5)").addClass("on")
 			
 });
 		
@@ -32,8 +34,8 @@ $(function(){
 				</c:choose>
 				<p class="tit">${Notice.title }</p>
 				<p class="date">${Notice.writeDate }</p>
-				<div class="content">
-					 ${Notice.contents }
+				<div class="content" style="white-space:pre-line;">
+					 <c:out value="${Notice.contents }"/>
 				</div>
 				<a href="adminNotice.do" class="btn_small btn_case2 floatR mt10 mr5">목록</a>
 				<a href="adminNoticeDelete.do?no=${param.no }" class="btn_small btn_case5 floatR mt10 mr5" id="btn_delete2">삭제</a>

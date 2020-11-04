@@ -102,9 +102,9 @@
 	
 	<div id="mBanner">
 		<div>
-			<h2>손해보험사 지정점</h2>
-			<p>휠매니아는 손해보험사 지정점으로 국산차 및 수입차를 취급합니다.<br>
-			휠 수리·도장 폴리싱 굴절·용접 중고 휠 매입·판매 다이아몬드컷팅 복원
+			<h2>압도적 1등, 동자승렌트카</h2>
+			<p>따라올 수 없는 압도적 1등 렌트카업체<br>
+			이제부터 렌트카 예약은 동자승렌트카입니다.
 		</p></div>
 	</div><!-- //mBanner -->
 	
@@ -153,6 +153,7 @@
 <script>
 	var swiper = new Swiper('.visu_slide', {
 		effect: 'fade',
+		loop: true,
 		autoplay: {
 			delay: 8000,
 			disableOnInteraction: false,
