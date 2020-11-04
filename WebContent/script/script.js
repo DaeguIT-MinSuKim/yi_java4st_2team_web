@@ -110,15 +110,15 @@ function updateCheck() {
 		alert("변경할 제목 입력하세요.");
 		return false;
 	}
-	// if(document.frm.contents.value.length == 0) {
-	// alert("변경할 내용 입력하세요.");
-	// return false;
-	// }
+	 if(document.frm.contents.value.length == 0) {
+	 alert("변경할 내용 입력하세요.");
+	 return false;
+	 }
 
-	if (CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
-		alert("변경할 내용 입력하세요.");
-		return false;
-	}
+//	if (CKEDITOR.instances.contents_ckeditor.getData().trim() == "") {
+//		alert("변경할 내용 입력하세요.");
+//		return false;
+//	}
 
 	return true;
 }
@@ -241,21 +241,24 @@ function admin_gnb_height(){
 
 function textarea_textcounting(){
 	if( $('textarea').length > 0 ){
-		var html_wrapper = '<div id="textareaBox"></div>';
-		var html_countingBox = '<span id="countingBox">(0 / 최대 1200자)</span>';
-		
-		$('textarea').wrap(html_wrapper);
-		$('#textareaBox').append(html_countingBox);
-		$('textarea').keyup(function (e){
-		    var content = $(this).val();
-		    $('#countingBox').html("("+content.length+" / 최대 1200자)");    //글자수 실시간 카운팅
-		
-		    if (content.length > 1200){
-		        alert("최대 1200자까지 입력 가능합니다.");
-		        $(this).val(content.substring(0, 1200));
-		        $('#countingBox').html("(200 / 최대 1200자)");
-		    }
-		});
+		if( $(".comment_list").length == 0 ){
+			
+			var html_wrapper = '<div id="textareaBox"></div>';
+			var html_countingBox = '<span id="countingBox">(0 / 최대 1200자)</span>';
+			
+			$('textarea').wrap(html_wrapper);
+			$('#textareaBox').append(html_countingBox);
+			$('textarea').keyup(function (e){
+			    var content = $(this).val();
+			    $('#countingBox').html("("+content.length+" / 최대 1200자)");    //글자수 실시간 카운팅
+			
+			    if (content.length > 1200){
+			        alert("최대 1200자까지 입력 가능합니다.");
+			        $(this).val(content.substring(0, 1200));
+			        $('#countingBox').html("(200 / 최대 1200자)");
+			    }
+			});
+		}
 	}
 }
 

@@ -10,6 +10,8 @@ SELECT * FROM EVENT;
 SELECT * FROM BRAND;
 SELECT * FROM EVENT_BOX;
 SELECT * FROM OPT_BOX;
+SELECT * FROM notice;
+
 --조회----------------------------------------------------------------------------------------------------------------------------------------------------------
 SELECT * FROM LONGRENT;
 --SELECT NO, SUBJECT, CONTENT, REP, ID, REP_YN, WRITE_DATE"

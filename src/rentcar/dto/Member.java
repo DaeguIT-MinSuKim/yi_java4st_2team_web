@@ -26,6 +26,10 @@ public class Member {
 	private String is_lock;
 	private Integer lock_counting;
 
+	// 탈퇴
+	private String reason;
+	private String content;
+
 	public Member() {
 		super();
 	}
@@ -46,7 +50,7 @@ public class Member {
 
 	public Member(String id, String pwd, String gender, Date birth, String name, String tel, String li_class,
 			String li_number, String email, String address, String is_black, Integer counting, Date date,
-			Integer try_counting, String is_lock, Integer lock_counting) {
+			Integer try_counting, String is_lock, Integer lock_counting, String reason, String content) {
 		this.id = id;
 		this.pwd = pwd;
 		this.gender = gender;
@@ -63,11 +67,29 @@ public class Member {
 		this.try_counting = try_counting;
 		this.is_lock = is_lock;
 		this.lock_counting = lock_counting;
+		this.reason = reason;
+		this.content = content;
 	}
 
 	public Member(String id, String is_black) {
 		this.id = id;
 		this.is_black = is_black;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public Member(String id) {
@@ -207,7 +229,8 @@ public class Member {
 		return "Member [id=" + id + ", pwd=" + pwd + ", gender=" + gender + ", birth=" + birth + ", name=" + name
 				+ ", tel=" + tel + ", li_class=" + li_class + ", li_number=" + li_number + ", email=" + email
 				+ ", address=" + address + ", is_black=" + is_black + ", counting=" + counting + ", date=" + date
-				+ ", try_counting=" + try_counting + ", is_lock=" + is_lock + ", lock_counting=" + lock_counting + "]";
+				+ ", try_counting=" + try_counting + ", is_lock=" + is_lock + ", lock_counting=" + lock_counting
+				+ ", reason=" + reason + ", content=" + content + "]";
 	}
 
 }

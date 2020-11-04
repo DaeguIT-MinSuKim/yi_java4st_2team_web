@@ -20,7 +20,7 @@
 						<li>이름 : ${LongRent.name } </li>
 						<li>연락처 : ${LongRent.tel } </li>
 					</ul>
-					 ${LongRent.contents }
+					<div style="white-space:pre-line;"><c:out value="${LongRent.contents }"/></div>
 				</div>
 				<div class="option">
 					<p class="t1">옵션</p>

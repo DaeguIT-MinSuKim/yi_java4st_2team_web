@@ -70,7 +70,8 @@
 					<div class="col-xs-5">
 						<c:choose>
 							<c:when test="${selectMember.gender == 'M'}">남성</c:when>
-							<c:when test="${selectMember.gender == 'F'}">여성</c:when>							
+							<c:when test="${selectMember.gender == 'F'}">여성</c:when>						
+							<c:when test="${selectMember.gender == 'X'}">탈퇴</c:when>						
 						</c:choose>
 					</div>
 				</td>
@@ -80,6 +81,9 @@
 				<td class="tl">
 					<div class="col-xs-5">
 						<fmt:formatDate value="${selectMember.birth}" pattern="yyyy년 MM월 dd일"/>
+						<c:choose>
+							<c:when test="${selectMember.birth == '0001-01-01 00:00:00'}">탈퇴</c:when>				
+						</c:choose>
 					</div>
 				</td>
 			</tr>
@@ -100,6 +104,7 @@
 							<c:when test="${selectMember.li_class == 'Class2M'}">2종 수동</c:when>
 							<c:when test="${selectMember.li_class == 'Class1A'}">1종 보통</c:when>
 							<c:when test="${selectMember.li_class == 'Class1B'}">1종 대형</c:when>
+							<c:when test="${selectMember.li_class == '탈퇴'}">탈퇴</c:when>
 						</c:choose>
 					</div>
 				</td>
