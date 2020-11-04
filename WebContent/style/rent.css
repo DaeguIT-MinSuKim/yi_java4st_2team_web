@@ -113,7 +113,7 @@ select.hours {border:1px solid #ddd; border-left:0; padding:0 10px; cursor:point
 .page_rentEnd .title {font-size:30px; font-weight:500; margin-top:50px;} 
 .page_rentEnd a.btn-primary {min-width:300px; height:50px; line-height:40px; font-size:17px; font-weight:500; color:#fff !important; margin-top:50px;} 
 
-.btn_kakaotalk {display:inline-block; border:1px solid #fae300; font-size:17px; vertical-align:bottom; padding:6px 20px; background:#fae300; color:#391b1b !important;}
+.btn_kakaotalk {display:inline-block; border:1px solid #fae300; font-size:17px; vertical-align:bottom; padding:6px 20px; background:#fae300; color:#391b1b !important; width:300px; margin-top:50px;}
 .btn_kakaotalk img {height:37px}
 
 /* 차량 리스트 공용 */
