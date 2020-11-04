@@ -15,11 +15,54 @@ $(function(){
 	
 	main_carRent() // 메인 - 자동차 렌트
 	memberRent_delete(); // 렌트 리스트 - 렌트 예약 취소
+	
+//	shareKakaotalk(); // 카카오톡 공유 (단기렌트 예약완료 내역을 공유..)
 });
 
 //3자리 단위 콤마 찍기
 function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function shareKakaotalk(btn) {
+
+	var carName = $(btn).attr("data-carName");
+	var carDate = $(btn).attr("data-date");
+	var rentNo = $(btn).attr("data-rentNo");
+
+	
+	Kakao.Link.sendDefault({
+		objectType : 'feed',
+		content : {
+			title : "예약차량 : " + carName,
+			description : "예약번호 : "+ rentNo +" / 기간 : " + carDate,
+			imageUrl : "",
+			link : {
+				mobileWebUrl : '',
+				androidExecParams : 'test',
+			},
+		},
+		social : {
+			//likeCount : 10,
+			//commentCount : 20,
+			//sharedCount : 30,
+		},
+		buttons : [ {
+			title : '웹으로 이동',
+			link : {
+				mobileWebUrl : '',
+			},
+		}, 
+		/*
+		{
+			title : '앱으로 이동',
+			link : {
+				mobileWebUrl : 'https://developers.kakao.com',
+			},
+		},
+		*/
+		]
+	});
 }
 
 //단기렌트 상세 - 버튼 '렌트시 유의사항 보기'
