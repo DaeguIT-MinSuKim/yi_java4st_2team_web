@@ -22,7 +22,7 @@
 				<tr>
 					<input type="hidden" value="${brand.code}" name="code">
 					<td>이 름</td>
-					<td><input type="text" value="${brand.name }" name="name"></td>
+					<td><input type="text" value="${brand.name }" id="name" name="name"></td>
 				</tr>
 				<tr>
 					<td>현 이미지</td>

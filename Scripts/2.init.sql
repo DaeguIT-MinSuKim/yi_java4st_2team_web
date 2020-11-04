@@ -180,7 +180,7 @@ ALTER TABLE ADMIN
 
 /* 대여관리 */
 CREATE TABLE RENT (
-	rent_no VARCHAR2(20) NOT NULL, /* 대여번호 */
+	rent_no NUMBER NOT NULL, /* 대여번호 */
 	id VARCHAR2(50), /* 아이디 */
 	car_no VARCHAR2(20), /* 차량번호 */
 	ins_code INTEGER, /* 보험코드 */
@@ -489,7 +489,7 @@ ALTER TABLE EVENT_BOX
 CREATE TABLE OPT_BOX (
 	opt_box INTEGER NOT null, /* 옵션보관함번호 */
 	opt_code INTEGER, /* 옵션코드 */
-	rent_no VARCHAR2(20), /* 대여번호 */
+	rent_no NUMBER, /* 대여번호 */
 	is_opt CHAR(1) /* 사용여부 */
 );
 
