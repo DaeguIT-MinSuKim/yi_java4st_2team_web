@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/admin/include/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- // header -->
 <c:if test="${kindList == null}">
 	<script>
@@ -49,7 +50,7 @@
 			<c:forEach items="${kindList }" var="kind">
 				<tr>
 					<td>${kind.name}</td>
-					<td>${kind.fare}</td>
+					<td><fmt:formatNumber value="${kind.fare}" pattern="#,###" /></td>
 					<td><a href="kindUpdate.do?kindCode=${kind.code}"><input type="button" value="수정" class="update btn-success"></a></td>
 					<td><a href="kindDelete.do?kindCode=${kind.code}"><input type="button" value="삭제" class="delete btn_case5"></a></td>
 				</tr>
