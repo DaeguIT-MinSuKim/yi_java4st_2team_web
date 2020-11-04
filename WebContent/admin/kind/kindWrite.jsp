@@ -3,6 +3,9 @@
 <%@ include file="/admin/include/header.jsp"%>
 <!-- // header -->
 <script type="text/javascript">
+	var regex = /[^0-9]/g;
+	var fare = $('#fare').val();
+
 	$(function() {
 		$('#add').on("click", function() {
 			if($('#name').val() == ""){
@@ -12,6 +15,11 @@
 			}
 			if ($('#fare').val() == "") {
 				alert("분류 금액을 기입해주세요");
+				$('#fare').focus();
+				return false;
+			}
+			if(regex.test(fare)){
+				alert("숫자만 기입해주세요");
 				$('#fare').focus();
 				return false;
 			}
