@@ -234,9 +234,9 @@ INSERT INTO NOTICE VALUES(7,'대여 자격 기준이 어떻게 되나요? ','동
 ,SYSDATE, 0);
 
 -- 이벤트
-INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES('10월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', '2020-10-01', '2020-10-30', 'y');
-INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES('11월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', '2020-10-01', '2020-10-30', 'N');
-INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES('12월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', '2020-10-01', '2020-10-30', 'y');
+INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES('10월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', '2020-10-01', TO_DATE('2020/10/31 23:59:59','yyyy/mm/dd hh24:mi:ss'), 'n');
+INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES('11월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', '2020-11-01', TO_DATE('2020/11/30 23:59:59','yyyy/mm/dd hh24:mi:ss'), 'n');
+INSERT INTO EVENT(NAME, SALE, THUM_IMAGE, VIEW_IMAGE, START_DATE, END_DATE, IS_EVENT) VALUES('12월 월렌트 이벤트', '1000', '1_thumbnail.png', '1_view.png', '2020-12-01', TO_DATE('2020/12/31 23:59:59','yyyy/mm/dd hh24:mi:ss'), 'n');
 SELECT * FROM EVENT;
 
 -- 이벤트 박스
