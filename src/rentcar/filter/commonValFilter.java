@@ -39,6 +39,8 @@ public class commonValFilter implements Filter {
 		
 //		request.setAttribute("navMenu", navMenu);
 		chain.doFilter(request, response);
+		
+		
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

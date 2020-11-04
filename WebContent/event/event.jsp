@@ -3,7 +3,6 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 <%@ include file="/include/sub_event.jsp"%>
-
 <!-- 컨텐츠 -->
 <div class="contents_box">
 	<div class="contents">
@@ -26,7 +25,9 @@
 			
 			<div class="event_no_list">등록된 이벤트가 없습니다.</div>
 			
+			<c:if test="${sessionScope.admin.id eq 'admin'}">
 			<a href="eventWrite.do" class="btn_small btn_case2 floatR mt10">글쓰기</a>
+			</c:if>
 		</div>
 		
 		
