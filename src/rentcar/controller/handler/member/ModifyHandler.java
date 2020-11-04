@@ -31,33 +31,6 @@ public class ModifyHandler implements Command {
 		} else {
 			System.out.println("POST ModifyHandler");
 
-			/*String id = request.getParameter("id");
-						
-			Date birth;
-			try {
-				birth = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("birth"));
-				String tel = request.getParameter("tel");
-				String li_class = request.getParameter("li_class");
-				String li_number = request.getParameter("li_number");
-				String email = request.getParameter("email");
-				String address = request.getParameter("address");
-			
-				Member modify = new Member();
-				modify.setId(id);
-				modify.setDate(birth);
-				modify.setTel(tel);
-				modify.setLi_class(li_class);
-				modify.setLi_number(li_number);
-				modify.setEmail(email);
-				modify.setAddress(address);
-				service.updateMember(modify);
-				response.sendRedirect("modify.do");
-				System.out.println(modify);
-			} catch (ParseException e) {
-				
-				e.printStackTrace();
-			}*/
-
 			HttpSession session = request.getSession();
 
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();

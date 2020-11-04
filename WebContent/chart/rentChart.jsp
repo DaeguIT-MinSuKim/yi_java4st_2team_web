@@ -88,7 +88,7 @@ $(function(){
         //라인차트의 라인 수
         var chartLineCount    = 10;
         //컨트롤러 바 차트의 라인 수
-        var controlLineCount	= 10;
+        var controlLineCount	= 5;
 
         function drawDashboard() {
 
@@ -109,7 +109,7 @@ $(function(){
             console.log(man, woman, total);
             
             var year = ${carByMonthly}[i][0].substring(0,4);
-    		var month = ${carByMonthly}[i][0].substring(5,8);
+    		var month = Number(${carByMonthly}[i][0].substring(5,8)) -1;
     		console.log(year, month);
     		
             dataRow = [new Date(year, month), man, woman , total];

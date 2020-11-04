@@ -16,7 +16,7 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<link rel="shortcut icon" href="./images/common/favi.ico">
-
+	
 	<link  type="text/css" href="./style/bootstrap.3.3.6.min.css" rel="stylesheet">
 	<link  type="text/css" href="./style/bootstrap-select.css" rel="stylesheet">
 	<link  type="text/css" href="./style/common.css" rel="stylesheet">
@@ -31,7 +31,7 @@
 	<link  type="text/css" href="./style/button.css" rel="stylesheet">
 	<link  type="text/css" href="./style/rent.css" rel="stylesheet">
 	<link  media="print" type="text/css" href="./style/bootstrap.print.min.css" rel="stylesheet"><!-- 프린트대응 -->
-
+	
 	<script type="text/javascript" src="./script/jquery.1.12.0.min.js"></script>
 	<script type="text/javascript" src="./script/bootstrap.3.3.6.min.js"></script>
 	<script type="text/javascript" src="./script/bootstrap-select.js"></script>
@@ -76,6 +76,9 @@
 	<!-- 채널톡 -->
 	<script type="text/javascript" src="./script/channelTalk.js"></script>
 
+	<!-- 카카오 공유 API -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 	<!-- 트랜지션 디폴트 세팅 -->
 	<script type="text/javascript">
 	$(window).load(function(){
@@ -84,6 +87,10 @@
 			"-webkit-transition","all .1s linear",
 			"-moz-transition","all .1s linear"
 		);
+	});
+	
+	$(function(){
+		Kakao.init("d88e166029eccfc0d26d8bf1fac2200f");      // 사용할 앱의 JavaScript 키를 설정
 	});
 	</script>
 	
