@@ -80,10 +80,10 @@
 				<th scope="row">생년월일</th>
 				<td class="tl">
 					<div class="col-xs-5">
-						<fmt:formatDate value="${selectMember.birth}" pattern="yyyy년 MM월 dd일"/>
 						<c:choose>
-							<c:when test="${selectMember.birth == '0001-01-01 00:00:00'}">탈퇴</c:when>				
+							<c:when test="${selectMember.birth == '0001-01-01 00:00:00.0'}">탈퇴</c:when>
 						</c:choose>
+						<fmt:formatDate value="${selectMember.birth}" pattern="yyyy년 MM월 dd일"/>
 					</div>
 				</td>
 			</tr>

@@ -5,6 +5,10 @@
 <%@ include file="/include/header.jsp"%>
 <!-- // header -->
 
+<script type="text/javascript">
+
+</script>
+
 <!-- 상단배경 -->
 <section class="bgTop bgSub1 pc">
 	<div class="slogan">
@@ -15,6 +19,7 @@
 	</div>
 </section>
 <!-- //상단배경 -->
+
 <section class="con_wrap box">
 	<div class="contents_box out padLeft0">
 		<div class="contents">
@@ -110,6 +115,12 @@
 						</li>
 					</ul>
 				</div>
+				<a href="javascript:;" class="btn_kakaotalk btn" onclick="shareKakaotalk(this)" 
+						data-carName="${rent.getCarNo().getName()} (${rent.getCarNo().getNo()})" 
+						data-date="${fn:split(rent.getRent_date(),'T')[0]} ${fn:split(rent.getRent_date(),'T')[1]} ~ ${fn:split(rent.getReturn_date(),'T')[0]} ${fn:split(rent.getReturn_date(),'T')[1]}"
+						data-rentNo="${rent.getRentNo()}">
+					<img src="./images/common/kakao.png" alt="카카오톡 공유"> 내 예약정보 공유하기
+				</a>
 				
 				<a href="renting.do" role="button" class="btn btn-primary">내 렌터카 예약현황 보기</a>
 				

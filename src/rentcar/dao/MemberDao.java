@@ -27,6 +27,8 @@ public interface MemberDao {
 	// 비밀번호 변경
 	int changePass(String id, String pwd);
 	
+	int changePass1(Member member);
+	
 	// 회원 탈퇴
 	int leaveMember(Member member);
 	

@@ -102,7 +102,7 @@ BEGIN
 	(
 	JOB => X
 	, WHAT => 'UPDATE_JOB_EVENT;' -- 등록할 프로시저 명 넣어주기 (마지막에 꼭 ; 넣어주기. job 실행하면서 에러 날 수 있음)
-	, NEXT_DATE => SYSDATE + 1/24/60/60 -- 현재시각부터 바로 시작
+	, NEXT_DATE => SYSDATE -- 현재시각부터 바로 시작
 	, INTERVAL => 'TRUNC(SYSDATE) + 1' -- 매일 밤 12시
 	, NO_PARSE => TRUE
 	);

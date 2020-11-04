@@ -50,9 +50,9 @@ public class LoginHandler implements Command {
 				
 				if (admin == null) {
 					request.setAttribute("message", "존재하지 않는 아이디입니다.");
-					session.setAttribute("admin", admin);
 					return "member/login.jsp";
 				} else if (admin.getPwd().equals(pwd)) {
+					session.setAttribute("admin", admin);
 					return "admin.do";
 				}
 

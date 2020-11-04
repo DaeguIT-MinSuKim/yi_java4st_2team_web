@@ -13,10 +13,10 @@
 	<form method="get">
 		<div class="login_box">
 			<div class="col-sm-6">
-				<a class="btn login" href="mypagePassword.do">개인정보 수정</a>
+				<a class="btn login" href="mypagePassword.do"><i class="fas fa-user-alt"></i><br>개인정보 수정</a>
 			</div>
 			<div class="col-sm-6">
-				<a class="btn login" href="renting.do" >렌트중인 차량</a>
+				<a class="btn login" href="renting.do" ><i class="fas fa-car"></i><br>렌트중인 차량</a>
 			</div>
 		</div>
 	</form>
