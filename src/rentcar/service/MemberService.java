@@ -41,6 +41,10 @@ public class MemberService {
 	public int changePass(String id, String pwd) {
 		return dao.changePass(id, pwd);
 	}
+	
+	public int changePass1(Member member) {
+		return dao.changePass1(member);
+	}
 
 	public int updateMember(Member member) {
 		return dao.updateMember(member);

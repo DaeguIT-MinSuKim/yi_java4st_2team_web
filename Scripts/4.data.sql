@@ -20,50 +20,48 @@ VALUES ('admin', '1234');
 
 -- 회원
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong', '1234', 'M', '1998-11-6', '동자승', '010-1234-1234', 'Class1A', '12-12-123456-12', 'aa@aa.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong', '1234', 'M', '1998-11-6', '동자승', '010-1234-1234', 'Class1A', '12-12-123456-12', 'dong@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong1', '1234', 'M', '1998-11-6', '김자승', '010-1234-1234', 'Class1A', '11-11-123456-11', 'dong1@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong01', '1234', 'M', '1998-1-7', '김자승', '010-1234-1234', 'Class1A', '11-11-123456-11', 'dong01@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong2', '1234', 'F', '1998-11-6', '이자승', '010-1234-1234', 'Class1B', '12-12-123456-12', 'dong2@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong02', '1234', 'F', '1998-2-8', '이자승', '010-1234-1234', 'Class1B', '12-12-123456-12', 'dong02@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong3', '1234', 'M', '1998-11-6', '박자승', '010-1234-1234', 'Class2A', '13-12-123456-12', 'dong3@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong03', '1234', 'M', '1998-3-9', '박자승', '010-1234-1234', 'Class2A', '13-12-123456-12', 'dong03@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong4', '1234', 'F', '1998-11-6', '최자승', '010-1234-1234', 'Class2M', '14-12-123456-12', 'dong4@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong04', '1234', 'F', '1998-4-10', '최자승', '010-1234-1234', 'Class2M', '14-12-123456-12', 'dong04@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong5', '1234', 'M', '1998-11-6', '정자승', '010-1234-1234', 'Class1A', '15-12-123456-12', 'dong5@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong05', '1234', 'M', '1998-5-11', '정자승', '010-1234-1234', 'Class1A', '15-12-123456-12', 'dong05@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong6', '1234', 'F', '1998-11-6', '강자승', '010-1234-1234', 'Class1B', '16-12-123456-12', 'dong6@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong06', '1234', 'F', '1998-6-12', '강자승', '010-1234-1234', 'Class1B', '16-12-123456-12', 'dong06@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong7', '1234', 'M', '1998-11-6', '조자승', '010-1234-1234', 'Class2A', '17-12-123456-12', 'dong7@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong07', '1234', 'M', '1998-7-13', '조자승', '010-1234-1234', 'Class2A', '17-12-123456-12', 'dong07@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong8', '1234', 'F', '1998-11-6', '윤자승', '010-1234-1234', 'Class2M', '18-12-123456-12', 'dong8@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong08', '1234', 'F', '1998-8-14', '윤자승', '010-1234-1234', 'Class2M', '18-12-123456-12', 'dong08@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong9', '1234', 'M', '1998-11-6', '창자승', '010-1234-1234', 'Class1A', '19-12-123456-12', 'dong9@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong09', '1234', 'M', '1998-9-15', '창자승', '010-1234-1234', 'Class1A', '19-12-123456-12', 'dong09@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong10', '1234', 'F', '1998-11-6', '임자승', '010-1234-1234', 'Class1B', '20-12-123456-12', 'dong10@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong10', '1234', 'F', '1998-10-16', '임자승', '010-1234-1234', 'Class1B', '20-12-123456-12', 'dong10@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong11', '1234', 'M', '1998-11-6', '한자승', '010-1234-1234', 'Class2A', '21-12-123456-12', 'dong11@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong11', '1234', 'M', '1998-11-17', '한자승', '010-1234-1234', 'Class2A', '21-12-123456-12', 'dong11@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong12', '1234', 'F', '1998-11-6', '오자승', '010-1234-1234', 'Class2M', '22-12-123456-12', 'dong12@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong12', '1234', 'F', '1998-12-18', '오자승', '010-1234-1234', 'Class2M', '22-12-123456-12', 'dong12@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong13', '1234', 'M', '1998-11-6', '서자승', '010-1234-1234', 'Class1A', '23-12-123456-12', 'dong13@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong13', '1234', 'M', '1998-1-19', '서자승', '010-1234-1234', 'Class1A', '23-12-123456-12', 'dong13@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong14', '1234', 'F', '1998-11-6', '신자승', '010-1234-1234', 'Class1B', '24-12-123456-12', 'dong14@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong14', '1234', 'F', '1998-2-20', '신자승', '010-1234-1234', 'Class1B', '24-12-123456-12', 'dong14@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong15', '1234', 'M', '1998-11-6', '권자승', '010-1234-1234', 'Class2A', '25-12-123456-12', 'dong15@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong15', '1234', 'M', '1998-3-21', '권자승', '010-1234-1234', 'Class2A', '25-12-123456-12', 'dong15@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong16', '1234', 'F', '1998-11-6', '황자승', '010-1234-1234', 'Class2M', '26-12-123456-12', 'dong16@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong16', '1234', 'F', '1998-4-22', '황자승', '010-1234-1234', 'Class2M', '26-12-123456-12', 'dong16@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong17', '1234', 'M', '1998-11-6', '안자승', '010-1234-1234', 'Class1A', '28-12-123456-12', 'dong17@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong17', '1234', 'M', '1998-5-23', '안자승', '010-1234-1234', 'Class1A', '28-12-123456-12', 'dong17@naver.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong18', '1234', 'F', '1998-11-6', '송자승', '010-1234-1234', 'Class1B', '11-12-123456-12', 'dong18@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong18', '1234', 'F', '1998-6-24', '송자승', '010-1234-1234', 'Class1B', '11-12-123456-12', 'dong18@daum.net', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong19', '1234', 'M', '1998-11-6', '전자승', '010-1234-1234', 'Class2A', '12-12-123456-12', 'dong19@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
+VALUES ('dong19', '1234', 'M', '1998-7-25', '전자승', '010-1234-1234', 'Class2A', '12-12-123456-12', 'dong19@nate.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 INSERT INTO MEMBER(ID, PWD, GENDER, BIRTH, NAME, TEL, LI_CLASS, LI_NUMBER, EMAIL, ADDRESS)
-VALUES ('dong20', '1234', 'F', '1998-11-6', '홍자승', '010-1234-1234', 'Class2M', '13-12-123456-12', 'dong20@gmail.com', '대구시');
+VALUES ('dong20', '1234', 'F', '1998-8-26', '홍자승', '010-1234-1234', 'Class2M', '13-12-123456-12', 'dong20@gmail.com', '41865 대구 서구 내당동 230-6 동자승렌터카');
 SELECT * FROM MEMBER;
-
-
 
 -- 차량 분류
 INSERT INTO KIND VALUES (1, '소형', 60000);
@@ -245,11 +243,10 @@ SELECT * FROM EVENT;
 INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(1, 'dong');
 INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(2, 'dong');
 INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong');
-INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(1, 'dong1');
-INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong1');
-INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong1');
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(1, 'dong01');
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong01');
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong01');
 SELECT * FROM EVENT_BOX;
-
 
 -- 반복문 사용하여 데이터값 변경 및 기입
 UPDATE MEMBER SET BIRTH = TO_DATE('1995/01/01') WHERE id = 'dong';

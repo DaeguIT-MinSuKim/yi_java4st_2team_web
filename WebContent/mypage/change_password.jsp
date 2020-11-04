@@ -9,7 +9,6 @@
 		<title>아이디 중복 체크</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum_scale=1, minimum_scale=1.0 ,width=device-width, target_densitydpi=device-dpi">
 		<link rel="shortcut icon" href="./images/common/favi.ico">
 		<link  type="text/css" href="./style/bootstrap.3.3.6.min.css" rel="stylesheet">
 		<link  type="text/css" href="./style/bootstrap-select.css" rel="stylesheet">
@@ -22,26 +21,37 @@
 		<link  type="text/css" href="./style/member.css" rel="stylesheet">
 		<link  type="text/css" href="./style/button.css" rel="stylesheet">
 		<link  media="print" type="text/css" href="./style/bootstrap.print.min.css" rel="stylesheet">
-				
+			
+		<script type="text/javascript" src="./script/jquery.1.12.0.min.js"></script>
+		<script type="text/javascript" src="./script/bootstrap.3.3.6.min.js"></script>
+		<script type="text/javascript" src="./script/bootstrap-select.js"></script>
+		<script type="text/javascript" src="./script/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="./script/gnb.type1.js"></script>
+		<script type="text/javascript" src="./script/default.js"></script>
+		<script type="text/javascript" src="./script/script.js"></script>
+		<script type="text/javascript" src="./script/ani_popup.js"></script>
+		<script type="text/javascript" src="./script/form.js"></script>
+		<script type="text/javascript" src="./script/join.js"></script>
+		<script type="text/javascript" src="./script/rent.js"></script>		
+		
 		<script>
-			$(function() {
+			/* $(function() {
 				$("#changePass").on("click", function() {
 					window.alert("비밀번호가 변경 되었습니다.");
 					request.setAttribute("message", "비밀번호가 변경되었습니다.");
 					self.close();
 				});
-			});
+			}); */
 		</script>
 		
 		<script type="text/javascript">
-			function exit() {
-				self.close();
-			}
+
 		</script>
 
-		<script type="text/javascript">
-			$(function changePass() {
-				
+		<script>
+			$(function() {
+				$("#changePass").on("click", function() {
+
 					// 비밀번호 조합 체크
 					var regMust1 = /[a-zA-Z0-9_]/;
 					var regMust2 = /[^a-zA-Z0-9_]/;
@@ -52,7 +62,7 @@
 						return;
 					}
 					
-					/* if (document.getElementsByName("new_passwd1")[0].value.length < 6
+					if (document.getElementsByName("new_passwd1")[0].value.length < 6
 							|| document.getElementsByName("new_passwd1")[0].value.length > 20) {
 						window.alert("비밀번호는 6자이상 20자이하입니다.");
 						document.getElementsByName("new_passwd1")[0].focus();
@@ -64,7 +74,7 @@
 						window.alert("특수문자를 하나 이상 입력하세요.");
 						document.getElementsByName("new_passwd1")[0].focus();
 						return;
-					} */
+					}
 					
 					if (!document.getElementsByName("new_passwd2")[0].value) {
 						window.alert("변경할 비밀번호를 한번 더 입력하세요.");
@@ -77,28 +87,29 @@
 						document.getElementsByName("new_passwd2")[0].focus();
 						return;
 					}
+
+					var changePass = {
+						id : $('#member_id').val(),
+						pwd : $('#new_passwd2').val()
+					};
 					
-					if (changePass()) {
-						var changePass = {
-							id : ${param.id},
-							address : $('#new_passwd2').val()
-						};
+					$.ajax({
+						type : "post",
+						url : "changePassword.do",
+						cache : false,
+						data : JSON.stringify(changePass),
+						complete : function(data) {
+							alert("수정 되었습니다.");
+							alert("비밀번호 변경으로 로그아웃 되었습니다.");
+							window.location.href = "logout.do";
+						}
 						
-						$.ajax({
-							type : "post",
-							url : "modify.do"
-							cache : false,
-							data : JSON.stringify(changePass),
-							complete : function(data) {
-								alert("수정 되었습니다.");
-								window.location.href = "joinEnd.do";
-							}
-						
-						});
-						
-					}
-					//self.close();
-				
+					});
+					window.opener.location.href = "logout.do";    //부모창 reload
+					window.close();    //현재 팝업창 Close
+
+				});
+
 			});
 		</script>
 	</head>
@@ -107,6 +118,7 @@
 		<div class="contents_box padLeft0">
 			<div class="logincontainer-fluid_box page_mypage">
 			<form action="changePassword.do" method="post" name="formm" style="margin-right: 0">
+			<input type="hidden" name="member_id" id="member_id" value="${loginUser.id}">
 			<div class="form-group">
 				<label class="col-sm-2 control-label" style="margin-top: 20px">현재 비밀번호</label>
 				<div class="col-sm-10 divinner">
@@ -137,16 +149,7 @@
 			<div class="btn_box">
 			<ul>
 				<li>
-					<input type="submit" id="changePass"
-						class="btn btn-blue" value="변경" onclick="changePass(); return false;">
-				</li>
-				<!-- <li>
-					<a type="button" id="changePass"
-						class="btn btn-blue" onclick="changePass(); return false;">변경</a>
-				</li> -->
-				<li>
-					<a type="submit" id="changePass"
-						class="btn btn-blue" onclick="exit(); return false;">닫기</a>
+					<a class="btn btn-blue" type="submit" id="changePass">변경</a>
 				</li>
 			</ul>
 			</div>
