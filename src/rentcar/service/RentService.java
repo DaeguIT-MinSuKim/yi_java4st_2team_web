@@ -74,4 +74,9 @@ public class RentService {
 	public JSONArray getCountCarByYearly() {
 		return dao.getCountCarByYearly();
 	}
+	
+	public int updateRent_isRent(int rentNo) {
+		return dao.updateRent_isRent(rentNo);
+	}
+	
 }

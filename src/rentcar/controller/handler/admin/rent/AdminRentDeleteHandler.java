@@ -20,8 +20,8 @@ public class AdminRentDeleteHandler implements Command {
 			throws ServletException, IOException {
 
 		int rentNo = Integer.parseInt(request.getParameter("rentNo"));
-		System.out.println("rentNo>>>>>>" + rentNo);
-		int res = rentService.deleteRent(rentNo);
+//		System.out.println("rentNo>>>>>>" + rentNo);
+		int res = rentService.updateRent_isRent(rentNo); // 삭제하려고 했으나 반납유무 y로 수정함
 		response.getWriter().print(res);
 		return null;
 	}

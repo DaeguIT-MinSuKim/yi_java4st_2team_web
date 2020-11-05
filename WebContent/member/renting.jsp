@@ -5,8 +5,6 @@
 
 <%@ include file="/include/sub_member.jsp"%>
 
-
-
 <!-- 컨텐츠 -->
 <div class="contents_box padLeft0">
 	<div class="contents">
@@ -37,60 +35,62 @@
 					<div class="rent_list">
 		        		<ul class="carList_common">
 			        		<c:forEach var="rentList" items="${rentList}">
-							<li>
-								<div class="left imgBox insertBg">
-									<div class="img">
-										<img src="./images/rentcar/${rentList.carNo.getKind().getCode()}/${rentList.carNo.image}" alt="${rentList.carNo.getName()}">
-									</div>
-								</div>
-								<div class="right textBox">
-									<ul class="text">
-										<li>
-											<div class="left">
-												차량 이름
+				        		<c:if test="${rentList.is_rent eq 'n'}">
+									<li>
+										<div class="left imgBox insertBg">
+											<div class="img">
+												<img src="./images/rentcar/${rentList.carNo.getKind().getCode()}/${rentList.carNo.image}" alt="${rentList.carNo.getName()}">
 											</div>
-											<div class="right">
-												<p>
-													${rentList.carNo.name} (${rentList.carNo.no})
-												</p>
-											</div>
-										</li>
-										<li>
-											<div class="left">
-												렌트 기간
-											</div>
-											<div class="right">
-												<p>
-													<span class="c_blue">${fn:split(rentList.rent_date,'T')[0]}</span>
-													<span>${fn:split(rentList.rent_date,'T')[1]}</span>
-													~
-													<span class="c_blue">${fn:split(rentList.return_date,'T')[0]}</span>
-													<span>${fn:split(rentList.return_date,'T')[1]}</span>
-												</p>
-											</div>
-										</li>
-										<li>
-											<div class="left">
-												보험
-											</div>
-											<div class="right">
-												<p>
-													${rentList.insCode.name }
-												</p>
-											</div>
-										</li>
-										<li class="priceResult">
-											<div class="left">
-												총 결제 금액
-											</div>
-											<div class="right">
-												<fmt:formatNumber value="${rentList.fare}" pattern="#,###,###" /> 원
-											</div>
-										</li>
-									</ul>
-									<a href="javascript:;" data-rentNo="${rentList.rentNo }" class="btn btn-warning c_fff btn_memberRentDelete">렌트예약 취소하기</a>
-								</div>
-							</li>
+										</div>
+										<div class="right textBox">
+											<ul class="text">
+												<li>
+													<div class="left">
+														차량 이름
+													</div>
+													<div class="right">
+														<p>
+															${rentList.carNo.name} (${rentList.carNo.no})
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="left">
+														렌트 기간
+													</div>
+													<div class="right">
+														<p>
+															<span class="c_blue">${fn:split(rentList.rent_date,'T')[0]}</span>
+															<span>${fn:split(rentList.rent_date,'T')[1]}</span>
+															~
+															<span class="c_blue">${fn:split(rentList.return_date,'T')[0]}</span>
+															<span>${fn:split(rentList.return_date,'T')[1]}</span>
+														</p>
+													</div>
+												</li>
+												<li>
+													<div class="left">
+														보험
+													</div>
+													<div class="right">
+														<p>
+															${rentList.insCode.name }
+														</p>
+													</div>
+												</li>
+												<li class="priceResult">
+													<div class="left">
+														총 결제 금액
+													</div>
+													<div class="right">
+														<fmt:formatNumber value="${rentList.fare}" pattern="#,###,###" /> 원
+													</div>
+												</li>
+											</ul>
+											<a href="javascript:;" data-rentNo="${rentList.rentNo }" class="btn btn-warning c_fff btn_memberRentDelete">렌트예약 취소하기</a>
+										</div>
+									</li>
+								</c:if>
 							</c:forEach>
 						</ul>
 		        	</div>

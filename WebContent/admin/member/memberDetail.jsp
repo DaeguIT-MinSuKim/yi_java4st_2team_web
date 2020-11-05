@@ -15,7 +15,8 @@
 				$("#blackUpdate").on("click",function() {
 					var blackMember = {
 						id : $('#member_id').text().trim(),
-						is_black : $('#black').val()
+						is_black : $('#black').val(),
+						bl_reason : $('#bl_reason').val()
 					};
 					
 					$.ajax({
@@ -134,21 +135,6 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row">블랙</th>
-				<td class="tl">
-					<div class="col-xs-3">
-						<select name="black" id="black" class="selectpicker show-tick form-control">
-							<option value="" selected="selected">${selectMember.is_black}</option>
-							<option value="Y">Y</option>
-							<option value="N">N</option>
-						</select>
-					</div>
-					<div class="col-xs-1">
-						<a class="btn_small btn_case2 submit" id="blackUpdate" type="button">수정</a>
-					</div>
-				</td>
-			</tr>
-			<tr>
 				<th scope="row">대여 횟수</th>
 				<td class="tl">
 					<div class="col-xs-5">
@@ -156,6 +142,29 @@
 					</div>
 				</td>
 			</tr>
+			<tr>
+				<th scope="row">블랙리스트</th>
+				<td class="tl">
+					<div class="col-xs-2">
+						<select name="black" id="black" class="selectpicker show-tick form-control">
+							<option value="Y" <c:if test="${selectMember.is_black == 'Y'}"></c:if>>블랙</option>
+							<option value="N" <c:if test="${selectMember.is_black == 'N'}">selected</c:if>>일반</option>
+						</select>
+					</div>
+					<div class="col-xs-1">
+						<a class="btn_small btn_case2 submit" id="blackUpdate" type="button">등록</a>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">블랙 이유</th>
+				<td class="tl">
+					<div class="col-xs-10">
+						<textarea class="text" name="bl_reason" id="bl_reason">${selectMember.bl_reason}</textarea>
+					</div>
+				</td>
+			</tr>
+			
 		</table>
 		</div>
 			<a href="adminMemberList.do" class="btn_small btn_case2 floatR mt10 mr5" >고객 목록</a>

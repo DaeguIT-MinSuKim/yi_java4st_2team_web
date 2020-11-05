@@ -114,22 +114,23 @@
 <nav id="admin_gnb">
 	<ul>
 		<li><a href="adminRent.do">단기렌트 관리</a></li>
-		<li><a href="#">차량관리</a>
+		<li><a href="#">차량 관리</a>
 			<ul>
 				<li><a href="carList.do">차량정보</a></li>
 				<li><a href="brandList.do">브랜드</a></li>
 				<li><a href="kindList.do">차량분류</a></li>
 			</ul>
 		</li>
-		<li><a href="#">대여관리</a>
+		<li><a href="#">대여 관리</a>
 			<ul>
 				<li><a href="adminInsList.do">보험</a></li>
 				<li><a href="adminOptList.do">옵션</a></li>
 			</ul>
 		</li>
-		<li><a href="#">고객관리</a>
+		<li><a href="#">회원 관리</a>
 			<ul>
-				<li><a href="adminMemberList.do">고객목록</a></li>
+				<li><a href="adminMemberList.do">전체 회원목록</a></li>
+				<li><a href="adminMemberLeaveList.do">탈퇴 회원목록</a></li>
 				<li><a href="adminBlackList.do">블랙리스트</a></li>
 			</ul>
 		</li>
