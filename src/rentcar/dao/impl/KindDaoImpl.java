@@ -72,7 +72,8 @@ public class KindDaoImpl implements KindDao {
 
 	@Override
 	public int insertKind(Kind kind) {
-		String sql = "INSERT INTO KIND(KIND_NAME, KIND_FARE) VALUES (?, ?)";
+		System.out.println("kind > " + kind);
+		String sql = "INSERT INTO KIND VALUES (KIND_CODE_SEQ.NEXTVAL,?, ?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, kind.getName());
 			pstmt.setInt(2, kind.getFare());

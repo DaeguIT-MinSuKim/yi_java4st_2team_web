@@ -133,8 +133,7 @@
         	<form class="form-horizontal" role="form" name="frmName" method="post"
         		action="modify.do">	
 				<div class="join">
-				
-					<div class="form-group">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">아이디</label>
 					<div class="col-sm-10 divinner">
 						<div class="col-xs-8">
@@ -150,8 +149,8 @@
 						<div class="col-xs-3">
 							<a href="javascript:;" class="btn btn-normal" id="changePass"
 							onclick="changePass(); return false;">비밀번호 변경하기</a>
-						</div><div style="margin-top: 20px; font-style: italic; text-align: center;"><h4>${message}</h4></div>
-						<p></p>
+						</div>
+						<p>비밀번호 변경시 로그인 해제가 됩니다.</p>
 					</div>
 				</div>
 								
