@@ -57,6 +57,9 @@ public class EventService {
 	public ArrayList<Event> selectEventBoxFindMemberCoupon(String id) {
 		return dao.selectEventBoxFindMemberCoupon(id);
 	}
+	public ArrayList<Event> selectEventBoxFindMemberCouponEnd(String id, String isEvent) {
+		return dao.selectEventBoxFindMemberCouponEnd(id, isEvent);
+	}
 	
 	// 관리자 이벤트 - 검색
 	public List<Event> searchEventList(String condition, String keyword, Paging paging){

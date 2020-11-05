@@ -228,6 +228,30 @@ public class EventDaoImpl implements EventDao {
 		}
 		return null;
 	}
+
+	@Override
+	public ArrayList<Event> selectEventBoxFindMemberCouponEnd(String id, String isEvent) {
+		String sql = "SELECT E.EVENT_CODE, E.NAME, E.SALE, E.START_DATE, E.END_DATE " + 
+				"FROM EVENT_BOX B, EVENT E " + 
+				"WHERE B.IS_EVENT = ? AND B.ID = ? AND B.EVENT_CODE = E.EVENT_CODE";
+	try(PreparedStatement pstmt = con.prepareStatement(sql)){
+		pstmt.setString(1, isEvent);
+		pstmt.setString(2, id);
+		
+		try(ResultSet rs = pstmt.executeQuery()){
+			if (rs.next()) {
+				ArrayList<Event> list = new ArrayList<Event>();
+				do {
+					list.add(getMemberEvent(rs));
+				} while (rs.next());
+				return list;
+			}
+		}
+	} catch (SQLException e) {
+		throw new CustomSQLException(e);
+	}
+	return null;
+	}
 	
 	private Event getMemberEvent(ResultSet rs) throws SQLException {
 		Event event = new Event();
