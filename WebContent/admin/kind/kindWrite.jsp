@@ -4,10 +4,11 @@
 <!-- // header -->
 <script type="text/javascript">
 	var regex = /[^0-9]/g;
-	var fare = $('#fare').val();
 
 	$(function() {
 		$('#add').on("click", function() {
+			var fare = $('#fare').val();
+			
 			if($('#name').val() == ""){
 				alert("분류명을 기입해주세요");
 				$('#name').focus();

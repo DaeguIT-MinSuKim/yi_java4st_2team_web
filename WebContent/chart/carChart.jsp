@@ -83,7 +83,7 @@ $(function(){
 			};
 		
 		var carByRentOptions = {
-				title : '차량 대여여부',
+				title : '차량 대여비율',
 				height : '100%',
 				width : '100%',
 				pieHole: 0.4,
@@ -145,13 +145,13 @@ $(function(){
 				<tr>
 					<td><div id="chart_kind" style="width: 600px; height: 400px;"></div></td>
 					<td><div id="chart_brand" style="width: 600px; height: 400px;"></div></td>
-					<td><div id="chart_carByRent"
-							style="width: 600px; height: 400px;"></div></td>
 				</tr>
 				<tr>
 					<td><div id="chart_kindByRent"
 							style="width: 600px; height: 400px;"></div></td>
 					<td><div id="chart_brandByRent"
+							style="width: 600px; height: 400px;"></div></td>
+					<td><div id="chart_carByRent"
 							style="width: 600px; height: 400px;"></div></td>
 				</tr>
 			</table>
