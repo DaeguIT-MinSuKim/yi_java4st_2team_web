@@ -100,6 +100,7 @@ public class MemberDaoImpl implements MemberDao {
 		String email = rs.getString("EMAIL");
 		String address = rs.getString("ADDRESS");
 		String is_black = rs.getString("IS_BLACK");
+		String bl_reason = rs.getString("BL_REASON");
 		Integer counting = rs.getInt("COUNTING");
 		Date date = rs.getTimestamp("LOGIN_DATE");
 		Integer try_counting = rs.getInt("TRY_COUNTING");
@@ -107,8 +108,8 @@ public class MemberDaoImpl implements MemberDao {
 		Integer lock_counting = rs.getInt("LOCK_COUNTING");
 		String reason = rs.getString("REASON");
 		String content = rs.getString("CONTENT");
-		return new Member(id, pwd, gender, birth, name, tel, li_class, li_number, email, address, is_black, counting,
-				date, try_counting, is_lock, lock_counting, reason, content);
+		return new Member(id, pwd, gender, birth, name, tel, li_class, li_number, email, address, is_black, bl_reason,
+				counting, date, try_counting, is_lock, lock_counting, reason, content);
 	}
 
 	@Override
@@ -177,10 +178,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int updateBlack(Member member) {
-		String sql = "UPDATE MEMBER SET IS_BLACK = ? WHERE ID = ?";
+		String sql = "UPDATE MEMBER SET IS_BLACK = ?, BL_REASON = ? WHERE ID = ?";
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 			pstmt.setString(1, member.getIs_black());
-			pstmt.setString(2, member.getId());
+			pstmt.setString(2, member.getBl_reason());
+			pstmt.setString(3, member.getId());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -289,6 +291,48 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return null;
 	}
+	
+	// 페이징 - 탈퇴 회원 리스트
+	@Override
+	public int countMemberLeaveList() {
+		String sql = "SELECT COUNT(*) FROM MEMBER WHERE GENDER = 'X'";
+		try (PreparedStatement pstmt = con.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return 0;
+	}
+	
+	@Override
+	public ArrayList<Member> pagingMemberLeaveList(Paging paging) {
+		String sql = "SELECT *\r\n"
+				+ "		FROM (SELECT rownum RN, a.*\r\n"
+				+ "          FROM (SELECT * \r\n"
+				+ "                  FROM MEMBER\r\n"
+				+ "                 WHERE GENDER = 'X'\r\n"
+				+ "                 ORDER BY NAME ASC) a)\r\n"
+				+ "         WHERE RN BETWEEN ? AND ?\r\n"
+				+ "         ORDER BY RN";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, paging.getStart());
+			pstmt.setInt(2, paging.getEnd());
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					ArrayList<Member> list = new ArrayList<Member>();
+					do {
+						list.add(getMemberList(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			throw new CustomSQLException(e);
+		}
+		return null;
+	}
 
 	@Override
 	public ArrayList<Member> selectSearchMember(String condition, String keyword) {
@@ -345,21 +389,6 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setString(10, member.getReason());
 			pstmt.setString(11, member.getContent());
 			pstmt.setString(12, member.getId());
-			return pstmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-
-	}
-
-	@Override
-	public int changePass(String id, String pwd) {
-		String sql = "UPDATE MEMBER\r\n"
-				+ "      SET PWD = ?\r\n"
-				+ "    WHERE ID = ?";
-		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
-			pstmt.setString(1, pwd);
-			pstmt.setString(2, id);
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

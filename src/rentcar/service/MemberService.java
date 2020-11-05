@@ -37,11 +37,7 @@ public class MemberService {
 	public int insertMember(Member member) {
 		return dao.insertMember(member);
 	}
-	
-	public int changePass(String id, String pwd) {
-		return dao.changePass(id, pwd);
-	}
-	
+		
 	public int changePass1(Member member) {
 		return dao.changePass1(member);
 	}
@@ -78,6 +74,15 @@ public class MemberService {
 
 	public ArrayList<Member> pagingMemberBlackList(Paging paging) {
 		return dao.pagingMemberBlackList(paging);
+	}
+	
+	// 페이징 - 탈퇴 회원 리스트
+	public int countMemberLeaveList() {
+		return dao.countMemberLeaveList();
+	}
+	
+	public ArrayList<Member> pagingMemberLeaveList(Paging paging) {
+		return dao.pagingMemberLeaveList(paging);
 	}
 
 	// 검색
