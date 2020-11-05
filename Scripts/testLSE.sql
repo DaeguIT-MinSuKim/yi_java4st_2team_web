@@ -221,3 +221,11 @@ SELECT * FROM INSURANCE;
 
 SELECT * FROM (SELECT rownum Rn, a.* FROM (SELECT * FROM INSURANCE WHERE INS_CODE LIKE '%1%' ORDER BY INS_CODE) a) WHERE rn BETWEEN 1 AND 5 ORDER BY rn;
 select count(*) from INsurance
+
+
+------------------------------------------------------------------------
+SELECT * FROM LONGRENT ;
+
+
+
+
