@@ -27,6 +27,7 @@
 			}
 		});
 		
+		document.cookie="kindNum=" + 1;
 		$("#kindList").change(function(){
 			document.cookie="kindNum="+ $("#kindList").val();
 		});

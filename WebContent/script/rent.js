@@ -606,13 +606,13 @@ function btn_payBox_submit(){
 function memberRent_delete(){
 	if( $(".btn_memberRentDelete").length ){
 		$(".btn_memberRentDelete").on("click", function(){
-			if( confirm("이 렌트예약을 취소하시겠습니까?") ){
+			if( confirm("이 렌트예약을 반납(취소) 하시겠습니까?") ){
 				var rentNo = $(this).attr("data-rentNo");
 				$.ajax({
 					url:"rentDelete.do?rentNo="+rentNo,
 					type:"get",
 					success:function(){
-						alert("삭제가 완료되었습니다");
+						alert("예약 반납(최소) 완료되었습니다");
 						location.href="renting.do";
 					}
 				});

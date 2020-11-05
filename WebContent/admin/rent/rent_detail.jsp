@@ -75,7 +75,7 @@
 			</table>
 			<ul class="button_style3 mt50">
 				<li><a href="adminRent.do" class="btn_small btn_case2">목록</a></li>
-				<li><a href="javascript:;" data-rentNo="${rent.rentNo}" class="btn_small btn_case5 btn_rentDelete">삭제</a></li>
+				<li><a href="javascript:;" data-rentNo="${rent.rentNo}" class="btn_small btn_case5 btn_rentDelete">반납</a></li>
 			</ul>
 		</form>
 	</div>

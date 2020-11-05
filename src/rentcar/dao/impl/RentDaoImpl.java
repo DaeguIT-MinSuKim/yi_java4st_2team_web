@@ -141,7 +141,7 @@ public class RentDaoImpl implements RentDao {
 	public List<Rent> selectRentById(String id) {
 		String sql = "SELECT * FROM Rent r LEFT OUTER JOIN MEMBER m ON r.ID = m.ID JOIN INSURANCE i ON r.INS_CODE = i.INS_CODE"
 				+ " JOIN car c ON r.CAR_NO = c.CAR_NO LEFT OUTER join kind k ON c.KIND_CODE = k.KIND_CODE JOIN BRAND b ON c.BRAND_CODE = b.BRAND_CODE"
-				+ " WHERE r.ID = ?";
+				+ " WHERE r.ID = ? ORDER BY RENT_DATE DESC";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, id);
 
@@ -215,6 +215,17 @@ public class RentDaoImpl implements RentDao {
 			pstmt.setString(8, rent.getRemark());
 			pstmt.setInt(9, rent.getRentNo());
 
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Override
+	public int updateRent_isRent(int rentNo) {
+		String sql = "UPDATE RENT SET IS_RENT = 'y' WHERE RENT_NO = ?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, rentNo);
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

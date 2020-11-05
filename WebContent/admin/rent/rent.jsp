@@ -69,7 +69,7 @@ $(function(){
 					<td>${rent.fare }</td>
 					<td>
 						<a href="adminRentDetail.do?rentNo=${rent.rentNo}" class="btn c_fff btn-primary">상세보기</a>
-						<a href="javascript:;" data-rentNo="${rent.rentNo}" class="btn btn_case5 btn_rentDelete">삭제</a>
+						<a href="javascript:;" data-rentNo="${rent.rentNo}" class="btn btn_case5 btn_rentDelete">반납하기</a>
 					</td>
 				</tr>
 			</c:forEach> 
