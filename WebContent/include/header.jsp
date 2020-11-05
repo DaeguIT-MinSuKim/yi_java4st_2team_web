@@ -105,6 +105,15 @@
 				
 			});
 			
+			$('#adminLogout').on("click", function() {
+				if (confirm("관리자님 로그아웃 하시겠습니까?") == true) {	// 확인
+					location.href="logout.do";
+			    } else {	// 취소
+			    	return;
+			    }
+				
+			});
+			
 		});
 	</script>
 </head>
@@ -117,6 +126,12 @@
 			<div class="side">
 				<ul>
 					<li class="home"><a href="index.do">HOME</a></li>
+					<c:if test="${not empty sessionScope.admin}">
+						<li>관리자(${sessionScope.admin.id})님</li>
+      					<li><a class="logout" style="cursor:pointer;" id="adminLogout"><span>로그아웃</span></a></li>
+      					<li><a href="admin.do"><span>관리자</span></a></li>
+					</c:if>
+					<c:if test="${empty sessionScope.admin}">
 					<c:choose>
 						<c:when test="${empty sessionScope.loginUser}">
 							<li><a class="login" href="login.do"><span>로그인</span></a></li>
@@ -128,6 +143,7 @@
 	      					<li><a class="logout" style="cursor:pointer;" id="logout"><span>로그아웃</span></a></li>
 						</c:otherwise>
 					</c:choose>
+					</c:if>
 				</ul>
 			</div>
 

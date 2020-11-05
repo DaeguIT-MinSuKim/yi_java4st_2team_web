@@ -45,4 +45,7 @@ public interface RentDao {
 	
 	// 차트 - 연도별 차량대여현황
 	JSONArray getCountCarByYearly();
+	
+	// 반납유무 수정 (렌트취소시 삭제 대신 반납유무를 번경)
+	int updateRent_isRent(int rentNo);
 }

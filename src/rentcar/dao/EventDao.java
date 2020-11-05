@@ -37,6 +37,9 @@ public interface EventDao {
 	// 이벤트 - 한 회원이 갖고 있는 할인쿠폰 찾기 
 	ArrayList<Event> selectEventBoxFindMemberCoupon(String id);
 	
+	// 이벤트 - 회원이 발급받은 쿠폰은 사용 불가한 쿠폰 찾기 (isEvent - y 사용한 쿠폰, e 기간 만료 쿠폰)
+	ArrayList<Event> selectEventBoxFindMemberCouponEnd(String id, String isEvent);
+	
 	// 관리자 이벤트 - 검색
 	int countSearchEventByAll(String condition, String keyword);
 	List<Event> searchEventList(String condition, String keyword, Paging paging);

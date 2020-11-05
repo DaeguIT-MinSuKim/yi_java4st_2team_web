@@ -11,6 +11,7 @@
 		var brandCode = ${car.brand.code};
 		$('#brandList').val(brandCode);
 		
+		document.cookie="kindNum=" + kindCode;
 		$("#kindList").change(function(){
 			document.cookie="kindNum="+ $("#kindList").val();
 		});

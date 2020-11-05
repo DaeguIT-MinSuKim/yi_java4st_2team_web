@@ -172,7 +172,7 @@ VALUES('버스 5달 장기렌트 문의드립니다.','풀옵션  렌트 문의�
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('소울 2달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-07-20 19:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','곽철두','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES('투싼 2달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-11-20 18:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','최동자','010-1234-2222','1111','후방카메라');
+VALUES('투싼 2달 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-10-20 18:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','최동자','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('미니쿠퍼 1년 장기렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-10-20 01:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','제갈동자','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
@@ -192,7 +192,7 @@ VALUES('자전거 1달 렌트 문의드립니다.','풀옵션  렌트 문의드�
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('스파크 4달렌트 문의드립니다.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-01-20 21:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','도하승','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES('쏘나타  구형 2달 렌트 문의','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-12-20 22:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김수현','010-1234-2222','1111','후방카메라');
+VALUES('쏘나타  구형 2달 렌트 문의','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-08-20 22:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김수현','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('쏘나타  신형 2달 장기렌트 문의.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-08-20 22:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김수현','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
@@ -202,7 +202,7 @@ VALUES('장기렌트 문의드립니다.','풀옵션  렌트 문의 2달정도 �
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
 VALUES('장기렌트 하고싶어요.......','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-08-20 16:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김수현','010-1234-2222','1111','후방카메라');
 INSERT INTO LONGRENT(TITLE, CONTENTS, REP_YN, WRITE_DATE, RENT_TERM, NAME, TEL, PWD, OPTIONS)
-VALUES('미니쿠퍼신형 3달 장기렌트 문의요.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-11-20 20:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김수현','010-1234-2222','1111','후방카메라');
+VALUES('미니쿠퍼신형 3달 장기렌트 문의요.','풀옵션  렌트 문의드립니다. 2달정도 생각하고있습니다. 견적 부탁드립니다. ', 1, to_date('2020-08-20 20:30:20','YYYY-MM-DD HH24:MI:SS'),'100일','김수현','010-1234-2222','1111','후방카메라');
 SELECT * FROM LONGRENT;
 
 --공지사항
@@ -242,68 +242,38 @@ SELECT * FROM EVENT;
 -- 이벤트 박스
 INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(1, 'dong');
 INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(2, 'dong');
-INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong');
 INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(1, 'dong01');
-INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong01');
-INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(3, 'dong01');
+INSERT INTO EVENT_BOX(EVENT_CODE, ID) VALUES(2, 'dong01');
 SELECT * FROM EVENT_BOX;
 
--- 반복문 사용하여 데이터값 변경 및 기입
-UPDATE MEMBER SET BIRTH = TO_DATE('1995/01/01') WHERE id = 'dong';
-SELECT * FROM MEMBER;
-
+-- 반복문 사용하여 연령대 랜덤값 설정
 DECLARE
 NUM NUMBER :=1;
 BEGIN
 	LOOP
-	UPDATE MEMBER SET BIRTH = TO_DATE('1960/01/01') WHERE id = 'dong'||NUM;
-	INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong'||NUM, '11하1234', 1, '2017-11-17', '2017-11-20', 'n', 65000, '반납X');
-	NUM := NUM + 1;
-	EXIT WHEN NUM > 5;
-	END LOOP;
-END;
-DECLARE
-NUM NUMBER :=6;
-BEGIN
-	LOOP
-	UPDATE MEMBER SET BIRTH = TO_DATE('1970/01/01') WHERE id = 'dong'||NUM;
-	INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong'||NUM, '21가9012', 1, '2018-11-17', '2018-11-20', 'n', 65000, '반납X');
-	NUM := NUM + 1;
-	EXIT WHEN NUM > 10;
-	END LOOP;
-END;
-DECLARE
-NUM NUMBER :=11;
-BEGIN
-	LOOP
-	UPDATE MEMBER SET BIRTH = TO_DATE('1980/01/01') WHERE id = 'dong'||NUM;
-	INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong'||NUM, '31나1234', 1, '2019-11-17', '2019-11-20', 'n', 65000, '반납X');
-	NUM := NUM + 1;
-	EXIT WHEN NUM > 15;
-	END LOOP;
-END;
-DECLARE
-NUM NUMBER :=16;
-BEGIN
-	LOOP
-	UPDATE MEMBER SET BIRTH = TO_DATE('1990/01/01') WHERE id = 'dong'||NUM;
-	INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong'||NUM, '41다1212', 1, '2019-11-17', '2019-11-20', 'n', 65000, '반납X');
+	UPDATE MEMBER
+	SET BIRTH = TO_DATE ( ROUND (DBMS_RANDOM.VALUE (1, 28)) || '-' || ROUND (DBMS_RANDOM.VALUE (1, 12)) || '-' || ROUND (DBMS_RANDOM.VALUE (1960, 2000)),'DD-MM-YYYY')	--생년원일 랜덤값
+	WHERE id = 'dong'||LPAD(NUM, 2, '0');	--'dong 01 ~ 20'
 	NUM := NUM + 1;
 	EXIT WHEN NUM > 20;
 	END LOOP;
 END;
 
+-- 반복문 사용하여 대여 랜덤데이터 기입
 DECLARE
 NUM NUMBER :=1;
+RENTDATE DATE := TO_DATE ( ROUND (DBMS_RANDOM.VALUE (1, 28)) || '-' || ROUND (DBMS_RANDOM.VALUE (1, 12)) || '-' || ROUND (DBMS_RANDOM.VALUE (2017, 2020)),'DD-MM-YYYY');	--대여일 변수선언
 BEGIN
 	LOOP
-	INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong', '11하6789', 1, '2019-05-17', '2019-11-20', 'n', 65000, '반납X');
-	INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong10', '21가1234', 1, '2019-05-17', '2019-11-20', 'n', 65000, '반납X');
-	INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong20', '55마1212', 1, '2018-05-17', '2019-11-20', 'n', 65000, '반납X');
+	RENTDATE := TO_DATE ( ROUND (DBMS_RANDOM.VALUE (1, 28)) || '-' || ROUND (DBMS_RANDOM.VALUE (1, 12)) || '-' || ROUND (DBMS_RANDOM.VALUE (2017, 2020)),'DD-MM-YYYY');	--대여일 초기화
+	INSERT INTO RENT VALUES (RENT_NO_SEQ.NEXTVAL, 'dong' || LPAD(TRUNC(DBMS_RANDOM.VALUE(1,20)), 2, '0'),	-- 아이디 랜덤값
+		(SELECT * FROM (SELECT CAR_NO FROM CAR ORDER BY DBMS_RANDOM.RANDOM) WHERE rownum = 1),	--차량번호 랜덤값
+	1, RENTDATE, RENTDATE+7, 'n', 65000, '반납X');	--대여일 랜덤, 반납일은 7일후 설정
 	NUM := NUM + 1;
-	EXIT WHEN NUM > TRUNC(DBMS_RANDOM.VALUE(10,200));
+	EXIT WHEN NUM > 10000;	-- 반복횟수
 	END LOOP;
 END;
 
--- 옵션 박스
-INSERT INTO OPT_BOX(OPT_CODE, RENT_NO) VALUES (1, 1);
+-- 현 날짜보다 이후일경우 반납완료 체킹
+UPDATE RENT SET IS_RENT = 'y' WHERE return_date < sysdate;	--대여 테이블에서 반납일이 현날짜보다 적은경우 대여완료 설정
+UPDATE car SET is_rentcar = 'y' WHERE car_no IN (SELECT DISTINCT CAR_NO FROM RENT WHERE IS_RENT='y');	--반납완료된 대여 테이블의 차량값을 받아와서 반납완료차량 체크

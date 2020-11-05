@@ -15,8 +15,6 @@ import rentcar.service.EventService;
 
 public class MypagePasswordHandler implements Command {
 
-	private EventService eventService = new EventService();
-
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -39,11 +37,6 @@ public class MypagePasswordHandler implements Command {
 
 			if (loginUser.getPwd().equals(pwd)) {
 				request.setAttribute("loginUser", loginUser);
-
-				// 보유중인 쿠폰
-				ArrayList<Event> memberCoupon = eventService.selectEventBoxFindMemberCoupon(loginUser.getId());
-				System.out.println("memberCoupon : " + memberCoupon);
-				request.setAttribute("memberCoupon", memberCoupon);
 
 				return "mypage/modify.jsp";
 
