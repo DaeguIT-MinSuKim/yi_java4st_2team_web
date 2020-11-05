@@ -88,13 +88,12 @@ public class CarWriteHandler implements Command {
 						if (service.isCar(no)) {
 							service.insertCar(c);
 						}
-						response.sendRedirect("carList.do");
 					} catch (Exception e) {
 						System.out.println("예외 발생 : " + e);
 					}
 				}
 			}
-			return null;
+			return "/admin/car/carList.do";
 		}
 	}
 }
