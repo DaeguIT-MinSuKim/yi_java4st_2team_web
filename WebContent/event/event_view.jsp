@@ -68,7 +68,7 @@
 					<div>
 						<h4>알림</h4>
 						<div>
-							<p>이미 해당 쿠폰을 다운로드 하셨습니다.<br>마이페이지로 이동하시겠습니까?</p>
+							<p>이미 해당 쿠폰을 다운로드 하셨습니다.<br>쿠폰 보관함으로 이동하시겠습니까?</p>
 							<ul>
 								<li><a href="#" class="btn1 cancle">닫기</a></li>
 								<li><a href="coupon.do" class="btn2 login">확인</a></li>
