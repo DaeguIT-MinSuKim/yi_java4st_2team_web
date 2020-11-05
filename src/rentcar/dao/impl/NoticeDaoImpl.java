@@ -78,8 +78,8 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public int insertNotice(Notice notice) {
-		String sql = "INSERT INTO NOTICE (TITLE, CONTENTS, WRITE_DATE, IS_TOP ) "
-				+ "VALUES(?,?,sysdate,?)";
+		String sql = "INSERT INTO NOTICE (NO, TITLE, CONTENTS, WRITE_DATE, IS_TOP ) "
+				+ "VALUES(notice_NO_SEQ.NEXTVAL, ?,?,sysdate,?)";
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, notice.getTitle());
 			pstmt.setString(2, notice.getContents());

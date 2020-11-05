@@ -94,6 +94,8 @@ SELECT * FROM NOTICE ORDER BY IS_TOP, WRITE_DATE asc;
 
 SELECT * FROM notice;
 
+INSERT INTO notice (title, contents, WRITE_DATE, IS_TOP) VALUES ('1','2',sysdate,1);
+
 -------------------관리자-----------------------------------------------------------------------------------
 SELECT * FROM LONGRENT ;
 UPDATE LONGRENT SET REP_CONTENT = '댓글수정', REP_YN = 2  WHERE NO = 5;

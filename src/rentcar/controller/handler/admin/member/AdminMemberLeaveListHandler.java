@@ -8,22 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import rentcar.controller.Command;
 
-public class AdminMemberModifyHandler implements Command {
+public class AdminMemberLeaveListHandler implements Command {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		if (request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("GET AdminMemberModifyHandler");
-			
+			System.out.println("GET AdminMemberLeaveListHandler");
+
 			return null;
-			
+
 		} else {
-			System.out.println("POST AdminMemberModifyHandler");
-			
+			System.out.println("POST AdminMemberLeaveListHandler");
+
 			return null;
-			
 		}
 		
 	}

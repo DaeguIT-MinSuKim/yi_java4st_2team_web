@@ -75,7 +75,6 @@ $(function(){
     });
 	
 	
-	
 	// 단기렌트 상세에서 반납일 인풋만 있을 경우
 	if( $(".calendar.next").length > 0 && $(".calendar.prev").length == 0 ){
 		

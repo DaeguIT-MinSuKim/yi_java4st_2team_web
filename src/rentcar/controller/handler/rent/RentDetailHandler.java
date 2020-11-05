@@ -1,7 +1,12 @@
 package rentcar.controller.handler.rent;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -54,8 +59,31 @@ public class RentDetailHandler implements Command {
 			String id = loginUser.getId();
 			ArrayList<Event> evt = eventService.selectEventBoxFindMemberCoupon(id);
 			
-			// 한 차량에 대한 최대 대여 가능일 가져옴
+			
+			// ---------- 한 차량에 대한 최대 대여 가능일 가져옴 ↓ ----------
 			Rent ren = rentService.selectRentByDate(carNo);
+			
+			if( ren.getReturn_date()!=null ) {
+				// 1. localDateTime -> String으로 형변환.
+				DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+				LocalDateTime returnDate = ren.getReturn_date();
+				String formattedDateTime = returnDate.format(formatter);
+				// 2. 형변환한 String을 다시 Date로 변환.
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+				Date FristDate;		// rentDate   대여일
+				Date secondDate;	// returnDate 반납일
+				try {
+					FristDate = format.parse(minDate);
+					secondDate = format.parse(formattedDateTime);
+					if( FristDate.after(secondDate) ) { // 두 날짜를 체크. after => FristDate가 괄호안의 secondDate보다 미래일 때 true (true면 잘못된거임..그래서 사용자단에 returnDate를 걍 빈값을 던진다)
+	//					System.out.println("secondDate가 FristDate보다 이전날짜");
+						ren = null;
+					}
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				// ---------- 한 차량에 대한 최대 대여 가능일 가져옴 ↑ ----------
+			}
 			
 			request.setAttribute("minDate", minDate);
 			request.setAttribute("maxDate", maxDate);
@@ -66,10 +94,8 @@ public class RentDetailHandler implements Command {
 			request.setAttribute("optList", opt);
 			request.setAttribute("evtList", evt);
 			request.setAttribute("maxDateLimit", ren);
-		}else {
 			
 		}
-		
 		return "/rent/rent_detail.jsp";
 	}
 

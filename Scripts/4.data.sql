@@ -272,7 +272,7 @@ BEGIN
 		(SELECT * FROM (SELECT CAR_NO FROM CAR ORDER BY DBMS_RANDOM.RANDOM) WHERE rownum = 1),	--차량번호 랜덤값
 	1, RENTDATE, RENTDATE+7, 'n', 65000, '반납X');	--대여일 랜덤, 반납일은 7일후 설정
 	NUM := NUM + 1;
-	EXIT WHEN NUM > 5000;	-- 반복횟수
+	EXIT WHEN NUM > 10000;	-- 반복횟수
 	END LOOP;
 END;
 

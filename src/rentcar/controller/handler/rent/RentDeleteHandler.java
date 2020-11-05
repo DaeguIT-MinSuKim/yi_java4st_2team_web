@@ -45,7 +45,7 @@ public class RentDeleteHandler implements Command {
 		
 		if (request.getMethod().equalsIgnoreCase("GET")) {
 			int rentNo = Integer.parseInt(request.getParameter("rentNo"));
-			int res = rentService.deleteRent(rentNo);
+			int res = rentService.updateRent_isRent(rentNo); // 삭제하려고 했으나 반납유무 y로 수정함
 			response.getWriter().print(res);
 			return null;
 		}
