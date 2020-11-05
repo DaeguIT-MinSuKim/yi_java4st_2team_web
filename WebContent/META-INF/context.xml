@@ -5,7 +5,7 @@
 		auth="Container"
 		type="javax.sql.DataSource" 
 		driverClassName="oracle.jdbc.driver.OracleDriver"
-		url="jdbc:oracle:thin:@127.0.0.1:1521:orcl2" 
+		url="jdbc:oracle:thin:@127.0.0.1:1521:orcl" 
 		username="rentcar"
 		password="rootroot"  
 		maxTotal="50000" 
