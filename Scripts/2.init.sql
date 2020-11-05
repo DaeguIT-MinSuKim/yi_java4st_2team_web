@@ -105,6 +105,7 @@ CREATE TABLE MEMBER (
 	email VARCHAR2(50), /* 이메일 */
 	address VARCHAR2(500), /* 주소 */
 	is_black CHAR(1) DEFAULT 'N', /* 블랙리스트 */
+	bl_reason VARCHAR2(500), /* 블랙 이유 */
 	counting INTEGER, /* 회원대여횟수 */
 	reason VARCHAR2(500), /* 이유 */
 	content VARCHAR2(500), /* 내용 */

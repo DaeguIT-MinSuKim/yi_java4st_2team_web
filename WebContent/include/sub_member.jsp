@@ -25,6 +25,7 @@
 				<ul>
 					<li><a class="logout" id="logout" href="logout.do">로그아웃</a></li>
 					<li><a class="mypage" href="mypage.do">마이페이지</a></li>
+					<li><a href="coupon.do">쿠폰 보관함</a></li>
 					<li><a href="agree.do">이용약관</a></li>
 					<li><a href="privacy.do">개인정보취급방침</a></li>
 				</ul>

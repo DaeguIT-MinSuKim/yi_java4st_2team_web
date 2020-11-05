@@ -25,8 +25,6 @@ public interface MemberDao {
 	int updateMember(Member member);
 	
 	// 비밀번호 변경
-	int changePass(String id, String pwd);
-	
 	int changePass1(Member member);
 	
 	// 회원 탈퇴
@@ -45,6 +43,10 @@ public interface MemberDao {
 	// 페이징 - 회원 블랙 리스트
 	int countMemberBlackList();
 	ArrayList<Member> pagingMemberBlackList(Paging paging);
+	
+	// 페이징 - 탈퇴 회원 리스트
+	int countMemberLeaveList();
+	ArrayList<Member> pagingMemberLeaveList(Paging paging);
 	
 	// 검색
 	ArrayList<Member> selectSearchMember(String condition, String keyword);

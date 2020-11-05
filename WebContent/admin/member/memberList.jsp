@@ -9,7 +9,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>고객 목록</title>
+		<title>전체 회원목록</title>
 		<script>
 			$(function() {
 				if ($(".board").length == 0) { // 글이 없는 경우
@@ -24,9 +24,9 @@
 	
 	<body>
 		<div id="adimn_content">
-		<h2>고객 목록</h2>
+		<h2>전체 회원목록</h2>
 		<div class="admin_page">
-		<p>※ 고객님의 상세 정보는 아이디를 클릭하세요.</p>
+		<p>※ 회원님의 상세 정보는 아이디를 클릭하세요.</p>
 			<div class="divSearch">
 				<form name="frmSearch" action="adminMemberList.do" method="post">
 					<select name="condition">
@@ -52,7 +52,7 @@
 				</colgroup>
 				
 				<tr>
-					<th>블랙</th>
+					<th>블랙 / 탈퇴</th>
 					<th>아이디</th>
 					<th>이름</th>
 					<th>전화번호</th>
@@ -66,8 +66,13 @@
 				<tr class="board">
 					<td>
 						<c:choose>
-							<c:when test="${member.is_black == 'Y'}">✔</c:when>
-							<c:when test="${member.is_black == 'N'}"></c:when>
+							<c:when test="${member.is_black == 'Y'}">블랙</c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${member.is_black == 'Y' && member.gender == 'X'}"> / </c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${member.gender == 'X'}">탈퇴</c:when>
 						</c:choose>
 					</td>
 					<td><a href="adminMemberDetail.do?id=${member.id}">${member.id}</a></td>

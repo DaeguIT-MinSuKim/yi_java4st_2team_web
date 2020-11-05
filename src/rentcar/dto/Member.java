@@ -17,7 +17,7 @@ public class Member {
 	private String address;
 
 	private String is_black; // 블랙 리스트
-
+	private String bl_reason;
 	private Integer counting; // 대여 횟수
 
 	// 로그인 제한
@@ -33,7 +33,8 @@ public class Member {
 	public Member() {
 		super();
 	}
-
+	
+	// 가입
 	public Member(String id, String pwd, String gender, Date birth, String name, String tel, String li_class,
 			String li_number, String email, String address) {
 		this.id = id;
@@ -48,9 +49,10 @@ public class Member {
 		this.address = address;
 	}
 
+	// 전체
 	public Member(String id, String pwd, String gender, Date birth, String name, String tel, String li_class,
-			String li_number, String email, String address, String is_black, Integer counting, Date date,
-			Integer try_counting, String is_lock, Integer lock_counting, String reason, String content) {
+			String li_number, String email, String address, String is_black, String bl_reason, Integer counting,
+			Date date, Integer try_counting, String is_lock, Integer lock_counting, String reason, String content) {
 		this.id = id;
 		this.pwd = pwd;
 		this.gender = gender;
@@ -62,6 +64,7 @@ public class Member {
 		this.email = email;
 		this.address = address;
 		this.is_black = is_black;
+		this.bl_reason = bl_reason;
 		this.counting = counting;
 		this.date = date;
 		this.try_counting = try_counting;
@@ -69,6 +72,14 @@ public class Member {
 		this.lock_counting = lock_counting;
 		this.reason = reason;
 		this.content = content;
+	}
+
+	public String getBl_reason() {
+		return bl_reason;
+	}
+
+	public void setBl_reason(String bl_reason) {
+		this.bl_reason = bl_reason;
 	}
 
 	public Member(String id, String is_black) {
@@ -228,9 +239,9 @@ public class Member {
 	public String toString() {
 		return "Member [id=" + id + ", pwd=" + pwd + ", gender=" + gender + ", birth=" + birth + ", name=" + name
 				+ ", tel=" + tel + ", li_class=" + li_class + ", li_number=" + li_number + ", email=" + email
-				+ ", address=" + address + ", is_black=" + is_black + ", counting=" + counting + ", date=" + date
-				+ ", try_counting=" + try_counting + ", is_lock=" + is_lock + ", lock_counting=" + lock_counting
-				+ ", reason=" + reason + ", content=" + content + "]";
+				+ ", address=" + address + ", is_black=" + is_black + ", bl_reason=" + bl_reason + ", counting="
+				+ counting + ", date=" + date + ", try_counting=" + try_counting + ", is_lock=" + is_lock
+				+ ", lock_counting=" + lock_counting + ", reason=" + reason + ", content=" + content + "]";
 	}
 
 }
