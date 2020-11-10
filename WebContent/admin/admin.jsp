@@ -46,9 +46,11 @@
 		<div id="adimn_content">
 			<h2>관리자 페이지</h2>
 			<div class="admin_page" style="text-align: center;">
-				<h1>안녕하세요 관리자님!!</h1><br>
+				<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/_MZxoeKCDeo?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+				<h1>안녕하세요 관리자님!!</h1><div style="margin:auto; /* border:1px solid #dedede; */ width:600px; height:250px; line-height:250px; color:#666; font-size:100px; text-align:center;" id="clock">현재시간</div>
+
 			</div>
-			<div style="margin:auto; border:1px solid #dedede; width:600px; height:250px; line-height:250px; color:#666; font-size:100px; text-align:center;" id="clock">현재시간</div>
+			
 		</div>
 	</body>
 
