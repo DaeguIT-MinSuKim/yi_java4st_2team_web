@@ -32,7 +32,6 @@ public class MemberDaoImplTest {
 	@After
 	public void tearDown() throws Exception {
 		dao = null;
-		dao = null;
 	}
 
 	@Test

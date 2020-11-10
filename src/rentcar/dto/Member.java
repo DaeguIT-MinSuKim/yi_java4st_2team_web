@@ -6,7 +6,6 @@ public class Member {
 
 	// 회원가입
 	private String id;
-	private String id;
 	private String pwd;
 	private String gender;
 	private Date birth;
